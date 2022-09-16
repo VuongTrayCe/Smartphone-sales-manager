@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Worlds");
         QuanLyNhanVien_DAO qlnv = new QuanLyNhanVien_DAO();
-        qlnv.getMotNhanVien("nv1");
+        qlnv.getMotNhanVien("001");
         
     }
 }

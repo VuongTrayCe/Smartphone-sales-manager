@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `baohanh`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `baohanh` (
   `Mabaohanh` varchar(20) NOT NULL,
   `Ngaybatdau` datetime NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `baohanh` (
   `Chitietbaohanh` varchar(200) NOT NULL,
   `Trangthai` tinyint NOT NULL,
   PRIMARY KEY (`Mabaohanh`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,11 +38,11 @@ CREATE TABLE `baohanh` (
 
 DROP TABLE IF EXISTS `chitietdonhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `chitietdonhang` (
-  `mactdh` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Masp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Madh` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mactdh` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Masp` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Madh` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Soluong` int NOT NULL,
   PRIMARY KEY (`mactdh`),
   KEY `Fk_chitietdonhang_sanpham_idx` (`Masp`),
@@ -58,7 +58,7 @@ CREATE TABLE `chitietdonhang` (
 
 DROP TABLE IF EXISTS `chitietphieunhap`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `chitietphieunhap` (
   `MaChiTietPhieuNhap` varchar(20) NOT NULL,
   `Masp` varchar(20) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `chitietphieunhap` (
   KEY `Fk_chitietphieunhap_phieunhap_idx` (`Maphieunhap`),
   CONSTRAINT `Fk_chitietphieunhap_phieunhap` FOREIGN KEY (`Maphieunhap`) REFERENCES `phieunhap` (`Maphieunhap`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Fk_chitietphieunhap_sanpham` FOREIGN KEY (`Masp`) REFERENCES `sanpham` (`Masp`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `chitietphieunhap` (
 
 DROP TABLE IF EXISTS `donhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `donhang` (
   `Madh` varchar(20) NOT NULL,
   `Makh` varchar(20) NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `donhang` (
   CONSTRAINT `FK_donhang_khachhang` FOREIGN KEY (`Makh`) REFERENCES `khachhang` (`Makh`) ON UPDATE CASCADE,
   CONSTRAINT `FK_donhang_khuyenmai` FOREIGN KEY (`Makm`) REFERENCES `khuyenmai` (`Makm`) ON UPDATE CASCADE,
   CONSTRAINT `FK_donhang_nhanvien` FOREIGN KEY (`Manv`) REFERENCES `nhanvien` (`Manv`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `donhang` (
 
 DROP TABLE IF EXISTS `giasanpham`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `giasanpham` (
   `Magiasp` varchar(20) NOT NULL,
   `Masp` varchar(20) NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE `giasanpham` (
   PRIMARY KEY (`Magiasp`),
   KEY `FK_giasanpham_sanpham_idx` (`Masp`),
   CONSTRAINT `FK_giasanpham_sanpham` FOREIGN KEY (`Masp`) REFERENCES `sanpham` (`Masp`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `giasanpham` (
 
 DROP TABLE IF EXISTS `khachhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `khachhang` (
   `Makh` varchar(20) NOT NULL,
   `Tenkh` varchar(100) NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE `khachhang` (
   `DiaChi` varchar(100) NOT NULL,
   `TrangThai` varchar(20) NOT NULL,
   PRIMARY KEY (`Makh`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,14 +143,14 @@ CREATE TABLE `khachhang` (
 
 DROP TABLE IF EXISTS `khuyenmai`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `khuyenmai` (
   `Makm` varchar(20) NOT NULL,
   `Loaikm` varchar(100) NOT NULL,
   `Ngaybatdau` varchar(20) NOT NULL,
   `Ngayketthuc` varchar(20) NOT NULL,
   PRIMARY KEY (`Makm`,`Ngayketthuc`,`Ngaybatdau`,`Loaikm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `khuyenmai` (
 
 DROP TABLE IF EXISTS `nhacungcap`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `nhacungcap` (
   `Mancc` varchar(20) NOT NULL,
   `Tenncc` varchar(100) NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE `nhacungcap` (
   `TrangThai` varchar(20) NOT NULL,
   PRIMARY KEY (`Mancc`),
   UNIQUE KEY `Mancc_UNIQUE` (`Mancc`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +177,7 @@ CREATE TABLE `nhacungcap` (
 
 DROP TABLE IF EXISTS `nhanvien`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `nhanvien` (
   `Manv` varchar(20) NOT NULL,
   `Tennv` varchar(100) NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE `nhanvien` (
   `TrangThai` varchar(20) NOT NULL,
   PRIMARY KEY (`Manv`),
   UNIQUE KEY `Manv_UNIQUE` (`Manv`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +197,7 @@ CREATE TABLE `nhanvien` (
 
 DROP TABLE IF EXISTS `phieunhap`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `phieunhap` (
   `Maphieunhap` varchar(20) NOT NULL,
   `Manv` varchar(20) NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE `phieunhap` (
   KEY `FK_phieunhap_nhacungcap_idx` (`Mancc`),
   CONSTRAINT `FK_phieunhap_nhacungcap` FOREIGN KEY (`Mancc`) REFERENCES `nhacungcap` (`Mancc`) ON UPDATE CASCADE,
   CONSTRAINT `FK_phieunhap_nhanvien` FOREIGN KEY (`Manv`) REFERENCES `nhanvien` (`Manv`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,12 +219,12 @@ CREATE TABLE `phieunhap` (
 
 DROP TABLE IF EXISTS `quyen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `quyen` (
   `Maquyen` varchar(20) NOT NULL,
   `Tenquyen` varchar(20) NOT NULL,
   PRIMARY KEY (`Maquyen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `quyen` (
 
 DROP TABLE IF EXISTS `quyen_tk`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `quyen_tk` (
   `Maquyentk` varchar(20) NOT NULL,
   `Matk` varchar(20) NOT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE `quyen_tk` (
   KEY `FK_quyentk_quyen_idx` (`Maquyen`),
   CONSTRAINT `FK_quyentk_quyen` FOREIGN KEY (`Maquyen`) REFERENCES `quyen` (`Maquyen`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Fk_quyentk_taikhoan` FOREIGN KEY (`Matk`) REFERENCES `taikhoan` (`Matk`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +252,7 @@ CREATE TABLE `quyen_tk` (
 
 DROP TABLE IF EXISTS `sanpham`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `sanpham` (
   `Masp` varchar(20) NOT NULL,
   `Tensp` varchar(100) NOT NULL,
@@ -263,7 +263,7 @@ CREATE TABLE `sanpham` (
   `TrangThai` varchar(20) NOT NULL,
   PRIMARY KEY (`Masp`),
   UNIQUE KEY `Masp_UNIQUE` (`Masp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +272,7 @@ CREATE TABLE `sanpham` (
 
 DROP TABLE IF EXISTS `taikhoan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `taikhoan` (
   `Matk` varchar(20) NOT NULL,
   `Manv` varchar(20) NOT NULL,
@@ -282,7 +282,7 @@ CREATE TABLE `taikhoan` (
   PRIMARY KEY (`Matk`),
   KEY `Fk_taikhoan_nhanvien_idx` (`Manv`),
   CONSTRAINT `Fk_taikhoan_nhanvien` FOREIGN KEY (`Manv`) REFERENCES `nhanvien` (`Manv`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8smartphonemanagement_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -295,3 +295,4 @@ CREATE TABLE `taikhoan` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-09-16  0:18:34
+baohanhbaohanhchitietdonhang

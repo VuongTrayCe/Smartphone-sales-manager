@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Smartphone_sales_management.UI;
+package Smartphone_sales_management.UI.form;
 
 import javax.swing.border.TitledBorder;
 
@@ -92,7 +92,6 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       UIMain uimain = new UIMain();
        
         
     }//GEN-LAST:event_jButton1ActionPerformed

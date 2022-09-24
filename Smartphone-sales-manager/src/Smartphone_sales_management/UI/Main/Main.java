@@ -1,7 +1,8 @@
-package Smartphone_sales_management;
+package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.DAO.QuanLyNhanVien_DAO;
-import Smartphone_sales_management.UI.Login;
+import Smartphone_sales_management.UI.form.Login;
+import Smartphone_sales_management.UI.Swing.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,7 +22,7 @@ public class Main {
         
 //=======
 
-       Login lg = new Login();
+       TestFrame a = new TestFrame();
        
 
 //>>>>>>> main

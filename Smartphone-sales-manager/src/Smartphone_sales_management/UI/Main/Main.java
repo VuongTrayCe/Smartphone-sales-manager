@@ -1,7 +1,8 @@
-package Smartphone_sales_management;
+package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.DAO.QuanLyNhanVien_DAO;
-import Smartphone_sales_management.UI.Login;
+import Smartphone_sales_management.UI.form.Login;
+import Smartphone_sales_management.UI.Swing.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,9 +15,16 @@ import Smartphone_sales_management.UI.Login;
  */
 public class Main {
     public static void main(String[] args) {
+//<<<<<<< HEAD
+        System.out.println("Hello Worlds");
+        QuanLyNhanVien_DAO qlnv = new QuanLyNhanVien_DAO();
+        qlnv.getMotNhanVien("001");
+        
+//=======
 
-       Login lg = new Login();
+       TestFrame a = new TestFrame();
        
 
+//>>>>>>> main
     }
 }

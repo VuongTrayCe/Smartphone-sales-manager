@@ -27,10 +27,48 @@ CREATE TABLE `baohanh` (
   `Ngaybatdau` datetime NOT NULL,
   `Ngayketthuc` datetime NOT NULL,
   `Chitietbaohanh` varchar(200) NOT NULL,
-  `Trangthai` tinyint NOT NULL,
+  `Trangthai` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Mabaohanh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `baohanh`
+--
+
+LOCK TABLES `baohanh` WRITE;
+/*!40000 ALTER TABLE `baohanh` DISABLE KEYS */;
+INSERT INTO `baohanh` VALUES ('100','2010-00-00 00:00:00','2010-00-00 00:00:00','hello',NULL);
+/*!40000 ALTER TABLE `baohanh` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `chitietbaohanh`
+--
+
+DROP TABLE IF EXISTS `chitietbaohanh`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chitietbaohanh` (
+  `Machitietbaohanh` varchar(20) NOT NULL,
+  `Mabaohanh` varchar(20) NOT NULL,
+  `Masp` varchar(20) NOT NULL,
+  PRIMARY KEY (`Machitietbaohanh`),
+  KEY `FK_chitietbaohanh_baohanh_idx` (`Mabaohanh`),
+  KEY `FK_chitietbaohanh_sanpham_idx` (`Masp`),
+  CONSTRAINT `FK_chitietbaohanh_baohanh` FOREIGN KEY (`Mabaohanh`) REFERENCES `baohanh` (`Mabaohanh`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_chitietbaohanh_sanpham` FOREIGN KEY (`Masp`) REFERENCES `sanpham` (`Masp`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chitietbaohanh`
+--
+
+LOCK TABLES `chitietbaohanh` WRITE;
+/*!40000 ALTER TABLE `chitietbaohanh` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chitietbaohanh` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `chitietdonhang`
@@ -40,17 +78,60 @@ DROP TABLE IF EXISTS `chitietdonhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chitietdonhang` (
-  `mactdh` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mactdh` varchar(20) NOT NULL,
   `Masp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Madh` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Soluong` int NOT NULL,
+  `Machitietbaohanh` varchar(20) NOT NULL,
+  `Machitietkhuyenmai` varchar(20) NOT NULL,
   PRIMARY KEY (`mactdh`),
   KEY `Fk_chitietdonhang_sanpham_idx` (`Masp`),
-  KEY `Fk_chitietdonhang_donhang_idx` (`Madh`),
+  KEY `Fk_chitietdonhang_donhang_idx` (`Madh`) /*!80000 INVISIBLE */,
+  KEY `FK_chitietdonhang_chitietbaohanh_idx` (`Machitietbaohanh`),
+  KEY `Fk_chitietdonhang_chitietkhuyenmai_idx` (`Machitietkhuyenmai`),
+  CONSTRAINT `FK_chitietdonhang_chitietbaohanh` FOREIGN KEY (`Machitietbaohanh`) REFERENCES `chitietbaohanh` (`Machitietbaohanh`) ON UPDATE CASCADE,
+  CONSTRAINT `Fk_chitietdonhang_chitietkhuyenmai` FOREIGN KEY (`Machitietkhuyenmai`) REFERENCES `chitietkhuyenmai` (`Machitietkhuyenmai`) ON UPDATE CASCADE,
   CONSTRAINT `Fk_chitietdonhang_donhang` FOREIGN KEY (`Madh`) REFERENCES `donhang` (`Madh`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Fk_chitietdonhang_sanpham` FOREIGN KEY (`Masp`) REFERENCES `sanpham` (`Masp`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chitietdonhang`
+--
+
+LOCK TABLES `chitietdonhang` WRITE;
+/*!40000 ALTER TABLE `chitietdonhang` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chitietdonhang` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `chitietkhuyenmai`
+--
+
+DROP TABLE IF EXISTS `chitietkhuyenmai`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chitietkhuyenmai` (
+  `Machitietkhuyenmai` varchar(20) NOT NULL,
+  `Masp` varchar(20) DEFAULT NULL,
+  `Makm` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`Machitietkhuyenmai`),
+  KEY `FK_chitietkhuyenmai_sanpham_idx` (`Masp`),
+  KEY `FK_chitietkhuyenmai_khuyenmai_idx` (`Makm`),
+  CONSTRAINT `FK_chitietkhuyenmai_khuyenmai` FOREIGN KEY (`Makm`) REFERENCES `khuyenmai` (`Makm`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_chitietkhuyenmai_sanpham` FOREIGN KEY (`Masp`) REFERENCES `sanpham` (`Masp`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chitietkhuyenmai`
+--
+
+LOCK TABLES `chitietkhuyenmai` WRITE;
+/*!40000 ALTER TABLE `chitietkhuyenmai` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chitietkhuyenmai` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `chitietphieunhap`
@@ -74,6 +155,15 @@ CREATE TABLE `chitietphieunhap` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `chitietphieunhap`
+--
+
+LOCK TABLES `chitietphieunhap` WRITE;
+/*!40000 ALTER TABLE `chitietphieunhap` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chitietphieunhap` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `donhang`
 --
 
@@ -84,22 +174,26 @@ CREATE TABLE `donhang` (
   `Madh` varchar(20) NOT NULL,
   `Makh` varchar(20) NOT NULL,
   `Manv` varchar(20) NOT NULL,
-  `Makm` varchar(20) NOT NULL,
-  `Mabaohanh` varchar(20) NOT NULL,
   `Ngayban` varchar(20) NOT NULL,
   `SoLuong` int NOT NULL,
   `Tongtien` double NOT NULL,
+  `Trangthai` tinyint DEFAULT NULL,
   PRIMARY KEY (`Madh`),
   KEY `FK_donhang_khachhang_idx` (`Makh`),
   KEY `FK_donhang_nhanvien_idx` (`Manv`),
-  KEY `FK_donhang_khuyenmai_idx` (`Makm`),
-  KEY `Fk_donhang_baohanh_idx` (`Mabaohanh`),
-  CONSTRAINT `Fk_donhang_baohanh` FOREIGN KEY (`Mabaohanh`) REFERENCES `baohanh` (`Mabaohanh`) ON UPDATE CASCADE,
   CONSTRAINT `FK_donhang_khachhang` FOREIGN KEY (`Makh`) REFERENCES `khachhang` (`Makh`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_donhang_khuyenmai` FOREIGN KEY (`Makm`) REFERENCES `khuyenmai` (`Makm`) ON UPDATE CASCADE,
   CONSTRAINT `FK_donhang_nhanvien` FOREIGN KEY (`Manv`) REFERENCES `nhanvien` (`Manv`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `donhang`
+--
+
+LOCK TABLES `donhang` WRITE;
+/*!40000 ALTER TABLE `donhang` DISABLE KEYS */;
+/*!40000 ALTER TABLE `donhang` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `giasanpham`
@@ -121,6 +215,15 @@ CREATE TABLE `giasanpham` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `giasanpham`
+--
+
+LOCK TABLES `giasanpham` WRITE;
+/*!40000 ALTER TABLE `giasanpham` DISABLE KEYS */;
+/*!40000 ALTER TABLE `giasanpham` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `khachhang`
 --
 
@@ -133,9 +236,19 @@ CREATE TABLE `khachhang` (
   `SDT` int NOT NULL,
   `DiaChi` varchar(100) NOT NULL,
   `TrangThai` varchar(20) NOT NULL,
+  `Diemso` int DEFAULT NULL,
   PRIMARY KEY (`Makh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `khachhang`
+--
+
+LOCK TABLES `khachhang` WRITE;
+/*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
+/*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `khuyenmai`
@@ -146,12 +259,21 @@ DROP TABLE IF EXISTS `khuyenmai`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `khuyenmai` (
   `Makm` varchar(20) NOT NULL,
+  `Tenkm` varchar(100) DEFAULT NULL,
   `Loaikm` varchar(100) NOT NULL,
-  `Ngaybatdau` varchar(20) NOT NULL,
-  `Ngayketthuc` varchar(20) NOT NULL,
-  PRIMARY KEY (`Makm`,`Ngayketthuc`,`Ngaybatdau`,`Loaikm`)
+  `Trangthai` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`Makm`,`Loaikm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `khuyenmai`
+--
+
+LOCK TABLES `khuyenmai` WRITE;
+/*!40000 ALTER TABLE `khuyenmai` DISABLE KEYS */;
+/*!40000 ALTER TABLE `khuyenmai` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `nhacungcap`
@@ -170,6 +292,15 @@ CREATE TABLE `nhacungcap` (
   UNIQUE KEY `Mancc_UNIQUE` (`Mancc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nhacungcap`
+--
+
+LOCK TABLES `nhacungcap` WRITE;
+/*!40000 ALTER TABLE `nhacungcap` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nhacungcap` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `nhanvien`
@@ -192,6 +323,16 @@ CREATE TABLE `nhanvien` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `nhanvien`
+--
+
+LOCK TABLES `nhanvien` WRITE;
+/*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
+INSERT INTO `nhanvien` VALUES ('nv1','vuong',12244,19,'vinhxuan','f','f');
+/*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `phieunhap`
 --
 
@@ -205,6 +346,7 @@ CREATE TABLE `phieunhap` (
   `SoLuong` int NOT NULL,
   `NgayNhap` varchar(20) NOT NULL,
   `TongTien` double NOT NULL,
+  `Trangthai` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Maphieunhap`),
   KEY `FK_phieunhap_nhanvien_idx` (`Manv`),
   KEY `FK_phieunhap_nhacungcap_idx` (`Mancc`),
@@ -212,6 +354,15 @@ CREATE TABLE `phieunhap` (
   CONSTRAINT `FK_phieunhap_nhanvien` FOREIGN KEY (`Manv`) REFERENCES `nhanvien` (`Manv`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phieunhap`
+--
+
+LOCK TABLES `phieunhap` WRITE;
+/*!40000 ALTER TABLE `phieunhap` DISABLE KEYS */;
+/*!40000 ALTER TABLE `phieunhap` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `quyen`
@@ -226,6 +377,15 @@ CREATE TABLE `quyen` (
   PRIMARY KEY (`Maquyen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `quyen`
+--
+
+LOCK TABLES `quyen` WRITE;
+/*!40000 ALTER TABLE `quyen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `quyen` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `quyen_tk`
@@ -247,6 +407,15 @@ CREATE TABLE `quyen_tk` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `quyen_tk`
+--
+
+LOCK TABLES `quyen_tk` WRITE;
+/*!40000 ALTER TABLE `quyen_tk` DISABLE KEYS */;
+/*!40000 ALTER TABLE `quyen_tk` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sanpham`
 --
 
@@ -261,10 +430,18 @@ CREATE TABLE `sanpham` (
   `MauSac` varchar(100) NOT NULL,
   `Namsx` varchar(20) NOT NULL,
   `TrangThai` varchar(20) NOT NULL,
-  PRIMARY KEY (`Masp`),
-  UNIQUE KEY `Masp_UNIQUE` (`Masp`)
+  PRIMARY KEY (`Masp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sanpham`
+--
+
+LOCK TABLES `sanpham` WRITE;
+/*!40000 ALTER TABLE `sanpham` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sanpham` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `taikhoan`
@@ -284,6 +461,15 @@ CREATE TABLE `taikhoan` (
   CONSTRAINT `Fk_taikhoan_nhanvien` FOREIGN KEY (`Manv`) REFERENCES `nhanvien` (`Manv`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `taikhoan`
+--
+
+LOCK TABLES `taikhoan` WRITE;
+/*!40000 ALTER TABLE `taikhoan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `taikhoan` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -294,4 +480,4 @@ CREATE TABLE `taikhoan` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-16  0:18:34
+-- Dump completed on 2022-09-21 23:52:21

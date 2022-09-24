@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component;
 
-import Smartphone_sales_management.UI.Model.Model_Menu1;
+import Smartphone_sales_management.UI.Model.Model_Menu;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -24,7 +24,7 @@ public class MenuPanel2 extends javax.swing.JPanel {
     public MenuPanel2() {
         initComponents();
         setOpaque(false);  
-        this.add(new Listitem(new Model_Menu1("boy","VUong")));
+//        this.add(new Listitem(new Model_Menu1("boy","VUong")));
         repaint();
     }
 

@@ -27,7 +27,7 @@ public class QuanLyNhanVien_DAO {
     ArrayList<String> result = new ArrayList<>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien ");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien where manv=?");
             stm.setString(1,manv);
             rs =  stm.executeQuery();
                 while (rs.next()) {

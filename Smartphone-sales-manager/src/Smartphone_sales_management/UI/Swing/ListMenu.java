@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Swing;
 
+import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Model.Model_Menu;
 import Smartphone_sales_management.UI.Swing.MenuItem;
 import java.awt.Component;
@@ -11,7 +12,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-//import static Smartphone_sales_management.UI.form.Menu.selectedIndex;
+import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
 
 /**
  *
@@ -19,6 +20,14 @@ import javax.swing.ListCellRenderer;
  */
 public class ListMenu<E extends Object >extends JList<E> {
      private final DefaultListModel model;
+     
+         private EventMenu event;
+
+      public void addEventMenu(EventMenu event) {
+          this.event=event;
+    }
+     
+     
     public ListMenu()
             {
                 model = new DefaultListModel();
@@ -47,8 +56,16 @@ public class ListMenu<E extends Object >extends JList<E> {
                    data = new Model_Menu("",o+"",Model_Menu.MenuType.EMPTY);
                }
                MenuItem item;
-//                 int i = selectedIndex==index?1:0;
-                 item  = new MenuItem(data);
+               if(selectedIndex==index)
+               {
+                 item  = new MenuItem(data,selectedIndex);
+
+               }
+               else
+               {
+                 item  = new MenuItem(data,index);
+
+               }
                 
 
                 return item;
@@ -57,5 +74,7 @@ public class ListMenu<E extends Object >extends JList<E> {
         };
 
     }
+
+   
     
 }

@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
 
 /**
  *
@@ -24,19 +25,30 @@ public class MenuItem extends javax.swing.JPanel {
         this.setBackground(Color.GRAY);
         if(data.getType() == Model_Menu.MenuType.MENU)
             {
-//                System.out.println(index);
                 lbIcon.setIcon(data.toIcon());
                 lbName.setText(data.getName());
-                if(index == 1)
+                if(selectedIndex == 0 && index==0)
+                {   
+                    this.setBackground(Color.WHITE);
+                }
+                else if(selectedIndex == 1 && index==1)
                 {   
                 this.setBackground(Color.WHITE);
-                    System.out.println("Da vao ròi");
-                }
-                else
+                } 
+                 else
                 {
                  this.setBackground(Color.GRAY);
 
                 }
+//                 if(selectedIndex == 2)
+//                {   
+//                this.setBackground(Color.WHITE);
+//                } 
+//                 if(selectedIndex == 3)
+//                {   
+//                this.setBackground(Color.WHITE);
+//                }              
+               
 //                
 
                 

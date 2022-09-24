@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.form;
 
+import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Model.Model_Menu;
 import Smartphone_sales_management.UI.Swing.ListMenu;
 import java.awt.Color;
@@ -22,6 +23,7 @@ import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
 
 /**
  *
@@ -32,48 +34,102 @@ public class Menu extends javax.swing.JPanel {
     /**
      * Creates new form Menu
      */
-    public static int selectedIndex = -1;
+    private EventMenu event;
+    
+    
+     public void addEventMenu(EventMenu event) {
+        this.event = event;
+//        event.selected(0);
+//        listMenu1.addEventMenu(event);
+
+
+     listMenu1.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(listMenu1.getSelectedIndex()==0)
+                {
+                   selectedIndex=0;
+                   listMenu1.repaint();
+                  event.selected(selectedIndex);
+                  
+                  
+                  
+                }
+                if(listMenu1.getSelectedIndex()==1)
+                {
+                    selectedIndex=1;
+                   listMenu1.repaint();
+                  event.selected(1);
+                  
+                }
+                if(listMenu1.getSelectedIndex()==2)
+                {
+                    selectedIndex=2;
+                   listMenu1.repaint();
+                  event.selected(2);
+                  
+                }
+                if(listMenu1.getSelectedIndex()==3)
+                {
+                    selectedIndex=3;
+                   listMenu1.repaint();
+                  event.selected(3);
+                  
+                }
+
+
+
+            }
+        });
+
+
+    }
+    
+    
+    
     public Menu() {
         initComponents();
         
          init();
         setOpaque(false);
         listMenu1.setOpaque(false);
-        listMenu1.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(listMenu1.getSelectedIndex()==1)
-                {
-                                    System.out.println("Da Chọn");
-
-                }
-            }
-        });
-     listMenu1.addMouseMotionListener(new MouseAdapter() {
-      public void mouseMoved(MouseEvent me) {
-    Point p = new Point(me.getX(),me.getY());
-    int index=-1;
-     index = listMenu1.locationToIndex(p);
-          System.out.println(index);
-    if (index != selectedIndex) {
-      selectedIndex= index ;
-      listMenu1.repaint();
-    }
-    else if(index == -1)
-    {
-     selectedIndex=-1;
-     listMenu1.repaint();
-    }
-    
-  }
-});
+//        listMenu1.addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//                if(listMenu1.getSelectedIndex()==1)
+//                {
+//                   flag=1;
+//                    System.out.println("Da vao");
+//                    repaint();
+//                  
+//                }
+//            }
+//        });
+//        listMenu1.add
+//     listMenu1.addMouseMotionListener(new MouseAdapter() {
+//      public void mouseMoved(MouseEvent me) {
+//    Point p = new Point(me.getX(),me.getY());
+//    int index=-1;
+//     index = listMenu1.locationToIndex(p);
+//          System.out.println(index);
+//    if (index != selectedIndex) {
+//      selectedIndex= index ;
+//      listMenu1.repaint();
+//    }
+//    else if(index == -1)
+//    {
+//     selectedIndex=-1;
+//     listMenu1.repaint();
+//    }
+//    
+//      }
+//});
       
-     
     
      
-     
     }
-             
+       
+    
     public void init()
     {
         

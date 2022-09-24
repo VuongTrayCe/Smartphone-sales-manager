@@ -15,9 +15,16 @@ import Smartphone_sales_management.UI.Swing.*;
  */
 public class Main {
     public static void main(String[] args) {
+//<<<<<<< HEAD
+        System.out.println("Hello Worlds");
+        QuanLyNhanVien_DAO qlnv = new QuanLyNhanVien_DAO();
+        qlnv.getMotNhanVien("001");
+        
+//=======
 
        TestFrame a = new TestFrame();
        
 
+//>>>>>>> main
     }
 }

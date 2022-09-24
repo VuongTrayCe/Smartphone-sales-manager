@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
 
 /**
  *
@@ -18,26 +19,36 @@ import java.awt.RenderingHints;
 public class MenuItem extends javax.swing.JPanel {
     
         private final Model_Menu data;
-    public MenuItem(Model_Menu data) {
+    public MenuItem(Model_Menu data,int index) {
                 initComponents();
         this.data=data;
         this.setBackground(Color.GRAY);
         if(data.getType() == Model_Menu.MenuType.MENU)
             {
-//                System.out.println(index);
                 lbIcon.setIcon(data.toIcon());
                 lbName.setText(data.getName());
-//                if(index == 1)
-//                {
-//                    
-//                this.setBackground(Color.GREEN);
-//                    System.out.println("Da vao ròi");
-//                }
-//                else
-//                {
-//                 this.setBackground(Color.GRAY);
-//
-//                }
+                if(selectedIndex == 0 && index==0)
+                {   
+                    this.setBackground(Color.WHITE);
+                }
+                else if(selectedIndex == 1 && index==1)
+                {   
+                this.setBackground(Color.WHITE);
+                } 
+                 else
+                {
+                 this.setBackground(Color.GRAY);
+
+                }
+//                 if(selectedIndex == 2)
+//                {   
+//                this.setBackground(Color.WHITE);
+//                } 
+//                 if(selectedIndex == 3)
+//                {   
+//                this.setBackground(Color.WHITE);
+//                }              
+               
 //                
 
                 
@@ -72,7 +83,6 @@ public class MenuItem extends javax.swing.JPanel {
         lbName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 51, 0));
-        setOpaque(false);
 
         lbName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
@@ -85,7 +95,7 @@ public class MenuItem extends javax.swing.JPanel {
                 .addComponent(lbIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbName)
-                .addGap(6, 6, 6))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

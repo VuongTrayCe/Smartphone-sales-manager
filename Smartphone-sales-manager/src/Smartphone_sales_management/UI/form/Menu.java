@@ -5,13 +5,21 @@
 package Smartphone_sales_management.UI.form;
 
 import Smartphone_sales_management.UI.Model.Model_Menu;
+import Smartphone_sales_management.UI.Swing.ListMenu;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -24,7 +32,7 @@ public class Menu extends javax.swing.JPanel {
     /**
      * Creates new form Menu
      */
-    private static int selectedIndex = -1;
+    public static int selectedIndex = -1;
     public Menu() {
         initComponents();
         
@@ -41,38 +49,40 @@ public class Menu extends javax.swing.JPanel {
                 }
             }
         });
-//        listMenu1.addMouseMotionListener(new MouseAdapter() {
-//      public void mouseMoved(MouseEvent me) {
-//    Point p = new Point(me.getX(),me.getY());
-//    int index=-1;
-//     index = listMenu1.locationToIndex(p);
-//          System.out.println(index);
-//    if (index != selectedIndex) {
-//      selectedIndex= index ;
-//      listMenu1.repaint();
-//    }
-//    else if(index == -1)
-//    {
-//     selectedIndex=-1;
-//     listMenu1.repaint();
-//    }
-//    
-//  }
-//});
-//        
-//    }
-//
+     listMenu1.addMouseMotionListener(new MouseAdapter() {
+      public void mouseMoved(MouseEvent me) {
+    Point p = new Point(me.getX(),me.getY());
+    int index=-1;
+     index = listMenu1.locationToIndex(p);
+          System.out.println(index);
+    if (index != selectedIndex) {
+      selectedIndex= index ;
+      listMenu1.repaint();
     }
+    else if(index == -1)
+    {
+     selectedIndex=-1;
+     listMenu1.repaint();
+    }
+    
+  }
+});
+      
+     
+    
+     
+     
+    }
+             
     public void init()
     {
         
-        listMenu1.addItem(new Model_Menu("ThongKe","Bán Hàng", Model_Menu.MenuType.MENU));
-                listMenu1.addItem(new Model_Menu("PhieuNhap","Bán Hàng", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("SanPham","Bán Hàng", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("SanPham","Bán Hàng", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("SanPham","Bán Hàng", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("SanPham","Bán Hàng", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("SanPham","Bán Hàng", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("BanHang","Bán Hàng", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("SanPham","Sản Phẩm", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("DonHang","Đơn Hàng", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("PhieuNhap","Phiếu Nhập", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("NhanVien","Nhân Viên", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("ThongKe","Thống Kê", Model_Menu.MenuType.MENU));
 
 
     }
@@ -101,7 +111,7 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,11 +125,8 @@ public class Menu extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +148,7 @@ public class Menu extends javax.swing.JPanel {
 
         super.paintComponent(g);
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

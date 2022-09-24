@@ -18,7 +18,7 @@ import java.awt.RenderingHints;
 public class MenuItem extends javax.swing.JPanel {
     
         private final Model_Menu data;
-    public MenuItem(Model_Menu data) {
+    public MenuItem(Model_Menu data,int index) {
                 initComponents();
         this.data=data;
         this.setBackground(Color.GRAY);
@@ -27,17 +27,16 @@ public class MenuItem extends javax.swing.JPanel {
 //                System.out.println(index);
                 lbIcon.setIcon(data.toIcon());
                 lbName.setText(data.getName());
-//                if(index == 1)
-//                {
-//                    
-//                this.setBackground(Color.GREEN);
-//                    System.out.println("Da vao ròi");
-//                }
-//                else
-//                {
-//                 this.setBackground(Color.GRAY);
-//
-//                }
+                if(index == 1)
+                {   
+                this.setBackground(Color.WHITE);
+                    System.out.println("Da vao ròi");
+                }
+                else
+                {
+                 this.setBackground(Color.GRAY);
+
+                }
 //                
 
                 
@@ -72,7 +71,6 @@ public class MenuItem extends javax.swing.JPanel {
         lbName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 51, 0));
-        setOpaque(false);
 
         lbName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
@@ -85,7 +83,7 @@ public class MenuItem extends javax.swing.JPanel {
                 .addComponent(lbIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbName)
-                .addGap(6, 6, 6))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

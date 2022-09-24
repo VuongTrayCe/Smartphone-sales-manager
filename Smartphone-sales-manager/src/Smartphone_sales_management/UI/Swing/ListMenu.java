@@ -11,7 +11,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-//import static Smartphone_sales_management.UI.form.Menu.selectedIndex;
+import static Smartphone_sales_management.UI.form.Menu.selectedIndex;
 
 /**
  *
@@ -47,8 +47,8 @@ public class ListMenu<E extends Object >extends JList<E> {
                    data = new Model_Menu("",o+"",Model_Menu.MenuType.EMPTY);
                }
                MenuItem item;
-//                 int i = selectedIndex==index?1:0;
-                 item  = new MenuItem(data);
+                 int i = selectedIndex==index?1:0;
+                 item  = new MenuItem(data,i);
                 
 
                 return item;

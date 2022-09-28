@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Main;
 
+import Smartphone_sales_management.UI.Component.NhanVien;
 import Smartphone_sales_management.UI.Component.TestPanel;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
@@ -24,7 +25,9 @@ public class TestFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
-                            TestPanel a = new TestPanel();
+//                            TestPanel a = new TestPanel();
+        NhanVien a = new NhanVien();
+               
 
           a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
         jPanel1.add(a);

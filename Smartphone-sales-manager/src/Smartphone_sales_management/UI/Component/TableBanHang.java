@@ -13,12 +13,12 @@ import javax.swing.border.LineBorder;
  *
  * @author Vuong
  */
-public class TestPanel2 extends javax.swing.JPanel {
+public class TableBanHang extends javax.swing.JPanel {
 
     /**
      * Creates new form TestPanel2
      */
-    public TestPanel2() {
+    public TableBanHang() {
         initComponents();
         
         JScrollBar scr = new JScrollBar();

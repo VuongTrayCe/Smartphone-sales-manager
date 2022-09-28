@@ -5,6 +5,7 @@
 package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.UI.Component.TestPanel;
+import Smartphone_sales_management.UI.Component.TestPanel2;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
@@ -25,6 +26,7 @@ public class TestFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
                             TestPanel a = new TestPanel();
+//   TestPanel2  a = new TestPanel2();
 
           a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
         jPanel1.add(a);

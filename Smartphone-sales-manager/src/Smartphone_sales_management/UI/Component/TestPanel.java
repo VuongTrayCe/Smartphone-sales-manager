@@ -15,6 +15,9 @@ public class TestPanel extends javax.swing.JPanel {
      */
     public TestPanel() {
         initComponents();
+        TestPanel2 a = new TestPanel2();
+        a.setBounds(0,0,jScrollPane1.getWidth(),jScrollPane1.getHeight());
+        jScrollPane1.setViewportView(a);
         
     }
 
@@ -35,6 +38,8 @@ public class TestPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField1.setText("Vui Long nhap");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {

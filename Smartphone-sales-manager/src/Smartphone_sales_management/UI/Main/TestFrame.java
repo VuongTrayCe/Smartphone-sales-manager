@@ -5,6 +5,8 @@
 package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.UI.Component.TestPanel;
+import Smartphone_sales_management.UI.Component.KhuyenMai;
+import Smartphone_sales_management.UI.Component.NhanVien;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
@@ -24,7 +26,8 @@ public class TestFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
-                            TestPanel a = new TestPanel();
+                            //TestPanel a = new TestPanel();
+                           KhuyenMai a = new KhuyenMai();
 
           a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
         jPanel1.add(a);
@@ -34,7 +37,9 @@ public class TestFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if(index==0)
                 {        
-                    TestPanel a = new TestPanel();
+                   //TestPanel a = new TestPanel();
+                    KhuyenMai a = new KhuyenMai();
+                    //NhanVien a = new NhanVien();
 
                     jPanel1.removeAll();
                       a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
@@ -46,6 +51,8 @@ public class TestFrame extends javax.swing.JFrame {
                 }
                 if(index==1)
                 {
+                        NhanVien b = new NhanVien();
+                        jPanel1.add(b);
                                         jPanel1.removeAll();
                                         pack();
                                         jPanel1.repaint();

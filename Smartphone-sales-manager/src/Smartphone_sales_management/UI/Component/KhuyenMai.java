@@ -16,7 +16,7 @@ public class KhuyenMai extends javax.swing.JPanel {
     
     public KhuyenMai() {
         initComponents();
-        //t
+        //2
     }
 //
     /**
@@ -212,7 +212,7 @@ public class KhuyenMai extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelkhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                .addGap(12, 12, 12))
         );
         newewwLayout.setVerticalGroup(
             newewwLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

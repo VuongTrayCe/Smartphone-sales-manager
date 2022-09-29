@@ -4,6 +4,11 @@
  */
 package Smartphone_sales_management.UI.Component;
 
+import Smartphone_sales_management.UI.Event.EventBanHang;
+import Smartphone_sales_management.UI.Main.TestFrame;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
 /**
@@ -15,15 +20,40 @@ public class TestPanel extends javax.swing.JPanel {
     /**
      * Creates new form TestPanel
      */
-    public TestPanel() {
+    EventBanHang event;
+        TestFrame frame;
+
+    public TestPanel(TestFrame frame) {
         initComponents();
-        TableBanHang a = new TableBanHang();
+        this.frame=frame;
+        TableBanHang a = new TableBanHang(event);
         TableDetailBH b = new TableDetailBH();
-        a.setBounds(0,0,jScrollPane1.getWidth(),jScrollPane1.getHeight());
-        b.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
+        a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+        NewJPanel d  = new NewJPanel();
+        d.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
-        jPanel2.add(b);
+        jPanel2.add(d);
+        d.validate();
+        a.addEventBanHang(new EventBanHang() {
+            @Override
+            public int SelectedInxex(int index) {
+                TableDetailBH c = new TableDetailBH();
+                 c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
+                jPanel2.removeAll();          
+//                TableDetailBH b = new TableDetailBH(event);
+//                b.setMinimumSize(new Dimension(100,100));
+//                b.setMaximumSize(new Dimension(jPanel2.getWidth(),jPanel2.getHeight()));
+              
+                jPanel2.setLayout(new GridLayout());
+                jPanel2.add(c);
+                                c.validate();
+
+//                jPanel2.repaint();
+//                frame.pack();
+                return 0;
+            }
+        });
         
     }
 
@@ -43,8 +73,10 @@ public class TestPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
+        setPreferredSize(new java.awt.Dimension(1030, 530));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1045, 530));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -56,7 +88,17 @@ public class TestPanel extends javax.swing.JPanel {
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 354, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
 
@@ -72,9 +114,9 @@ public class TestPanel extends javax.swing.JPanel {
                         .addGap(2, 2, 2)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
@@ -87,7 +129,7 @@ public class TestPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -95,11 +137,15 @@ public class TestPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 

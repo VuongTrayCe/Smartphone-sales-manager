@@ -4,10 +4,20 @@
  */
 package Smartphone_sales_management.UI.Component;
 
+import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
+import Smartphone_sales_management.UI.Event.EventBanHang;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JScrollBar;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import static Smartphone_sales_management.UI.Component.TableDetailBH.selectedIndex;
 
 /**
  *
@@ -18,16 +28,50 @@ public class TableBanHang extends javax.swing.JPanel {
     /**
      * Creates new form TestPanel2
      */
-    public TableBanHang() {
-        initComponents();
+    QuanLyBanHang_BUS qlbh = new QuanLyBanHang_BUS();
+    DefaultTableModel model = new DefaultTableModel();
+    EventBanHang event ;
+    
+    public TableBanHang(EventBanHang event) {
         
-        JScrollBar scr = new JScrollBar();
+        initComponents();
+        model.addColumn("STT");        
+        model.addColumn("TenSanPham");
+        model.addColumn("LoaiSp");
+        model.addColumn("MauSac");
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,17) {
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+        
+        SetDefautlTable();
+        
+        jTable1.setModel(model);
+        
+    }
+    public void addEventBanHang(EventBanHang event)
+    {
+        this.event = event;
+        
+        jTable1.addMouseListener(new  MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                
+                event.SelectedInxex(1);
+            };
+        });
+    }
+
+    private void SetDefautlTable() {
+        
+        jTable1.removeAll();
+        ArrayList dataList = new ArrayList<>();
+        dataList = qlbh.getDanhSachSanPham();
+        for (int i = 0; i < dataList.size(); i++) {
+            model.addRow((Vector<?>) dataList.get(i));
+        }
     }
 
     /**
@@ -42,50 +86,29 @@ public class TableBanHang extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(153, 255, 153));
+        setBackground(new java.awt.Color(0, 0, 0));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "2", "3", "4"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jTable1.setFocusable(false);
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable1.setRowHeight(25);
         jTable1.setSelectionBackground(new java.awt.Color(255, 0, 51));
         jTable1.setShowGrid(false);
-        jTable1.setShowVerticalLines(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                .addGap(3, 3, 3))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +116,16 @@ public class TableBanHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        System.out.println("Da Chọn");
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }

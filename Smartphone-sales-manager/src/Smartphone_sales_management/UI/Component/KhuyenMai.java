@@ -154,6 +154,7 @@ public class KhuyenMai extends javax.swing.JPanel {
                     .addGroup(jPanelkhuyenmaiLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanelkhuyenmaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                             .addGroup(jPanelkhuyenmaiLayout.createSequentialGroup()
                                 .addGroup(jPanelkhuyenmaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelltenkhuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,6 +172,25 @@ public class KhuyenMai extends javax.swing.JPanel {
                                     .addComponent(jTextmakhuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                                     .addComponent(jTextmasanpham))))))
                 .addGap(10, 10, 10))
+=======
+                            .addComponent(jLabelloaikhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelltenkhuyenmai))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanelkhuyenmaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextmasanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextmakhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextloaikhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTexttenkhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(612, 612, 612))
+            .addGroup(jPanelkhuyenmaiLayout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jButtonthem, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jButtonxoa, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButtonlammoi)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 8e95450a3924669ade7e582ba2dcdd1d9130379a
         );
         jPanelkhuyenmaiLayout.setVerticalGroup(
             jPanelkhuyenmaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

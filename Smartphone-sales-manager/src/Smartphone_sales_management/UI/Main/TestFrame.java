@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Main;
 
+import Smartphone_sales_management.UI.Component.NhanVien;
 import Smartphone_sales_management.UI.Component.TestPanel;
 import Smartphone_sales_management.UI.Component.KhuyenMai;
 import Smartphone_sales_management.UI.Component.NhanVien;
@@ -26,8 +27,14 @@ public class TestFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
+<<<<<<< HEAD
                             //TestPanel a = new TestPanel();
                            KhuyenMai a = new KhuyenMai();
+=======
+//                            TestPanel a = new TestPanel();
+        NhanVien a = new NhanVien();
+               
+>>>>>>> 8e95450a3924669ade7e582ba2dcdd1d9130379a
 
           a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
         jPanel1.add(a);

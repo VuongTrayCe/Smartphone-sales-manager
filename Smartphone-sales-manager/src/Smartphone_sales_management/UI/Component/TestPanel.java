@@ -29,12 +29,12 @@ public class TestPanel extends javax.swing.JPanel {
         TableBanHang a = new TableBanHang(event);
         TableDetailBH b = new TableDetailBH();
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-        b.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
-                jPanel2.setLayout(new GridLayout());
+        NewJPanel d  = new NewJPanel();
+        d.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
-        jPanel2.add(b);
-        b.validate();
+        jPanel2.add(d);
+        d.validate();
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {
@@ -55,6 +55,10 @@ public class TestPanel extends javax.swing.JPanel {
             }
         });
         
+    }
+
+    public TestPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

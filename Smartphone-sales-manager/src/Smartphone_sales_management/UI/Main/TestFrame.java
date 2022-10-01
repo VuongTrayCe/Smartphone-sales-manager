@@ -24,22 +24,40 @@ public class TestFrame extends javax.swing.JFrame {
      * Creates new form TestFrame
      */
     public static int selectedIndex = 0;
+
     public TestFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
-        jPanel1.setMinimumSize(new Dimension(100,100));
-                            TestPanel a = new TestPanel(TestFrame.this);
+//<<<<<<< HEAD
+        TestPanel a = new TestPanel();
+
+        a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+//=======
+        jPanel1.setMinimumSize(new Dimension(100, 100));
+        TestPanel a = new TestPanel(TestFrame.this);
 //   TestPanel2  a = new TestPanel2();
 
-          a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
-        jPanel1.setLayout(new  GridLayout());
+        a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        jPanel1.setLayout(new GridLayout());
+//>>>>>>> main
         jPanel1.add(a);
 
         pack();
         menu2.addEventMenu(new EventMenu() {
             @Override
             public void selected(int index) {
+//<<<<<<< HEAD
+                if (index == 0) {
+                    TestPanel a = new TestPanel();
+
+                    jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+
+                    jPanel1.add(a);
+                    System.out.println("Vuong da vao nef 0");
+                    pack();
+//=======
                 if(index==0)
                 {        
                     TestPanel a = new TestPanel(TestFrame.this);
@@ -57,36 +75,32 @@ public class TestFrame extends javax.swing.JFrame {
                                         jPanel1.removeAll();
                                         pack();
                                         jPanel1.repaint();
+//>>>>>>> main
 
                 }
-                 if(index==2)
-                {
-                                        jPanel1.removeAll();
-                                         jPanel1.repaint();
-
+                if (index == 1) {
+                    jPanel1.removeAll();
+                    pack();
+                    jPanel1.repaint();
 
                 }
-                
-                
-                
+                if (index == 2) {
+                    jPanel1.removeAll();
+                    jPanel1.repaint();
+
+                }
+
             }
-        });
-        
+        };
+
 //        setBackground(new Color(0,0,0,0));
 //      menuPanel1.initMoving(TestFrame.this);
-
-
-             
 //       TestPanel a = new TestPanel();
 //         a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
 //
 //   jPanel1.add(a);
 //       System.out.println("Vuong da vao");
 //   pack();
-             
-    
-         
-             
     }
 
     /**

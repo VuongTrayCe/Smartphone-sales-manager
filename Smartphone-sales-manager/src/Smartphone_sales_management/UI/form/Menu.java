@@ -23,7 +23,7 @@ import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
+import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
 
 /**
  *

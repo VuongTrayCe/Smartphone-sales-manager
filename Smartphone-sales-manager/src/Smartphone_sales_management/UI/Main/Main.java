@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
 //       TestFrame a = new TestFrame();
-        TestFrame a = new TestFrame();
+        MainFrame a = new MainFrame();
 
     }
 }

@@ -4,17 +4,8 @@
  */
 package Smartphone_sales_management.UI.Main;
 
-import Smartphone_sales_management.UI.Component.TestPanel;
-<<<<<<< HEAD
-
-//import Smartphone_sales_management.UI.Component.KhuyenMai;
-//import Smartphone_sales_management.UI.Component.NhanVien;
-
-//import Smartphone_sales_management.UI.Component.TableBanHang;
-
-=======
-import Smartphone_sales_management.UI.Component.TableBanHang;
->>>>>>> main
+import Smartphone_sales_management.UI.Component.MainConTentPanel;
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,29 +18,19 @@ import java.awt.event.ComponentListener;
  *
  * @author Vuong
  */
-public class TestFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form TestFrame
      */
     public static int selectedIndex = 0;
-    public TestFrame() {
+    public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
-<<<<<<< HEAD
-
-                            TestPanel a = new TestPanel();
-=======
         jPanel1.setMinimumSize(new Dimension(100,100));
-                            TestPanel a = new TestPanel(TestFrame.this);
+                            MainConTentPanel a = new MainConTentPanel(MainFrame.this);
 //   TestPanel2  a = new TestPanel2();
->>>>>>> main
-
-        jPanel1.setMinimumSize(new Dimension(100,100));
-                            TestPanel a = new TestPanel(TestFrame.this);
-//   TestPanel2  a = new TestPanel2();
-
 
           a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
         jPanel1.setLayout(new  GridLayout());
@@ -61,15 +42,7 @@ public class TestFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if(index==0)
                 {        
-<<<<<<< HEAD
-
-                   TestPanel a = new TestPanel();
-
-                    TestPanel a = new TestPanel(TestFrame.this);
-
-=======
-                    TestPanel a = new TestPanel(TestFrame.this);
->>>>>>> main
+                    MainConTentPanel a = new MainConTentPanel(MainFrame.this);
 
                     jPanel1.removeAll();
                       a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
@@ -81,8 +54,6 @@ public class TestFrame extends javax.swing.JFrame {
                 }
                 if(index==1)
                 {
-                        NhanVien b = new NhanVien();
-                        jPanel1.add(b);
                                         jPanel1.removeAll();
                                         pack();
                                         jPanel1.repaint();

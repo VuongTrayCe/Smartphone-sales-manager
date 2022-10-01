@@ -4,8 +4,10 @@
  */
 package Smartphone_sales_management.UI.Component;
 
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH;
 import Smartphone_sales_management.UI.Event.EventBanHang;
-import Smartphone_sales_management.UI.Main.TestFrame;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -15,22 +17,21 @@ import java.awt.LayoutManager;
  *
  * @author Vuong
  */
-public class TestPanel extends javax.swing.JPanel {
+public class MainConTentPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form TestPanel
      */
     EventBanHang event;
-        TestFrame frame;
+        MainFrame frame;
 
-    public TestPanel(TestFrame frame) {
+    public MainConTentPanel(MainFrame frame) {
         initComponents();
         this.frame=frame;
         TableBanHang a = new TableBanHang(event);
-        TableDetailBH b = new TableDetailBH();
+        TableDetailBH b = new TableDetailBH(-1);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
         b.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
-                jPanel2.setLayout(new GridLayout());
 
         jScrollPane1.setViewportView(a);
         jPanel2.add(b);
@@ -38,7 +39,7 @@ public class TestPanel extends javax.swing.JPanel {
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {
-                TableDetailBH c = new TableDetailBH();
+                TableDetailBH c = new TableDetailBH(index);
                  c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
                 jPanel2.removeAll();          
 //                TableDetailBH b = new TableDetailBH(event);
@@ -57,7 +58,7 @@ public class TestPanel extends javax.swing.JPanel {
         
     }
 
-    public TestPanel() {
+    public MainConTentPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -142,13 +143,13 @@ public class TestPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

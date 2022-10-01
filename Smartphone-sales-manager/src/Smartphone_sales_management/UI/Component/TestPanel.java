@@ -27,7 +27,7 @@ public class TestPanel extends javax.swing.JPanel {
         initComponents();
         this.frame=frame;
         TableBanHang a = new TableBanHang(event);
-        TableDetailBH b = new TableDetailBH();
+        TableDetailBH b = new TableDetailBH(-1);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
         b.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
                 jPanel2.setLayout(new GridLayout());
@@ -38,7 +38,7 @@ public class TestPanel extends javax.swing.JPanel {
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {
-                TableDetailBH c = new TableDetailBH();
+                TableDetailBH c = new TableDetailBH(index);
                  c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
                 jPanel2.removeAll();          
 //                TableDetailBH b = new TableDetailBH(event);

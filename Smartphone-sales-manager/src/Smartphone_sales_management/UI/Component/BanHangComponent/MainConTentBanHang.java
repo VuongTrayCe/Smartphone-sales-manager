@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Component;
+package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH;
@@ -17,7 +17,7 @@ import java.awt.LayoutManager;
  *
  * @author Vuong
  */
-public class MainConTentPanel extends javax.swing.JPanel {
+public class MainConTentBanHang extends javax.swing.JPanel {
 
     /**
      * Creates new form TestPanel
@@ -25,7 +25,7 @@ public class MainConTentPanel extends javax.swing.JPanel {
     EventBanHang event;
         MainFrame frame;
 
-    public MainConTentPanel(MainFrame frame) {
+    public MainConTentBanHang(MainFrame frame) {
         initComponents();
         this.frame=frame;
         TableBanHang a = new TableBanHang(event);
@@ -58,7 +58,7 @@ public class MainConTentPanel extends javax.swing.JPanel {
         
     }
 
-    public MainConTentPanel() {
+    public MainConTentBanHang() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Main;
 
-import Smartphone_sales_management.UI.Component.MainConTentPanel;
+import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100,100));
-                            MainConTentPanel a = new MainConTentPanel(MainFrame.this);
+                            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //   TestPanel2  a = new TestPanel2();
 
           a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
@@ -42,7 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if(index==0)
                 {        
-                    MainConTentPanel a = new MainConTentPanel(MainFrame.this);
+                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
                     jPanel1.removeAll();
                       a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());

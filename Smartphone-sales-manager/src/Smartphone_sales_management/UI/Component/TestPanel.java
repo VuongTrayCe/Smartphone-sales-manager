@@ -4,6 +4,8 @@
  */
 package Smartphone_sales_management.UI.Component;
 
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH;
 import Smartphone_sales_management.UI.Event.EventBanHang;
 import Smartphone_sales_management.UI.Main.TestFrame;
 import java.awt.Dimension;
@@ -29,12 +31,11 @@ public class TestPanel extends javax.swing.JPanel {
         TableBanHang a = new TableBanHang(event);
         TableDetailBH b = new TableDetailBH(-1);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-        NewJPanel d  = new NewJPanel();
-        d.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
+        b.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
-        jPanel2.add(d);
-        d.validate();
+        jPanel2.add(b);
+        b.validate();
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Component;
+package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.UI.Event.EventBanHang;
@@ -17,7 +17,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import static Smartphone_sales_management.UI.Component.TableDetailBH.selectedIndex;
+import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
 
 /**
  *

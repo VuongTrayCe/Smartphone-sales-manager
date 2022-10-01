@@ -5,7 +5,7 @@
 package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.UI.Component.TestPanel;
-import Smartphone_sales_management.UI.Component.TableBanHang;
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.Dimension;

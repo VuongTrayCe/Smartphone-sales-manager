@@ -10,7 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
+import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
 
 /**
  *

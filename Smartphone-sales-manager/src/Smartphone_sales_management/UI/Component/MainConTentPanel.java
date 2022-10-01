@@ -7,7 +7,7 @@ package Smartphone_sales_management.UI.Component;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH;
 import Smartphone_sales_management.UI.Event.EventBanHang;
-import Smartphone_sales_management.UI.Main.TestFrame;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -17,15 +17,15 @@ import java.awt.LayoutManager;
  *
  * @author Vuong
  */
-public class TestPanel extends javax.swing.JPanel {
+public class MainConTentPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form TestPanel
      */
     EventBanHang event;
-        TestFrame frame;
+        MainFrame frame;
 
-    public TestPanel(TestFrame frame) {
+    public MainConTentPanel(MainFrame frame) {
         initComponents();
         this.frame=frame;
         TableBanHang a = new TableBanHang(event);
@@ -58,7 +58,7 @@ public class TestPanel extends javax.swing.JPanel {
         
     }
 
-    public TestPanel() {
+    public MainConTentPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -143,13 +143,13 @@ public class TestPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

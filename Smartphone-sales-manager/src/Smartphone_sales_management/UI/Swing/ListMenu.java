@@ -12,7 +12,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
+import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
 
 /**
  *

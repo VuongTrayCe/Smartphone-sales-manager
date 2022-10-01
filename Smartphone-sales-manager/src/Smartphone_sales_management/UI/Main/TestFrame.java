@@ -5,12 +5,16 @@
 package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.UI.Component.TestPanel;
+<<<<<<< HEAD
 
 //import Smartphone_sales_management.UI.Component.KhuyenMai;
 //import Smartphone_sales_management.UI.Component.NhanVien;
 
 //import Smartphone_sales_management.UI.Component.TableBanHang;
 
+=======
+import Smartphone_sales_management.UI.Component.TableBanHang;
+>>>>>>> main
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,8 +37,14 @@ public class TestFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
+<<<<<<< HEAD
 
                             TestPanel a = new TestPanel();
+=======
+        jPanel1.setMinimumSize(new Dimension(100,100));
+                            TestPanel a = new TestPanel(TestFrame.this);
+//   TestPanel2  a = new TestPanel2();
+>>>>>>> main
 
         jPanel1.setMinimumSize(new Dimension(100,100));
                             TestPanel a = new TestPanel(TestFrame.this);
@@ -51,11 +61,15 @@ public class TestFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if(index==0)
                 {        
+<<<<<<< HEAD
 
                    TestPanel a = new TestPanel();
 
                     TestPanel a = new TestPanel(TestFrame.this);
 
+=======
+                    TestPanel a = new TestPanel(TestFrame.this);
+>>>>>>> main
 
                     jPanel1.removeAll();
                       a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());

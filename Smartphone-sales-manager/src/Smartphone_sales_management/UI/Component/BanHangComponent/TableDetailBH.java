@@ -4,13 +4,17 @@
  */
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
-import Smartphone_sales_management.UI.Event.EventBanHang;
+import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
+import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
+import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.awt.FileDialog;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -27,7 +31,7 @@ public class TableDetailBH extends javax.swing.JPanel {
     /**
      * Creates new form TableDetailBH
      */
-    EventBanHang event ;
+    AddGioHang event;
    public int indexSelected;
     public static int selectedIndex=-1;
     QuanLyBanHang_BUS qlbh_BUS = new QuanLyBanHang_BUS();
@@ -40,9 +44,20 @@ public class TableDetailBH extends javax.swing.JPanel {
        DisplayInfor();
     }
     }
-
-    
-    
+    // Thêm sự kiện thêm vào giỏ hàng
+    public void addSanPhamVaoGio(AddGioHang event)
+    {
+        this.event=event;
+        
+        btnThem.addMouseListener(new  MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                Model_GioHang data= new Model_GioHang();
+                event.addGiohang(data);
+            };
+        });
+        
+    }
     public void DisplayInfor()
     {
        ArrayList data = new ArrayList();
@@ -91,7 +106,11 @@ public class TableDetailBH extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(354, 450));
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Xem chi tiết sản phẩm");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -106,9 +125,9 @@ public class TableDetailBH extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addGap(2, 2, 2))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 102));
@@ -203,7 +222,7 @@ public class TableDetailBH extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia)
                     .addComponent(lbcGia))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));

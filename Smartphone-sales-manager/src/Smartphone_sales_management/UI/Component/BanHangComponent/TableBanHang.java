@@ -5,7 +5,7 @@
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
-import Smartphone_sales_management.UI.Event.EventBanHang;
+import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;

@@ -6,7 +6,7 @@ package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH;
-import Smartphone_sales_management.UI.Event.EventBanHang;
+import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,6 +16,9 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
+import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
+import Smartphone_sales_management.UI.Model.Model_GioHang;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,23 +31,32 @@ public class MainConTentBanHang extends javax.swing.JPanel {
      */
     EventBanHang event;
     MainFrame frame;
+    AddGioHang eventGioHang;
+    ArrayList<Object> arrListSanpham = new ArrayList<>();
+
+    TableDetailBH c;
+
     public MainConTentBanHang(MainFrame frame) {
         initComponents();
         this.frame = frame;
+//        TableDetailBH c = new TableDetailBH(index);
+
         TableBanHang a = new TableBanHang(event);
-        TableGioHang b = new TableGioHang();
+        TableGioHang b = new TableGioHang(arrListSanpham);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
         b.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
-      jPanel2.setLayout(new GridLayout());
+        jPanel2.setLayout(new GridLayout());
+                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
 
         jPanel2.add(b);
         b.validate();
+        // Hiển thị bảng chi tiết khi click sản phẩm từ bảng
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {
-                TableDetailBH c = new TableDetailBH(index);
+                c = new TableDetailBH(index);
                 c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
                 jPanel2.removeAll();
 //                TableDetailBH b = new TableDetailBH(event);
@@ -54,17 +66,23 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 jPanel2.setLayout(new GridLayout());
                 jPanel2.add(c);
                 c.validate();
+                // Bắt sự kiện nút thêm vào giỏ
+                c.addSanPhamVaoGio(new AddGioHang() {
+                    @Override
+                    public void addGiohang(Model_GioHang data) {
 
-//                jPanel2.repaint();
-//                frame.pack();
+                        arrListSanpham.add(data);
+                        System.out.println(arrListSanpham.size());
+                        
+                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+                    }
+
+                });
+
                 return index;
             }
         });
 
-    }
-
-    public MainConTentBanHang() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -85,7 +103,6 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         IconDetail = new javax.swing.JLabel();
         IconGioHang = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
@@ -132,7 +149,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         });
 
         IconGioHang.setBackground(new java.awt.Color(153, 153, 153));
-        IconGioHang.setForeground(new java.awt.Color(255, 0, 0));
+        IconGioHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         IconGioHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/GioHang.png"))); // NOI18N
         IconGioHang.setOpaque(true);
         IconGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,15 +168,8 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 6, Short.MAX_VALUE)
+            .addGap(0, 4, Short.MAX_VALUE)
         );
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -167,29 +177,23 @@ public class MainConTentBanHang extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(42, 42, 42)
-                        .addComponent(IconGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(IconDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jLabel2)
+                .addGap(42, 42, 42)
+                .addComponent(IconGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(IconDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(174, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(IconGioHang)
-                        .addComponent(jLabel2)
-                        .addComponent(IconDetail))
-                    .addComponent(jButton1))
-                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(IconGioHang)
+                    .addComponent(jLabel2)
+                    .addComponent(IconDetail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -251,27 +255,26 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Hlleo day");      
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    
-    
-    public void DisPlayComponent(Component a)
-    {
-          a.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
-     jPanel2.removeAll();
+    public void DisPlayComponent(Component a) {
+        a.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
+        jPanel2.removeAll();
         jPanel2.setLayout(new GridLayout());
         jPanel2.add(a);
-        a.validate();     
+        a.validate();
         jPanel2.repaint();
     }
     private void IconGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconGioHangMouseClicked
-     IconDetail.setBackground(new Color(153, 153, 153));
+        IconDetail.setBackground(new Color(153, 153, 153));
         IconGioHang.setBackground(Color.red);
-        
-     TableGioHang giohang = new TableGioHang();
+
+        TableGioHang giohang = new TableGioHang(arrListSanpham);
         DisPlayComponent(giohang);
-      
+
 // TODO add your handling code here:
     }//GEN-LAST:event_IconGioHangMouseClicked
 
@@ -279,26 +282,17 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 
         IconGioHang.setBackground(new Color(153, 153, 153));
         IconDetail.setBackground(Color.red);
-        
-        
-        
+
         TableDetailBH detail = new TableDetailBH(selectedIndex);
-                DisPlayComponent(detail);
+        DisPlayComponent(detail);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_IconDetailMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconDetail;
     private javax.swing.JLabel IconGioHang;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

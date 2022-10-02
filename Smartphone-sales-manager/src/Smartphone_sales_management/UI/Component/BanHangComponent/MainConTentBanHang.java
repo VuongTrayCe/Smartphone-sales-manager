@@ -6,12 +6,19 @@ package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH;
-import Smartphone_sales_management.UI.Event.EventBanHang;
+import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
+import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
+import Smartphone_sales_management.UI.Model.Model_GioHang;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,43 +30,59 @@ public class MainConTentBanHang extends javax.swing.JPanel {
      * Creates new form TestPanel
      */
     EventBanHang event;
-        MainFrame frame;
+    MainFrame frame;
+    AddGioHang eventGioHang;
+    ArrayList<Object> arrListSanpham = new ArrayList<>();
+
+    TableDetailBH c;
 
     public MainConTentBanHang(MainFrame frame) {
         initComponents();
-        this.frame=frame;
+        this.frame = frame;
+//        TableDetailBH c = new TableDetailBH(index);
+
         TableBanHang a = new TableBanHang(event);
-        TableDetailBH b = new TableDetailBH(-1);
+        TableGioHang b = new TableGioHang(arrListSanpham);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-        b.setBounds(0,0,jPanel2.getWidth(),jPanel2.getHeight());
+        b.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
+        jPanel2.setLayout(new GridLayout());
+                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+
         jPanel2.add(b);
         b.validate();
+        // Hiển thị bảng chi tiết khi click sản phẩm từ bảng
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {
-                TableDetailBH c = new TableDetailBH(index);
-                 c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
-                jPanel2.removeAll();          
+                c = new TableDetailBH(index);
+                c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
+                jPanel2.removeAll();
 //                TableDetailBH b = new TableDetailBH(event);
 //                b.setMinimumSize(new Dimension(100,100));
 //                b.setMaximumSize(new Dimension(jPanel2.getWidth(),jPanel2.getHeight()));
-              
+
                 jPanel2.setLayout(new GridLayout());
                 jPanel2.add(c);
-                                c.validate();
+                c.validate();
+                // Bắt sự kiện nút thêm vào giỏ
+                c.addSanPhamVaoGio(new AddGioHang() {
+                    @Override
+                    public void addGiohang(Model_GioHang data) {
 
-//                jPanel2.repaint();
-//                frame.pack();
-                return 0;
+                        arrListSanpham.add(data);
+                        System.out.println(arrListSanpham.size());
+                        
+                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+                    }
+
+                });
+
+                return index;
             }
         });
-        
-    }
 
-    public MainConTentBanHang() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -75,7 +98,12 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        IconDetail = new javax.swing.JLabel();
+        IconGioHang = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setPreferredSize(new java.awt.Dimension(1030, 530));
@@ -85,7 +113,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setText("Vui Long nhap");
+        jTextField1.setText("Nhập từ khóa tìm kiếm");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -93,19 +121,84 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
+            .addGap(0, 366, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 408, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setOpaque(false);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Refresh.png"))); // NOI18N
+
+        IconDetail.setBackground(new java.awt.Color(153, 153, 153));
+        IconDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Detail.png"))); // NOI18N
+        IconDetail.setOpaque(true);
+        IconDetail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IconDetailMouseClicked(evt);
+            }
+        });
+
+        IconGioHang.setBackground(new java.awt.Color(153, 153, 153));
+        IconGioHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        IconGioHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/GioHang.png"))); // NOI18N
+        IconGioHang.setOpaque(true);
+        IconGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IconGioHangMouseClicked(evt);
+            }
+        });
+
+        jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(42, 42, 42)
+                .addComponent(IconGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(IconDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(174, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(IconGioHang)
+                    .addComponent(jLabel2)
+                    .addComponent(IconDetail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,25 +209,32 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel4)
+                        .addGap(230, 230, 230))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(10, 10, 10)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(10, 10, 10))
         );
 
@@ -155,14 +255,50 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Hlleo day");      
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    public void DisPlayComponent(Component a) {
+        a.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
+        jPanel2.removeAll();
+        jPanel2.setLayout(new GridLayout());
+        jPanel2.add(a);
+        a.validate();
+        jPanel2.repaint();
+    }
+    private void IconGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconGioHangMouseClicked
+        IconDetail.setBackground(new Color(153, 153, 153));
+        IconGioHang.setBackground(Color.red);
+
+        TableGioHang giohang = new TableGioHang(arrListSanpham);
+        DisPlayComponent(giohang);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_IconGioHangMouseClicked
+
+    private void IconDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconDetailMouseClicked
+
+        IconGioHang.setBackground(new Color(153, 153, 153));
+        IconDetail.setBackground(Color.red);
+
+        TableDetailBH detail = new TableDetailBH(selectedIndex);
+        DisPlayComponent(detail);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_IconDetailMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel IconDetail;
+    private javax.swing.JLabel IconGioHang;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

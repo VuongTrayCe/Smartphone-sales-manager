@@ -5,7 +5,7 @@
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
-import Smartphone_sales_management.UI.Event.EventBanHang;
+import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -60,7 +60,6 @@ public class TableBanHang extends javax.swing.JPanel {
             public void mouseClicked (MouseEvent e) {
                 
                 event.SelectedInxex(jTable1.getSelectedRow());
-                System.out.println(jTable1.getSelectedRow());
             };
         });
     }

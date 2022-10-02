@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Swing;
+package Smartphone_sales_management.UI.Swing.Menu;
 
 import Smartphone_sales_management.UI.Model.Model_Menu;
 import java.awt.Color;

@@ -5,6 +5,7 @@
 package Smartphone_sales_management.UI.Swing.GioHang;
 
 import Smartphone_sales_management.UI.Model.Model_GioHang;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,6 +20,14 @@ public class GioHangItem extends javax.swing.JPanel {
     public GioHangItem(Model_GioHang data) {
         this.data=data;
         initComponents();
+        if(data.getIcon()!="")
+        {
+        lbImage.setIcon(new ImageIcon(getClass().getResource(data.getIcon())));
+        
+        }
+        lbName.setText(data.getName());
+        lbGia.setText(data.getGiatien());
+        lbSL.setText(data.getSoluong());
     }
 
     /**
@@ -30,31 +39,25 @@ public class GioHangItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lbName = new javax.swing.JLabel();
+        lbSL = new javax.swing.JLabel();
+        lbGia = new javax.swing.JLabel();
+        lbImage = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setPreferredSize(new java.awt.Dimension(354, 70));
 
-        jLabel1.setBackground(new java.awt.Color(102, 102, 255));
-        jLabel1.setText("vuong1");
+        lbName.setBackground(new java.awt.Color(102, 102, 255));
+        lbName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbName.setText("vuong1");
 
-        jLabel2.setText("vuong2");
+        lbSL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbSL.setText("vuong2");
 
-        jLabel4.setText("jLabel4");
+        lbGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbGia.setText("jLabel4");
 
-        jLabel5.setText("jLabel5");
-
-        jButton1.setText("jButton1");
-        jButton1.setOpaque(true);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        lbImage.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,42 +65,33 @@ public class GioHangItem extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(lbSL)
+                .addGap(15, 15, 15)
+                .addComponent(lbGia, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jButton1))
+                    .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbSL, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbGia))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("Vuong dep trai");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lbGia;
+    private javax.swing.JLabel lbImage;
+    private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbSL;
     // End of variables declaration//GEN-END:variables
 }

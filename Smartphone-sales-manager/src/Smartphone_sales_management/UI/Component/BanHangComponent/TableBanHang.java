@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
+import javax.swing.JTable;
 
 /**
  *
@@ -46,7 +47,7 @@ public class TableBanHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         
-        SetDefautlTable();
+        SetDefautlTable("");
         
         jTable1.setModel(model);
         
@@ -64,14 +65,16 @@ public class TableBanHang extends javax.swing.JPanel {
         });
     }
 
-    private void SetDefautlTable() {
+    public void SetDefautlTable(String keyWord) {
         
         jTable1.removeAll();
+        model.setRowCount(0);
         ArrayList dataList = new ArrayList<>();
-        dataList = qlbh.getDanhSachSanPham();
+        dataList = qlbh.getDanhSachSanPham(keyWord);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
+        jScrollPane1.repaint();
     }
 
     /**

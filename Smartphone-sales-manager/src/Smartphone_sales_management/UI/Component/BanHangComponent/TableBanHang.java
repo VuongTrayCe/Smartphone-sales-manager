@@ -60,7 +60,6 @@ public class TableBanHang extends javax.swing.JPanel {
             public void mouseClicked (MouseEvent e) {
                 
                 event.SelectedInxex(jTable1.getSelectedRow());
-                System.out.println(jTable1.getSelectedRow());
             };
         });
     }

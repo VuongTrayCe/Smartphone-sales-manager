@@ -209,7 +209,6 @@ public class TableDetailBH extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         lbImage.setBackground(new java.awt.Color(204, 204, 255));
-        lbImage.setText("jLabel9");
 
         btnThem.setText("Thêm ");
         btnThem.addActionListener(new java.awt.event.ActionListener() {

@@ -27,7 +27,7 @@ public class TableGioHang extends javax.swing.JPanel {
                     listGioHang1.addItem((Model_GioHang) object);
       sum+=x.getTongTien();
         }
-    lbTongTien.setText(Double.toString(sum));
+    lbTongTien.setText(Double.toString(sum)+" VND");
     jButton1.setBorder(null);
     jButton1.setBackground(new Color(242, 242, 242));
 
@@ -74,8 +74,8 @@ public class TableGioHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbTongTien)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)

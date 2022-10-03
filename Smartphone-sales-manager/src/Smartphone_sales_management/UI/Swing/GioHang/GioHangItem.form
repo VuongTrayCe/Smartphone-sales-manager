@@ -27,14 +27,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbImage" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="lbName" min="-2" pref="111" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="lbSL" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-              <Component id="lbGia" pref="81" max="32767" attributes="0"/>
+              <Component id="lbName" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lbSL" min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="lbGia" pref="100" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -42,13 +42,17 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbImage" alignment="3" pref="45" max="32767" attributes="0"/>
                   <Component id="lbName" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="lbSL" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="lbGia" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -82,10 +86,20 @@
         <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbImage">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=" "/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
   </SubComponents>
 </Form>

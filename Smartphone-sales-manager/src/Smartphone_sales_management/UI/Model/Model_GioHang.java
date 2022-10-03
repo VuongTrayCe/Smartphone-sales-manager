@@ -45,7 +45,7 @@ public class Model_GioHang {
     }
     public Double getTongTien()
     {
-        Double x = Integer.parseInt(this.Soluong)* Double.parseDouble(this.giatien.split("")[0]);
+        Double x = Integer.parseInt(this.Soluong)* Double.parseDouble(this.giatien.split(" ")[0]);
         System.out.println(x);
         return x;
     }

@@ -5,7 +5,16 @@
 package Smartphone_sales_management.UI.Swing.GioHang;
 
 import Smartphone_sales_management.UI.Model.Model_GioHang;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -17,14 +26,24 @@ public class GioHangItem extends javax.swing.JPanel {
      * Creates new form GioHangItem
      */
     Model_GioHang data;
-    public GioHangItem(Model_GioHang data) {
+    public GioHangItem(Model_GioHang data) throws IOException {
         this.data=data;
+        BufferedImage image;
         initComponents();
         if(data.getIcon()!="")
         {
-        lbImage.setIcon(new ImageIcon(getClass().getResource(data.getIcon())));
-        
-        }
+//            URL resource = getClass().getResource("cat2.jpg")
+//            URL resource = getClass().getResource(data.getIcon());
+//           ImageIcon a  = new ImageIcon(getClass().getResource(data.getIcon()));
+//          image=ImageIO.read(resource);
+//          jPanel1.paintComponents(Graphics g)
+//          {
+//              
+//          }
+           DrawImage a=  new DrawImage(data);
+           jPanel1.setLayout(new GridLayout());
+           jPanel1.add(a);
+       }
         lbName.setText(data.getName());
         lbGia.setText(data.getGiatien());
         lbSL.setText(data.getSoluong());
@@ -42,7 +61,7 @@ public class GioHangItem extends javax.swing.JPanel {
         lbName = new javax.swing.JLabel();
         lbSL = new javax.swing.JLabel();
         lbGia = new javax.swing.JLabel();
-        lbImage = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setPreferredSize(new java.awt.Dimension(354, 70));
@@ -57,40 +76,52 @@ public class GioHangItem extends javax.swing.JPanel {
         lbGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbGia.setText("jLabel4");
 
-        lbImage.setText(" ");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 43, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(lbSL)
-                .addGap(15, 15, 15)
-                .addComponent(lbGia, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbSL, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(lbGia, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbSL, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbGia))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbGia;
-    private javax.swing.JLabel lbImage;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbSL;
     // End of variables declaration//GEN-END:variables

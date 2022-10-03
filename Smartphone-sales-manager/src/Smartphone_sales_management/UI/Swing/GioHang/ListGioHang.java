@@ -46,7 +46,7 @@ public class ListGioHang<E extends Object >extends JList<E> {
                }
                else
                {
-                   data = new Model_GioHang("","","","",o+"",Model_GioHang.GioHangType.EMPTY);
+                   data = new Model_GioHang("","","",o+"",Model_GioHang.GioHangType.EMPTY,"");
                }
                GioHangItem item;
                 item  = new GioHangItem(data);

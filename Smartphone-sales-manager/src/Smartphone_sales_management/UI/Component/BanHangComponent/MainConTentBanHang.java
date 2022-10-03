@@ -14,11 +14,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import javax.swing.event.DocumentEvent;
 import java.awt.LayoutManager;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
 import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.util.ArrayList;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -82,6 +84,30 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 return index;
             }
         });
+        
+        
+        
+        
+        
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                
+                a.SetDefautlTable(txtTimKiem.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                                a.SetDefautlTable(txtTimKiem.getText());
+
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                                a.SetDefautlTable(txtTimKiem.getText());
+
+            }
+        });
 
     }
 
@@ -96,7 +122,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextField1 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -108,30 +134,35 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(1045, 530));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setText("Nhập từ khóa tìm kiếm");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtTimKiem.setText("Nhập từ khóa tìm kiếm");
+        txtTimKiem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimKiemMouseClicked(evt);
+            }
+        });
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtTimKiemActionPerformed(evt);
             }
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+            .addGap(0, 372, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
+            .addGap(0, 414, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -208,7 +239,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jLabel4)
                         .addGap(230, 230, 230))
@@ -227,7 +258,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(38, 38, 38)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
@@ -254,11 +285,11 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
         System.out.println("Hlleo day");      
         
 // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtTimKiemActionPerformed
 
     public void DisPlayComponent(Component a) {
         a.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
@@ -289,6 +320,11 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_IconDetailMouseClicked
 
+    private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
+       txtTimKiem.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconDetail;
@@ -300,6 +336,6 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

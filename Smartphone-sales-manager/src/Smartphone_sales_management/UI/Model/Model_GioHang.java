@@ -18,6 +18,7 @@ public class Model_GioHang {
     
     private String Name;
     private String Loai;
+    private String giatien;
     private String Soluong;
     private String Icon;
     
@@ -32,15 +33,30 @@ public class Model_GioHang {
     
     }
 
-    public Model_GioHang(String Name, String Loai, String MauSac, String Soluong, String Icon,GioHangType type) {
+    public Model_GioHang(String Name, String Loai, String Soluong, String Icon,GioHangType type,String giatien) {
         this.Name = Name;
         this.Loai = Loai;
         this.Soluong = Soluong;
         this.Icon = Icon;
         this.type = type;
+        this.giatien=giatien;
 
         
     }
+    public Double getTongTien()
+    {
+        Double x = Integer.parseInt(this.Soluong)* Double.parseDouble(this.giatien.split(" ")[0]);
+        System.out.println(x);
+        return x;
+    }
+    public String getGiatien() {
+        return giatien;
+    }
+
+    public GioHangType getType() {
+        return type;
+    }
+    
     public Model_GioHang()
     {
         

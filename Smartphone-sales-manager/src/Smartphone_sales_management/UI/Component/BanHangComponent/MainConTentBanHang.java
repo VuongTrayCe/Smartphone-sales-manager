@@ -50,7 +50,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(a);
         jPanel2.setLayout(new GridLayout());
-                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
 
         jPanel2.add(b);
         b.validate();
@@ -75,7 +75,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 
                         arrListSanpham.add(data);
                         System.out.println(arrListSanpham.size());
-                        
+
                         IconGioHang.setText(Integer.toString(arrListSanpham.size()));
                     }
 
@@ -84,27 +84,23 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 return index;
             }
         });
-        
-        
-        
-        
-        
+
         txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
-                
+
                 a.SetDefautlTable(txtTimKiem.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText());
 
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText());
 
             }
         });
@@ -284,8 +280,8 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
-        System.out.println("Hlleo day");      
-        
+        System.out.println("Hlleo day");
+
 // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemActionPerformed
 
@@ -319,7 +315,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_IconDetailMouseClicked
 
     private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
-       txtTimKiem.setText("");
+        txtTimKiem.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemMouseClicked
 

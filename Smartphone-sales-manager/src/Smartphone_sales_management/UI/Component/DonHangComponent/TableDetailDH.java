@@ -36,8 +36,6 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbNamSx1 = new javax.swing.JLabel();
         lbNCC1 = new javax.swing.JLabel();
         lbGia1 = new javax.swing.JLabel();
-        lbcName1 = new javax.swing.JLabel();
-        lbcLoai1 = new javax.swing.JLabel();
         lbcSL1 = new javax.swing.JLabel();
         lbcNamSx1 = new javax.swing.JLabel();
         lbcNCC1 = new javax.swing.JLabel();
@@ -46,6 +44,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbName2 = new javax.swing.JLabel();
         lbcName2 = new javax.swing.JLabel();
         btnThem1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         lbImage = new javax.swing.JLabel();
 
@@ -64,7 +64,7 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addGap(74, 74, 74))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,10 +95,6 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbGia1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbGia1.setText("Giá :         ");
 
-        lbcName1.setText("jLabel10");
-
-        lbcLoai1.setText("jLabel11");
-
         lbcSL1.setText("jLabel12");
 
         lbcNamSx1.setText("jLabel13");
@@ -128,89 +124,89 @@ public class TableDetailDH extends javax.swing.JPanel {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbGia1))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(18, 27, Short.MAX_VALUE)
-                                .addComponent(btnThem1)
-                                .addGap(45, 45, 45))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lbcGia1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lbLoai1)
-                                .addGap(10, 10, 10)
-                                .addComponent(lbcLoai1))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lbSL1)
-                                .addGap(10, 10, 10)
-                                .addComponent(lbcSL1))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lbNCC1)
-                                .addGap(10, 10, 10)
-                                .addComponent(lbcNCC1))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lbNamSx1)
-                                .addGap(10, 10, 10)
-                                .addComponent(lbcNamSx1))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbName1)
                                     .addComponent(lbName2))
-                                .addGap(10, 10, 10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbcName2)
-                                    .addComponent(lbcName1))))
-                        .addGap(27, 27, 27))))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbLoai1)
+                                    .addComponent(lbSL1))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbcSL1)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbcNamSx1)
+                                    .addComponent(lbcNCC1)
+                                    .addComponent(lbcGia1)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(btnThem1)
+                                .addGap(29, 29, 29))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbNCC1)
+                            .addComponent(lbNamSx1)
+                            .addComponent(lbGia1)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbName2)
-                    .addComponent(lbcName2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbName2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbcName2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbName1)
-                    .addComponent(lbcName1))
-                .addGap(33, 33, 33)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbLoai1)
-                    .addComponent(lbcLoai1))
-                .addGap(31, 31, 31)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSL1)
                     .addComponent(lbcSL1))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNamSx1)
                     .addComponent(lbcNamSx1))
-                .addGap(33, 33, 33)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNCC1)
                     .addComponent(lbcNCC1))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia1)
                     .addComponent(lbcGia1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(51, 51, 51)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThem1)
-                    .addComponent(btnThem))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnThem)
+                        .addGap(11, 11, 11)))
                 .addGap(10, 10, 10))
         );
 
@@ -224,7 +220,7 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -266,7 +262,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGap(0, 417, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 36, Short.MAX_VALUE)
+                    .addGap(0, 26, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -292,41 +288,25 @@ public class TableDetailDH extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThem1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lbGia;
     private javax.swing.JLabel lbGia1;
     private javax.swing.JLabel lbImage;
-    private javax.swing.JLabel lbLoai;
     private javax.swing.JLabel lbLoai1;
-    private javax.swing.JLabel lbNCC;
     private javax.swing.JLabel lbNCC1;
-    private javax.swing.JLabel lbNamSx;
     private javax.swing.JLabel lbNamSx1;
-    private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbName1;
     private javax.swing.JLabel lbName2;
-    private javax.swing.JLabel lbSL;
     private javax.swing.JLabel lbSL1;
-    private javax.swing.JLabel lbcGia;
     private javax.swing.JLabel lbcGia1;
-    private javax.swing.JLabel lbcLoai;
-    private javax.swing.JLabel lbcLoai1;
-    private javax.swing.JLabel lbcNCC;
     private javax.swing.JLabel lbcNCC1;
-    private javax.swing.JLabel lbcNamSx;
     private javax.swing.JLabel lbcNamSx1;
-    private javax.swing.JLabel lbcName;
-    private javax.swing.JLabel lbcName1;
     private javax.swing.JLabel lbcName2;
-    private javax.swing.JLabel lbcSL;
     private javax.swing.JLabel lbcSL1;
-    private javax.swing.JTextArea taThongSo;
     // End of variables declaration//GEN-END:variables
 }

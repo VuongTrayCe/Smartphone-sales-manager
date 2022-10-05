@@ -5,23 +5,64 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Vuong
  */
 public class QuanLyBanHang_BUS {
-    QuanLyBanHang_DAO  qlbh = new QuanLyBanHang_DAO();
+
+    QuanLyBanHang_DAO qlbh = new QuanLyBanHang_DAO();
 
     public QuanLyBanHang_BUS() {
     }
-    
-    public ArrayList getDanhSachSanPham()
-    {
+
+    // Hàm lấy tất cã sản phẩm đang được bán
+    public ArrayList getDanhSachSanPham(String keyWord) {
         ArrayList dssp = new ArrayList();
+        ArrayList dsspOfficial = new ArrayList<>();
         dssp = qlbh.getDanhSachSanPham_DAO();
-        return dssp;
+        if(keyWord=="")
+        {
+            return dssp;
+        }
+        else
+        {
+
+        for (Object x : dssp) {
+            Vector y = (Vector) x;
+            String masp = Integer.toString((int) y.get(0));
+            String name = (String) y.get(1);
+            if(masp.contains(keyWord) || name.contains(keyWord) ){
+                {
+                  dsspOfficial.add(y);  
+                }
+                
+                
+                
+            }
+        }
+        return dsspOfficial;
+        }
     }
-    
+
+    // Hàm lấy chi tiết sản phẩm được chọn
+    public ArrayList getDanhSachChiTiet1SanPham(int selectedIndex) {
+        ArrayList dsctsp = new ArrayList();
+        ArrayList MaSPList = new ArrayList<>();
+        MaSPList = qlbh.getMapn();
+        try {
+            dsctsp = qlbh.getDanhSachChiTiet1SanPham_DAO((int) MaSPList.get(selectedIndex));
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyBanHang_BUS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return dsctsp;
+    }
+
 }

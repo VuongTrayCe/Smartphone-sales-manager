@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.KhuyenMaiComponent;
 
-import Smartphone_sales_management.UI.Component.*;
+
 
 /**
  *
@@ -131,7 +131,7 @@ public class KhuyenMai extends javax.swing.JPanel {
 
         jButtonthem.setText("Thêm");
 
-        jButtonxoa.setText("Xóa");
+        jButtonxoa.setText("Sửa");
         jButtonxoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonxoaActionPerformed(evt);

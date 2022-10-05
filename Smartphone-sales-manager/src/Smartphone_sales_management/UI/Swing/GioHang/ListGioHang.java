@@ -8,6 +8,9 @@ import Smartphone_sales_management.UI.Model.Model_GioHang;
 import Smartphone_sales_management.UI.Model.Model_Menu;
 import Smartphone_sales_management.UI.Swing.Menu.MenuItem;
 import java.awt.Component;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -39,19 +42,24 @@ public class ListGioHang<E extends Object >extends JList<E> {
             @Override
            public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
            {
-               Model_GioHang  data ;
-               if (o instanceof Model_GioHang)
-               {
-                   data= (Model_GioHang) o;
-               }
-               else
-               {
-                   data = new Model_GioHang("","","",o+"",Model_GioHang.GioHangType.EMPTY,"");
-               }
-               GioHangItem item;
-                item  = new GioHangItem(data);
-                
-                return item;
+                try {
+                    Model_GioHang  data ;
+                    if (o instanceof Model_GioHang)
+                    {
+                        data= (Model_GioHang) o;
+                    }
+                    else
+                    {
+                        data = new Model_GioHang("","","",o+"",Model_GioHang.GioHangType.EMPTY,"");
+                    }
+                    GioHangItem item;
+                    item  = new GioHangItem(data);
+                    
+                    return item;
+                } catch (IOException ex) {
+                    Logger.getLogger(ListGioHang.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
            }
         };
                 }

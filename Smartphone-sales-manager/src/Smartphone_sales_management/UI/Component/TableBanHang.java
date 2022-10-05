@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Component.BanHangComponent;
+package Smartphone_sales_management.UI.Component;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
-import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
+import Smartphone_sales_management.UI.Event.EventBanHang;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -17,8 +17,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
-import javax.swing.JTable;
+import static Smartphone_sales_management.UI.Component.TableDetailBH.selectedIndex;
 
 /**
  *
@@ -47,7 +46,7 @@ public class TableBanHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         
-        SetDefautlTable("");
+        SetDefautlTable();
         
         jTable1.setModel(model);
         
@@ -60,21 +59,19 @@ public class TableBanHang extends javax.swing.JPanel {
             @Override
             public void mouseClicked (MouseEvent e) {
                 
-                event.SelectedInxex(jTable1.getSelectedRow());
+                event.SelectedInxex(1);
             };
         });
     }
 
-    public void SetDefautlTable(String keyWord) {
+    private void SetDefautlTable() {
         
         jTable1.removeAll();
-        model.setRowCount(0);
         ArrayList dataList = new ArrayList<>();
-        dataList = qlbh.getDanhSachSanPham(keyWord);
+        dataList = qlbh.getDanhSachSanPham();
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
-        jScrollPane1.repaint();
     }
 
     /**

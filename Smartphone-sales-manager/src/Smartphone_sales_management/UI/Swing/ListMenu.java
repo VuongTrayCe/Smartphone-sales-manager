@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Smartphone_sales_management.UI.Swing.Menu;
+package Smartphone_sales_management.UI.Swing;
 
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Model.Model_Menu;
+import Smartphone_sales_management.UI.Swing.MenuItem;
 import java.awt.Component;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
+import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
 
 /**
  *

@@ -6,7 +6,7 @@ package Smartphone_sales_management.UI.form;
 
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Model.Model_Menu;
-import Smartphone_sales_management.UI.Swing.ListMenu;
+import Smartphone_sales_management.UI.Swing.Menu.ListMenu;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -23,7 +23,7 @@ import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
+import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
 
 /**
  *
@@ -154,7 +154,7 @@ public class Menu extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        listMenu1 = new Smartphone_sales_management.UI.Swing.ListMenu<>();
+        listMenu1 = new Smartphone_sales_management.UI.Swing.Menu.ListMenu<>();
 
         jPanel1.setOpaque(false);
 
@@ -208,6 +208,6 @@ public class Menu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private Smartphone_sales_management.UI.Swing.ListMenu<String> listMenu1;
+    private Smartphone_sales_management.UI.Swing.Menu.ListMenu<String> listMenu1;
     // End of variables declaration//GEN-END:variables
 }

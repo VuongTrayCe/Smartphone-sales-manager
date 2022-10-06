@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Component;
+package Smartphone_sales_management.UI.Component.KhuyenMaiComponent;
+
+import Smartphone_sales_management.UI.Component.*;
 
 /**
  *

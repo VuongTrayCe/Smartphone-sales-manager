@@ -162,7 +162,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="lbKhuyenMai" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lbcNamSx1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbcKhuyenMai" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lbGia" min="-2" max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="lbBHKT" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="lbcNCC2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbcBHKT" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -181,7 +181,7 @@
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Component id="lbBHBD" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lbcNCC1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbcBHBD" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -215,17 +215,17 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbcNamSx1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbcKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbBHBD" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbcNCC1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbcBHBD" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbBHKT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbcNCC2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbcBHKT" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -299,12 +299,12 @@
                 <Property name="text" type="java.lang.String" value="jLabel12"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbcNamSx1">
+            <Component class="javax.swing.JLabel" name="lbcKhuyenMai">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel13"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbcNCC1">
+            <Component class="javax.swing.JLabel" name="lbcBHBD">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel14"/>
               </Properties>
@@ -391,7 +391,7 @@
                 <Property name="text" type="java.lang.String" value="B&#x1ea3;o H&#xe0;nh Ng&#xe0;y KT:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbcNCC2">
+            <Component class="javax.swing.JLabel" name="lbcBHKT">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel14"/>
               </Properties>

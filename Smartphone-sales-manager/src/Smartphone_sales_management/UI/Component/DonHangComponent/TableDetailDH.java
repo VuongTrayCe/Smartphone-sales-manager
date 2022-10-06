@@ -6,6 +6,7 @@ package Smartphone_sales_management.UI.Component.DonHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -21,24 +22,39 @@ public class TableDetailDH extends javax.swing.JPanel {
         initComponents();
         selectedIndex = index;
         if (selectedIndex != -1) {
-           
+            DisplayInfor();
         }
     }
+
     public void DisplayInfor() {
         ArrayList data = new ArrayList();
-        data = qldh_BUS.layDanhSachChiTietDonHang(this.indexSelected);
-        lbTrangThai.setText((String) data.get(0));
-        lbTenSanPham.setText((String) data.get(1));
-        lbLoaiSP.setText((String) data.get(2));
-        lbSoLuong.setText(data.get(3).toString());
-        lbKhuyenMai.setText((String) data.get(4));
-        lbBHBD.setText(data.get(5).toString());
-        lbBHKT.setText( data.get(6).toString());
-        lbGia.setText(data.get(7).toString());
+        data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
+        for (Object object : data) {
+            System.out.println("asfasf");
+        }
+        DefaultComboBoxModel modelCB = new DefaultComboBoxModel();
+        modelCB.addElement("asfaf");
+                modelCB.addElement("as2faf");
+        modelCB.addElement("as2faf");
+        modelCB.addElement("as3faf");
+        modelCB.addElement("as4faf");
         
+        DefaultComboBoxModel modelLoai = new DefaultComboBoxModel();
+        modelLoai.addElement("iphone");
+        modelLoai.addElement("SamSung");
+        modelLoai.addElement("HUawei");
+
+        lbcName2.setText((String) data.get(0));
+        jComboBox1.setModel(modelCB);
+        jComboBox2.setModel(modelLoai);
+        lbcSL1.setText(data.get(3).toString());
+        lbcKhuyenMai.setText((String) data.get(4));
+        lbcBHBD.setText(data.get(5).toString());
+        lbcBHKT.setText(data.get(6).toString());
+        lbcGia1.setText(data.get(7).toString());
+
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,8 +70,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbBHBD = new javax.swing.JLabel();
         lbGia = new javax.swing.JLabel();
         lbcSL1 = new javax.swing.JLabel();
-        lbcNamSx1 = new javax.swing.JLabel();
-        lbcNCC1 = new javax.swing.JLabel();
+        lbcKhuyenMai = new javax.swing.JLabel();
+        lbcBHBD = new javax.swing.JLabel();
         lbcGia1 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
         lbTrangThai = new javax.swing.JLabel();
@@ -64,7 +80,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         lbBHKT = new javax.swing.JLabel();
-        lbcNCC2 = new javax.swing.JLabel();
+        lbcBHKT = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lbImage = new javax.swing.JLabel();
 
@@ -116,9 +132,9 @@ public class TableDetailDH extends javax.swing.JPanel {
 
         lbcSL1.setText("jLabel12");
 
-        lbcNamSx1.setText("jLabel13");
+        lbcKhuyenMai.setText("jLabel13");
 
-        lbcNCC1.setText("jLabel14");
+        lbcBHBD.setText("jLabel14");
 
         lbcGia1.setText("jLabel15");
 
@@ -150,7 +166,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbBHKT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbBHKT.setText("Bảo Hành Ngày KT:");
 
-        lbcNCC2.setText("jLabel14");
+        lbcBHKT.setText("jLabel14");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -190,7 +206,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(lbKhuyenMai)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lbcNamSx1))
+                                    .addComponent(lbcKhuyenMai))
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(lbGia)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -198,13 +214,13 @@ public class TableDetailDH extends javax.swing.JPanel {
                                 .addGroup(jPanel5Layout.createSequentialGroup()
                                     .addComponent(lbBHKT)
                                     .addGap(18, 18, 18)
-                                    .addComponent(lbcNCC2)
+                                    .addComponent(lbcBHKT)
                                     .addGap(0, 0, Short.MAX_VALUE))))
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addGap(17, 17, 17)
                             .addComponent(lbBHBD)
                             .addGap(18, 18, 18)
-                            .addComponent(lbcNCC1))))
+                            .addComponent(lbcBHBD))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -229,15 +245,15 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbKhuyenMai)
-                    .addComponent(lbcNamSx1))
+                    .addComponent(lbcKhuyenMai))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBHBD)
-                    .addComponent(lbcNCC1))
+                    .addComponent(lbcBHBD))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBHKT)
-                    .addComponent(lbcNCC2))
+                    .addComponent(lbcBHKT))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia)
@@ -316,9 +332,9 @@ public class TableDetailDH extends javax.swing.JPanel {
         ////                lbImage.setIcon(new ImageIcon(new URL(url)));
         //              String[] url2= url.split("src");
         //              String a = url2[1].replace("\\","/");
-            //              System.out.println(a);
+        //              System.out.println(a);
 
-            // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
@@ -345,10 +361,10 @@ public class TableDetailDH extends javax.swing.JPanel {
     private javax.swing.JLabel lbSoLuong;
     private javax.swing.JLabel lbTenSanPham;
     private javax.swing.JLabel lbTrangThai;
+    private javax.swing.JLabel lbcBHBD;
+    private javax.swing.JLabel lbcBHKT;
     private javax.swing.JLabel lbcGia1;
-    private javax.swing.JLabel lbcNCC1;
-    private javax.swing.JLabel lbcNCC2;
-    private javax.swing.JLabel lbcNamSx1;
+    private javax.swing.JLabel lbcKhuyenMai;
     private javax.swing.JLabel lbcName2;
     private javax.swing.JLabel lbcSL1;
     // End of variables declaration//GEN-END:variables

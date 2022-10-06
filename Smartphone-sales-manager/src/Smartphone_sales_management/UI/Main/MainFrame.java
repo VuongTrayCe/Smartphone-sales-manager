@@ -31,8 +31,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-                            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //   TestPanel2  a = new TestPanel2();
 
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -44,8 +44,8 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());

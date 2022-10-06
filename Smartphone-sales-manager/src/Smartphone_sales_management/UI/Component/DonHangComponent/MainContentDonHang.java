@@ -18,11 +18,15 @@ public class MainContentDonHang extends javax.swing.JPanel {
     TableDetailDH detailDH;
 
     public MainContentDonHang(MainFrame mainFrame) {
+        initComponents();
         this.mainFrame = mainFrame;
         TableDonHang donHang = new TableDonHang();
         // Tao chiều dài chiều rộng của table don hàng bằng với jScrollPanel
-        donHang.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+//        donHang.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+
         jScrollPane1.setViewportView(donHang);
+        System.out.println(jScrollPane1.getWidth());
+        System.out.println(jScrollPane1.getHeight());
         detailDonHangPanel.setLayout(new GridLayout());
 
         donHang.addEventDonHang(new EventDonHang() {
@@ -78,15 +82,13 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(2, 2));
-
         detailDonHangPanel.setPreferredSize(new java.awt.Dimension(372, 414));
 
         javax.swing.GroupLayout detailDonHangPanelLayout = new javax.swing.GroupLayout(detailDonHangPanel);
         detailDonHangPanel.setLayout(detailDonHangPanelLayout);
         detailDonHangPanelLayout.setHorizontalGroup(
             detailDonHangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGap(0, 368, Short.MAX_VALUE)
         );
         detailDonHangPanelLayout.setVerticalGroup(
             detailDonHangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,10 +103,10 @@ public class MainContentDonHang extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(6, 6, 6)
-                        .addComponent(detailDonHangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
+                        .addComponent(jScrollPane1)
+                        .addGap(10, 10, 10)
+                        .addComponent(detailDonHangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
@@ -126,7 +128,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(detailDonHangPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))

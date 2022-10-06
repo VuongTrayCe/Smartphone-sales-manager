@@ -24,7 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form TestFrame
      */
-    public static int selectedIndex = 0;
+    public static int selectedIndex = -1;
 
     public MainFrame() {
         initComponents();

@@ -52,12 +52,12 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="630" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="626" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" pref="389" max="32767" attributes="0"/>
+                      <Component id="jPanel2" pref="378" max="32767" attributes="0"/>
                       <Component id="jPanel4" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -131,9 +131,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel5" pref="85" max="32767" attributes="0"/>
+                          <Component id="jPanel5" pref="74" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="lbThemNV" pref="43" max="32767" attributes="0"/>
+                              <Component id="lbThemNV" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lbXoaNhanVien" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>

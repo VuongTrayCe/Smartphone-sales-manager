@@ -4,7 +4,6 @@
  */
 package Smartphone_sales_management.UI.Component.KhuyenMaiComponent;
 
-import Smartphone_sales_management.UI.Component.NhanVienComponent.*;
 
 /**
  *
@@ -13,7 +12,7 @@ import Smartphone_sales_management.UI.Component.NhanVienComponent.*;
 public class TableThemKM extends javax.swing.JPanel {
 
     /**
-     * Creates new form TableThemNV
+     * Creates new form TableThemKM
      */
     public TableThemKM() {
         initComponents();

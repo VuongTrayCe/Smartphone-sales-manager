@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-/**
+/** 
  *
  * @author Vuong
  */
@@ -54,7 +54,9 @@ public class QuanLyBanHang_DAO {
 
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham where sanpham.Masp=? and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo "
+                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham "
+                    + "where sanpham.Masp=? and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
             stm.setInt(1, selectedIndex);
             rs = db.sqlQry(stm);
             if (rs != null) {
@@ -73,8 +75,10 @@ public class QuanLyBanHang_DAO {
 
                 }
             }
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            db.closeConnection();
         }
 
         return result;

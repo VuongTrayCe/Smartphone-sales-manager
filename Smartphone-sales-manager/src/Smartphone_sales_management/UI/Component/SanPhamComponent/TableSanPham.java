@@ -18,7 +18,6 @@ public class TableSanPham extends javax.swing.JPanel {
      */
     public TableSanPham() {
         initComponents();
-        jTable1.getTableHeader().setBackground(new Color(14,14,14));
     }
 
     

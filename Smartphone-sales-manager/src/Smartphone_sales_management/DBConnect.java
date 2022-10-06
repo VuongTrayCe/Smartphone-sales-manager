@@ -33,7 +33,7 @@ public class DBConnect {
     String server = "localhost:3306";
     String dbName = "smartphonemanagement";
     String userName = "root";
-    String pass = "03102002";
+    String pass = "";
 
     public DBConnect() {
         checkDriver();

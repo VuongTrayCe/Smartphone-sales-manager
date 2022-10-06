@@ -27,27 +27,22 @@ public class QuanLyBanHang_BUS {
         ArrayList dssp = new ArrayList();
         ArrayList dsspOfficial = new ArrayList<>();
         dssp = qlbh.getDanhSachSanPham_DAO();
-        if(keyWord=="")
-        {
+        if (keyWord == "") {
             return dssp;
-        }
-        else
-        {
+        } else {
 
-        for (Object x : dssp) {
-            Vector y = (Vector) x;
-            String masp = Integer.toString((int) y.get(0));
-            String name = (String) y.get(1);
-            if(masp.contains(keyWord) || name.contains(keyWord) ){
-                {
-                  dsspOfficial.add(y);  
+            for (Object x : dssp) {
+                Vector y = (Vector) x;
+                String masp = Integer.toString((int) y.get(0));
+                String name = (String) y.get(1);
+                if (masp.contains(keyWord) || name.contains(keyWord)) {
+                    {
+                        dsspOfficial.add(y);
+                    }
+
                 }
-                
-                
-                
             }
-        }
-        return dsspOfficial;
+            return dsspOfficial;
         }
     }
 

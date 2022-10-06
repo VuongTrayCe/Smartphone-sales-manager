@@ -62,7 +62,7 @@ public class ListMenu<E extends Object >extends JList<E> {
                }
                else
                {
-                 item  = new MenuItem(data,index);
+                 item  = new MenuItem(data,-1);
 
                }
                 

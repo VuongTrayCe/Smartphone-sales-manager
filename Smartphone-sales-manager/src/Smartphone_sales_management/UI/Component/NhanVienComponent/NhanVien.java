@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.NhanVienComponent;
 
-import Smartphone_sales_management.UI.Component.*;
+//import Smartphone_sales_management.UI.Component.*;
 
 /**
  *

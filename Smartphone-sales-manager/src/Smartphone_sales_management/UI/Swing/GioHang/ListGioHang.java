@@ -39,6 +39,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
     public ListCellRenderer<? super E> getCellRenderer() {
         return new DefaultListCellRenderer() {
             @Override
+<<<<<<< HEAD
             public Component getListCellRendererComponent(JList<?> list, Object o, int index, boolean isSelected, boolean cellHasFocus) {
                 try {
                     Model_GioHang data;
@@ -49,10 +50,33 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     }
                     GioHangItem item;
                     item = new GioHangItem(data);
+=======
+           public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
+           {
+                try {
+                    Model_GioHang  data ;
+                    if (o instanceof Model_GioHang)
+                    {
+                        data= (Model_GioHang) o;
+                    }
+                    else
+                    {
+                        data = new Model_GioHang("","","",o+"",Model_GioHang.GioHangType.EMPTY,"");
+                    }
+                    GioHangItem item;
+                    item  = new GioHangItem(data);
+>>>>>>> main
                     
                     return item;
                 } catch (IOException ex) {
                     Logger.getLogger(ListGioHang.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
+=======
+                }
+                return null;
+           }
+        };
+>>>>>>> main
                 }
                 return null;
             }

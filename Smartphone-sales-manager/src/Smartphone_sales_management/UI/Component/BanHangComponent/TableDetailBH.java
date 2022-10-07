@@ -54,7 +54,7 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new  MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),lbcSL.getText(),urlImage,GioHangType.MENU,lbcGia.getText());
+                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText());
                 event.addGiohang(data);
                 String str = lbcGia.getText().split(" ")[0];
                 Double x = Double.parseDouble(str);

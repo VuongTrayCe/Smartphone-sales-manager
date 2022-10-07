@@ -21,6 +21,7 @@ import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.util.ArrayList;
 import javax.swing.event.DocumentListener;
+import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 
 /**
  *
@@ -50,7 +51,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(a);
         jPanel2.setLayout(new GridLayout());
-                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
 
         jPanel2.add(b);
         b.validate();
@@ -72,10 +73,24 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 c.addSanPhamVaoGio(new AddGioHang() {
                     @Override
                     public void addGiohang(Model_GioHang data) {
+                        ArrayList a = new ArrayList<>();
+                        ArrayList arr = new ArrayList<>();
+                        a = arrListSanpham;
+                        boolean flag = false;
+                        for (Object object : a) {
+                            Model_GioHang x = (Model_GioHang) object;
+                            if (x.getName().equals(data.getName())) {
+                                flag = true;
+                                x.setSoluong(x.getSoluong() + data.getSoluong());
+                            }
+                            arr.add(x);
 
-                        arrListSanpham.add(data);
-                        System.out.println(arrListSanpham.size());
-                        
+                        }
+                        if (flag == true) {
+                            arrListSanpham = arr;
+                        } else {
+                            arrListSanpham.add(data);
+                        }
                         IconGioHang.setText(Integer.toString(arrListSanpham.size()));
                     }
 
@@ -84,27 +99,23 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 return index;
             }
         });
-        
-        
-        
-        
-        
+
         txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
-                
+
                 a.SetDefautlTable(txtTimKiem.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText());
 
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText());
 
             }
         });
@@ -286,8 +297,8 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
-        System.out.println("Hlleo day");      
-        
+        System.out.println("Hlleo day");
+
 // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemActionPerformed
 
@@ -302,6 +313,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     private void IconGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconGioHangMouseClicked
         IconDetail.setBackground(new Color(153, 153, 153));
         IconGioHang.setBackground(Color.red);
+        selectedIndexGioHang = -1;
 
         TableGioHang giohang = new TableGioHang(arrListSanpham);
         DisPlayComponent(giohang);
@@ -321,7 +333,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_IconDetailMouseClicked
 
     private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
-       txtTimKiem.setText("");
+        txtTimKiem.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemMouseClicked
 

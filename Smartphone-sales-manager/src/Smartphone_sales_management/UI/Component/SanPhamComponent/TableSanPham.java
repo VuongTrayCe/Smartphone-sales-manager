@@ -49,6 +49,7 @@ public class TableSanPham extends javax.swing.JPanel {
         ));
         jTable1.setCellSelectionEnabled(true);
         panelTable.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -91,6 +91,14 @@ public class TableBanHang extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 0, 0));
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jTable1.setFocusable(false);
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
         jTable1.setRowHeight(25);

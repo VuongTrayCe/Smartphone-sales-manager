@@ -4,17 +4,72 @@
  */
 package Smartphone_sales_management.UI.Component.NhanVienComponent;
 
+import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
+import Smartphone_sales_management.UI.Event.NhanVien.EventNhanVien;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JScrollBar;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener; 
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author lehongthai
  */
 public class TableNhanVien extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TableNhanVien
-     */
-    public TableNhanVien() {
-        initComponents();
+    QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
+    DefaultTableModel model = new DefaultTableModel();
+    EventNhanVien event;
+            
+    public TableNhanVien(EventNhanVien Event) {
+        
+         initComponents();
+         model.addColumn("MaNhanVien");        
+         model.addColumn("TenNhanVien");
+         model.addColumn("SoCCCD");
+         model.addColumn("Tuoi");
+         model.addColumn("DiaChi");        
+         model.addColumn("ChucDanh");
+         model.addColumn("TrangThai");
+         jTable1.setOpaque(false);
+        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
+        });
+        jTable1.getTableHeader().setForeground(Color.WHITE);
+        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+        
+        SetDefaultTable("");
+        
+        jTable1.setModel(model);
+    }
+
+     public void addEventNhanVien(EventNhanVien event) {
+        this.event = event;
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event.SelectedInxex(jTable1.getSelectedRow());
+            }
+        ;
+    }
+
+    );
+    }
+    public void SetDefaultTable(String keyWord) {
+        jTable1.removeAll();
+        model.setRowCount(0);
+        ArrayList dataList = new ArrayList<>();
+        dataList = qlnv.getDanhSachNhanVien(keyWord);
+        for (int i = 0; i < dataList.size(); i++) {
+            model.addRow((Vector<?>) dataList.get(i));
+        }
+        jScrollPane1.repaint();
     }
 
     /**

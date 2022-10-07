@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Swing;
+package Smartphone_sales_management.UI.Swing.Menu;
 
 import Smartphone_sales_management.UI.Model.Model_Menu;
 import java.awt.Color;
@@ -10,7 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import static Smartphone_sales_management.UI.Main.TestFrame.selectedIndex;
+import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
 
 /**
  *
@@ -27,19 +27,11 @@ public class MenuItem extends javax.swing.JPanel {
             {
                 lbIcon.setIcon(data.toIcon());
                 lbName.setText(data.getName());
-                if(selectedIndex == 0 && index==0)
+                if(index!=-1)
                 {   
                     this.setBackground(Color.WHITE);
                 }
-                else if(selectedIndex == 1 && index==1)
-                {   
-                this.setBackground(Color.WHITE);
-                } 
-                 else
-                {
-                 this.setBackground(Color.GRAY);
-
-                }
+          
 //                 if(selectedIndex == 2)
 //                {   
 //                this.setBackground(Color.WHITE);
@@ -102,8 +94,8 @@ public class MenuItem extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbName)
-                    .addComponent(lbIcon))
+                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents

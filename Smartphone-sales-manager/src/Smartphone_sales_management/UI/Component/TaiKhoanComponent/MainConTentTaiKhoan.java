@@ -4,8 +4,18 @@
  */
 package Smartphone_sales_management.UI.Component.TaiKhoanComponent;
 
+import Smartphone_sales_management.UI.Component.TaiKhoanComponent.TableTaiKhoan;
+import Smartphone_sales_management.UI.Component.TaiKhoanComponent.TableDetailTK;
+import Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang;
+import Smartphone_sales_management.UI.Event.TaiKhoan.EventTaiKhoan;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.awt.GridLayout;
 
+import Smartphone_sales_management.UI.Event.TaiKhoan.AddDetailTK;
+import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.event.DocumentListener;
 /**
  *
  * @author Windows10
@@ -15,10 +25,37 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
     /**
      * Creates new form Taikhoan
      */
+    EventTaiKhoan event;
     MainFrame frame;
+    TableDetailTK detailTK;
+    
     public MainConTentTaiKhoan(MainFrame frame) {
         initComponents();
         this.frame = frame;
+        TableTaiKhoan taikhoan = new TableTaiKhoan(event);
+        
+        
+        jScrollPane2.setViewportView(taikhoan);
+        System.out.println(jScrollPane2.getWidth());
+        System.out.println(jScrollPane2.getHeight());
+        DetailTaiKhoanPanel.setLayout(new GridLayout());
+        
+        
+        taikhoan.addEventTaiKhoan(new EventTaiKhoan() {
+            @Override
+            public int SelectedInxex(int index) {
+                detailTK = new TableDetailTK( index);
+                detailTK.setBounds(0, 0, DetailTaiKhoanPanel.getWidth(), DetailTaiKhoanPanel.getHeight());
+                DetailTaiKhoanPanel.removeAll();
+                DetailTaiKhoanPanel.setLayout(new GridLayout());
+                DetailTaiKhoanPanel.add(detailTK);
+                
+                detailTK.validate();
+                
+                return index;
+            }
+        });
+        
     }
 
     /**
@@ -38,7 +75,7 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        DetailTaiKhoanPanel = new javax.swing.JPanel();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
 
@@ -116,15 +153,15 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                     .addContainerGap()))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout DetailTaiKhoanPanelLayout = new javax.swing.GroupLayout(DetailTaiKhoanPanel);
+        DetailTaiKhoanPanel.setLayout(DetailTaiKhoanPanelLayout);
+        DetailTaiKhoanPanelLayout.setHorizontalGroup(
+            DetailTaiKhoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+        DetailTaiKhoanPanelLayout.setVerticalGroup(
+            DetailTaiKhoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout NềnLayout = new javax.swing.GroupLayout(Nền);
@@ -139,9 +176,9 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(301, 301, 301)))
                 .addGap(18, 18, 18)
-                .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DetailTaiKhoanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(53, 53, 53))
         );
         NềnLayout.setVerticalGroup(
@@ -154,10 +191,11 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(NềnLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(DetailTaiKhoanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -171,11 +209,18 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
             .addComponent(Nền, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+      public void DisPlayComponent(Component taikhoan) {
+        taikhoan.setBounds(0, 0, DetailTaiKhoanPanel.getWidth(), DetailTaiKhoanPanel.getHeight());
+        DetailTaiKhoanPanel.removeAll();
+        DetailTaiKhoanPanel.setLayout(new GridLayout());
+        DetailTaiKhoanPanel.add(taikhoan);
+        taikhoan.validate();
+        DetailTaiKhoanPanel.repaint();
+      }
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
-
+       
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         //
         //            FileDialog fd = new FileDialog(new JFrame(), "Xuất excel", FileDialog.LOAD);
@@ -191,10 +236,10 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DetailTaiKhoanPanel;
     private javax.swing.JButton btnThem;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;

@@ -34,7 +34,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new Dimension(100, 100));
  //       MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
        MainConTentTaiKhoan a = new MainConTentTaiKhoan(MainFrame.this);
-//       MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+ //      MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //   TestPanel2  a = new TestPanel2();
 
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

@@ -23,7 +23,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         TableDonHang donHang = new TableDonHang();
         // Tao chiều dài chiều rộng của table don hàng bằng với jScrollPanel
 //        donHang.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-
+        
         jScrollPane1.setViewportView(donHang);
         System.out.println(jScrollPane1.getWidth());
         System.out.println(jScrollPane1.getHeight());

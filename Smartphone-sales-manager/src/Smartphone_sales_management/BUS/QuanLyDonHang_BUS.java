@@ -50,6 +50,7 @@ public class QuanLyDonHang_BUS {
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyDonHang_BUS.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return dsctdh;
     }
 }

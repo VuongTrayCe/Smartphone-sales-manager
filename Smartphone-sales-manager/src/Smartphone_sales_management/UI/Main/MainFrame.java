@@ -44,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

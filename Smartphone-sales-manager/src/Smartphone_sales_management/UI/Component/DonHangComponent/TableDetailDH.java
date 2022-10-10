@@ -347,7 +347,7 @@ public class TableDetailDH extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-    
+
         DisplayInfor();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

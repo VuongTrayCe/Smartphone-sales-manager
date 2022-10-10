@@ -27,19 +27,11 @@ public class MenuItem extends javax.swing.JPanel {
             {
                 lbIcon.setIcon(data.toIcon());
                 lbName.setText(data.getName());
-                if(selectedIndex == 0 && index==0)
+                if(index!=-1)
                 {   
                     this.setBackground(Color.WHITE);
                 }
-                else if(selectedIndex == 1 && index==1)
-                {   
-                this.setBackground(Color.WHITE);
-                } 
-                 else
-                {
-                 this.setBackground(Color.GRAY);
-
-                }
+          
 //                 if(selectedIndex == 2)
 //                {   
 //                this.setBackground(Color.WHITE);

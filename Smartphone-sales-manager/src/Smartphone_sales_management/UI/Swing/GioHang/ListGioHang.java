@@ -21,27 +21,26 @@ import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGio
  *
  * @author Vuong
  */
-public class ListGioHang<E extends Object >extends JList<E> {
-     private final DefaultListModel model;
+public class ListGioHang<E extends Object> extends JList<E> {
+
+    private final DefaultListModel model;
 
     public ListGioHang() {
-        
-        
-         model = new DefaultListModel();
-    setOpaque(false);
-    setModel(model);
+
+        model = new DefaultListModel();
+        setOpaque(false);
+        setModel(model);
     }
-    
-     public void addItem(Model_GioHang data)
-    {
+
+    public void addItem(Model_GioHang data) {
         model.addElement(data);
     }
+
     @Override
     public ListCellRenderer<? super E> getCellRenderer() {
-        return new DefaultListCellRenderer()
-        {
+        return new DefaultListCellRenderer() {
             @Override
-           public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
+   public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
            {
                 try {
                     Model_GioHang  data ;
@@ -67,11 +66,10 @@ public class ListGioHang<E extends Object >extends JList<E> {
                     return item;
                 } catch (IOException ex) {
                     Logger.getLogger(ListGioHang.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
+           }                 
                 return null;
            }
         };
                 }
-    
-    
 }

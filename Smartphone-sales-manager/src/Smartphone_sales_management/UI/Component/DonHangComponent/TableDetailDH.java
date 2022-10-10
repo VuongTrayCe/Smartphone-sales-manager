@@ -5,6 +5,8 @@
 package Smartphone_sales_management.UI.Component.DonHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
@@ -30,20 +32,40 @@ public class TableDetailDH extends javax.swing.JPanel {
         ArrayList data = new ArrayList();
         data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
         DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
+        DefaultComboBoxModel modelLoai = new DefaultComboBoxModel();
         int SoChiTietDonHang = data.size() / 8;
-        int currentIndex = 1;
-        
+        int currentIndexTT = 0;
+        int currentIndexTSP = 1;
+        int currentIndexLoai = 2;
+        int currentIndexSL = 3;
+        int currentIndexKM = 4;
+        int currentIndexBHBD = 5;
+        int currentIndexBHKT = 6;
+        int currentIndexGia = 7;
+
+        ArrayList<String> ctdh = new ArrayList();
+        ArrayList tctdh = new ArrayList();
         while (SoChiTietDonHang != 0) {
-            modelTenSP.addElement(data.get(currentIndex).toString());
-            currentIndex += 8;
+            modelTenSP.addElement(data.get(currentIndexTSP).toString());
+            ctdh.add(data.get(currentIndexLoai).toString());
+            ctdh.add(data.get(currentIndexSL).toString());
+            ctdh.add(data.get(currentIndexKM).toString());
+            ctdh.add(data.get(currentIndexBHBD).toString());
+            ctdh.add(data.get(currentIndexBHKT).toString());
+            ctdh.add(data.get(currentIndexGia).toString());
+            currentIndexLoai += 8;
+            currentIndexSL += 8;
+            currentIndexKM += 8;
+            currentIndexBHBD += 8;
+            currentIndexBHKT += 8;
+            currentIndexGia += 8;
+            currentIndexTSP += 8;
+            tctdh.add(ctdh);
+            System.out.println(tctdh);
+            ctdh.removeAll(ctdh);
             SoChiTietDonHang--;
         }
-
-        DefaultComboBoxModel modelLoai = new DefaultComboBoxModel();
-        modelLoai.addElement("iphone");
-        modelLoai.addElement("SamSung");
-        modelLoai.addElement("HUawei");
-
+//        System.out.println(tctdh);
         lbcName2.setText((String) data.get(0));
         jComboBox1.setModel(modelTenSP);
         jComboBox2.setModel(modelLoai);
@@ -52,6 +74,14 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcBHBD.setText(data.get(5).toString());
         lbcBHKT.setText(data.get(6).toString());
         lbcGia1.setText(data.get(7).toString());
+
+        jComboBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(ctdh.get(jComboBox1.getSelectedIndex()));
+
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -159,6 +189,11 @@ public class TableDetailDH extends javax.swing.JPanel {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -339,6 +374,10 @@ public class TableDetailDH extends javax.swing.JPanel {
     private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThem1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

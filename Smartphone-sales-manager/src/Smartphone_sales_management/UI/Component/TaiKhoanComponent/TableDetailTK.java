@@ -46,20 +46,20 @@ public class TableDetailTK extends javax.swing.JPanel {
     }
     public void DisplayInfor()
     {
-       ArrayList data = new ArrayList();
-       data = qltk_BUS.getDanhSachChiTiet1TaiKhoan(this.indexSelected);
-       maNV.setText((String) data.get(0));
-       tk.setText((String) data.get(1));
-       mk.setText((String)data.get(2));
-       q.setText((String) data.get(3));
-       
-       
-       String  str= (String) data.get(4);
-       String[] tachChuoi = str.split("//");
-       String chuoiChinh="";
-        for (String string : tachChuoi) {
-            chuoiChinh+=(string+"\n");
-        }
+//       ArrayList data = new ArrayList();
+//       data = qltk_BUS.getDanhSachChiTiet1TaiKhoan(this.indexSelected);
+//       maNV.setText((String) data.get(0));
+//       tk.setText((String) data.get(1));
+//       mk.setText((String)data.get(2));
+//       q.setText((String) data.get(3));
+//       
+//       
+//       String  str= (String) data.get(4);
+//       String[] tachChuoi = str.split("//");
+//       String chuoiChinh="";
+//        for (String string : tachChuoi) {
+//            chuoiChinh+=(string+"\n");
+//        }
     
        
        

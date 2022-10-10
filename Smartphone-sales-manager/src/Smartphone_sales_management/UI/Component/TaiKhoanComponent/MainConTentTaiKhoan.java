@@ -33,17 +33,18 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         initComponents();
         this.frame = frame;
         TableTaiKhoan taikhoan = new TableTaiKhoan(event);
-        
+        TableDetailTK tbdtTK = new TableDetailTK(-1);
         
         jScrollPane2.setViewportView(taikhoan);
         System.out.println(jScrollPane2.getWidth());
         System.out.println(jScrollPane2.getHeight());
         DetailTaiKhoanPanel.setLayout(new GridLayout());
-        
+//        DetailTaiKhoanPanel.add(tbdtTK);
         
         taikhoan.addEventTaiKhoan(new EventTaiKhoan() {
             @Override
             public int SelectedInxex(int index) {
+                DetailTaiKhoanPanel.removeAll();
                 detailTK = new TableDetailTK( index);
                 detailTK.setBounds(0, 0, DetailTaiKhoanPanel.getWidth(), DetailTaiKhoanPanel.getHeight());
                 DetailTaiKhoanPanel.removeAll();
@@ -134,7 +135,7 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -173,29 +174,33 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                 .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(NềnLayout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                         .addGap(301, 301, 301)))
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DetailTaiKhoanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(53, 53, 53))
+                    .addGroup(NềnLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(53, 53, 53))
+                    .addGroup(NềnLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(DetailTaiKhoanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         NềnLayout.setVerticalGroup(
             NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NềnLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(10, 10, 10)
                 .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(NềnLayout.createSequentialGroup()
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                     .addGroup(NềnLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DetailTaiKhoanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(21, 21, 21))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -34,8 +34,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
             public int SelectedInxex(int index) {
                 detailDH = new TableDetailDH(index);
                 detailDH.setBounds(0, 0, detailDonHangPanel.getWidth(), detailDonHangPanel.getHeight());
-                detailDonHangPanel.removeAll();
-                detailDonHangPanel.setLayout(new GridLayout());
+//                detailDonHangPanel.removeAll();
+//                detailDonHangPanel.setLayout(new GridLayout());
                 detailDonHangPanel.add(detailDH);
                 detailDH.validate();
                 return index;

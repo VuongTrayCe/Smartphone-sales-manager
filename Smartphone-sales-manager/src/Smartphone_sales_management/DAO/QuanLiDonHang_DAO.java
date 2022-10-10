@@ -50,7 +50,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
 
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Trangthai, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong,khuyenmai.Loaikm,baohanh.Ngaybatdau, baohanh.Ngayketthuc,giasanpham.Giaban\n"
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Trangthai, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong,khuyenmai.`%km`,baohanh.Ngaybatdau, baohanh.Ngayketthuc,giasanpham.Giaban\n"
                     + "FROM donhang\n"
                     + "INNER JOIN chitietdonhang ON donhang.Madh = chitietdonhang.Madh AND donhang.Madh = ? \n"
                     + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp \n"
@@ -60,23 +60,22 @@ public class QuanLiDonHang_DAO {
                     + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n"
                     + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp");
             stm.setInt(1, Madh);
-            rs = dbConnect.sqlQry(stm);
+            rs = stm.executeQuery();
+            System.out.println(rs);
             if (rs != null) {
                 while (rs.next()) {
                     result.add(rs.getString(1));
                     result.add(rs.getString(2));
                     result.add(rs.getString(3));
                     result.add(rs.getInt(4));
-
                     result.add(rs.getString(5));
                     result.add(rs.getString(6));
                     result.add(rs.getString(7));
-
                     result.add(rs.getInt(8));
-
                 }
             }
-         return result;
+            
+            return result;
         } catch (SQLException e) {
             return null;
         } finally {

@@ -14,7 +14,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class TableDetailDH extends javax.swing.JPanel {
 
-    public int indexSelected;
+//    public int indexSelected
     public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
 
@@ -29,30 +29,29 @@ public class TableDetailDH extends javax.swing.JPanel {
     public void DisplayInfor() {
         ArrayList data = new ArrayList();
         data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
-        for (Object object : data) {
-            System.out.println("asfasf");
-        }
-        DefaultComboBoxModel modelCB = new DefaultComboBoxModel();
-        modelCB.addElement("asfaf");
-                modelCB.addElement("as2faf");
-        modelCB.addElement("as2faf");
-        modelCB.addElement("as3faf");
-        modelCB.addElement("as4faf");
+        DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
+        int SoChiTietDonHang = data.size() / 8;
+        int currentIndex = 1;
         
+        while (SoChiTietDonHang != 0) {
+            modelTenSP.addElement(data.get(currentIndex).toString());
+            currentIndex += 8;
+            SoChiTietDonHang--;
+        }
+
         DefaultComboBoxModel modelLoai = new DefaultComboBoxModel();
         modelLoai.addElement("iphone");
         modelLoai.addElement("SamSung");
         modelLoai.addElement("HUawei");
 
         lbcName2.setText((String) data.get(0));
-        jComboBox1.setModel(modelCB);
+        jComboBox1.setModel(modelTenSP);
         jComboBox2.setModel(modelLoai);
         lbcSL1.setText(data.get(3).toString());
-        lbcKhuyenMai.setText((String) data.get(4));
+        lbcKhuyenMai.setText(data.get(4).toString());
         lbcBHBD.setText(data.get(5).toString());
         lbcBHKT.setText(data.get(6).toString());
         lbcGia1.setText(data.get(7).toString());
-
     }
 
     @SuppressWarnings("unchecked")

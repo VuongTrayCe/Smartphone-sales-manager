@@ -25,8 +25,6 @@ public class MainContentDonHang extends javax.swing.JPanel {
 //        donHang.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
 
         jScrollPane1.setViewportView(donHang);
-        System.out.println(jScrollPane1.getWidth());
-        System.out.println(jScrollPane1.getHeight());
         detailDonHangPanel.setLayout(new GridLayout());
 
         donHang.addEventDonHang(new EventDonHang() {
@@ -93,7 +91,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         );
         detailDonHangPanelLayout.setVerticalGroup(
             detailDonHangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addGap(0, 435, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,10 +127,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(detailDonHangPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                    .addComponent(detailDonHangPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
                 .addGap(6, 6, 6))
         );
 

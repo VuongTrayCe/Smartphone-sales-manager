@@ -18,18 +18,19 @@ public class TableGioHang extends javax.swing.JPanel {
      * Creates new form TableGioHang
      */
     ArrayList data = new ArrayList();
+
     public TableGioHang(ArrayList data) {
-        this.data=data;
+        this.data = data;
         initComponents();
-        Double sum =0.0;
+        Double sum = 0.0;
         for (Object object : data) {
-            Model_GioHang x =(Model_GioHang) object;
-                    listGioHang1.addItem((Model_GioHang) object);
-      sum+=x.getTongTien();
+            Model_GioHang x = (Model_GioHang) object;
+            listGioHang1.addItem((Model_GioHang) object);
+            sum += x.getTongTien();
         }
-    lbTongTien.setText(Double.toString(sum)+" VND");
-    jButton1.setBorder(null);
-    jButton1.setBackground(new Color(242, 242, 242));
+        lbTongTien.setText(Double.toString(sum) + " VND");
+        jButton1.setBorder(null);
+        jButton1.setBackground(new Color(242, 242, 242));
 
     }
 

@@ -35,13 +35,13 @@ public class TableChiTietKM extends javax.swing.JPanel {
         jbMaSP = new javax.swing.JLabel();
         jbMaKM = new javax.swing.JLabel();
         jbTenKM = new javax.swing.JLabel();
-        jbLoaiKM = new javax.swing.JLabel();
+        jbPhanTramKM = new javax.swing.JLabel();
         jbTrangThaiKM = new javax.swing.JLabel();
         jbcMaChiTietKM = new javax.swing.JLabel();
         jbcMaSP = new javax.swing.JLabel();
         jbcMaKM = new javax.swing.JLabel();
         jbcTenKM = new javax.swing.JLabel();
-        jbcLoaiKM = new javax.swing.JLabel();
+        jbcPhanTramKM = new javax.swing.JLabel();
         jbcTrangThai = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -76,7 +76,7 @@ public class TableChiTietKM extends javax.swing.JPanel {
 
         jbTenKM.setText("Tên khuyến mãi");
 
-        jbLoaiKM.setText("Loại khuyến mãi");
+        jbPhanTramKM.setText("Phần trăm khuyến mãi");
 
         jbTrangThaiKM.setText("Trạng thái");
 
@@ -88,7 +88,7 @@ public class TableChiTietKM extends javax.swing.JPanel {
 
         jbcTenKM.setText("jLabel5");
 
-        jbcLoaiKM.setText("jLabel6");
+        jbcPhanTramKM.setText("jLabel6");
 
         jbcTrangThai.setText("jLabel7");
 
@@ -102,7 +102,7 @@ public class TableChiTietKM extends javax.swing.JPanel {
                     .addComponent(jbMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbTenKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbMaKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbLoaiKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbPhanTramKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbTrangThaiKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbMaChiTietKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25)
@@ -111,7 +111,7 @@ public class TableChiTietKM extends javax.swing.JPanel {
                     .addComponent(jbcMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbcMaKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbcTenKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbcLoaiKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbcPhanTramKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbcTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -136,13 +136,13 @@ public class TableChiTietKM extends javax.swing.JPanel {
                     .addComponent(jbcTenKM))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbLoaiKM)
-                    .addComponent(jbcLoaiKM))
+                    .addComponent(jbPhanTramKM)
+                    .addComponent(jbcPhanTramKM))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbTrangThaiKM)
                     .addComponent(jbcTrangThai))
-                .addGap(76, 76, 76))
+                .addGap(84, 84, 84))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -187,16 +187,16 @@ public class TableChiTietKM extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel jbLoaiKM;
     private javax.swing.JLabel jbMaChiTietKM;
     private javax.swing.JLabel jbMaKM;
     private javax.swing.JLabel jbMaSP;
+    private javax.swing.JLabel jbPhanTramKM;
     private javax.swing.JLabel jbTenKM;
     private javax.swing.JLabel jbTrangThaiKM;
-    private javax.swing.JLabel jbcLoaiKM;
     private javax.swing.JLabel jbcMaChiTietKM;
     private javax.swing.JLabel jbcMaKM;
     private javax.swing.JLabel jbcMaSP;
+    private javax.swing.JLabel jbcPhanTramKM;
     private javax.swing.JLabel jbcTenKM;
     private javax.swing.JLabel jbcTrangThai;
     // End of variables declaration//GEN-END:variables

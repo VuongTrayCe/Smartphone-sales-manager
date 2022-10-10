@@ -116,7 +116,7 @@
                           <Component id="jbMaSP" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbTenKM" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbMaKM" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jbLoaiKM" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jbPhanTramKM" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbTrangThaiKM" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbMaChiTietKM" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -126,7 +126,7 @@
                           <Component id="jbcMaSP" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbcMaKM" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbcTenKM" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jbcLoaiKM" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jbcPhanTramKM" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbcTrangThai" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -158,15 +158,15 @@
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jbLoaiKM" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbcLoaiKM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbPhanTramKM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbcPhanTramKM" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbTrangThaiKM" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbcTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -192,9 +192,9 @@
                 <Property name="text" type="java.lang.String" value="T&#xea;n khuy&#x1ebf;n m&#xe3;i"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jbLoaiKM">
+            <Component class="javax.swing.JLabel" name="jbPhanTramKM">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i khuy&#x1ebf;n m&#xe3;i"/>
+                <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n tr&#x103;m khuy&#x1ebf;n m&#xe3;i"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jbTrangThaiKM">
@@ -222,7 +222,7 @@
                 <Property name="text" type="java.lang.String" value="jLabel5"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jbcLoaiKM">
+            <Component class="javax.swing.JLabel" name="jbcPhanTramKM">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel6"/>
               </Properties>

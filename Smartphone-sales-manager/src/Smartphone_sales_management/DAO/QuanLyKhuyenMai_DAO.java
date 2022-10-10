@@ -15,35 +15,33 @@ import java.util.Vector;
  *
  * @author lehongthai
  */
-public class QuanLyNhanVien_DAOO {
-
-    DBConnect db = new DBConnect();
+public class QuanLyKhuyenMai_DAO {
+     DBConnect db = new DBConnect();
     ResultSet rs = null;
 
-    public ArrayList getDanhSachNhanVien_DAOO() {
+    public ArrayList getDanhSachKhuyenMai_DAO() {
 
-        ArrayList dsnv = new ArrayList<>();
+        ArrayList dskm = new ArrayList<>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien ");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from khuyenmai");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
-                a.add(rs.getString("Manv"));
-                a.add(rs.getString("Tennv"));
-                a.add(rs.getString("SoCCCD"));
-                a.add(rs.getString("Tuoi"));
-                a.add(rs.getString("DiaChi"));
-                a.add(rs.getString("Chucdanh"));
-                a.add(rs.getString("Trangthai"));
-                dsnv.add(a);
+                a.add(rs.getString(1));
+                a.add(rs.getString(2));
+                a.add(rs.getString(3));
+                a.add(rs.getString(4));
+                dskm.add(a);
 
             }
-            return dsnv;
+//            return dskm;
         } catch (SQLException ex) {
-            return null;
+//            return null;
+               ex.printStackTrace();
         } finally {
             db.closeConnection();
         }
+         return dskm;
     }
 }

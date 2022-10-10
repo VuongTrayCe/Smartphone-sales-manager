@@ -14,9 +14,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JScrollBar;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener; 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 /**
  *
  * @author lehongthai
@@ -25,13 +28,13 @@ public class TableNhanVien extends javax.swing.JPanel {
 
     QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
     DefaultTableModel model = new DefaultTableModel();
-    EventNhanVien event;
+    EventNhanVien Event;
             
     public TableNhanVien(EventNhanVien Event) {
         
          initComponents();
-         model.addColumn("MaNhanVien");        
-         model.addColumn("TenNhanVien");
+         model.addColumn("MaNV");        
+         model.addColumn("TenNV");
          model.addColumn("SoCCCD");
          model.addColumn("Tuoi");
          model.addColumn("DiaChi");        
@@ -49,18 +52,18 @@ public class TableNhanVien extends javax.swing.JPanel {
         jTable1.setModel(model);
     }
 
-     public void addEventNhanVien(EventNhanVien event) {
-        this.event = event;
-        jTable1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                event.SelectedInxex(jTable1.getSelectedRow());
-            }
-        ;
-    }
-
-    );
-    }
+//     public void addEventNhanVien(EventNhanVien event) {
+//        this.event = event;
+//        jTable1.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                event.SelectedInxex(jTable1.getSelectedRow());
+//            }
+//        ;
+//    }
+//
+//    );
+//    }
     public void SetDefaultTable(String keyWord) {
         jTable1.removeAll();
         model.setRowCount(0);
@@ -71,7 +74,7 @@ public class TableNhanVien extends javax.swing.JPanel {
         }
         jScrollPane1.repaint();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -53,7 +53,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                  <Component id="jLabel1" pref="165" max="32767" attributes="0"/>
+                  <Component id="jLabel1" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -112,71 +112,75 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jlTenNhanVien" alignment="0" pref="86" max="32767" attributes="0"/>
-                          <Component id="jlMaNhanVien" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jbChucDanh" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbSocccd" alignment="0" max="32767" attributes="0"/>
                           <Component id="jbTuoi" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jbChucDanh" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jbTrangThai" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jlTenNhanVien" alignment="0" pref="84" max="32767" attributes="0"/>
+                          <Component id="jlMaNhanVien" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jbTrangThai" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtTrangThai" max="32767" attributes="0"/>
-                          <Component id="jtMa" max="32767" attributes="0"/>
-                          <Component id="jtTen" max="32767" attributes="0"/>
-                          <Component id="jtTuoi" max="32767" attributes="0"/>
-                          <Component id="jtcccd" alignment="0" max="32767" attributes="0"/>
                           <Component id="jtChucdanh" max="32767" attributes="0"/>
+                          <Component id="jtcccd" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtTuoi" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtTen" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtMa" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtTrangThai" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                      <Component id="jbthemnv" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="jbthemnv" pref="58" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="UpdateNV" pref="92" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="jlMaNhanVien" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtMa" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jlMaNhanVien" min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jlTenNhanVien" max="32767" attributes="0"/>
+                          <Component id="jtTen" pref="28" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbTuoi" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jtTuoi" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jbChucDanh" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jtcccd" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="jbSocccd" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jtChucdanh" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jtMa" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlTenNhanVien" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jtTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtTrangThai" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jbTrangThai" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jbTuoi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtTuoi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jbthemnv" max="32767" attributes="0"/>
+                          <Component id="UpdateNV" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jbSocccd" alignment="3" max="32767" attributes="0"/>
-                          <Component id="jtcccd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jbChucDanh" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtChucdanh" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbTrangThai" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jbthemnv" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -188,6 +192,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtMa">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtMaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jtTen">
             </Component>
@@ -202,6 +209,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtTuoi">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtTuoiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jbSocccd">
               <Properties>
@@ -236,6 +246,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbthemnvActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="UpdateNV">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="UPDATE"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

@@ -5,50 +5,46 @@
 package Smartphone_sales_management.DAO;
 
 import Smartphone_sales_management.DBConnect;
-//import static gasstation_management.Main.DATETIME_FORMATTER;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Vector;
 
 /**
  *
- * @author Vuong
+ * @author lehongthai
  */
 public class QuanLyNhanVien_DAO {
+
     DBConnect db = new DBConnect();
     ResultSet rs = null;
-    // Thêm một nhân viên
-    public ArrayList getMotNhanVien(String manv)
-    {
-    ArrayList<String> result = new ArrayList<>();
+
+    public ArrayList getDanhSachNhanVien_DAO() {
+
+        ArrayList dsnv = new ArrayList<>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien where manv=?");
-            stm.setString(1,manv);
-            rs =  stm.executeQuery();
-                while (rs.next()) {
-                     result.add(rs.getString("Manv"));
-                     result.add(rs.getString("Tennv"));
-                     result.add(rs.getString("SoCCCD"));
-                     result.add(rs.getString("Tuoi"));
-                     result.add(rs.getString("DiaChi"));
-                     result.add(rs.getString("Chucdanh"));
-                     result.add(rs.getString("Trangthai"));
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien ");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(rs.getString("Manv"));
+                a.add(rs.getString("Tennv"));
+                a.add(rs.getString("SoCCCD"));
+                a.add(rs.getString("Tuoi"));
+                a.add(rs.getString("DiaChi"));
+                a.add(rs.getString("Chucdanh"));
+                a.add(rs.getString("Trangthai"));
+                dsnv.add(a);
 
-                }
-                for (String string : result) {
-                    System.out.println(string);
-                
             }
-            return result;
-        }catch (SQLException ex) {
+            return dsnv;
+        } catch (SQLException ex) {
             return null;
-        }finally{
+        } finally {
             db.closeConnection();
         }
-}
+    }
+   
 }

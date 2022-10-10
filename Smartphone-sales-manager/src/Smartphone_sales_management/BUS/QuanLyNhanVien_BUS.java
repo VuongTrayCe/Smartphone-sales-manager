@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.BUS;
 
-import Smartphone_sales_management.DAO.QuanLyNhanVien_DAOO;
+import Smartphone_sales_management.DAO.QuanLyNhanVien_DAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -16,14 +16,14 @@ import java.util.logging.Logger;
  * @author lehongthai
  */
 public class QuanLyNhanVien_BUS {
-    QuanLyNhanVien_DAOO qlnv = new QuanLyNhanVien_DAOO();
+    QuanLyNhanVien_DAO qlnv = new QuanLyNhanVien_DAO();
     public QuanLyNhanVien_BUS(){
     
     }
     public ArrayList getDanhSachNhanVien(String keyWord){
         ArrayList dsnv = new ArrayList();
         ArrayList dsnvOfficial = new ArrayList<>();
-        dsnv = qlnv.getDanhSachNhanVien_DAOO();
+        dsnv = qlnv.getDanhSachNhanVien_DAO();
         if (keyWord == "") {
             return dsnv;
         } else {

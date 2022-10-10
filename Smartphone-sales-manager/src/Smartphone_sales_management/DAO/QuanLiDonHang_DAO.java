@@ -64,14 +64,16 @@ public class QuanLiDonHang_DAO {
             System.out.println(rs);
             if (rs != null) {
                 while (rs.next()) {
-                    result.add(rs.getString(1));
-                    result.add(rs.getString(2));
-                    result.add(rs.getString(3));
-                    result.add(rs.getInt(4));
-                    result.add(rs.getString(5));
-                    result.add(rs.getString(6));
-                    result.add(rs.getString(7));
-                    result.add(rs.getInt(8));
+                    Vector a = new Vector();
+                    a.add(rs.getString(1));
+                    a.add(rs.getString(2));
+                    a.add(rs.getString(3));
+                    a.add(rs.getInt(4));
+                    a.add(rs.getString(5));
+                    a.add(rs.getString(6));
+                    a.add(rs.getString(7));
+                    a.add(rs.getInt(8));
+                    result.add(a);
                 }
             }
             

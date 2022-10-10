@@ -8,6 +8,7 @@ import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -19,69 +20,38 @@ public class TableDetailDH extends javax.swing.JPanel {
 //    public int indexSelected
     public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+            ArrayList data = new ArrayList();
 
     public TableDetailDH(int index) {
         initComponents();
         selectedIndex = index;
         if (selectedIndex != -1) {
+            data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
+            DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
+            DefaultComboBoxModel modelLoai = new DefaultComboBoxModel();
+            for (Object object : data) {
+                Vector arrSp = (Vector) object;
+                modelTenSP.addElement(arrSp.get(1));
+            }
+            jComboBox1.setModel(modelTenSP);
             DisplayInfor();
         }
+
     }
 
     public void DisplayInfor() {
         ArrayList data = new ArrayList();
+
         data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
-        DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
-        DefaultComboBoxModel modelLoai = new DefaultComboBoxModel();
-        int SoChiTietDonHang = data.size() / 8;
-        int currentIndexTT = 0;
-        int currentIndexTSP = 1;
-        int currentIndexLoai = 2;
-        int currentIndexSL = 3;
-        int currentIndexKM = 4;
-        int currentIndexBHBD = 5;
-        int currentIndexBHKT = 6;
-        int currentIndexGia = 7;
+        Vector dataDetail = new Vector();
+        dataDetail = (Vector) data.get(jComboBox1.getSelectedIndex());
+        lbcName2.setText((String) dataDetail.get(0));
+        lbcSL1.setText(dataDetail.get(3).toString());
+        lbcKhuyenMai.setText(dataDetail.get(4).toString());
+        lbcBHBD.setText(dataDetail.get(5).toString());
+        lbcBHKT.setText(dataDetail.get(6).toString());
+        lbcGia1.setText(dataDetail.get(7).toString());
 
-        ArrayList<String> ctdh = new ArrayList();
-        ArrayList tctdh = new ArrayList();
-        while (SoChiTietDonHang != 0) {
-            modelTenSP.addElement(data.get(currentIndexTSP).toString());
-            ctdh.add(data.get(currentIndexLoai).toString());
-            ctdh.add(data.get(currentIndexSL).toString());
-            ctdh.add(data.get(currentIndexKM).toString());
-            ctdh.add(data.get(currentIndexBHBD).toString());
-            ctdh.add(data.get(currentIndexBHKT).toString());
-            ctdh.add(data.get(currentIndexGia).toString());
-            currentIndexLoai += 8;
-            currentIndexSL += 8;
-            currentIndexKM += 8;
-            currentIndexBHBD += 8;
-            currentIndexBHKT += 8;
-            currentIndexGia += 8;
-            currentIndexTSP += 8;
-            tctdh.add(ctdh);
-            System.out.println(tctdh);
-            ctdh.removeAll(ctdh);
-            SoChiTietDonHang--;
-        }
-//        System.out.println(tctdh);
-        lbcName2.setText((String) data.get(0));
-        jComboBox1.setModel(modelTenSP);
-        jComboBox2.setModel(modelLoai);
-        lbcSL1.setText(data.get(3).toString());
-        lbcKhuyenMai.setText(data.get(4).toString());
-        lbcBHBD.setText(data.get(5).toString());
-        lbcBHKT.setText(data.get(6).toString());
-        lbcGia1.setText(data.get(7).toString());
-
-        jComboBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(ctdh.get(jComboBox1.getSelectedIndex()));
-
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")
@@ -255,12 +225,12 @@ public class TableDetailDH extends javax.swing.JPanel {
                             .addComponent(lbBHBD)
                             .addGap(18, 18, 18)
                             .addComponent(lbcBHBD))))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbcName2))
@@ -311,15 +281,15 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
+                .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(241, 241, 241))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -328,14 +298,15 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -344,16 +315,16 @@ public class TableDetailDH extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 417, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 28, Short.MAX_VALUE)
+                    .addGap(0, 63, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -376,7 +347,8 @@ public class TableDetailDH extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-
+    
+        DisplayInfor();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 

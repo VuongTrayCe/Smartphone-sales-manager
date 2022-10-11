@@ -13,16 +13,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class khachhang extends javax.swing.JFrame {
 
-    private ArrayList<khachhang>list;
-    DefaultTableModel model;
     /**
      * Creates new form khachhang
      */
     public khachhang() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        list = new ArrayList<>();
-         model = (DefaultTableModel) jTable1.getModel();
+       initComponents();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,6 +178,11 @@ public class khachhang extends javax.swing.JFrame {
         txtSet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Refresh.png"))); // NOI18N
         txtSet.setText("Sửa ");
+        txtSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSetActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setText("Thoát");
@@ -296,26 +296,7 @@ public class khachhang extends javax.swing.JFrame {
     }//GEN-LAST:event_txtHotenActionPerformed
 
     private void txtAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddActionPerformed
-      khachhang a = new khachhang();
-      a.setDiachi(txtDiachi.getText());
-      a.setMakh(txtMakh.getText());
-      a.setHoten(txtHoten.getText());
-      a.setSodt(txtSodt.getText());
-        try {
-            
-        } catch (Exception e) {
-        }
-        list.add(a); //Them vao danh sach KH
-        ShowResult();
-    }
-    
-    int i = 1;
-    
-    public void ShowResult(){
-        khachhang s = list.get(list.size()-1);
-        model.addRow(new Object[]{
-            i++, a.getMakh(), a.getHoten(), a.getGioitinh(), a.getSodt(), a.getDiachi()
-        });
+      
     }//GEN-LAST:event_txtAddActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -325,6 +306,10 @@ public class khachhang extends javax.swing.JFrame {
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSetActionPerformed
 
     /**
      * @param args the command line arguments

@@ -100,7 +100,9 @@ public class QuanLiDonHang_DAO {
         ArrayList result = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT Madh FROM donhang");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh\n"
+                    + "FROM donhang\n"
+                    + "ORDER BY donhang.Madh ASC");
             rs = stm.executeQuery();
             if (rs != null) {
                 while (rs.next()) {

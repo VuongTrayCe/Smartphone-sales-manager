@@ -45,6 +45,7 @@ public class QuanLyDonHang_BUS {
         ArrayList dsctdh = new ArrayList();
         ArrayList MaDHList = new ArrayList();
         MaDHList = qldh.layMadh();
+        System.out.println(MaDHList);
         try {
             dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
         } catch (SQLException ex) {

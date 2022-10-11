@@ -5,6 +5,7 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyNhanVien_DAO;
+import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -20,22 +21,12 @@ public class QuanLyNhanVien_BUS {
     public QuanLyNhanVien_BUS(){
     
     }
-    public ArrayList getDanhSachNhanVien(String keyWord){
-        ArrayList dsnv = new ArrayList();
-        ArrayList dsnvOfficial = new ArrayList<>();
+    public ArrayList<Model_NhanVien> getDanhSachNhanVien(String keyWord){
+        ArrayList<Model_NhanVien> dsnv = new ArrayList<Model_NhanVien>();
+   
         dsnv = qlnv.getDanhSachNhanVien_DAO();
-        if (keyWord == "") {
-            return dsnv;
-        } else {
-            for (Object x : dsnv) {
-                Vector y = (Vector) x;
-                String manv = Integer.toString((int) y.get(0));
-                if (manv.contains(keyWord)) {
-                    dsnvOfficial.add(y);
-                }
-            }
-        }
-        return dsnvOfficial;
+       
+        return dsnv;
 
     }
 }

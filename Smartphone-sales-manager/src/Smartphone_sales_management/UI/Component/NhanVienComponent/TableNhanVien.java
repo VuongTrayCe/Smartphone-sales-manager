@@ -6,6 +6,7 @@ package Smartphone_sales_management.UI.Component.NhanVienComponent;
 
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
 import Smartphone_sales_management.UI.Event.NhanVien.EventNhanVien;
+import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -42,7 +43,7 @@ public class TableNhanVien extends javax.swing.JPanel {
          model.addColumn("TrangThai");
          jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
@@ -67,10 +68,11 @@ public class TableNhanVien extends javax.swing.JPanel {
     public void SetDefaultTable(String keyWord) {
         jTable1.removeAll();
         model.setRowCount(0);
-        ArrayList dataList = new ArrayList<>();
+        ArrayList<Model_NhanVien> dataList = new ArrayList<Model_NhanVien>();
         dataList = qlnv.getDanhSachNhanVien(keyWord);
         for (int i = 0; i < dataList.size(); i++) {
-            model.addRow((Vector<?>) dataList.get(i));
+            
+            model.addRow( dataList.get(i).toArrayString());
         }
         jScrollPane1.repaint();
     }

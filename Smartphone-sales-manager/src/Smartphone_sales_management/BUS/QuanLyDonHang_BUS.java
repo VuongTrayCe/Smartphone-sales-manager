@@ -49,7 +49,7 @@ public class QuanLyDonHang_BUS {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
                     String trangthai =((String) y.get(3));
-                    if (trangthai.equals("T")) {
+                    if (trangthai.equals("Da Xu Li")) {
                         dsdhOfficial.add(y);
                     }
                 }
@@ -59,7 +59,7 @@ public class QuanLyDonHang_BUS {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
                    String trangthai =((String) y.get(3));
-                    if (madh.contains(keyWord) && trangthai.equals("T")) {
+                    if (madh.contains(keyWord) && trangthai.equals("Da Xu Li")) {
                         dsdhOfficial.add(y);
                     }
                 }
@@ -73,7 +73,7 @@ public class QuanLyDonHang_BUS {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
                     String trangthai =((String) y.get(3));
-                    if (trangthai.equals("F")) {
+                    if (trangthai.equals("Chua Xu Li")) {
                         dsdhOfficial.add(y);
                     }
                 }
@@ -83,7 +83,7 @@ public class QuanLyDonHang_BUS {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
                    String trangthai =((String) y.get(3));
-                    if (madh.contains(keyWord) && trangthai.equals("F")) {
+                    if (madh.contains(keyWord) && trangthai.equals("Chua Xu Li")) {
                         dsdhOfficial.add(y);
                     }
                 }

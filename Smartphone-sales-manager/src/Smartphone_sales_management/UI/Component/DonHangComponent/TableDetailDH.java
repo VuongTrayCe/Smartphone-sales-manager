@@ -27,7 +27,9 @@ public class TableDetailDH extends javax.swing.JPanel {
         initComponents();
         selectedIndex = index;
         if (selectedIndex != -1) {
+            
             data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
+            
             DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
 //            Tao bien arrSp de luu tenSP roi add vao modelTenSP
             for (Object object : data) {
@@ -73,10 +75,10 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcKhuyenMai = new javax.swing.JLabel();
         lbcBHBD = new javax.swing.JLabel();
         lbcGia1 = new javax.swing.JLabel();
-        btnThem = new javax.swing.JButton();
+        btnInHoaDon = new javax.swing.JButton();
         lbTrangThai = new javax.swing.JLabel();
         lbcName2 = new javax.swing.JLabel();
-        btnThem1 = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         lbBHKT = new javax.swing.JLabel();
         lbcBHKT = new javax.swing.JLabel();
@@ -125,11 +127,11 @@ public class TableDetailDH extends javax.swing.JPanel {
 
         lbcGia1.setText("jLabel15");
 
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/print.png"))); // NOI18N
-        btnThem.setBorder(null);
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
+        btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/print.png"))); // NOI18N
+        btnInHoaDon.setBorder(null);
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
+                btnInHoaDonActionPerformed(evt);
             }
         });
 
@@ -138,11 +140,11 @@ public class TableDetailDH extends javax.swing.JPanel {
 
         lbcName2.setText("jLabel10");
 
-        btnThem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/confirm.png"))); // NOI18N
-        btnThem1.setBorder(null);
-        btnThem1.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/confirm.png"))); // NOI18N
+        btnSave.setBorder(null);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThem1ActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -202,9 +204,9 @@ public class TableDetailDH extends javax.swing.JPanel {
                             .addComponent(lbcSL1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcLoai, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnThem1))
+                        .addComponent(btnSave))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(lbGia1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -252,8 +254,8 @@ public class TableDetailDH extends javax.swing.JPanel {
                     .addComponent(lbcgiasaukm))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnThem1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -331,7 +333,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+    private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
         //
         //            FileDialog fd = new FileDialog(new JFrame(), "Xuất excel",     FileDialog.LOAD);
         //        fd.setVisible(true);
@@ -342,11 +344,11 @@ public class TableDetailDH extends javax.swing.JPanel {
         //              System.out.println(a);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThemActionPerformed
+    }//GEN-LAST:event_btnInHoaDonActionPerformed
 
-    private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem1ActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         DisplayInfor();
@@ -354,8 +356,8 @@ public class TableDetailDH extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThem1;
+    private javax.swing.JButton btnInHoaDon;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -5,8 +5,12 @@
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.UI.Model.Model_GioHang;
+import com.mysql.cj.protocol.Message;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -22,8 +26,10 @@ public class TableGioHang extends javax.swing.JPanel {
     public static int selectedIndexGioHang;
 
     ArrayList data = new ArrayList();
+    JLabel sl;
 
-    public TableGioHang(ArrayList data) {
+    public TableGioHang(ArrayList data, JLabel SL) {
+        this.sl = SL;
         this.data = data;
         initComponents();
         Double sum = 0.0;
@@ -31,16 +37,16 @@ public class TableGioHang extends javax.swing.JPanel {
             listGioHang1.addItem((Model_GioHang) object);
             Model_GioHang x = (Model_GioHang) object;
             sum += x.getTongTien();
-        lbTongTien.setText(Double.toString(sum) + " VND");
-        jButton1.setBorder(null);
-        jButton1.setBackground(new Color(242, 242, 242));
+            lbTongTien.setText(Double.toString(sum) + " VND");
+            jButton1.setBorder(null);
+            jButton1.setBackground(new Color(242, 242, 242));
         }
 
         listGioHang1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 selectedIndexGioHang = listGioHang1.getSelectedIndex();
-                jPanel1.repaint();
+                listGioHang1.repaint();
             }
         });
     }
@@ -65,7 +71,9 @@ public class TableGioHang extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 255, 153));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        setPreferredSize(new java.awt.Dimension(354, 450));
+        setPreferredSize(new java.awt.Dimension(354, 414));
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(258, 414));
 
         listGioHang1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(listGioHang1);
@@ -73,6 +81,11 @@ public class TableGioHang extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Delete2.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Hoàn thành");
@@ -91,15 +104,16 @@ public class TableGioHang extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(31, 31, 31))
                     .addComponent(lbTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, 0, 66, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +137,7 @@ public class TableGioHang extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -135,6 +149,67 @@ public class TableGioHang extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // xử lý chọn nút để xóa một sản phẩm
+        if (selectedIndexGioHang != -1) {
+            int indexDelete = selectedIndexGioHang;
+            if (jComboBox1.getSelectedIndex() == 0) {
+                Model_GioHang x = (Model_GioHang) this.data.get(selectedIndexGioHang);
+                x.setSoluong(x.getSoluong() - 1);
+                if (x.getSoluong() == 0) {
+
+                    ((DefaultListModel) listGioHang1.getModel()).remove(selectedIndexGioHang);
+                    this.data.remove(indexDelete);
+                    this.sl.setText(Integer.toString(data.size()));
+
+                }
+
+                listGioHang1.repaint();
+
+                int sum = 0;
+                for (Object object : data) {
+
+                    Model_GioHang model = (Model_GioHang) object;
+                    sum += model.getTongTien();
+                    lbTongTien.setText(Double.toString(sum) + " VND");
+
+                }
+
+            } else {
+                ((DefaultListModel) listGioHang1.getModel()).remove(selectedIndexGioHang);
+                this.data.remove(indexDelete);
+                this.sl.setText(Integer.toString(data.size()));
+
+                listGioHang1.repaint();
+                int sum = 0;
+                if(this.data.size()==0)
+                {
+                   lbTongTien.setText("0.00 "+ "VND");
+
+                }
+                else
+                {
+                for (Object object : data) {
+
+                    Model_GioHang model = (Model_GioHang) object;
+                    sum += model.getTongTien();
+                    lbTongTien.setText(Double.toString(sum) + " VND");
+
+                }
+                }
+            }
+
+        } else {
+            if (data.size() == 0) {
+                JOptionPane.showMessageDialog(null, "Không có sản phẩm nào để xóa");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm cần xóa ");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

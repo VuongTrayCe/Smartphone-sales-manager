@@ -56,6 +56,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     if(selectedIndexGioHang==index)
                     {
                     item  = new GioHangItem(data,selectedIndexGioHang);
+
                     }
                     else
                     {

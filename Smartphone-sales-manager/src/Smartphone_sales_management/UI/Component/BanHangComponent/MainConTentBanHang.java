@@ -22,6 +22,7 @@ import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.util.ArrayList;
 import javax.swing.event.DocumentListener;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
+import javax.swing.JLabel;
 
 /**
  *
@@ -38,23 +39,24 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     ArrayList<Object> arrListSanpham = new ArrayList<>();
 
     TableDetailBH c;
-
+    TableGioHang b ;
     public MainConTentBanHang(MainFrame frame) {
         initComponents();
         this.frame = frame;
+ 
 //        TableDetailBH c = new TableDetailBH(index);
 
         TableBanHang a = new TableBanHang(event);
-        TableGioHang b = new TableGioHang(arrListSanpham);
+         b = new TableGioHang(arrListSanpham,IconGioHang);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
         b.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
-        jPanel2.setLayout(new GridLayout());
+//        jPanel2.setLayout(new GridLayout());
         IconGioHang.setText(Integer.toString(arrListSanpham.size()));
 
-        jPanel2.add(b);
-        b.validate();
+//        jPanel2.add(b);
+//        b.validate();
         // Hiển thị bảng chi tiết khi click sản phẩm từ bảng
         a.addEventBanHang(new EventBanHang() {
             @Override
@@ -91,6 +93,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                         } else {
                             arrListSanpham.add(data);
                         }
+//                        
                         IconGioHang.setText(Integer.toString(arrListSanpham.size()));
                     }
 
@@ -169,7 +172,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 372, Short.MAX_VALUE)
+            .addGap(0, 357, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +209,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 367, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,13 +221,13 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel2)
-                .addGap(42, 42, 42)
-                .addComponent(IconGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(IconGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(IconDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGap(174, 174, 174))
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -235,7 +238,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                     .addComponent(IconGioHang)
                     .addComponent(jLabel2)
                     .addComponent(IconDetail))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -255,12 +258,15 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addGap(230, 230, 230))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
                         .addGap(10, 10, 10)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +278,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                             .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -290,9 +296,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -315,7 +319,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         IconGioHang.setBackground(Color.red);
         selectedIndexGioHang = -1;
 
-        TableGioHang giohang = new TableGioHang(arrListSanpham);
+        TableGioHang giohang = new TableGioHang(arrListSanpham,IconGioHang);
         DisPlayComponent(giohang);
 
 // TODO add your handling code here:
@@ -333,7 +337,6 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_IconDetailMouseClicked
 
     private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
-        txtTimKiem.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemMouseClicked
 

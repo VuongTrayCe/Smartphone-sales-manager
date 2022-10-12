@@ -204,7 +204,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimkiemMouseClicked
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-      donHang.SetDefaultTable(txtTimkiem.getText(),jComboBox2.getSelectedIndex());
+        txtTimkiem.setText("");
+        donHang.SetDefaultTable(txtTimkiem.getText(),jComboBox2.getSelectedIndex());
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ItemStateChanged

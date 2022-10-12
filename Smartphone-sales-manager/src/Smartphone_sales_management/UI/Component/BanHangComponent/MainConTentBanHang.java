@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import javax.swing.event.DocumentListener;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -71,6 +72,9 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 jPanel2.setLayout(new GridLayout());
                 jPanel2.add(c);
                 c.validate();
+                
+                 IconGioHang.setBackground(new Color(153, 153, 153));
+                 IconDetail.setBackground(Color.red);
                 // Bắt sự kiện nút thêm vào giỏ
                 c.addSanPhamVaoGio(new AddGioHang() {
                     @Override
@@ -315,12 +319,21 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         jPanel2.repaint();
     }
     private void IconGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconGioHangMouseClicked
+        if(arrListSanpham.size()==0)
+        {
+                            JOptionPane.showMessageDialog(null, "Vui lòng thêm sản phẩm vào giỏ hàng");
+
+        }
+        else
+        {
+            
         IconDetail.setBackground(new Color(153, 153, 153));
         IconGioHang.setBackground(Color.red);
         selectedIndexGioHang = -1;
 
         TableGioHang giohang = new TableGioHang(arrListSanpham,IconGioHang);
         DisPlayComponent(giohang);
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_IconGioHangMouseClicked

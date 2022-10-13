@@ -109,6 +109,7 @@ public class QuanLiDonHang_DAO {
                     result.add(rs.getInt("Madh"));
                 }
             }
+                    
         } catch (SQLException e) {
             return null;
         } finally {

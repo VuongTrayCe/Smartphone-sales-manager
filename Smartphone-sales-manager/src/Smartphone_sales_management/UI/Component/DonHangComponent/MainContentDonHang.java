@@ -23,7 +23,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     public MainContentDonHang(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
-      donHang = new TableDonHang("",jComboBox2.getSelectedIndex());
+        donHang = new TableDonHang("", jComboBox2.getSelectedIndex());
         // Tao chiều dài chiều rộng của table don hàng bằng với jScrollPanel
 //        donHang.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
 
@@ -43,33 +43,27 @@ public class MainContentDonHang extends javax.swing.JPanel {
                 return index;
             }
         });
-        
-        
-        
-        
-        
-         txtTimkiem.getDocument().addDocumentListener(new DocumentListener() {
+
+        txtTimkiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
 
-                donHang.SetDefaultTable(txtTimkiem.getText(),jComboBox2.getSelectedIndex());
+                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedIndex());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                donHang.SetDefaultTable(txtTimkiem.getText(),jComboBox2.getSelectedIndex());
+                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedIndex());
 
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                donHang.SetDefaultTable(txtTimkiem.getText(),jComboBox2.getSelectedIndex());
+                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedIndex());
 
             }
         });
-        
-        
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -189,7 +183,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
-      
+
 // TODO add your handling code here:
     }//GEN-LAST:event_txtTimkiemActionPerformed
 
@@ -198,15 +192,15 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void txtTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimkiemMouseClicked
-     txtTimkiem.setText("");
-        
+        txtTimkiem.setText("");
+
 // TODO add your handling code here:
     }//GEN-LAST:event_txtTimkiemMouseClicked
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         txtTimkiem.setText("");
-        donHang.SetDefaultTable(txtTimkiem.getText(),jComboBox2.getSelectedIndex());
-        
+        donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedIndex());
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 

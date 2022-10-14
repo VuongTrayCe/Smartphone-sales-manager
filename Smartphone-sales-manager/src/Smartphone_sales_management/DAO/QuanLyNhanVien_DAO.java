@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -32,10 +33,10 @@ public class QuanLyNhanVien_DAO {
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_NhanVien a = new Model_NhanVien();
-                a.setMaNV(rs.getString("Manv"));
+                a.setMaNV(rs.getInt("Manv"));
                 a.setTenNV(rs.getString("Tennv"));
-                a.setSoCCCD(rs.getString("SoCCCD"));
-                a.setTuoi(rs.getString("Tuoi"));
+                a.setSoCCCD(rs.getInt("SoCCCD"));
+                a.setTuoi(rs.getInt("Tuoi"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setChucDanh(rs.getString("Chucdanh"));
                 a.setTrangThai(rs.getString("Trangthai"));
@@ -52,15 +53,14 @@ public class QuanLyNhanVien_DAO {
     public boolean insertNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
 		Connection conn = db.getConnection();
-		String sqlString = "insert into nhanvien values (?, ?, ?, ?, ?,?,?)";
+		String sqlString = "insert into nhanvien values (?, ?, ?, ?, ?, ?,? )";
 
 		try {
 			preparedStatement = conn.prepareStatement(sqlString);
-
-			preparedStatement.setString(1, NhanVien.getMaNV());
+                        preparedStatement.setInt(1, NhanVien.getMaNV());
 			preparedStatement.setString(2, NhanVien.getTenNV());
-			preparedStatement.setString(3, NhanVien.getTuoi());
-                        preparedStatement.setString(4, NhanVien.getSoCCCD());
+                        preparedStatement.setInt(3, NhanVien.getSoCCCD());
+                        preparedStatement.setInt(4, NhanVien.getTuoi());
                         preparedStatement.setString(5, NhanVien.getDiaChi());
                         preparedStatement.setString(6, NhanVien.getChucDanh());
                         preparedStatement.setString(7, NhanVien.getTrangThai());
@@ -86,4 +86,67 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
+//    public boolean deleteNhanVien(String MaNV) {
+//		boolean isSuccess = false;
+//		Connection conn = db.getConnection();
+//		String sqlString = "delete from nhanvien where MaNV=?";
+//
+//		try {
+//			preparedStatement = conn.prepareStatement(sqlString);
+//
+//			preparedStatement.setString(1, MaNV);
+//
+//			preparedStatement.executeUpdate();
+//
+//			isSuccess = true;
+//		}
+//		catch(SQLException ex) {
+//			ex.printStackTrace();
+//		}
+//		finally {
+//			try {
+//				conn.close();
+//				preparedStatement.close();
+//			}
+//			catch(SQLException ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+//
+//		return isSuccess;
+//	}
+//       public boolean updateNhanVien(String maNhanVien, Model_NhanVien NhanVien) {
+//		boolean isSuccess = false;
+//		Connection conn = db.getConnection();
+//		String sqlString = "update NhanVien set TenNV = ?, SoCCCD = ?, Tuoi = ?, DiaChi = ?, ChucDanh = ? where MaNV=?";
+//
+//		try {
+//			preparedStatement = conn.prepareStatement(sqlString);
+//
+//			preparedStatement.setString(1, NhanVien.getTenNV());
+//			preparedStatement.setString(2, NhanVien.getSoCCCD());
+//			preparedStatement.setString(3, NhanVien.getTuoi());
+//                        preparedStatement.setString(4, NhanVien.getDiaChi());
+//			preparedStatement.setString(5, NhanVien.getChucDanh());
+//
+//			preparedStatement.executeUpdate();
+//
+//			isSuccess = true;
+//		}
+//		catch(SQLException ex) {
+//			ex.printStackTrace();
+//		}
+//		finally {
+//			try {
+//				conn.close();
+//				preparedStatement.close();
+//			}
+//			catch(SQLException ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+//
+//		return isSuccess;
+//	}
+    
 }

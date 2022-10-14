@@ -17,16 +17,35 @@ import java.util.logging.Logger;
  * @author lehongthai
  */
 public class QuanLyNhanVien_BUS {
+//    private QuanLyNhanVien_DAO nhanvienDAO;
+//    private ArrayList<Model_NhanVien> dsnv;
     QuanLyNhanVien_DAO qlnv = new QuanLyNhanVien_DAO();
     public QuanLyNhanVien_BUS(){
     
     }
     public ArrayList<Model_NhanVien> getDanhSachNhanVien(String keyWord){
-        ArrayList<Model_NhanVien> dsnv = new ArrayList<Model_NhanVien>();
+//        ArrayList<Model_NhanVien> dsnv = new ArrayList<Model_NhanVien>();
    
-        dsnv = qlnv.getDanhSachNhanVien_DAO();
-       
-        return dsnv;
+        return qlnv.getDanhSachNhanVien_DAO();
 
     }
+    public  void AddNhanVien(Model_NhanVien nhanvien){
+        qlnv.insertNhanVien(nhanvien);
+        
+    }
+    public int getSoTTMANV(){
+        return this.getDanhSachNhanVien("").size()+1;
+    }
+    
+//	public boolean deleteNhanVien(String MaNV) {
+//		boolean isSuccess = false;
+//
+//		for(int i = 0; i < dsnv.size(); ++i) {
+//			if(dsnv.get(i).getMaNV().equals(MaNV)) {
+//				dsnv.remove(i);
+//				qlnv.deleteNhanVien(MaNV);
+//			}
+//		}
+//		return isSuccess;
+//	}
 }

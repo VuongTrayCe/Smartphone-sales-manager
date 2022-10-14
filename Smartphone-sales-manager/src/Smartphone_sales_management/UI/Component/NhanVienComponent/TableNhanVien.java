@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Smartphone_sales_management.UI.Component.NhanVienComponent;
-
+import Smartphone_sales_management.UI.Component.NhanVienComponent.TableThemNV;
+import Smartphone_sales_management.UI.Component.NhanVienComponent.TableNhanVien;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
 import Smartphone_sales_management.UI.Event.NhanVien.EventNhanVien;
 import Smartphone_sales_management.UI.Model.Model_NhanVien;
@@ -13,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
@@ -49,8 +51,12 @@ public class TableNhanVien extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         
         SetDefaultTable("");
-        
         jTable1.setModel(model);
+        
+//        ArrayList<Model_NhanVien> nhanvien = qlnv.getDanhSachNhanVien("");
+        
+        
+        
     }
 
 //     public void addEventNhanVien(EventNhanVien event) {
@@ -76,7 +82,14 @@ public class TableNhanVien extends javax.swing.JPanel {
         }
         jScrollPane1.repaint();
     }
-   
+//    public void addValuesInTable(ArrayList<Model_NhanVien> NV) {
+//		DefaultTableModel tableModel = (DefaultTableModel)jTable1.getModel();
+//
+//		tableModel.setRowCount(0);
+//		for(Model_NhanVien  NhanVien : NV) {
+//			tableModel.addRow(NhanVien.toArrayString());
+//		}
+//	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

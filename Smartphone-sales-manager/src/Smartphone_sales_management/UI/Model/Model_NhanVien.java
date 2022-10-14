@@ -9,10 +9,10 @@ package Smartphone_sales_management.UI.Model;
  * @author lehongthai
  */
 public class Model_NhanVien {
-    private String MaNV;
+    private int MaNV;
     private String TenNV;
-    private String SoCCCD;
-    private String Tuoi;
+    private int SoCCCD;
+    private int Tuoi;
     private String DiaChi;
     private String ChucDanh;
     private String TrangThai;
@@ -21,7 +21,7 @@ public class Model_NhanVien {
         
     }
 
-    public Model_NhanVien(String MaNV, String TenNV, String SoCCCD, String Tuoi, String DiaChi, String ChucDanh, String TrangThai) {
+    public Model_NhanVien(int MaNV, String TenNV, int SoCCCD, int Tuoi, String DiaChi, String ChucDanh, String TrangThai) {
         this.MaNV = MaNV;
         this.TenNV = TenNV;
         this.SoCCCD = SoCCCD;
@@ -31,11 +31,11 @@ public class Model_NhanVien {
         this.TrangThai = TrangThai;
     }
 
-    public String getMaNV() {
+    public int getMaNV() {
         return MaNV;
     }
 
-    public void setMaNV(String MaNV) {
+    public void setMaNV(int MaNV) {
         this.MaNV = MaNV;
     }
 
@@ -47,19 +47,19 @@ public class Model_NhanVien {
         this.TenNV = TenNV;
     }
 
-    public String getSoCCCD() {
+    public int getSoCCCD() {
         return SoCCCD;
     }
 
-    public void setSoCCCD(String SoCCCD) {
+    public void setSoCCCD(int SoCCCD) {
         this.SoCCCD = SoCCCD;
     }
 
-    public String getTuoi() {
+    public int getTuoi() {
         return Tuoi;
     }
 
-    public void setTuoi(String Tuoi) {
+    public void setTuoi(int Tuoi) {
         this.Tuoi = Tuoi;
     }
 
@@ -86,7 +86,13 @@ public class Model_NhanVien {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
+        
     public String[] toArrayString() {
-		return new String[] {MaNV,TenNV,SoCCCD,Tuoi,DiaChi,ChucDanh,TrangThai};
+		return new String[] {Integer.toString(MaNV),TenNV,Integer.toString(SoCCCD),Integer.toString(Tuoi),DiaChi,ChucDanh,TrangThai};
 	}
+   
+    @Override
+    public Model_NhanVien clone(){
+        return new Model_NhanVien(MaNV,TenNV,SoCCCD,Tuoi,DiaChi,ChucDanh,TrangThai);
+    }
 }

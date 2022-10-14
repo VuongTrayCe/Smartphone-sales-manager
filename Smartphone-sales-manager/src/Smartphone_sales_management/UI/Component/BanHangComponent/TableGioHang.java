@@ -4,11 +4,14 @@
  */
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
+import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import com.mysql.cj.protocol.Message;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -24,7 +27,7 @@ public class TableGioHang extends javax.swing.JPanel {
      * Creates new form TableGioHang
      */
     public static int selectedIndexGioHang;
-
+    QuanLyBanHang_BUS qlbh_bus = new QuanLyBanHang_BUS();
     ArrayList data = new ArrayList();
     JLabel sl;
 
@@ -90,6 +93,11 @@ public class TableGioHang extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Hoàn thành");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Tổng tiền: ");
@@ -212,6 +220,31 @@ public class TableGioHang extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      if(this.data.size()==0)
+      {
+         JOptionPane.showMessageDialog(null, "Chưa có sản phẩm cần tạo");
+
+      }
+      else
+      {
+          JDialog inforDonHang = new JDialog();
+          ThongTinDonHang donhang = new ThongTinDonHang();
+            inforDonHang.setLayout(new GridLayout());
+            inforDonHang.setTitle("Thông tin đơn hàng");
+            inforDonHang.add(donhang);
+            inforDonHang.setSize(500,500);
+            donhang.validate();
+          inforDonHang.setLocationRelativeTo(null);
+            inforDonHang.setVisible(true);
+
+      }
+             
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

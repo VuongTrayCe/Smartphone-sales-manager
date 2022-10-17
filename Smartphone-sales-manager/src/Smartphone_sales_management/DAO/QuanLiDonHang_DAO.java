@@ -43,9 +43,7 @@ public class QuanLiDonHang_DAO {
                 a.add(rs.getString("Trangthai"));
                 dsdh.add(a);
             }
-            for (Object object : dsdh) {
-                System.out.println(object);
-            }
+            
             return dsdh;
         } catch (SQLException e) {
             return null;
@@ -70,7 +68,6 @@ public class QuanLiDonHang_DAO {
                     + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp");
             stm.setInt(1, Madh);
             rs = stm.executeQuery();
-            System.out.println(rs);
             if (rs != null) {
                 while (rs.next()) {
                     Vector a = new Vector();

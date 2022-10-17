@@ -48,7 +48,7 @@ public class QuanLyDonHang_BUS {
             if (keyWord == "") {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
-                    String trangthai =((String) y.get(3));
+                    String trangthai = ((String) y.get(3));
                     if (trangthai.equals("Da Xu Li")) {
                         dsdhOfficial.add(y);
                     }
@@ -58,7 +58,7 @@ public class QuanLyDonHang_BUS {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
-                   String trangthai =((String) y.get(3));
+                    String trangthai = ((String) y.get(3));
                     if (madh.contains(keyWord) && trangthai.equals("Da Xu Li")) {
                         dsdhOfficial.add(y);
                     }
@@ -72,7 +72,7 @@ public class QuanLyDonHang_BUS {
             if (keyWord == "") {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
-                    String trangthai =((String) y.get(3));
+                    String trangthai = ((String) y.get(3));
                     if (trangthai.equals("Chua Xu Li")) {
                         dsdhOfficial.add(y);
                     }
@@ -82,7 +82,7 @@ public class QuanLyDonHang_BUS {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
-                   String trangthai =((String) y.get(3));
+                    String trangthai = ((String) y.get(3));
                     if (madh.contains(keyWord) && trangthai.equals("Chua Xu Li")) {
                         dsdhOfficial.add(y);
                     }
@@ -91,24 +91,21 @@ public class QuanLyDonHang_BUS {
 
             }
         }
-        
-        
+
         return null;
 
     }
 
-public ArrayList layDanhSachChiTietDonHang(int selectedIndex) {
+    public ArrayList layDanhSachChiTietDonHang(int selectedIndex) {
         ArrayList dsctdh = new ArrayList();
         ArrayList MaDHList = new ArrayList();
         MaDHList = qldh.layMadh();
-        System.out.println(MaDHList);
         try {
             dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
 
-} catch (SQLException ex) {
-            Logger.getLogger(QuanLyDonHang_BUS.class  
-
-.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyDonHang_BUS.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return dsctdh;

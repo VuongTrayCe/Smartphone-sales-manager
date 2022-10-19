@@ -8,12 +8,12 @@ package Smartphone_sales_management.UI.Component.SanPhamComponent;
  *
  * @author Admin
  */
-public class ControlSanPham extends javax.swing.JPanel {
+public class TableDetailSP extends javax.swing.JPanel {
 
     /**
      * Creates new form ChiTietSanPham
      */
-    public ControlSanPham() {
+    public TableDetailSP() {
         initComponents();
     }
 

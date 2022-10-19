@@ -36,17 +36,6 @@ public class TableSanPham extends javax.swing.JPanel {
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"IPhone 14 ProMax", "IPhone", "1000", "Tím", "2022", "1000"},
-                {"IPhone 13 ProMax", "IPhon", "100", "Vàng", "2021", "1000"},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Tên sản phẩm", "Loại sản phẩm", "Số lượng", "Màu sắc", "Năm sản xuất", "Giá"
-            }
-        ));
         jTable1.setCellSelectionEnabled(true);
         panelTable.setViewportView(jTable1);
 

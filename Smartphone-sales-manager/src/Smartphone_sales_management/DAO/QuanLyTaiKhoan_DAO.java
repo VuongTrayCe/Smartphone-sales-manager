@@ -25,10 +25,10 @@ public class QuanLyTaiKhoan_DAO {
             
             rs =  stm.executeQuery();
                 while (rs.next()) {
+                     result.add(rs.getString("Matk"));
                      result.add(rs.getString("Manv"));
                      result.add(rs.getString("Taikhoan"));
-                     result.add(rs.getString("Matkhau"));
-                     result.add(rs.getString("quyen"));
+                     result.add(rs.getString("Matkhau"));                    
                      result.add(rs.getString("TrangThai"));
                     
 

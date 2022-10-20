@@ -27,8 +27,8 @@ public class QuanLyTaiKhoan_BUS {
         } else {
             for (Object x : dstk) {
                 Vector y = (Vector) x;
-                String manv = Integer.toString((int) y.get(0));
-                if (manv.contains(keyWord)) {
+                String matk = Integer.toString((int) y.get(0));
+                if (matk.contains(keyWord)) {
                     dstkOfficial.add(y);
                 }
             }
@@ -37,10 +37,10 @@ public class QuanLyTaiKhoan_BUS {
     }
     public ArrayList getDanhSachChiTiet1TaiKhoan(int selectedIndex) {
         ArrayList dscttk = new ArrayList();
-        ArrayList MaNVList = new ArrayList<>();
-        MaNVList = qltk.getMa();
+        ArrayList MaTKList = new ArrayList<>();
+        MaTKList = qltk.getMa();
         try {
-            dscttk = qltk.getDanhSachChiTiet1TaiKhoan_DAO((int) MaNVList.get(selectedIndex));
+            dscttk = qltk.getDanhSachChiTiet1TaiKhoan_DAO((int) MaTKList.get(selectedIndex));
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyTaiKhoan_BUS.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -9,13 +9,19 @@ package Smartphone_sales_management.UI.Model;
  * @author Windows10
  */
 public class Model_TaiKhoan {
-    private int MaNhanVien; 
+        private int MaTaiKhoan;
+        private int MaNhanVien; 
 	private String TaiKhoan;
 	private String MatKhau;
 	private int Quyen;
       
     
-    
+        public int getMaTaiKhoan() {
+		return MaTaiKhoan;
+	}
+	public void setMaTaiKhoan(int maTaiKhoan) {
+		MaTaiKhoan = maTaiKhoan;
+	}
 	public int getMaNhanVien() {
 		return MaNhanVien;
 	}

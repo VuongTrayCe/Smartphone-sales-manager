@@ -4,6 +4,8 @@
  */
 package Smartphone_sales_management.UI.Component.SanPhamComponent;
 
+import Smartphone_sales_management.UI.Main.MainFrame;
+
 /**
  *
  * @author Admin
@@ -13,8 +15,16 @@ public class MainContentSanPham extends javax.swing.JPanel {
     /**
      * Creates new form SanPham
      */
-    public MainContentSanPham() {
+    MainFrame mainFrame;
+    TableDetailSP tableDetail;
+    TableSanPham sanPham;
+    public MainContentSanPham(MainFrame mainFrame) {
         initComponents();
+        
+        this.mainFrame = mainFrame;
+        sanPham = new TableSanPham("", jComboBox2.getSelectedIndex());
+        jScrollPane1.setViewportView(sanPham);
+        
         
     }
 

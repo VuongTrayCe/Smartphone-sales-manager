@@ -54,7 +54,7 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new  MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),lbcSL.getText(),urlImage,GioHangType.MENU,lbcGia.getText());
+                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText());
                 event.addGiohang(data);
                 String str = lbcGia.getText().split(" ")[0];
                 Double x = Double.parseDouble(str);
@@ -134,7 +134,7 @@ public class TableDetailBH extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setPreferredSize(new java.awt.Dimension(354, 450));
+        setPreferredSize(new java.awt.Dimension(354, 414));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -264,7 +264,7 @@ public class TableDetailBH extends javax.swing.JPanel {
                     .addComponent(lbGia)
                     .addComponent(lbcGia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -288,11 +288,11 @@ public class TableDetailBH extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(51, 51, 51))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +301,7 @@ public class TableDetailBH extends javax.swing.JPanel {
                 .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(205, 205, 205)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

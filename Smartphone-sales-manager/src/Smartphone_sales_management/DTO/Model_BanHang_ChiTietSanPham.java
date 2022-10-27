@@ -88,7 +88,8 @@ public class Model_BanHang_ChiTietSanPham {
     }
 
     public String getIcon() {
-        return icon;
+        char tem = '\\';
+        return icon.replace(tem,'/');
     }
     
 }

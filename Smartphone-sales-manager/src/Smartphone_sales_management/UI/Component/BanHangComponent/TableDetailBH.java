@@ -93,7 +93,7 @@ public class TableDetailBH extends javax.swing.JPanel {
        if(model.getIcon()!=null)
        {
                   this.urlImage=model.getIcon();
-
+           System.out.println(this.urlImage);
         lbImage.setIcon(new ImageIcon(getClass().getResource(this.urlImage)));
        }
        else

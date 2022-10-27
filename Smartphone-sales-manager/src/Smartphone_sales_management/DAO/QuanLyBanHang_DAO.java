@@ -62,7 +62,6 @@ public class QuanLyBanHang_DAO {
             if (rs != null) {
                 while (rs.next()) {
                     Model_BanHang_ChiTietSanPham model = new Model_BanHang_ChiTietSanPham();
-
                    model.setTensp(rs.getString(1));
                     model.setLoaisp(rs.getString(2));
                     model.setSl(rs.getInt(3));

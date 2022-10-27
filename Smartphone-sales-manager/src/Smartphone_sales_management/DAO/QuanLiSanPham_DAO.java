@@ -46,5 +46,9 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
+    
+//    public ArrayList layDanhSachChiTietSanPham(int Masp) {
+//        
+//    }
 
 }

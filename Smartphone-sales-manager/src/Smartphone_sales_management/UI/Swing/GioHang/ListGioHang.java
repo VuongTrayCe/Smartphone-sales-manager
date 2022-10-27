@@ -15,6 +15,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 
 /**
  *
@@ -41,6 +42,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object o, int index, boolean isSelected, boolean cellHasFocus) {
                 try {
+
                     Model_GioHang data;
                     if (o instanceof Model_GioHang) {
                         data = (Model_GioHang) o;
@@ -49,6 +51,21 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     }
                     GioHangItem item;
                     item = new GioHangItem(data);
+
+                    Model_GioHang data;
+                    if (o instanceof Model_GioHang) {
+                        data = (Model_GioHang) o;
+                    } else {
+                        data = new Model_GioHang("", "", 1, o + "", Model_GioHang.GioHangType.EMPTY, "");
+                    }
+                    GioHangItem item;
+                    if (selectedIndexGioHang == index) {
+                        item = new GioHangItem(data, selectedIndexGioHang);
+
+                    } else {
+                        item = new GioHangItem(data, -1);
+
+                    }
 
                     return item;
                 } catch (IOException ex) {

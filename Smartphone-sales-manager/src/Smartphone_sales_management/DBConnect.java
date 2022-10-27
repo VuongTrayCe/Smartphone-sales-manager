@@ -33,7 +33,7 @@ public class DBConnect {
     String server = "localhost:3306";
     String dbName = "smartphonemanagement";
     String userName = "root";
-    String pass = "";
+    String pass = "123456789lop11b2";
 
     public DBConnect() {
         checkDriver();
@@ -114,23 +114,23 @@ public class DBConnect {
         }
         return false;
     }
-
-    public ArrayList<String> getHeaders(String tableName) {
-        ArrayList<String> headers = new ArrayList<>();
-        if (checkConnection()) {
-            try {
-                Statement stm = conn.createStatement();
-                rs = stm.executeQuery("SELECT 1 FROM " + tableName + ";");
-                ResultSetMetaData rsMetaData = rs.getMetaData();
-                for (int i = 1; i <= rsMetaData.getColumnCount(); i++) {
-                    headers.add(rsMetaData.getColumnName(i));
-                }
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Khong the lay ten cac cot!!");
-            }
-        }
-        return headers;
-    }
+//
+//    public ArrayList<String> getHeaders(String tableName) {
+//        ArrayList<String> headers = new ArrayList<>();
+//        if (checkConnection()) {
+//            try {
+//                Statement stm = conn.createStatement();
+//                rs = stm.executeQuery("SELECT 1 FROM " + tableName + ";");
+//                ResultSetMetaData rsMetaData = rs.getMetaData();
+//                for (int i = 1; i <= rsMetaData.getColumnCount(); i++) {
+//                    headers.add(rsMetaData.getColumnName(i));
+//                }
+//            } catch (SQLException e) {
+//                JOptionPane.showMessageDialog(null, "Khong the lay ten cac cot!!");
+//            }
+//        }
+//        return headers;
+//    }
 
     public Boolean checkConnection() {
         try {

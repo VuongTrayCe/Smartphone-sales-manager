@@ -230,8 +230,8 @@ public class TableGioHang extends javax.swing.JPanel {
       else
       {
           JDialog inforDonHang = new JDialog();
-          ThongTinDonHang donhang = new ThongTinDonHang();
-          inforDonHang.setSize(411,520);
+          ThongTinDonHang donhang = new ThongTinDonHang(data);
+          inforDonHang.setSize(430,520);
 
             inforDonHang.setLayout(new GridLayout());
             inforDonHang.setTitle("Thông tin đơn hàng");

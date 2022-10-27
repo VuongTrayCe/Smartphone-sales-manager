@@ -107,4 +107,24 @@ public class QuanLyBanHang_DAO {
         return result;
     }
 
+    public ArrayList getALLkhachHang() {
+        ArrayList result = new ArrayList<>();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("select Tenkh  from khachhang where khachhang.TrangThai='T' ");
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getString("Tenkh"));
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return result;
+    }
+
 }

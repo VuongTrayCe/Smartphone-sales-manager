@@ -70,4 +70,10 @@ public class QuanLyBanHang_BUS {
              a.setTitle("Thông tin đơn  hàng");
     }
 
+    public ArrayList getALLKhachHang() {
+        ArrayList dskh = new ArrayList();
+        dskh = qlbh.getALLkhachHang();
+        return dskh;
+    }
+
 }

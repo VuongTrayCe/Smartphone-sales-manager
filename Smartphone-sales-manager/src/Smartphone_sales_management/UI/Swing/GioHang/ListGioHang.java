@@ -47,18 +47,18 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     if (o instanceof Model_GioHang) {
                         data = (Model_GioHang) o;
                     } else {
-                        data = new Model_GioHang("", "", "", o + "", Model_GioHang.GioHangType.EMPTY, "");
+                        data = new Model_GioHang("", "", 1, o + "", Model_GioHang.GioHangType.EMPTY, "");
                     }
                     GioHangItem item;
-                    item = new GioHangItem(data);
+//                    item = new GioHangItem(data);
 
-                    Model_GioHang data;
+//                    Model_GioHang data;
                     if (o instanceof Model_GioHang) {
                         data = (Model_GioHang) o;
                     } else {
                         data = new Model_GioHang("", "", 1, o + "", Model_GioHang.GioHangType.EMPTY, "");
                     }
-                    GioHangItem item;
+//                    GioHangItem item;
                     if (selectedIndexGioHang == index) {
                         item = new GioHangItem(data, selectedIndexGioHang);
 

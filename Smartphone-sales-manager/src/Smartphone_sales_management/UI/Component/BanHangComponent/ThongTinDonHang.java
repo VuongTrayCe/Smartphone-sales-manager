@@ -8,6 +8,8 @@ import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.awt.Color;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -28,6 +30,10 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     public ThongTinDonHang(ArrayList<Model_GioHang> data) {
         initComponents();
         this.data=data;
+              LocalDateTime now = LocalDateTime.now();  
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+        String formatDateTime = now.format(format);  
+
         danhsachkhachhang = qlbh_bus.getALLKhachHang();
         btnComplete.setBackground(new Color(153, 204, 255));
         btnComplete.setBorder(null);
@@ -44,10 +50,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
            TT+=model_GioHang.getTongTien();
            cbbSanPham.addItem(model_GioHang.getName());
         }
-     String labels[] = { "A", "B", "C", "D", "E" };
+       lbNgayBan.setText(formatDateTime);
 //    final DefaultComboBoxModel model = new DefaultComboBoxModel(danhsachsanpham); 
 //    cbbKhachHang.setModel(model);
-    cbbKhachHang.addItem("Vuong");
         lbSoLuong.setText(String.valueOf(SL));
         lbTongTien.setText(String.valueOf(TT));
         lbThanhToan.setText("Thanh toán trực tiếp");

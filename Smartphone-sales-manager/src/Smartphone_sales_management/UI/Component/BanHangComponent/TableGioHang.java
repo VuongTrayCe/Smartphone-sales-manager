@@ -105,8 +105,8 @@ public class TableGioHang extends javax.swing.JPanel {
         });
 
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
-        jButton2.setText("Hoàn thành");
         jButton2.setBorder(null);
+        jButton2.setLabel("Tạo Hóa Đơn");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -236,13 +236,23 @@ public class TableGioHang extends javax.swing.JPanel {
         if (this.data.size() == 0) {
             JOptionPane.showMessageDialog(null, "Chưa có sản phẩm cần tạo");
 
-        } else {
+        } else if  {
             JDialog inforDonHang = new JDialog();
             ThongTinDonHang donhang = new ThongTinDonHang();
             inforDonHang.setLayout(new GridLayout());
             inforDonHang.setTitle("Thông tin đơn hàng");
             inforDonHang.add(donhang);
             inforDonHang.setSize(500, 500);
+
+        } else {
+            JDialog inforDonHang = new JDialog();
+            ThongTinDonHang donhang = new ThongTinDonHang(data);
+            inforDonHang.setSize(430, 520);
+
+            inforDonHang.setLayout(new GridLayout());
+            inforDonHang.setTitle("Thông tin đơn hàng");
+            inforDonHang.add(donhang);
+
             donhang.validate();
             inforDonHang.setLocationRelativeTo(null);
             inforDonHang.setVisible(true);

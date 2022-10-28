@@ -5,6 +5,8 @@
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietSanPham;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -56,26 +58,30 @@ public class TableDetailBH extends javax.swing.JPanel {
             public void mouseClicked (MouseEvent e) {
                 Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText());
                 event.addGiohang(data);
-                String str = lbcGia.getText().split(" ")[0];
-                Double x = Double.parseDouble(str);
-                System.out.println(x);
-                
+//                String str = lbcGia.getText().split(" ")[0];
+//                Double x = Double.parseDouble(str);
+//                System.out.println(x);
+//                
+                System.out.println("Click Them vao gio");
             };
         });
         
     }
     public void DisplayInfor()
     {
-       ArrayList data = new ArrayList();
+       ArrayList<Model_BanHang_ChiTietSanPham> data = new ArrayList();
        data = qlbh_BUS.getDanhSachChiTiet1SanPham(this.selectedIndex);
-       lbcName.setText((String) data.get(0));
-       lbcLoai.setText((String) data.get(1));
-       lbcSL.setText(data.get(2).toString());
-       lbcNamSx.setText((String) data.get(3));
-       lbcNCC.setText((String) data.get(4));
-       lbcGia.setText((String) data.get(5)+" VND");
-       this.urlImage=(String) data.get(6);
-       String  str= (String) data.get(7);
+      Model_BanHang_ChiTietSanPham model =  data.get(0);
+       lbcName.setText(model.getTensp());
+       lbcLoai.setText(model.getLoaisp());
+       String SL = String.valueOf(model.getSl());
+       lbcSL.setText(SL);
+       lbcNamSx.setText(model.getNamsx());
+       lbcNCC.setText(model.getTenncc());
+       String gia = String.valueOf(model.getGiaban());
+       lbcGia.setText(gia+" VND");
+       this.urlImage=model.getIcon();
+       String  str= model.getChitiet();
        String[] tachChuoi = str.split("//");
        String chuoiChinh="";
         for (String string : tachChuoi) {
@@ -84,11 +90,11 @@ public class TableDetailBH extends javax.swing.JPanel {
        taThongSo.setText(chuoiChinh);
         System.out.println(chuoiChinh);
        
-       if(data.get(6)!=null)
+       if(model.getIcon()!=null)
        {
-                  this.urlImage=(String) data.get(6);
-
-        lbImage.setIcon(new ImageIcon(getClass().getResource((String) data.get(6))));
+                  this.urlImage=model.getIcon();
+           System.out.println(this.urlImage);
+        lbImage.setIcon(new ImageIcon(getClass().getResource(this.urlImage)));
        }
        else
        {

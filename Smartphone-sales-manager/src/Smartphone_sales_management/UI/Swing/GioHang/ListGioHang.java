@@ -15,6 +15,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 
 /**
  *
@@ -49,10 +50,19 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     }
                     else
                     {
-                        data = new Model_GioHang("","","",o+"",Model_GioHang.GioHangType.EMPTY,"");
+                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"");
                     }
                     GioHangItem item;
-                    item  = new GioHangItem(data);
+                    if(selectedIndexGioHang==index)
+                    {
+                    item  = new GioHangItem(data,selectedIndexGioHang);
+
+                    }
+                    else
+                    {
+                       item  = new GioHangItem(data,-1);
+
+                    }
                     
                     return item;
                 } catch (IOException ex) {

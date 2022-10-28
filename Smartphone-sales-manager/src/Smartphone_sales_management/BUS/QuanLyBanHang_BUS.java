@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 
 /**
  *
@@ -58,6 +59,21 @@ public class QuanLyBanHang_BUS {
         }
 
         return dsctsp;
+    }
+    
+    // Tạo hóa đơn và lưu vào database
+    public void addDonHang(ArrayList data) {
+//        qlbh.addDonHang_DAO(data);       
+             JDialog a = new  JDialog();
+             a.setVisible(true);
+              
+             a.setTitle("Thông tin đơn  hàng");
+    }
+
+    public ArrayList getALLKhachHang() {
+        ArrayList dskh = new ArrayList();
+        dskh = qlbh.getALLkhachHang();
+        return dskh;
     }
 
 }

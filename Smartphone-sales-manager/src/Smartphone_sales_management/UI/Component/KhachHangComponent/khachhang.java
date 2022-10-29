@@ -4,6 +4,8 @@
  */
 package Smartphone_sales_management.UI.Component.KhachHangComponent;
 
+import Smartphone_sales_management.DAO.QuanLyKhachHang_DAO;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +20,7 @@ public class khachhang extends javax.swing.JFrame {
      */
     public khachhang() {
        initComponents();
+        setLocationRelativeTo(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,13 +47,14 @@ public class khachhang extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtMakh = new javax.swing.JTextField();
-        txtHoten = new javax.swing.JTextField();
-        txtGioitinh = new javax.swing.JComboBox<>();
-        txtSodt = new javax.swing.JTextField();
+        txttenKH = new javax.swing.JTextField();
+        txtSoDT = new javax.swing.JTextField();
         txtDiachi = new javax.swing.JTextField();
         txtAdd = new javax.swing.JButton();
-        txtSet = new javax.swing.JButton();
+        txtXoa = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,9 +100,14 @@ public class khachhang extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã khách hàng", "Họ và tên", "Giới tính", "SĐT", "Địa chỉ"
+                "Mã Khách Hàng", "Tên Khách Hàng", "Giới Tính", "Địa chỉ", "SĐT"
             }
         ));
+        jTable1.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                jTable1ComponentRemoved(evt);
+            }
+        });
         jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jTable1AncestorAdded(evt);
@@ -146,7 +155,7 @@ public class khachhang extends javax.swing.JFrame {
         jLabel3.setText("Mã khách hàng");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("Họ và tên");
+        jLabel4.setText("Tên Khách Hàng");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel5.setText("Giới tính");
@@ -157,14 +166,11 @@ public class khachhang extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("Địa chỉ");
 
-        txtHoten.addActionListener(new java.awt.event.ActionListener() {
+        txttenKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHotenActionPerformed(evt);
+                txttenKHActionPerformed(evt);
             }
         });
-
-        txtGioitinh.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtGioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
         txtAdd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add.png"))); // NOI18N
@@ -175,12 +181,13 @@ public class khachhang extends javax.swing.JFrame {
             }
         });
 
-        txtSet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Refresh.png"))); // NOI18N
-        txtSet.setText("Sửa ");
-        txtSet.addActionListener(new java.awt.event.ActionListener() {
+        txtXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Delete.png"))); // NOI18N
+        txtXoa.setText("Xóa");
+        txtXoa.setActionCommand("Lưu");
+        txtXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSetActionPerformed(evt);
+                txtXoaActionPerformed(evt);
             }
         });
 
@@ -191,6 +198,12 @@ public class khachhang extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jRadioButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton1.setText("Nam");
+
+        jRadioButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton2.setText("Nữ");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -207,14 +220,17 @@ public class khachhang extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMakh)
-                    .addComponent(txtHoten)
-                    .addComponent(txtGioitinh, 0, 229, Short.MAX_VALUE)
-                    .addComponent(txtSodt)
-                    .addComponent(txtDiachi))
+                    .addComponent(txtMakh, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                    .addComponent(txttenKH)
+                    .addComponent(txtSoDT)
+                    .addComponent(txtDiachi)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -232,23 +248,24 @@ public class khachhang extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSet)
-                    .addComponent(txtHoten))
+                    .addComponent(txtXoa)
+                    .addComponent(txttenKH))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtGioitinh, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioButton2))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSodt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDiachi, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -291,12 +308,43 @@ public class khachhang extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHotenActionPerformed
+    private void txttenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttenKHActionPerformed
       
-    }//GEN-LAST:event_txtHotenActionPerformed
+    }//GEN-LAST:event_txttenKHActionPerformed
 
     private void txtAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddActionPerformed
-      
+      StringBuilder sb = new StringBuilder();
+      if (txtMakh.getText().equals("")){
+          sb.append("Mã khách hàng không được để trống");
+          txtMakh.setBackground(Color.red);
+          
+          {else{
+                  
+          txtMakh.setBackground(Color.WHITE);
+      if(sb.length()>0)
+          JOptionPane.showMessageDialog(this, sb);
+          return;
+      }
+     
+        try {
+            
+            Khachhang2 stud = new Khachhang2();
+            stud.setMaKh(txtMakh.getText());
+            stud.setTenKH(txttenKH.getText());
+            stud.setDiaChi(txtDiachi.getText());
+            stud.setSoDT(txtSoDT.getText());
+            stud.getGioiTinh(rdbNam.isSelected()? 1: 0);
+            
+            QuanLyKhachHang_DAO = new QuanLyKhachHang_DAO();
+            dao.insert(stud);
+            
+            JOptionPane.showMessageDialog(this, "SInh viên mới đã được lưu vào CSDL");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Errorr: " + e.getMessage());
+            e.printStackTrace();  
+        }
+        }
+     }
     }//GEN-LAST:event_txtAddActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -307,9 +355,13 @@ public class khachhang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1AncestorAdded
 
-    private void txtSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetActionPerformed
+    private void txtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSetActionPerformed
+    }//GEN-LAST:event_txtXoaActionPerformed
+
+    private void jTable1ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTable1ComponentRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1ComponentRemoved
 
     /**
      * @param args the command line arguments
@@ -360,15 +412,16 @@ public class khachhang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton txtAdd;
     private javax.swing.JTextField txtDiachi;
-    private javax.swing.JComboBox<String> txtGioitinh;
-    private javax.swing.JTextField txtHoten;
     private javax.swing.JTextField txtMakh;
-    private javax.swing.JButton txtSet;
-    private javax.swing.JTextField txtSodt;
+    private javax.swing.JTextField txtSoDT;
+    private javax.swing.JButton txtXoa;
+    private javax.swing.JTextField txttenKH;
     // End of variables declaration//GEN-END:variables
 }

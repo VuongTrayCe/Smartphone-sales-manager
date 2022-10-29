@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.border.Border;
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.awt.FileDialog;
 import java.awt.event.MouseAdapter;
@@ -39,7 +40,7 @@ public class TableDetailBH extends javax.swing.JPanel {
     public static int selectedIndex=-1;
     public String urlImage;
     QuanLyBanHang_BUS qlbh_BUS = new QuanLyBanHang_BUS();
-    public TableDetailBH(int index) {
+    public TableDetailBH(int index,MainFrame mainFrame) {
         initComponents();
 //        jButton1.setBackground(Color.WHITE);
      selectedIndex=index;

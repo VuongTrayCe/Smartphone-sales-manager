@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +36,7 @@ public class QuanLyNhanVien_DAO {
                 Model_NhanVien a = new Model_NhanVien();
                 a.setMaNV(rs.getInt("Manv"));
                 a.setTenNV(rs.getString("Tennv"));
-                a.setSoCCCD(rs.getInt("SoCCCD"));
+                a.setSoCCCD(rs.getString("SoCCCD"));
                 a.setTuoi(rs.getInt("Tuoi"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setChucDanh(rs.getString("Chucdanh"));
@@ -58,7 +59,7 @@ public class QuanLyNhanVien_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
                         preparedStatement.setInt(1, NhanVien.getMaNV());
 			preparedStatement.setString(2, NhanVien.getTenNV());
-                        preparedStatement.setInt(3, NhanVien.getSoCCCD());
+                        preparedStatement.setString(3, NhanVien.getSoCCCD());
                         preparedStatement.setInt(4, NhanVien.getTuoi());
                         preparedStatement.setString(5, NhanVien.getDiaChi());
                         preparedStatement.setString(6, NhanVien.getChucDanh());
@@ -66,12 +67,16 @@ public class QuanLyNhanVien_DAO {
                         
                         
 
-			preparedStatement.executeUpdate();
-
+			int n = preparedStatement.executeUpdate();
+                        if (n != 0) {
+                     JOptionPane.showMessageDialog(null, "Thêm dữ liệu thành công", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
 			isSuccess = true;
+                        }
 		}
 		catch(SQLException ex) {
-			ex.printStackTrace();
+			 System.out.println(ex);
+                        JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
 		}
 		finally {
 			try {
@@ -85,7 +90,7 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-    public boolean deleteNhanVien(String MaNV) {
+    public boolean deleteNhanVien(int MaNV) {
 		boolean isSuccess = false;
 		db.setupConnection();
 		String sqlString = "delete from nhanvien where MaNV=?";
@@ -93,14 +98,18 @@ public class QuanLyNhanVien_DAO {
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
-			preparedStatement.setString(1, MaNV);
+			preparedStatement.setInt(1, MaNV);
 
-			preparedStatement.executeUpdate();
-
+                        int n = preparedStatement.executeUpdate();
+                        if (n != 0) {
+                        JOptionPane.showMessageDialog(null, "Xóa dữ liệu thành công", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
 			isSuccess = true;
+                        }
 		}
 		catch(SQLException ex) {
-			ex.printStackTrace();
+			 System.out.println(ex);
+                        JOptionPane.showMessageDialog(null, "Xóa dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
 		}
 		finally {
 			try {
@@ -114,30 +123,41 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-       public boolean updateNhanVien(String MaNV, Model_NhanVien NhanVien) {
+       public boolean updateNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
+                System.out.println(NhanVien.getMaNV());
+                System.out.println(NhanVien.getTenNV());
+                System.out.println(NhanVien.getSoCCCD());
+                System.out.println(NhanVien.getDiaChi());
+                System.out.println(NhanVien.getChucDanh());
+                System.out.println(NhanVien.getTrangThai());
                 db.setupConnection();
-		String sqlString = "update nhanvien set TenNV = ?, SoCCCD = ?, Tuoi = ?, DiaChi = ?, ChucDanh = ? where MaNV=?";
+		String sqlString = "update nhanvien set TenNV = ?, SoCCCD = ?, Tuoi = ?, DiaChi = ?, ChucDanh = ? where Manv=?";
 
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
 			preparedStatement.setString(1, NhanVien.getTenNV());
-			preparedStatement.setInt(2, NhanVien.getSoCCCD());
+			preparedStatement.setString(2, NhanVien.getSoCCCD());
 			preparedStatement.setInt(3, NhanVien.getTuoi());
                         preparedStatement.setString(4, NhanVien.getDiaChi());
 			preparedStatement.setString(5, NhanVien.getChucDanh());
+                        preparedStatement.setInt(6,NhanVien.getMaNV());
 
-			preparedStatement.executeUpdate();
-
+                        int n = preparedStatement.executeUpdate();
+                        if (n != 0) {
+                     JOptionPane.showMessageDialog(null, "Update dữ liệu thành công", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
 			isSuccess = true;
+                        }
 		}
 		catch(SQLException ex) {
-			ex.printStackTrace();
+			 System.out.println(ex);
+                        JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
 		}
 		finally {
 			try {
-				db.closeConnection();
+                                   db.closeConnection();
 				preparedStatement.close();
 			}
 			catch(SQLException ex) {

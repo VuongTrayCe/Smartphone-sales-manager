@@ -5,15 +5,21 @@
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import com.mysql.cj.protocol.Message;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -30,12 +36,13 @@ public class TableGioHang extends javax.swing.JPanel {
     QuanLyBanHang_BUS qlbh_bus = new QuanLyBanHang_BUS();
     ArrayList data = new ArrayList();
     JLabel sl;
-
-    public TableGioHang(ArrayList data, JLabel SL) {
+    MainFrame frame;
+    public TableGioHang(ArrayList data, JLabel SL,MainFrame mainFrame) {
         this.sl = SL;
         this.data = data;
         initComponents();
         Double sum = 0.0;
+        this.frame = mainFrame;
         for (Object object : data) {
             listGioHang1.addItem((Model_GioHang) object);
             Model_GioHang x = (Model_GioHang) object;
@@ -222,22 +229,25 @@ public class TableGioHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      if(this.data.size()==0)
+        if(this.data.size()==0)
       {
          JOptionPane.showMessageDialog(null, "Chưa có sản phẩm cần tạo");
 
       }
       else
       {
-          JDialog inforDonHang = new JDialog();
-          ThongTinDonHang donhang = new ThongTinDonHang(data);
-          inforDonHang.setSize(430,520);
-
+//        frame.setVisible(false);
+        Window win = SwingUtilities.getWindowAncestor(this);
+                JDialog inforDonHang= new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
+//        changePwdDialog.setUndecorated(true);
+          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
+          inforDonHang.setSize(850,470);
             inforDonHang.setLayout(new GridLayout());
             inforDonHang.setTitle("Thông tin đơn hàng");
             inforDonHang.add(donhang);
             donhang.validate();
           inforDonHang.setLocationRelativeTo(null);
+                    inforDonHang.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             inforDonHang.setVisible(true);
 
       }

@@ -7,6 +7,7 @@ package Smartphone_sales_management.UI.Main;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
+import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -44,18 +45,25 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+                    NhanVienGUI nv = new NhanVienGUI(MainFrame.this);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
-                    jPanel1.add(a);
+                    jPanel1.add(nv);
                     System.out.println("Vuong da vao nef 0");
                     pack();
 
                 }
                 if (index == 1) {
+                     MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+//                    NhanVienGUI nv = new NhanVienGUI(MainFrame.this);
                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
                     pack();
                     jPanel1.repaint();
 

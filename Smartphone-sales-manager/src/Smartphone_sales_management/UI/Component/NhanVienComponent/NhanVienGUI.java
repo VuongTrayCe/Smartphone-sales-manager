@@ -14,8 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.text.AbstractDocument;
 
 /**
@@ -55,6 +57,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefaultTable();
         jTable1.setModel(model);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
+        jTable1.setRowSorter(sorter);
     
     }
   

@@ -48,7 +48,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 //        TableDetailBH c = new TableDetailBH(index);
 
         TableBanHang a = new TableBanHang(event);
-         b = new TableGioHang(arrListSanpham,IconGioHang);
+         b = new TableGioHang(arrListSanpham,IconGioHang,frame);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
         b.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
 
@@ -62,7 +62,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         a.addEventBanHang(new EventBanHang() {
             @Override
             public int SelectedInxex(int index) {
-                c = new TableDetailBH(index);
+                c = new TableDetailBH(index,frame);
                 c.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
                 jPanel2.removeAll();
 //                TableDetailBH b = new TableDetailBH(event);
@@ -330,7 +330,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         IconGioHang.setBackground(Color.red);
         selectedIndexGioHang = -1;
 
-        TableGioHang giohang = new TableGioHang(arrListSanpham,IconGioHang);
+        TableGioHang giohang = new TableGioHang(arrListSanpham,IconGioHang,frame);
         DisPlayComponent(giohang);
         }
 
@@ -342,7 +342,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         IconGioHang.setBackground(new Color(153, 153, 153));
         IconDetail.setBackground(Color.red);
 
-        TableDetailBH detail = new TableDetailBH(selectedIndex);
+        TableDetailBH detail = new TableDetailBH(selectedIndex,frame);
         DisPlayComponent(detail);
 
 // TODO add your handling code here:

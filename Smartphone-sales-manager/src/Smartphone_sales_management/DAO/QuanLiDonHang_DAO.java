@@ -104,4 +104,59 @@ public class QuanLiDonHang_DAO {
         }
         return result;
     }
+
+    public ArrayList getDanhSachDonHangTheoTrangThai(int indexTrangThai) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList layMadh2(String tenTrangThai) {
+        ArrayList result = new ArrayList();
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh\n"
+                    + "FROM donhang\n where donhang.Trangthai = ?"
+                    + "ORDER BY donhang.Madh ASC");
+            stm.setString(1, tenTrangThai);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt("Madh"));
+                }
+            }
+
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            dbConnect.closeConnection();
+        }
+        return result;
+    }
+
+    public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
+        
+        ArrayList dsdh = new ArrayList();
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
+                    + "FROM	donhang where donhang.Trangthai = ? ");
+            stm.setString(1, tenTrangThai);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(rs.getInt("Madh"));
+                a.add(rs.getDate("Ngayban"));
+                a.add(rs.getInt("SoLuong"));
+                a.add(rs.getInt("Tongtien"));
+                a.add(rs.getString("Trangthai"));
+                dsdh.add(a);
+            }
+            return dsdh;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            dbConnect.closeConnection();
+        }
+        
+    }
+
 }

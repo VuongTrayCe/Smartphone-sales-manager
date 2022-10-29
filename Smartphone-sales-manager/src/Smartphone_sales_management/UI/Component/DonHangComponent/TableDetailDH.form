@@ -55,7 +55,7 @@
                   <Component id="jLabel1" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
               </Group>
-              <Component id="jPanel5" alignment="1" pref="362" max="32767" attributes="0"/>
+              <Component id="jPanel5" alignment="1" pref="354" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

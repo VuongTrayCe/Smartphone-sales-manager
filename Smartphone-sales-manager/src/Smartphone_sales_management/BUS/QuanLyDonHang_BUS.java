@@ -119,10 +119,20 @@ public class QuanLyDonHang_BUS {
 
     }
 
-    public ArrayList layDanhSachChiTietDonHang(int selectedIndex) {
+    public ArrayList layDanhSachChiTietDonHang(int selectedIndex,String tenTrangThai) {
+//        ArrayList danhsachDonHangTheoTrangThai = qldh.getDanhSachDonHangTheoTrangThai(tenTrangThai);
         ArrayList dsctdh = new ArrayList();
         ArrayList MaDHList = new ArrayList();
-        MaDHList = qldh.layMadh();
+        if(tenTrangThai.equals("ALL"))
+        {
+                    MaDHList = qldh.layMadh();
+
+        }
+        else
+        {
+                    MaDHList = qldh.layMadh2(tenTrangThai);
+
+        }
         try {
             dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
 

@@ -76,6 +76,20 @@ public class Menu extends javax.swing.JPanel {
                   event.selected(3);
                   
                 }
+                if(listMenu1.getSelectedIndex()==4)
+                {
+                    selectedIndex=4;
+                   listMenu1.repaint();
+                  event.selected(4);
+                  
+                }
+                if(listMenu1.getSelectedIndex()==5)
+                {
+                    selectedIndex=5;
+                   listMenu1.repaint();
+                  event.selected(5);
+                  
+                }
 
 
 
@@ -137,7 +151,7 @@ public class Menu extends javax.swing.JPanel {
                    listMenu1.addItem(new Model_Menu("SanPham","Sản Phẩm", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("DonHang","Đơn Hàng", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("PhieuNhap","Phiếu Nhập", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("NhanVien","Nhân Viên", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("NhanVien","Con Người", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("ThongKe","Thống Kê", Model_Menu.MenuType.MENU));
 
 

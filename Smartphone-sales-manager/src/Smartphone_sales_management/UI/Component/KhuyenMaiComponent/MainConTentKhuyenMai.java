@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Smartphone_sales_management.UI.Component.KhuyenMaiComponent;
-import Smartphone_sales_management.UI.Component.NhanVienComponent.TableNhanVien;
+//import Smartphone_sales_management.UI.Component.NhanVienComponent.TableNhanVien;
 import Smartphone_sales_management.UI.Event.KhuyenMai.EventKhuyenMai;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.GridLayout;

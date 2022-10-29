@@ -5,6 +5,8 @@
 package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietSanPham;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -54,28 +56,32 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new  MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),lbcSL.getText(),urlImage,GioHangType.MENU,lbcGia.getText());
+                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText());
                 event.addGiohang(data);
-                String str = lbcGia.getText().split(" ")[0];
-                Double x = Double.parseDouble(str);
-                System.out.println(x);
-                
+//                String str = lbcGia.getText().split(" ")[0];
+//                Double x = Double.parseDouble(str);
+//                System.out.println(x);
+//                
+                System.out.println("Click Them vao gio");
             };
         });
         
     }
     public void DisplayInfor()
     {
-       ArrayList data = new ArrayList();
+       ArrayList<Model_BanHang_ChiTietSanPham> data = new ArrayList();
        data = qlbh_BUS.getDanhSachChiTiet1SanPham(this.selectedIndex);
-       lbcName.setText((String) data.get(0));
-       lbcLoai.setText((String) data.get(1));
-       lbcSL.setText(data.get(2).toString());
-       lbcNamSx.setText((String) data.get(3));
-       lbcNCC.setText((String) data.get(4));
-       lbcGia.setText((String) data.get(5)+" VND");
-       this.urlImage=(String) data.get(6);
-       String  str= (String) data.get(7);
+      Model_BanHang_ChiTietSanPham model =  data.get(0);
+       lbcName.setText(model.getTensp());
+       lbcLoai.setText(model.getLoaisp());
+       String SL = String.valueOf(model.getSl());
+       lbcSL.setText(SL);
+       lbcNamSx.setText(model.getNamsx());
+       lbcNCC.setText(model.getTenncc());
+       String gia = String.valueOf(model.getGiaban());
+       lbcGia.setText(gia+" VND");
+       this.urlImage=model.getIcon();
+       String  str= model.getChitiet();
        String[] tachChuoi = str.split("//");
        String chuoiChinh="";
         for (String string : tachChuoi) {
@@ -84,11 +90,11 @@ public class TableDetailBH extends javax.swing.JPanel {
        taThongSo.setText(chuoiChinh);
         System.out.println(chuoiChinh);
        
-       if(data.get(6)!=null)
+       if(model.getIcon()!=null)
        {
-                  this.urlImage=(String) data.get(6);
-
-        lbImage.setIcon(new ImageIcon(getClass().getResource((String) data.get(6))));
+                  this.urlImage=model.getIcon();
+           System.out.println(this.urlImage);
+        lbImage.setIcon(new ImageIcon(getClass().getResource(this.urlImage)));
        }
        else
        {
@@ -134,7 +140,7 @@ public class TableDetailBH extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 204, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setPreferredSize(new java.awt.Dimension(354, 450));
+        setPreferredSize(new java.awt.Dimension(354, 414));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -264,7 +270,7 @@ public class TableDetailBH extends javax.swing.JPanel {
                     .addComponent(lbGia)
                     .addComponent(lbcGia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -288,11 +294,11 @@ public class TableDetailBH extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(51, 51, 51))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +307,7 @@ public class TableDetailBH extends javax.swing.JPanel {
                 .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(205, 205, 205)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

@@ -15,32 +15,32 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 
 /**
  *
  * @author Vuong
  */
-public class ListGioHang<E extends Object >extends JList<E> {
-     private final DefaultListModel model;
+public class ListGioHang<E extends Object> extends JList<E> {
+
+    private final DefaultListModel model;
 
     public ListGioHang() {
-        
-        
-         model = new DefaultListModel();
-    setOpaque(false);
-    setModel(model);
+
+        model = new DefaultListModel();
+        setOpaque(false);
+        setModel(model);
     }
-    
-     public void addItem(Model_GioHang data)
-    {
+
+    public void addItem(Model_GioHang data) {
         model.addElement(data);
     }
+
     @Override
     public ListCellRenderer<? super E> getCellRenderer() {
-        return new DefaultListCellRenderer()
-        {
+        return new DefaultListCellRenderer() {
             @Override
-           public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
+   public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
            {
                 try {
                     Model_GioHang  data ;
@@ -50,19 +50,27 @@ public class ListGioHang<E extends Object >extends JList<E> {
                     }
                     else
                     {
-                        data = new Model_GioHang("","","",o+"",Model_GioHang.GioHangType.EMPTY,"");
+                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"");
                     }
                     GioHangItem item;
-                    item  = new GioHangItem(data);
+                    if(selectedIndexGioHang==index)
+                    {
+                    item  = new GioHangItem(data,selectedIndexGioHang);
+
+                    }
+                    else
+                    {
+                       item  = new GioHangItem(data,-1);
+
+                    }
                     
                     return item;
                 } catch (IOException ex) {
                     Logger.getLogger(ListGioHang.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
+           }                 
                 return null;
            }
         };
                 }
-    
-    
 }

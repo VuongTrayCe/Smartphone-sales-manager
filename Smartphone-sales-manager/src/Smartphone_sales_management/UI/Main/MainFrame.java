@@ -6,6 +6,7 @@ package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
+import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,70 +24,59 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form TestFrame
      */
-    public static int selectedIndex = 0;
+    public static int selectedIndex = -1;
+
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
-        jPanel1.setMinimumSize(new Dimension(100,100));
-                            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+        jPanel1.setMinimumSize(new Dimension(100, 100));
+        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //   TestPanel2  a = new TestPanel2();
 
-          a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
-        jPanel1.setLayout(new  GridLayout());
+        a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        jPanel1.setLayout(new GridLayout());
         jPanel1.add(a);
 
         pack();
         menu2.addEventMenu(new EventMenu() {
             @Override
             public void selected(int index) {
-                if(index==0)
-                {        
-                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-
+                if (index == 0) {
+                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
                     jPanel1.removeAll();
-                      a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
-                         jPanel1.setLayout(new GridLayout());
-                         jPanel1.add(a);
-                        System.out.println("Vuong da vao nef 0");
-                           pack();
- 
-                }
-                if(index==1)
-                {
-                                        jPanel1.removeAll();
-                                        pack();
-                                        jPanel1.repaint();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    System.out.println("Vuong da vao nef 0");
+                    pack();
 
                 }
-                 if(index==2)
-                {
-                                        jPanel1.removeAll();
-                                         jPanel1.repaint();
-
+                if (index == 1) {
+                    jPanel1.removeAll();
+                    pack();
+                    jPanel1.repaint();
 
                 }
-                
-                
-                
+                if (index == 2) {
+                    jPanel1.removeAll();
+                    jPanel1.repaint();
+
+                }
+
             }
         });
-        
+
 //        setBackground(new Color(0,0,0,0));
 //      menuPanel1.initMoving(TestFrame.this);
-
-
-             
 //       TestPanel a = new TestPanel();
 //         a.setBounds(0,0,jPanel1.getWidth(),jPanel1.getHeight());
 //
 //   jPanel1.add(a);
 //       System.out.println("Vuong da vao");
 //   pack();
-             
-    
-         
-             
     }
 
     /**

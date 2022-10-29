@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 
 /**
  *
@@ -27,27 +28,22 @@ public class QuanLyBanHang_BUS {
         ArrayList dssp = new ArrayList();
         ArrayList dsspOfficial = new ArrayList<>();
         dssp = qlbh.getDanhSachSanPham_DAO();
-        if(keyWord=="")
-        {
+        if (keyWord == "") {
             return dssp;
-        }
-        else
-        {
+        } else {
 
-        for (Object x : dssp) {
-            Vector y = (Vector) x;
-            String masp = Integer.toString((int) y.get(0));
-            String name = (String) y.get(1);
-            if(masp.contains(keyWord) || name.contains(keyWord) ){
-                {
-                  dsspOfficial.add(y);  
+            for (Object x : dssp) {
+                Vector y = (Vector) x;
+                String masp = Integer.toString((int) y.get(0));
+                String name = (String) y.get(1);
+                if (masp.contains(keyWord) || name.contains(keyWord)) {
+                    {
+                        dsspOfficial.add(y);
+                    }
+
                 }
-                
-                
-                
             }
-        }
-        return dsspOfficial;
+            return dsspOfficial;
         }
     }
 
@@ -63,6 +59,21 @@ public class QuanLyBanHang_BUS {
         }
 
         return dsctsp;
+    }
+    
+    // Tạo hóa đơn và lưu vào database
+    public void addDonHang(ArrayList data) {
+//        qlbh.addDonHang_DAO(data);       
+             JDialog a = new  JDialog();
+             a.setVisible(true);
+              
+             a.setTitle("Thông tin đơn  hàng");
+    }
+
+    public ArrayList getALLKhachHang() {
+        ArrayList dskh = new ArrayList();
+        dskh = qlbh.getALLkhachHang();
+        return dskh;
     }
 
 }

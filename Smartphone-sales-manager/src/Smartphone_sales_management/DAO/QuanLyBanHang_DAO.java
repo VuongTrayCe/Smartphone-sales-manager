@@ -10,8 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietSanPham;
 
-/**
+/** 
  *
  * @author Vuong
  */
@@ -51,30 +52,32 @@ public class QuanLyBanHang_DAO {
 
         ArrayList result = new ArrayList();
         db.setupConnection();
-
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham where sanpham.Masp=? and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm "
+                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai "
+                    + "where sanpham.Masp=? and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
             stm.setInt(1, selectedIndex);
             rs = db.sqlQry(stm);
             if (rs != null) {
                 while (rs.next()) {
-                    result.add(rs.getString(1));
-                    result.add(rs.getString(2));
-                    result.add(rs.getInt(3));
-                    result.add(rs.getString(4));
-                    result.add(rs.getString(5));
-                    result.add(rs.getString(6));
-                    result.add(rs.getString(7));
-                    result.add(rs.getString(8));
-
-
-
-
+                    Model_BanHang_ChiTietSanPham model = new Model_BanHang_ChiTietSanPham();
+                   model.setTensp(rs.getString(1));
+                    model.setLoaisp(rs.getString(2));
+                    model.setSl(rs.getInt(3));
+                    model.setNamsx(rs.getString(4));
+                    model.setTenncc(rs.getString(5));
+                    model.setGiaban(rs.getDouble(6));
+                    model.setIcon(rs.getString(7));
+                    model.setChitiet(rs.getString(8));
+                    model.setPtkm(rs.getFloat(9));
+                    result.add(model);
                 }
             }
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            db.closeConnection();
         }
 
         return result;
@@ -92,6 +95,26 @@ public class QuanLyBanHang_DAO {
             if (rs != null) {
                 while (rs.next()) {
                     result.add(rs.getInt("Masp"));
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return result;
+    }
+
+    public ArrayList getALLkhachHang() {
+        ArrayList result = new ArrayList<>();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("select Tenkh  from khachhang where khachhang.TrangThai='T' ");
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getString("Tenkh"));
                 }
             }
         } catch (SQLException ex) {

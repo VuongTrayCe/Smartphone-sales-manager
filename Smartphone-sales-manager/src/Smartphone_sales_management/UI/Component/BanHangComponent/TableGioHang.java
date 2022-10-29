@@ -236,28 +236,20 @@ public class TableGioHang extends javax.swing.JPanel {
         if (this.data.size() == 0) {
             JOptionPane.showMessageDialog(null, "Chưa có sản phẩm cần tạo");
 
-        } else if  {
-            JDialog inforDonHang = new JDialog();
-            ThongTinDonHang donhang = new ThongTinDonHang();
-            inforDonHang.setLayout(new GridLayout());
-            inforDonHang.setTitle("Thông tin đơn hàng");
-            inforDonHang.add(donhang);
-            inforDonHang.setSize(500, 500);
-
-        } else {
-            JDialog inforDonHang = new JDialog();
-            ThongTinDonHang donhang = new ThongTinDonHang(data);
-            inforDonHang.setSize(430, 520);
+        } else
+      {
+          JDialog inforDonHang = new JDialog();
+//          ThongTinDonHang donhang = new ThongTinDonHang(data);
+          inforDonHang.setSize(430,520);
 
             inforDonHang.setLayout(new GridLayout());
             inforDonHang.setTitle("Thông tin đơn hàng");
-            inforDonHang.add(donhang);
-
-            donhang.validate();
-            inforDonHang.setLocationRelativeTo(null);
+//            inforDonHang.add(donhang);
+//            donhang.validate();
+          inforDonHang.setLocationRelativeTo(null);
             inforDonHang.setVisible(true);
 
-        }
+      }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

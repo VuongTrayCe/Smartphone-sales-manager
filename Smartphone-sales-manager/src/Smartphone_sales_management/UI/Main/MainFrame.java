@@ -36,12 +36,10 @@ public class MainFrame extends javax.swing.JFrame {
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-
-        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 
 //   TestPanel2  a = new TestPanel2();
-
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         jPanel1.setLayout(new GridLayout());
         jPanel1.add(a);
@@ -55,9 +53,8 @@ public class MainFrame extends javax.swing.JFrame {
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-
-                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+//                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

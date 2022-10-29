@@ -5,6 +5,8 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
+import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
+import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -74,6 +76,18 @@ public class QuanLyBanHang_BUS {
         ArrayList dskh = new ArrayList();
         dskh = qlbh.getALLkhachHang();
         return dskh;
+    }
+
+    public void InsertDonHang() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void InsertDonHang(Model_BanHang_HoaDon hoadon, ArrayList<Model_GioHang> data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int getMakh(String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

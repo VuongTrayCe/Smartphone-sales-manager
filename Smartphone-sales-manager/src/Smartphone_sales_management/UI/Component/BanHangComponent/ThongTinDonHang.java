@@ -6,8 +6,10 @@ package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
+import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.time.LocalDateTime;
@@ -39,12 +41,15 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     JDialog inforDonHangDialog;
     QuanLyBanHang_BUS qlbh_bus= new QuanLyBanHang_BUS();
     JPanel a;
+    LocalDateTime now;
+    int SL=0;
+        int TT = 0;
     public ThongTinDonHang(ArrayList<Model_GioHang> data,JPanel a,JDialog inforDonHang) {
         initComponents();
         this.data=data;
         this.a = a;
         this.inforDonHangDialog = inforDonHang;
-              LocalDateTime now = LocalDateTime.now();  
+        this.now = LocalDateTime.now();  
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
         String formatDateTime = now.format(format);  
 
@@ -53,8 +58,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         btnComplete.setBorder(null);
         btnBack.setBorder(null);
         btnBack.setBackground(new Color(255, 255, 255));
-        int SL=0;
-        int TT = 0;
+ 
         for (String khachhang : danhsachkhachhang) {
             cbbKhachHang.addItem((khachhang));
         }
@@ -67,7 +71,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 //    final DefaultComboBoxModel model = new DefaultComboBoxModel(danhsachsanpham); 
 //    cbbKhachHang.setModel(model);
         lbSoLuong.setText(String.valueOf(SL));
-        lbTongTien.setText(String.valueOf(TT));
+        lbTongTien.setText(String.valueOf(TT)+ " VND");
         lbThanhToan.setText("Thanh toán trực tiếp");
         // set data Table
         
@@ -85,7 +89,8 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         
         SetDefautlTable();
         jTable1.setModel(model);
-                jTable1.setSize(jTable1.getWidth(),jTable1.getRowHeight()*model.getRowCount());
+        jScrollPane1.setMaximumSize(new Dimension(1000, 50));
+//                jTable1.setSize(jTable1.getWidth(),jTable1.getRowHeight()*model.getRowCount());
 
     }
      public void SetDefautlTable() {
@@ -149,15 +154,21 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Tổng Tiền: ");
 
+        cbbKhachHang.setOpaque(true);
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Hình thức Thanh Toán: ");
 
+        lbSoLuong.setForeground(new java.awt.Color(0, 0, 153));
         lbSoLuong.setText("jLabel8");
 
+        lbNgayBan.setForeground(new java.awt.Color(0, 0, 153));
         lbNgayBan.setText("jLabel9");
 
+        lbThanhToan.setForeground(new java.awt.Color(0, 0, 153));
         lbThanhToan.setText("jLabel10");
 
+        lbTongTien.setForeground(new java.awt.Color(0, 0, 153));
         lbTongTien.setText("jLabel11");
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -183,6 +194,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setForeground(new java.awt.Color(0, 0, 153));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -201,7 +215,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,7 +278,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
                             .addComponent(lbThanhToan)
                             .addComponent(lbNgayBan))
                         .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,6 +350,15 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
+       Model_BanHang_HoaDon hoadon = new  Model_BanHang_HoaDon();
+      int Makh =  qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString()); 
+       hoadon.setMakh(WIDTH);
+       hoadon.setManv(0);
+       hoadon.setTime(now);
+       hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
+       hoadon.setTongtien(TT);
+        
+        qlbh_bus.InsertDonHang(hoadon,data);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompleteActionPerformed
 

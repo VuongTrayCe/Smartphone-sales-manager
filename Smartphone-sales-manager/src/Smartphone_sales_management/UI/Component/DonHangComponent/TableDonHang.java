@@ -25,18 +25,16 @@ public class TableDonHang extends javax.swing.JPanel {
 
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
     DefaultTableModel model = new DefaultTableModel();
-    EventDonHang event;
     private String keyWord;
     private int selectedIndex;
-    public TableDonHang(String keyWord,int selectedIndex) {
+
+    public TableDonHang(String keyWord, int selectedIndex) {
         initComponents();
-        this.keyWord =keyWord;
-        this.selectedIndex=selectedIndex;
+        this.keyWord = keyWord;
+        this.selectedIndex = selectedIndex;
         model.addColumn("MaDH");
-//        model.addColumn("MaKH");
-//        model.addColumn("MaNV");
         model.addColumn("NgayBan");
-//        model.addColumn("TongSoLuong");
+        model.addColumn("TongSoLuong");
         model.addColumn("TongTien");
         model.addColumn("TrangThai");
         jTable1.setOpaque(false);
@@ -44,15 +42,13 @@ public class TableDonHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable(keyWord,selectedIndex);
+        SetDefaultTable(keyWord, selectedIndex);
         jTable1.setModel(model);
-        
-        
-        
+
     }
 
     public void addEventDonHang(EventDonHang event) {
-        this.event = event;
+        event.SelectedInxex(0);
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -63,11 +59,13 @@ public class TableDonHang extends javax.swing.JPanel {
 
     );
     }
-    public void SetDefaultTable(String keyWord,int selectedIndex) {
+    
+   
+    public void SetDefaultTable(String keyWord, int selectedIndex) {
         jTable1.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
-        dataList = qldh_BUS.layDanhSachDonHang(keyWord,selectedIndex);
+        dataList = qldh_BUS.layDanhSachDonHang(keyWord, selectedIndex);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }

@@ -48,8 +48,8 @@ public class QuanLyDonHang_BUS {
             if (keyWord == "") {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(3));
-                    if (trangthai.equals("Da Xu Li")) {
+                    String trangthai = ((String) y.get(4));
+                    if (trangthai.equals("Đã xử lí")) {
                         dsdhOfficial.add(y);
                     }
                 }
@@ -58,8 +58,8 @@ public class QuanLyDonHang_BUS {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(3));
-                    if (madh.contains(keyWord) && trangthai.equals("Da Xu Li")) {
+                    String trangthai = ((String) y.get(4));
+                    if (madh.contains(keyWord) && trangthai.equals("Đã xử lí")) {
                         dsdhOfficial.add(y);
                     }
                 }
@@ -72,8 +72,8 @@ public class QuanLyDonHang_BUS {
             if (keyWord == "") {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(3));
-                    if (trangthai.equals("Chua Xu Li")) {
+                    String trangthai = ((String) y.get(4));
+                    if (trangthai.equals("Chưa xử lí")) {
                         dsdhOfficial.add(y);
                     }
                 }
@@ -82,8 +82,31 @@ public class QuanLyDonHang_BUS {
                 for (Object x : dsdh) {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(3));
-                    if (madh.contains(keyWord) && trangthai.equals("Chua Xu Li")) {
+                    String trangthai = ((String) y.get(4));
+                    if (madh.contains(keyWord) && trangthai.equals("Chưa xử lí")) {
+                        dsdhOfficial.add(y);
+                    }
+                }
+                return dsdhOfficial;
+
+            }
+        }
+        if (selectedIndex == 3) {
+            if (keyWord == "") {
+                for (Object x : dsdh) {
+                    Vector y = (Vector) x;
+                    String trangthai = ((String) y.get(4));
+                    if (trangthai.equals("Hủy đơn")) {
+                        dsdhOfficial.add(y);
+                    }
+                }
+                return dsdhOfficial;
+            } else {
+                for (Object x : dsdh) {
+                    Vector y = (Vector) x;
+                    String madh = Integer.toString((int) y.get(0));
+                    String trangthai = ((String) y.get(4));
+                    if (madh.contains(keyWord) && trangthai.equals("Hủy đơn")) {
                         dsdhOfficial.add(y);
                     }
                 }

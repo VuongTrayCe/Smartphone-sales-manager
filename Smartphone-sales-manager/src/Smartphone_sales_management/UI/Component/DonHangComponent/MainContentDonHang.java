@@ -24,9 +24,6 @@ public class MainContentDonHang extends javax.swing.JPanel {
         initComponents();
         this.mainFrame = mainFrame;
         donHang = new TableDonHang("", jComboBox2.getSelectedIndex());
-        // Tao chiều dài chiều rộng của table don hàng bằng với jScrollPanel
-//        donHang.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-
         jScrollPane1.setViewportView(donHang);
         detailDonHangPanel.setLayout(new GridLayout());
 
@@ -36,9 +33,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
                 detailDonHangPanel.removeAll();
                 detailDH = new TableDetailDH(index);
                 detailDH.setBounds(0, 0, detailDonHangPanel.getWidth(), detailDonHangPanel.getHeight());
-//                detailDonHangPanel.removeAll();
-//                detailDonHangPanel.setLayout(new GridLayout());
                 detailDonHangPanel.add(detailDH);
+                repaint();
                 detailDH.validate();
                 return index;
             }
@@ -76,6 +72,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         detailDonHangPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 255, 102));
 
@@ -103,7 +101,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jComboBox2.setBackground(new java.awt.Color(204, 204, 255));
         jComboBox2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 51, 51));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Đã xử lý", "Chưa xử lý", " " }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Đã xử lý", "Chưa xử lý", "Hủy đơn" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox2ItemStateChanged(evt);
@@ -128,6 +126,23 @@ public class MainContentDonHang extends javax.swing.JPanel {
             .addGap(0, 435, Short.MAX_VALUE)
         );
 
+        jButton1.setBackground(new java.awt.Color(255, 0, 51));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Delete.png"))); // NOI18N
+        jButton1.setText("Xóa đơn hàng");
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 51));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Logos-Excel-icon.png"))); // NOI18N
+        jButton2.setText("Xuất Excel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,17 +150,24 @@ public class MainContentDonHang extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
-                        .addComponent(detailDonHangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(detailDonHangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                        .addGap(12, 12, 12)
-                        .addComponent(txtTimkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                .addGap(12, 12, 12)
+                                .addComponent(txtTimkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox2, 0, 140, Short.MAX_VALUE)))
                         .addGap(25, 25, 25))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,7 +181,11 @@ public class MainContentDonHang extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                     .addComponent(detailDonHangPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
@@ -188,7 +214,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimkiemActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void txtTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimkiemMouseClicked
@@ -200,13 +226,19 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         txtTimkiem.setText("");
         donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedIndex());
-
+       
 // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel detailDonHangPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

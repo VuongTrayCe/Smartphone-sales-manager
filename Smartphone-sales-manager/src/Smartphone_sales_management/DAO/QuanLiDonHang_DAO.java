@@ -24,26 +24,18 @@ public class QuanLiDonHang_DAO {
         ArrayList dsdh = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban,SUM((giasanpham.Giaban - giasanpham.Giaban * khuyenmai.`%km` / 100) * chitietdonhang.Soluong) AS \"TongTien\",donhang.Trangthai \n"
-                    + "FROM donhang\n"
-                    + "INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh \n"
-                    + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.masp\n"
-                    + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
-                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm\n"
-                    + "GROUP BY Madh ");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
+                    + "FROM	donhang ");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
-                //Tao ra vector de luu du lieu cua tung thuoc tinh
                 a.add(rs.getInt("Madh"));
-
                 a.add(rs.getDate("Ngayban"));
+                a.add(rs.getInt("SoLuong"));
                 a.add(rs.getInt("Tongtien"));
                 a.add(rs.getString("Trangthai"));
                 dsdh.add(a);
             }
-            
             return dsdh;
         } catch (SQLException e) {
             return null;
@@ -57,15 +49,14 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
 
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Trangthai, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong,khuyenmai.`%km`,baohanh.Ngaybatdau, baohanh.Ngayketthuc,giasanpham.Giaban,(giasanpham.Giaban - giasanpham.Giaban * khuyenmai.`%km`/ 100) AS \"Gia sau khuyen mai\"\n"
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Trangthai, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm\n"
                     + "FROM donhang\n"
-                    + "INNER JOIN chitietdonhang ON donhang.Madh = chitietdonhang.Madh AND donhang.Madh = ? \n"
-                    + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp \n"
+                    + "INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
+                    + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
                     + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
-                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm\n"
+                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm \n"
                     + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
-                    + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n"
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp");
+                    + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh");
             stm.setInt(1, Madh);
             rs = stm.executeQuery();
             if (rs != null) {
@@ -75,11 +66,10 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getString(2));
                     a.add(rs.getString(3));
                     a.add(rs.getInt(4));
-                    a.add(rs.getString(5));
+                    a.add(rs.getInt(5));
                     a.add(rs.getString(6));
-                    a.add(rs.getString(7));
-                    a.add(rs.getInt(8));
-                    a.add(rs.getInt(9));
+                    a.add(rs.getDouble(7));
+                    a.add(rs.getDouble(8));
                     result.add(a);
                 }
             }
@@ -106,7 +96,7 @@ public class QuanLiDonHang_DAO {
                     result.add(rs.getInt("Madh"));
                 }
             }
-                    
+
         } catch (SQLException e) {
             return null;
         } finally {

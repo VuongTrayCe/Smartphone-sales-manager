@@ -47,15 +47,14 @@ public class TableDetailDH extends javax.swing.JPanel {
         data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex);
         Vector dataDetail = new Vector();
         dataDetail = (Vector) data.get(jComboBox1.getSelectedIndex());
-        lbcName2.setText((String) dataDetail.get(0));
+        lbcName2.setText(dataDetail.get(0).toString());
         lbcName2.setForeground(Color.red);
-        lbcLoai.setText((String) dataDetail.get(2));
+        lbcLoai.setText(dataDetail.get(2).toString());
         lbcSL1.setText(dataDetail.get(3).toString());
         lbcKhuyenMai.setText(dataDetail.get(4).toString()+"%");
-        lbcBHBD.setText(dataDetail.get(5).toString());
-        lbcBHKT.setText(dataDetail.get(6).toString());
-        lbcGia1.setText(dataDetail.get(7).toString());
-        lbcgiasaukm.setText(dataDetail.get(8).toString());
+        lbcBHKT.setText(dataDetail.get(5).toString());
+        lbcGia1.setText(dataDetail.get(6).toString());
+        lbcgiasaukm.setText(dataDetail.get(7).toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -69,16 +68,12 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbLoaiSP = new javax.swing.JLabel();
         lbSoLuong = new javax.swing.JLabel();
         lbKhuyenMai = new javax.swing.JLabel();
-        lbBHBD = new javax.swing.JLabel();
         lbGia = new javax.swing.JLabel();
         lbcSL1 = new javax.swing.JLabel();
         lbcKhuyenMai = new javax.swing.JLabel();
-        lbcBHBD = new javax.swing.JLabel();
         lbcGia1 = new javax.swing.JLabel();
-        btnInHoaDon = new javax.swing.JButton();
         lbTrangThai = new javax.swing.JLabel();
         lbcName2 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         lbBHKT = new javax.swing.JLabel();
         lbcBHKT = new javax.swing.JLabel();
@@ -113,9 +108,6 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbKhuyenMai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbKhuyenMai.setText("Khuyến Mãi");
 
-        lbBHBD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lbBHBD.setText("Bảo Hành Ngày BĐ:");
-
         lbGia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbGia.setText("Giá :         ");
 
@@ -123,30 +115,12 @@ public class TableDetailDH extends javax.swing.JPanel {
 
         lbcKhuyenMai.setText("jLabel13");
 
-        lbcBHBD.setText("jLabel14");
-
         lbcGia1.setText("jLabel15");
-
-        btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/print.png"))); // NOI18N
-        btnInHoaDon.setBorder(null);
-        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInHoaDonActionPerformed(evt);
-            }
-        });
 
         lbTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbTrangThai.setText("Trạng Thái:");
 
         lbcName2.setText("jLabel10");
-
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/confirm.png"))); // NOI18N
-        btnSave.setBorder(null);
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +130,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         });
 
         lbBHKT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lbBHKT.setText("Bảo Hành Ngày KT:");
+        lbBHKT.setText("Thời gian BH");
 
         lbcBHKT.setText("jLabel14");
 
@@ -189,7 +163,6 @@ public class TableDetailDH extends javax.swing.JPanel {
                                             .addComponent(lbSoLuong)
                                             .addComponent(lbLoaiSP))
                                         .addGap(30, 30, 30))))
-                            .addComponent(lbBHBD, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbKhuyenMai, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbBHKT, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbGia, javax.swing.GroupLayout.Alignment.LEADING))
@@ -198,15 +171,10 @@ public class TableDetailDH extends javax.swing.JPanel {
                             .addComponent(lbcName2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcGia1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcBHKT, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbcBHBD, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcKhuyenMai, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbcSL1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcLoai, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(lbGia1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,13 +206,9 @@ public class TableDetailDH extends javax.swing.JPanel {
                     .addComponent(lbcKhuyenMai))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbBHBD)
-                    .addComponent(lbcBHBD))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBHKT)
                     .addComponent(lbcBHKT))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia)
                     .addComponent(lbcGia1))
@@ -252,11 +216,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia1)
                     .addComponent(lbcgiasaukm))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -274,9 +234,8 @@ public class TableDetailDH extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(12, 12, 12)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -323,9 +282,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 444, Short.MAX_VALUE)
@@ -333,38 +290,18 @@ public class TableDetailDH extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
-        //
-        //            FileDialog fd = new FileDialog(new JFrame(), "Xuất excel",     FileDialog.LOAD);
-        //        fd.setVisible(true);
-        //                String url = fd.getDirectory() + fd.getFile();
-        ////                lbImage.setIcon(new ImageIcon(new URL(url)));
-        //              String[] url2= url.split("src");
-        //              String a = url2[1].replace("\\","/");
-        //              System.out.println(a);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInHoaDonActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaveActionPerformed
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         DisplayInfor();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInHoaDon;
-    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JLabel lbBHBD;
     private javax.swing.JLabel lbBHKT;
     private javax.swing.JLabel lbGia;
     private javax.swing.JLabel lbGia1;
@@ -374,7 +311,6 @@ public class TableDetailDH extends javax.swing.JPanel {
     private javax.swing.JLabel lbSoLuong;
     private javax.swing.JLabel lbTenSanPham;
     private javax.swing.JLabel lbTrangThai;
-    private javax.swing.JLabel lbcBHBD;
     private javax.swing.JLabel lbcBHKT;
     private javax.swing.JLabel lbcGia1;
     private javax.swing.JLabel lbcKhuyenMai;

@@ -8,10 +8,13 @@ import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,16 +25,17 @@ public class TableDetailDH extends javax.swing.JPanel {
 //    public int indexSelected
     public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+    TableDonHang donHang = new TableDonHang("", 0);
     ArrayList data = new ArrayList();
     String tenTrangThai = "ALL";
 
-    public TableDetailDH(int index,String tenTrangThai) {
+    public TableDetailDH(int index, String tenTrangThai) {
         initComponents();
         selectedIndex = index;
-        this.tenTrangThai=tenTrangThai;
+        this.tenTrangThai = tenTrangThai;
         if (selectedIndex != -1) {
 
-            data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex,tenTrangThai);
+            data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai);
 
             DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
 //            Tao bien arrSp de luu tenSP roi add vao modelTenSP
@@ -47,24 +51,26 @@ public class TableDetailDH extends javax.swing.JPanel {
 
     public void DisplayInfor() {
         ArrayList data = new ArrayList();
-        data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex,tenTrangThai);
+        data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai);
         Vector dataDetail = new Vector();
         dataDetail = (Vector) data.get(jComboBox1.getSelectedIndex());
-        trangthailb.setText(dataDetail.get(0).toString());
-        trangthailb.setForeground(Color.red);
-        if (dataDetail.get(0).toString().equals("Đã xử lí") || dataDetail.get(0).toString().equals("Hủy đơn")) {
-            confirmBtn.setVisible(false);
-            deleteBtn.setVisible(false);
-        } else if (dataDetail.get(0).toString().equals("Chưa xử lí")) {
-            confirmBtn.setVisible(true);
-            deleteBtn.setVisible(true);
-        }
+        madhlb.setText(dataDetail.get(0).toString());
+        trangthailb1.setForeground(Color.red);
+        madhlb.setText(dataDetail.get(0).toString());
         lbcLoai.setText(dataDetail.get(2).toString());
         lbcSL1.setText(dataDetail.get(3).toString());
         lbcKhuyenMai.setText(dataDetail.get(4).toString() + "%");
         lbcBHKT.setText(dataDetail.get(5).toString());
         lbcGia1.setText(dataDetail.get(6).toString());
         lbcgiasaukm.setText(dataDetail.get(7).toString());
+        trangthailb1.setText(dataDetail.get(8).toString());
+        if (dataDetail.get(8).toString().equals("Đã xử lí") || dataDetail.get(8).toString().equals("Hủy đơn")) {
+            confirmBtn.setVisible(false);
+            deleteBtn.setVisible(false);
+        } else if (dataDetail.get(8).toString().equals("Chưa xử lí")) {
+            confirmBtn.setVisible(true);
+            deleteBtn.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -83,7 +89,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcKhuyenMai = new javax.swing.JLabel();
         lbcGia1 = new javax.swing.JLabel();
         lbTrangThai = new javax.swing.JLabel();
-        trangthailb = new javax.swing.JLabel();
+        madhlb = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         lbBHKT = new javax.swing.JLabel();
         lbcBHKT = new javax.swing.JLabel();
@@ -92,6 +98,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcgiasaukm = new javax.swing.JLabel();
         confirmBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        lbTrangThai1 = new javax.swing.JLabel();
+        trangthailb1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lbImage = new javax.swing.JLabel();
@@ -130,9 +138,9 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcGia1.setText("jLabel15");
 
         lbTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lbTrangThai.setText("Trạng Thái:");
+        lbTrangThai.setText("Mã DH");
 
-        trangthailb.setText("jLabel10");
+        madhlb.setText("jLabel10");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -164,6 +172,16 @@ public class TableDetailDH extends javax.swing.JPanel {
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Close-icon.png"))); // NOI18N
         deleteBtn.setText("Hủy đơn hàng");
+        deleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteBtnMouseClicked(evt);
+            }
+        });
+
+        lbTrangThai1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTrangThai1.setText("Trạng Thái:");
+
+        trangthailb1.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -192,7 +210,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                             .addComponent(lbGia, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(trangthailb, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(madhlb, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcGia1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcBHKT, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbcKhuyenMai, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -206,8 +224,12 @@ public class TableDetailDH extends javax.swing.JPanel {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(confirmBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(6, 6, 6)))
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(lbTrangThai1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(trangthailb1)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -216,7 +238,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trangthailb))
+                    .addComponent(madhlb))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTenSanPham)
@@ -245,11 +267,15 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia1)
                     .addComponent(lbcgiasaukm))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTrangThai1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trangthailb1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -260,7 +286,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGap(90, 90, 90)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(74, 74, 74))
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,6 +353,14 @@ public class TableDetailDH extends javax.swing.JPanel {
         DisplayInfor();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?");
+        if (a == JOptionPane.YES_OPTION) {
+            qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
+            DisplayInfor();
+        }
+    }//GEN-LAST:event_deleteBtnMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmBtn;
@@ -346,12 +380,14 @@ public class TableDetailDH extends javax.swing.JPanel {
     private javax.swing.JLabel lbSoLuong;
     private javax.swing.JLabel lbTenSanPham;
     private javax.swing.JLabel lbTrangThai;
+    private javax.swing.JLabel lbTrangThai1;
     private javax.swing.JLabel lbcBHKT;
     private javax.swing.JLabel lbcGia1;
     private javax.swing.JLabel lbcKhuyenMai;
     private javax.swing.JLabel lbcLoai;
     private javax.swing.JLabel lbcSL1;
     private javax.swing.JLabel lbcgiasaukm;
-    private javax.swing.JLabel trangthailb;
+    private javax.swing.JLabel madhlb;
+    private javax.swing.JLabel trangthailb1;
     // End of variables declaration//GEN-END:variables
 }

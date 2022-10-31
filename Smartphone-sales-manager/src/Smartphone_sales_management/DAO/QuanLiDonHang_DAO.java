@@ -49,7 +49,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
 
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Trangthai, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm\n"
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai\n"
                     + "FROM donhang\n"
                     + "INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
                     + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
@@ -62,7 +62,7 @@ public class QuanLiDonHang_DAO {
             if (rs != null) {
                 while (rs.next()) {
                     Vector a = new Vector();
-                    a.add(rs.getString(1));
+                    a.add(rs.getInt(1));
                     a.add(rs.getString(2));
                     a.add(rs.getString(3));
                     a.add(rs.getInt(4));
@@ -70,6 +70,7 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getString(6));
                     a.add(rs.getDouble(7));
                     a.add(rs.getDouble(8));
+                    a.add(rs.getString(9));
                     result.add(a);
                 }
             }
@@ -133,7 +134,7 @@ public class QuanLiDonHang_DAO {
     }
 
     public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
-        
+
         ArrayList dsdh = new ArrayList();
         dbConnect.setupConnection();
         try {
@@ -156,7 +157,22 @@ public class QuanLiDonHang_DAO {
         } finally {
             dbConnect.closeConnection();
         }
-        
+
+    }
+
+    public void updateHuyDonHang(int Madh) {
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE donhang\n"
+                    + "SET donhang.Trangthai = \"Hủy đơn\"\n"
+                    + "WHERE donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnect.closeConnection();
+        }
     }
 
 }

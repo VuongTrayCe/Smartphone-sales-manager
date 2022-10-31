@@ -143,4 +143,8 @@ public class QuanLyDonHang_BUS {
 
         return dsctdh;
     }
+    
+    public void updateHuyDonHang(int Madh) {
+       qldh.updateHuyDonHang(Madh);
+    }
 }

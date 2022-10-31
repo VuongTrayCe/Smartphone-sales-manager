@@ -71,6 +71,11 @@ public class TableDonHang extends javax.swing.JPanel {
         }
         jScrollPane1.repaint();
     }
+    
+    public JTable getTable() {
+        return jTable1;
+    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

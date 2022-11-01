@@ -25,7 +25,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import Smartphone_sales_management.UI.Model.Model_GioHang.GioHangType;
 
-
 /**
  *
  * @author Vuong
@@ -36,74 +35,89 @@ public class TableDetailBH extends javax.swing.JPanel {
      * Creates new form TableDetailBH
      */
     AddGioHang event;
-   public int indexSelected;
-    public static int selectedIndex=-1;
+    public int indexSelected;
+    public static int selectedIndex = -1;
     public String urlImage;
+    public Model_GioHang modelGiohang;
     QuanLyBanHang_BUS qlbh_BUS = new QuanLyBanHang_BUS();
-    public TableDetailBH(int index,MainFrame mainFrame) {
+
+    public TableDetailBH(int index, MainFrame mainFrame) {
         initComponents();
 //        jButton1.setBackground(Color.WHITE);
-     selectedIndex=index;
-     if(selectedIndex!=-1)
-     {
-       DisplayInfor();
+        selectedIndex = index;
+        if (selectedIndex != -1) {
+            DisplayInfor();
+        }
     }
-    }
+
     // Thêm sự kiện thêm vào giỏ hàng
-    public void addSanPhamVaoGio(AddGioHang event)
-    {
-        this.event=event;
-        
-        btnThem.addMouseListener(new  MouseAdapter() {
+    public void addSanPhamVaoGio(AddGioHang event) {
+        this.event = event;
+
+        btnThem.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText());
+            public void mouseClicked(MouseEvent e) {
+                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText(),modelGiohang.getKhuyenmai(),modelGiohang.getBaohanh());
+//                  modelGiohang.setSoluong(1);
+//                Model_GioHang data = modelGiohang;
                 event.addGiohang(data);
 //                String str = lbcGia.getText().split(" ")[0];
 //                Double x = Double.parseDouble(str);
 //                System.out.println(x);
 //                
-                System.out.println("Click Them vao gio");
-            };
-        });
+            }
+        ;
+    }
+
+    );
         
     }
-    public void DisplayInfor()
-    {
-       ArrayList<Model_BanHang_ChiTietSanPham> data = new ArrayList();
-       data = qlbh_BUS.getDanhSachChiTiet1SanPham(this.selectedIndex);
-      Model_BanHang_ChiTietSanPham model =  data.get(0);
-       lbcName.setText(model.getTensp());
-       lbcLoai.setText(model.getLoaisp());
-       lbnKhuyenMai.setText((model.getPtkm()));
-       lbnBaoHanh.setText(model.getBaohanh());
-       String SL = String.valueOf(model.getSl());
-       lbcSL.setText(SL);
-       lbcNamSx.setText(model.getNamsx());
-       lbcNCC.setText(model.getTenncc());
-       String gia = String.valueOf(model.getGiaban());
-       lbcGia.setText(gia+" VND");
-       this.urlImage=model.getIcon();
-       String  str= model.getChitiet();
-       String[] tachChuoi = str.split("//");
-       String chuoiChinh="";
+    public void DisplayInfor() {
+        ArrayList<Model_BanHang_ChiTietSanPham> data = new ArrayList();
+        data = qlbh_BUS.getDanhSachChiTiet1SanPham(this.selectedIndex);
+        Model_BanHang_ChiTietSanPham model = data.get(0);
+        lbcName.setText(model.getTensp());
+        lbcLoai.setText(model.getLoaisp());
+        String km = String.valueOf(model.getPtkm()) + " %";
+        lbnKhuyenMai.setText(km);
+        lbnBaoHanh.setText(model.getBaohanh());
+        String SL = String.valueOf(model.getSl());
+        lbcSL.setText(SL);
+        lbcNamSx.setText(model.getNamsx());
+        lbcNCC.setText(model.getTenncc());
+        String gia = String.valueOf(model.getGiaban());
+        lbcGia.setText(gia + " VND");
+        this.urlImage = model.getIcon();
+        String str = model.getChitiet();
+        String[] tachChuoi = str.split("//");
+        String chuoiChinh = "";
         for (String string : tachChuoi) {
-            chuoiChinh+=(string+"\n");
+            chuoiChinh += (string + "\n");
         }
-       taThongSo.setText(chuoiChinh);
+        taThongSo.setText(chuoiChinh);
         System.out.println(chuoiChinh);
-       
-       if(model.getIcon()!=null)
-       {
-                  this.urlImage=model.getIcon();
-           System.out.println(this.urlImage);
-        lbImage.setIcon(new ImageIcon(getClass().getResource(this.urlImage)));
-       }
-       else
-       {
-           this.urlImage="";
-       }
+
+        if (model.getIcon() != null) {
+            this.urlImage = model.getIcon();
+            System.out.println(this.urlImage);
+            lbImage.setIcon(new ImageIcon(getClass().getResource(this.urlImage)));
+        } else {
+            this.urlImage = "";
+        }
+
+        modelGiohang = new Model_GioHang();
+        // Khởi tạo giá trị cho model giỏ hàng 
+        modelGiohang.setName(model.getTensp());
+        modelGiohang.setLoai(model.getLoaisp());
+        modelGiohang.setGiatien(model.getGiaban().toString());
+        modelGiohang.setKhuyenmai(model.getPtkm());
+        modelGiohang.setBaohanh(model.getBaohanh());
+        modelGiohang.setIcon(urlImage);
+        modelGiohang.setType(GioHangType.MENU);
+//        System.out.println(modelGiohang.getSoluong()); 
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -391,8 +405,6 @@ public class TableDetailBH extends javax.swing.JPanel {
 //              String[] url2= url.split("src");
 //              String a = url2[1].replace("\\","/");
 //              System.out.println(a);
-
-
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnThemActionPerformed

@@ -241,7 +241,7 @@ public class TableGioHang extends javax.swing.JPanel {
                 JDialog inforDonHang= new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
 //        changePwdDialog.setUndecorated(true);
           ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
-          inforDonHang.setSize(750,480);
+          inforDonHang.setSize(750,600);
             inforDonHang.setLayout(new GridLayout());
             inforDonHang.setTitle("Thông tin đơn hàng");
             inforDonHang.add(donhang);

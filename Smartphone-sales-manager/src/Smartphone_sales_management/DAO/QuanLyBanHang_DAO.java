@@ -57,7 +57,7 @@ public class QuanLyBanHang_DAO {
         try {
 
             PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm,baohanh.Thoigianbaohanh "
-                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai,baohanh "
+                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai,baohanh,chitietbaohanh "
                     + "where sanpham.Masp=? and baohanh.Mabaohanh=chitietbaohanh.Mabaohanh and sanpham.Masp=chitietbaohanh.Masp and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
             stm.setInt(1, selectedIndex);
             rs = db.sqlQry(stm);
@@ -72,7 +72,7 @@ public class QuanLyBanHang_DAO {
                     model.setGiaban(rs.getDouble(6));
                     model.setIcon(rs.getString(7));
                     model.setChitiet(rs.getString(8));
-                    model.setPtkm(rs.getFloat(9));
+                    model.setPtkm(rs.getInt(9));
                     model.setBaohanh(rs.getString(10));
                     result.add(model);
                 }
@@ -134,25 +134,22 @@ public class QuanLyBanHang_DAO {
         Boolean success;
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("insert into khachhang(Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai)  values (?,?,?,?,?,?,?,?,?)");
-//                        stm.setString(1, model_khachhang.getTenkhachhang());
-//            stm.setString(1, model_khachhang.getTenkhachhang());
-//            stm.setString(2, model_khachhang.getCmnd());
-//            stm.setInt(3, Integer.parseInt(model_khachhang.getSdt()));
-//            stm.setString(4, model_khachhang.getDiachi());
-//            stm.setString(5, model_khachhang.getEmail());
-//            stm.setString(6, model_khachhang.getNgaytao());
-//            stm.setInt(7, model_khachhang.getDiemso());
-//            stm.setString(8, "T");
-            stm.setInt(1,120);
-            stm.setString(2, model_khachhang.getTenkhachhang());
-            stm.setString(3, model_khachhang.getCmnd());
-            stm.setInt(4, Integer.parseInt(model_khachhang.getSdt()));
-            stm.setString(5, model_khachhang.getDiachi());
-            stm.setString(6, model_khachhang.getEmail());
-            stm.setString(7, model_khachhang.getNgaytao());
-            stm.setInt(8, model_khachhang.getDiemso());
-            stm.setString(9, "T");
+            PreparedStatement stm = db.getConnection().prepareStatement("insert into khachhang(Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai)  values (?,?,?,?,?,?,?,?)");
+            stm.setString(1, model_khachhang.getTenkhachhang());
+            stm.setString(2, model_khachhang.getCmnd());
+            stm.setString(3,(model_khachhang.getSdt()));
+            stm.setString(4, model_khachhang.getDiachi());
+            stm.setString(5, model_khachhang.getEmail());
+            stm.setString(6, model_khachhang.getNgaytao());
+            stm.setInt(7, model_khachhang.getDiemso());
+            stm.setString(8, "T");
+            System.out.println(model_khachhang.getTenkhachhang());
+                        System.out.println(model_khachhang.getCmnd());
+            System.out.println(model_khachhang.getDiachi());
+            System.out.println(model_khachhang.getEmail());
+            System.out.println(model_khachhang.getSdt());
+            System.out.println(model_khachhang.getNgaytao());
+
             success = db.sqlUpdate(stm);
 //            JOptionPane.showMessageDialog(null, "Thêm thành công!!");
 

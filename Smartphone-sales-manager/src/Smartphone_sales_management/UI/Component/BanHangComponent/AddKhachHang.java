@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Smartphone_sales_management.UI.Component.BanHangComponent;
+
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DTO.Model_KhachHang;
 import Smartphone_sales_management.UI.Component.KhachHangComponent.khachhang;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,18 +25,19 @@ public class AddKhachHang extends javax.swing.JPanel {
      */
     JDialog addkhachang;
     JPanel thongtinhoadon;
-    QuanLyBanHang_BUS qlbh=new QuanLyBanHang_BUS();
+    QuanLyBanHang_BUS qlbh = new QuanLyBanHang_BUS();
     LocalDateTime now;
-    public AddKhachHang(JDialog addkhachhang,JPanel thongtinhoadon) {
+
+    public AddKhachHang(JDialog addkhachhang, JPanel thongtinhoadon) {
         initComponents();
-        this.addkhachang=addkhachhang;
+        this.addkhachang = addkhachhang;
         this.thongtinhoadon = thongtinhoadon;
-                   this.now = LocalDateTime.now();  
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+        this.now = LocalDateTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formatDateTime = now.format(format);
-        
+
         txtNgayTao.setText(formatDateTime);
-     
+
     }
 
     /**
@@ -66,11 +70,11 @@ public class AddKhachHang extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Thêm tài khoản");
 
-        jLabel2.setText("Tên Khách Hàng :");
+        jLabel2.setText("Tên Khách Hàng (*) :");
 
-        jLabel3.setText("Số điện thoại: ");
+        jLabel3.setText("Số điện thoại (*): ");
 
-        jLabel4.setText("Địa chỉ: ");
+        jLabel4.setText("Địa chỉ (*): ");
 
         jLabel5.setText("Email ( Nếu có): ");
 
@@ -95,7 +99,7 @@ public class AddKhachHang extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setText("Số CMND:");
+        jLabel6.setText("Số CMND (*):");
 
         jLabel7.setText("Ngày Tạo:");
 
@@ -169,27 +173,78 @@ public class AddKhachHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+
         addkhachang.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private boolean checkData() {
+       String name = txtName.getText();
+       String sdt= txtSDT.getText();
+       String email = txtEmail.getText();
+       String diachi = txtDiaChi.getText();
+       String cmnd = txtCMND.getText();
+        String EMAIL_PATTERN = 
+            "^[a-zA-Z][\\w-]+@([\\w]+[.]\\w+)$";
+        Boolean flag= true;
+        String SDT_Pattern = "^[0]\\d{9}$";
+        String CMND_Pattern = "\\d+";
+        if(Pattern.matches(CMND_Pattern,cmnd)!=true)
+        {
+                        JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân/Căn cước công dân không đúng định dạng");
+                        flag=false;
+        }
+        if(Pattern.matches(EMAIL_PATTERN, email)!=true)
+        {
+                        JOptionPane.showMessageDialog(null, "Email không đúng định dạng");
+                        flag=false;
+        }
+ 
+        if(Pattern.matches(SDT_Pattern, sdt)!=true)
+        {
+                        JOptionPane.showMessageDialog(null, "Số điện thoại không đúng định dạng");
+                        flag=false;
+        }
+        if(name.equals(""))
+        {
+             JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại");
+                        flag=false;
+        }
+        if(diachi.equals(""))
+        {
+             JOptionPane.showMessageDialog(null, "Vui lòng nhập địa chỉ");
+                        flag=false;
+        }
+        if(flag==false)
+        {
+            return false;
+        }
+        else
+        {
+                     return true;
+
+        }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Lấy ngày hiện tại
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
-        String formatDateTime = now.format(format);
-        
-        // Thêm các dữ liệu của khách hàng vào model.
-       Model_KhachHang model_khachhang = new Model_KhachHang();
-        model_khachhang.setTenkhachhang(txtName.getText());
-        model_khachhang.setCmnd(txtCMND.getText());
-        model_khachhang.setSdt(txtSDT.getText());
-        model_khachhang.setDiachi(txtDiaChi.getText());
-        model_khachhang.setEmail(txtEmail.getText());
-        model_khachhang.setDiemso(0);
-        model_khachhang.setNgaytao(formatDateTime);
-        qlbh.addKhachHang(model_khachhang);
+        if (checkData()) {
 
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formatDateTime = now.format(format);
+
+            // Thêm các dữ liệu của khách hàng vào model.
+            Model_KhachHang model_khachhang = new Model_KhachHang();
+            model_khachhang.setTenkhachhang(txtName.getText());
+            model_khachhang.setCmnd(txtCMND.getText());
+            model_khachhang.setSdt(txtSDT.getText());
+            model_khachhang.setDiachi(txtDiaChi.getText());
+            model_khachhang.setEmail(txtEmail.getText());
+            model_khachhang.setDiemso(0);
+            model_khachhang.setNgaytao(formatDateTime);
+            qlbh.addKhachHang(model_khachhang);
+        } else {
+//            JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin");
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -211,4 +266,5 @@ public class AddKhachHang extends javax.swing.JPanel {
     private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtSDT;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -105,7 +105,7 @@ public class DBConnect {
         if (checkConnection()) {
             try {
                 stm.executeUpdate();
-//                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
+                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
                 return true;
             } catch (SQLException e) {
 //                e.printStackTrace();

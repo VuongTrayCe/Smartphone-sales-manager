@@ -11,8 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import Smartphone_sales_management.DTO.Model_BanHang_ChiTietSanPham;
+import Smartphone_sales_management.DTO.Model_KhachHang;
+import javax.swing.JOptionPane;
 
-/** 
+/**
  *
  * @author Vuong
  */
@@ -62,7 +64,7 @@ public class QuanLyBanHang_DAO {
             if (rs != null) {
                 while (rs.next()) {
                     Model_BanHang_ChiTietSanPham model = new Model_BanHang_ChiTietSanPham();
-                   model.setTensp(rs.getString(1));
+                    model.setTensp(rs.getString(1));
                     model.setLoaisp(rs.getString(2));
                     model.setSl(rs.getInt(3));
                     model.setNamsx(rs.getString(4));
@@ -124,6 +126,40 @@ public class QuanLyBanHang_DAO {
             db.closeConnection();
         }
         return result;
+    }
+    // Thêm một khách hàng mới
+
+    public void insertKhachHang(Model_KhachHang model_khachhang) {
+        Boolean success;
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("insert into khachhang(Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai)  values (?,?,?,?,?,?,?,?,?)");
+//                        stm.setString(1, model_khachhang.getTenkhachhang());
+//            stm.setString(1, model_khachhang.getTenkhachhang());
+//            stm.setString(2, model_khachhang.getCmnd());
+//            stm.setInt(3, Integer.parseInt(model_khachhang.getSdt()));
+//            stm.setString(4, model_khachhang.getDiachi());
+//            stm.setString(5, model_khachhang.getEmail());
+//            stm.setString(6, model_khachhang.getNgaytao());
+//            stm.setInt(7, model_khachhang.getDiemso());
+//            stm.setString(8, "T");
+            stm.setInt(1,120);
+            stm.setString(2, model_khachhang.getTenkhachhang());
+            stm.setString(3, model_khachhang.getCmnd());
+            stm.setInt(4, Integer.parseInt(model_khachhang.getSdt()));
+            stm.setString(5, model_khachhang.getDiachi());
+            stm.setString(6, model_khachhang.getEmail());
+            stm.setString(7, model_khachhang.getNgaytao());
+            stm.setInt(8, model_khachhang.getDiemso());
+            stm.setString(9, "T");
+            success = db.sqlUpdate(stm);
+//            JOptionPane.showMessageDialog(null, "Thêm thành công!!");
+
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyQuyenTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            db.closeConnection();
+        }
     }
 
 }

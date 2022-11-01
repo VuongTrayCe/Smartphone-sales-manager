@@ -6,6 +6,7 @@ package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
 import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
+import Smartphone_sales_management.DTO.Model_KhachHang;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -88,6 +89,11 @@ public class QuanLyBanHang_BUS {
 
     public int getMakh(String toString) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void addKhachHang(Model_KhachHang model_khachhang) {
+        
+        qlbh.insertKhachHang(model_khachhang);
     }
 
 }

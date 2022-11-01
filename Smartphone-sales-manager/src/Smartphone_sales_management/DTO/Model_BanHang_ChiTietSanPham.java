@@ -18,6 +18,15 @@ public class Model_BanHang_ChiTietSanPham {
     private String chitiet;
     private String icon;
     private float ptkm;
+    private String baohanh;
+
+    public String getBaohanh() {
+        return baohanh;
+    }
+
+    public void setBaohanh(String baohanh) {
+        this.baohanh = baohanh;
+    }
 
     public void setPtkm(float ptkm) {
         this.ptkm = ptkm;

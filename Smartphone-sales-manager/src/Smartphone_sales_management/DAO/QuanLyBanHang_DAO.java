@@ -56,9 +56,9 @@ public class QuanLyBanHang_DAO {
         db.setupConnection();
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm "
-                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai "
-                    + "where sanpham.Masp=? and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm,baohanh.Thoigianbaohanh "
+                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai,baohanh "
+                    + "where sanpham.Masp=? and baohanh.Mabaohanh=chitietbaohanh.Mabaohanh and sanpham.Masp=chitietbaohanh.Masp and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
             stm.setInt(1, selectedIndex);
             rs = db.sqlQry(stm);
             if (rs != null) {
@@ -73,6 +73,7 @@ public class QuanLyBanHang_DAO {
                     model.setIcon(rs.getString(7));
                     model.setChitiet(rs.getString(8));
                     model.setPtkm(rs.getFloat(9));
+                    model.setBaohanh(rs.getString(10));
                     result.add(model);
                 }
             }

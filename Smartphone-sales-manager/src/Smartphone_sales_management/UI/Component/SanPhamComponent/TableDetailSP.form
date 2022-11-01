@@ -38,7 +38,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Component id="jLabel1" pref="196" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
@@ -48,7 +48,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" pref="27" max="32767" attributes="0"/>
+                  <Component id="jLabel1" pref="49" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
               </Group>
@@ -78,60 +78,65 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" pref="260" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextField2" max="32767" attributes="0"/>
-                                          <Component id="jTextField3" min="-2" pref="136" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="masplb" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="tensplb" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                                      <Component id="jTextField4" pref="148" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="giasplb" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                      <Component id="jTextField5" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="soluongsplb" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="jTextField6" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="mausaclb" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="namsxlb" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                      <Component id="jTextField7" max="32767" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="trangthailb" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace pref="198" max="32767" attributes="0"/>
+                                      <Component id="jLabel16" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel11" min="-2" pref="134" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="tgbhlb" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="loaikmlb" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="136" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                              <Component id="jTextField10" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel11" min="-2" pref="134" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField8" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -142,51 +147,60 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="masplb" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tensplb" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="giasplb" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="soluongsplb" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="mausaclb" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="namsxlb" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="39" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tgbhlb" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="loaikmlb" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="trangthailb" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -204,11 +218,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng Th&#xe1;i:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
 
@@ -240,11 +249,6 @@
                 <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -253,23 +257,13 @@
                 <Property name="text" type="java.lang.String" value="T&#xea;n s&#x1ea3;n ph&#x1ea9;m:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="G&#xed;a "/>
+                <Property name="text" type="java.lang.String" value="Gi&#xe1;"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -279,11 +273,6 @@
                 <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -292,11 +281,6 @@
                 <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField6">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -304,11 +288,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="N&#x103;m sx"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField7">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -350,15 +329,57 @@
                 <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i KM"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="14" style="0"/>
+                </Property>
+              </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField10">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField10ActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JLabel" name="trangthailb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="loaikmlb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="tgbhlb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="namsxlb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="mausaclb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="soluongsplb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="giasplb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="tensplb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="masplb">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel10"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

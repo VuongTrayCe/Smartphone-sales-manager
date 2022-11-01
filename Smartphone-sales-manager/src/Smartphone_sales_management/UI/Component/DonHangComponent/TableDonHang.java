@@ -44,7 +44,6 @@ public class TableDonHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefaultTable(keyWord, selectedIndex);
         jTable1.setModel(model);
-
     }
 
     public void addEventDonHang(EventDonHang event) {
@@ -70,12 +69,12 @@ public class TableDonHang extends javax.swing.JPanel {
             model.addRow((Vector<?>) dataList.get(i));
         }
         jScrollPane1.repaint();
+
     }
     
-    public JTable getTable() {
-        return jTable1;
+    public DefaultTableModel getModel() {
+        return this.model;
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.

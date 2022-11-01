@@ -36,7 +36,6 @@ public class MainContentDonHang extends javax.swing.JPanel {
                 detailDonHangPanel.add(detailDH);
                 repaint();
                 detailDH.validate();
-                System.out.println(index);
                 return index;
             }
         });

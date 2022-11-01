@@ -175,4 +175,19 @@ public class QuanLiDonHang_DAO {
         }
     }
 
+    public void updateXacNhanDonHang(int Madh) {
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE donhang\n"
+                    + "SET donhang.Trangthai = \"Đã xử lí\"\n"
+                    + "WHERE donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
 }

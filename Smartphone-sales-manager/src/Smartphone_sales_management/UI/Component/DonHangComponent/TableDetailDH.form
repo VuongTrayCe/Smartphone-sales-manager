@@ -349,6 +349,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n &#x111;&#x1a1;n h&#xe0;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmBtnMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="deleteBtn">
               <Properties>

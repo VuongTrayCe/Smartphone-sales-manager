@@ -147,4 +147,8 @@ public class QuanLyDonHang_BUS {
     public void updateHuyDonHang(int Madh) {
        qldh.updateHuyDonHang(Madh);
     }
+    
+    public void updateXacNhanDonHang(int Madh) {
+        qldh.updateXacNhanDonHang(Madh);
+    }
 }

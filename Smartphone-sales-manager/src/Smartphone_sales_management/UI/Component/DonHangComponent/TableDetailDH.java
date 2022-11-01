@@ -25,10 +25,9 @@ public class TableDetailDH extends javax.swing.JPanel {
 //    public int indexSelected
     public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
-    TableDonHang donHang = new TableDonHang("", 0);
     ArrayList data = new ArrayList();
     String tenTrangThai = "ALL";
-
+   
     public TableDetailDH(int index, String tenTrangThai) {
         initComponents();
         selectedIndex = index;
@@ -46,7 +45,7 @@ public class TableDetailDH extends javax.swing.JPanel {
             jComboBox1.setModel(modelTenSP);
             DisplayInfor();
         }
-
+        
     }
 
     public void DisplayInfor() {
@@ -166,6 +165,11 @@ public class TableDetailDH extends javax.swing.JPanel {
         confirmBtn.setForeground(new java.awt.Color(255, 255, 255));
         confirmBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/check1.png"))); // NOI18N
         confirmBtn.setText("Xác nhận đơn hàng");
+        confirmBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmBtnMouseClicked(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(255, 0, 51));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -360,6 +364,14 @@ public class TableDetailDH extends javax.swing.JPanel {
             DisplayInfor();
         }
     }//GEN-LAST:event_deleteBtnMouseClicked
+
+    private void confirmBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmBtnMouseClicked
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xác nhận ?");
+        if (a == JOptionPane.YES_OPTION) {
+            qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
+            DisplayInfor();
+        }
+    }//GEN-LAST:event_confirmBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

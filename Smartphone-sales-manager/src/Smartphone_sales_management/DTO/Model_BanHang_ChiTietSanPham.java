@@ -17,13 +17,22 @@ public class Model_BanHang_ChiTietSanPham {
     private Double giaban;
     private String chitiet;
     private String icon;
-    private float ptkm;
+    private int ptkm;
+    private String baohanh;
 
-    public void setPtkm(float ptkm) {
+    public String getBaohanh() {
+        return baohanh;
+    }
+
+    public void setBaohanh(String baohanh) {
+        this.baohanh = baohanh;
+    }
+
+    public void setPtkm(int ptkm) {
         this.ptkm = ptkm;
     }
 
-    public float getPtkm() {
+    public int getPtkm() {
         return ptkm;
     }
 

@@ -9,50 +9,52 @@ package Smartphone_sales_management.DTO;
  * @author Vuong
  */
 public class Model_BanHang_ChiTietHoaDon {
-    private int makh;
-    private int manv;
-    private int tongsl;
-    private int machitietbaohanh;
-    private int machitietkhuyenmai;
+    private int masp;
+    private int madh;
+    private int sl;
+    private int giaban;
+    private int giasaukm;
 
-    public void setMakh(int makh) {
-        this.makh = makh;
+    public void setMasp(int masp) {
+        this.masp = masp;
     }
 
-    public void setManv(int manv) {
-        this.manv = manv;
+    public void setMadh(int madh) {
+        this.madh = madh;
     }
 
-    public void setTongsl(int tongsl) {
-        this.tongsl = tongsl;
+    public void setSl(int sl) {
+        this.sl = sl;
     }
 
-    public void setMachitietbaohanh(int machitietbaohanh) {
-        this.machitietbaohanh = machitietbaohanh;
+    public void setGiaban(int giaban) {
+        this.giaban = giaban;
     }
 
-    public void setMachitietkhuyenmai(int machitietkhuyenmai) {
-        this.machitietkhuyenmai = machitietkhuyenmai;
+    public void setGiasaukm(int giasaukm) {
+        this.giasaukm = giasaukm;
     }
 
-    public int getMakh() {
-        return makh;
+    public int getMasp() {
+        return masp;
     }
 
-    public int getManv() {
-        return manv;
+    public int getMadh() {
+        return madh;
     }
 
-    public int getTongsl() {
-        return tongsl;
+    public int getSl() {
+        return sl;
     }
 
-    public int getMachitietbaohanh() {
-        return machitietbaohanh;
+    public int getGiaban() {
+        return giaban;
     }
 
-    public int getMachitietkhuyenmai() {
-        return machitietkhuyenmai;
+    public int getGiasaukm() {
+        return giasaukm;
     }
-    
+
+
+  
 }

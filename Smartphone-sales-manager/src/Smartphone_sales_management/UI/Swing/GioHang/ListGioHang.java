@@ -31,7 +31,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
         setOpaque(false);
         setModel(model);
     }
-
+    // Thêm một phần tử vào model JList
     public void addItem(Model_GioHang data) {
         model.addElement(data);
     }
@@ -40,40 +40,37 @@ public class ListGioHang<E extends Object> extends JList<E> {
     public ListCellRenderer<? super E> getCellRenderer() {
         return new DefaultListCellRenderer() {
             @Override
-            public Component getListCellRendererComponent(JList<?> list, Object o, int index, boolean isSelected, boolean cellHasFocus) {
+   public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
+           {
                 try {
-
-                    Model_GioHang data;
-                    if (o instanceof Model_GioHang) {
-                        data = (Model_GioHang) o;
-                    } else {
-                        data = new Model_GioHang("", "", 1, o + "", Model_GioHang.GioHangType.EMPTY, "");
+                    Model_GioHang  data ;
+                    if (o instanceof Model_GioHang)
+                    {
+                        data= (Model_GioHang) o;
+                    }
+                    else
+                    {
+                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"",0,"");
                     }
                     GioHangItem item;
-//                    item = new GioHangItem(data);
-
-//                    Model_GioHang data;
-                    if (o instanceof Model_GioHang) {
-                        data = (Model_GioHang) o;
-                    } else {
-                        data = new Model_GioHang("", "", 1, o + "", Model_GioHang.GioHangType.EMPTY, "");
-                    }
-//                    GioHangItem item;
-                    if (selectedIndexGioHang == index) {
-                        item = new GioHangItem(data, selectedIndexGioHang);
-
-                    } else {
-                        item = new GioHangItem(data, -1);
+                    if(selectedIndexGioHang==index)
+                    {
+                    item  = new GioHangItem(data,selectedIndexGioHang);
 
                     }
+                    else
+                    {
+                       item  = new GioHangItem(data,-1);
 
+                    }
+                    
                     return item;
                 } catch (IOException ex) {
                     Logger.getLogger(ListGioHang.class.getName()).log(Level.SEVERE, null, ex);
 
-                }
+           }                 
                 return null;
-            }
+           }
         };
-    }
+                }
 }

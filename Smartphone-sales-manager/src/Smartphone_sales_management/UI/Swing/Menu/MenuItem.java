@@ -22,7 +22,7 @@ public class MenuItem extends javax.swing.JPanel {
     public MenuItem(Model_Menu data,int index) {
                 initComponents();
         this.data=data;
-        this.setBackground(Color.GRAY);
+        this.setBackground(new Color(152, 141, 172));
         if(data.getType() == Model_Menu.MenuType.MENU)
             {
                 lbIcon.setIcon(data.toIcon());

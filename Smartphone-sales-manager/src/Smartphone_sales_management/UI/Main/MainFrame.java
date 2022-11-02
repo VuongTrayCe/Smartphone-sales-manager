@@ -42,8 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         jPanel1.setLayout(new GridLayout());
         jPanel1.add(a);
-
-        pack();
+        a.validate();
         menu2.addEventMenu(new EventMenu() {
             @Override
             public void selected(int index) {
@@ -58,7 +57,8 @@ public class MainFrame extends javax.swing.JFrame {
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
-                    pack();
+                    a.validate();
+//                    pack();
 
                 }
                 if (index == 1) {
@@ -69,7 +69,8 @@ public class MainFrame extends javax.swing.JFrame {
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
-                    pack();
+                    a.validate();
+//                    pack();
                     
 //                    
 //                    jPanel1.removeAll();
@@ -85,7 +86,8 @@ public class MainFrame extends javax.swing.JFrame {
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
-                    pack();
+                    a.validate();
+//                    pack();
 //                    jPanel1.removeAll();
 //                    jPanel1.repaint();
 

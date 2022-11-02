@@ -38,6 +38,10 @@ public class ListMenu<E extends Object >extends JList<E> {
     {
         model.addElement(data);
     }
+    public void add2(int index,NewJPanel data)
+    {
+        model.add(index,data);
+    }
     @Override
     public ListCellRenderer<? super E> getCellRenderer() {
         return new DefaultListCellRenderer()
@@ -71,7 +75,6 @@ public class ListMenu<E extends Object >extends JList<E> {
                
            };
         };
-
     }
 
    

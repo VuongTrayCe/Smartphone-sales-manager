@@ -4,7 +4,15 @@
  */
 package Smartphone_sales_management.UI.Component.SanPhamComponent;
 
+import Smartphone_sales_management.BUS.QuanLiSanPham_BUS;
+import Smartphone_sales_management.UI.Event.SanPham.EventSanPham;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 /**
@@ -16,12 +24,50 @@ public class TableSanPham extends javax.swing.JPanel {
     /**
      * Creates new form TableSanPham
      */
-    public TableSanPham() {
+    QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
+    DefaultTableModel model = new DefaultTableModel();
+    EventSanPham event;
+    private String keyWord;
+    private int selectedIndex;
+
+    public TableSanPham(String keyWord, int selectedIndex) {
         initComponents();
+        this.keyWord = keyWord;
+        this.selectedIndex = selectedIndex;
+        model.addColumn("MaSP");
+        model.addColumn("TenSP");
+        model.addColumn("LoaiSP");
+        model.addColumn("GiaSP");
+        model.addColumn("SoLuong");
+        model.addColumn("TrangThai");
+        jTable1.setOpaque(false);
+        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
+        jTable1.getTableHeader().setForeground(Color.WHITE);
+        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+        SetDefaultTable(keyWord,selectedIndex);
+        jTable1.setModel(model);
     }
-
     
-
+    public void addEventSanPham(EventSanPham event) {
+        this.event = event;
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event.selectedIndex(jTable1.getSelectedRow());
+            }
+        });
+    }
+    public void SetDefaultTable(String keyWord, int selectedIndex) {
+        jTable1.removeAll();
+        model.setRowCount(0);
+        ArrayList dataList = new ArrayList();
+        dataList = qlsp_BUS.layDanhSachSanPham(keyWord, selectedIndex);
+        for (int i = 0; i < dataList.size(); i++) {
+            model.addRow((Vector<?>) dataList.get(i));
+        }
+        panelTable.repaint();
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,17 +82,6 @@ public class TableSanPham extends javax.swing.JPanel {
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"IPhone 14 ProMax", "IPhone", "1000", "Tím", "2022", "1000"},
-                {"IPhone 13 ProMax", "IPhon", "100", "Vàng", "2021", "1000"},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Tên sản phẩm", "Loại sản phẩm", "Số lượng", "Màu sắc", "Năm sản xuất", "Giá"
-            }
-        ));
         jTable1.setCellSelectionEnabled(true);
         panelTable.setViewportView(jTable1);
 

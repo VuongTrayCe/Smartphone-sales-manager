@@ -31,7 +31,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
         setOpaque(false);
         setModel(model);
     }
-
+    // Thêm một phần tử vào model JList
     public void addItem(Model_GioHang data) {
         model.addElement(data);
     }
@@ -50,7 +50,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     }
                     else
                     {
-                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"");
+                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"",0,"");
                     }
                     GioHangItem item;
                     if(selectedIndexGioHang==index)

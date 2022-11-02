@@ -7,7 +7,7 @@ package Smartphone_sales_management.UI.Main;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
-import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
+import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,45 +32,64 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
+
         MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-//   TestPanel2  a = new TestPanel2();
+//        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
+//   TestPanel2  a = new TestPanel2();
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         jPanel1.setLayout(new GridLayout());
         jPanel1.add(a);
-
-        pack();
+        a.validate();
         menu2.addEventMenu(new EventMenu() {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-//                   MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-                    NhanVienGUI nv = new NhanVienGUI(MainFrame.this);
-                    jPanel1.removeAll();
-                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
-                    jPanel1.setLayout(new GridLayout());
-                    jPanel1.add(nv);
-                    System.out.println("Vuong da vao nef 0");
-                    pack();
 
-                }
-                if (index == 1) {
-                     MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-//                    NhanVienGUI nv = new NhanVienGUI(MainFrame.this);
+//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
-                    pack();
-                    jPanel1.repaint();
+                    a.validate();
+//                    pack();
+
+                }
+                if (index == 1) {
+                    
+                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+
+                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+//                    pack();
+                    
+//                    
+//                    jPanel1.removeAll();
+//                    pack();
+//                    jPanel1.repaint();
 
                 }
                 if (index == 2) {
+                    
+                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+
                     jPanel1.removeAll();
-                    jPanel1.repaint();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+//                    pack();
+//                    jPanel1.removeAll();
+//                    jPanel1.repaint();
 
                 }
 

@@ -9,6 +9,7 @@ import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.GridLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,9 +30,9 @@ public class MainContentDonHang extends javax.swing.JPanel {
 
         donHang.addEventDonHang(new EventDonHang() {
             @Override
-            public int SelectedInxex(int index) {
+            public int SelectedInxex(int index,DefaultTableModel model) {
                 detailDonHangPanel.removeAll();
-                detailDH = new TableDetailDH(index,jComboBox2.getSelectedItem().toString());
+                detailDH = new TableDetailDH(index,jComboBox2.getSelectedItem().toString(),model,donHang);
                 detailDH.setBounds(0, 0, detailDonHangPanel.getWidth(), detailDonHangPanel.getHeight());
                 detailDonHangPanel.add(detailDH);
                 repaint();

@@ -4,10 +4,12 @@
  */
 package Smartphone_sales_management.UI.Event.DonHang;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
  */
 public interface EventDonHang {
-    public int SelectedInxex(int index);
+    public int SelectedInxex(int index,DefaultTableModel model);
 }

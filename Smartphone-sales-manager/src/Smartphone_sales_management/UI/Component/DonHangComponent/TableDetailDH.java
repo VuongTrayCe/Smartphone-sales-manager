@@ -25,12 +25,13 @@ public class TableDetailDH extends javax.swing.JPanel {
 //    public int indexSelected
     public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
-    TableDonHang donHang = new TableDonHang("", 0);
+    TableDonHang donhang;
     ArrayList data = new ArrayList();
     String tenTrangThai = "ALL";
 
-    public TableDetailDH(int index, String tenTrangThai) {
+    public TableDetailDH(int index, String tenTrangThai,DefaultTableModel model,TableDonHang donhang) {
         initComponents();
+        this.donhang= donhang;
         selectedIndex = index;
         this.tenTrangThai = tenTrangThai;
         if (selectedIndex != -1) {
@@ -361,9 +362,9 @@ public class TableDetailDH extends javax.swing.JPanel {
     private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?");
         if (a == JOptionPane.YES_OPTION) {
-//            qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
+            qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
             DisplayInfor();
-            donHang.SetDefaultTable(tenTrangThai, selectedIndex);
+            donhang.SetDefaultTable("", 0);
         }
     }//GEN-LAST:event_deleteBtnMouseClicked
 
@@ -372,6 +373,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
             DisplayInfor();
+            donhang.SetDefaultTable("", 0);
         }
     }//GEN-LAST:event_confirmBtnMouseClicked
 

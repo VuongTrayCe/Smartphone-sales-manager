@@ -47,11 +47,11 @@ public class TableDonHang extends javax.swing.JPanel {
     }
 
     public void addEventDonHang(EventDonHang event) {
-        event.SelectedInxex(0);
+//        event.SelectedInxex(0,);
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event.SelectedInxex(jTable1.getSelectedRow());
+                event.SelectedInxex(jTable1.getSelectedRow(), (DefaultTableModel) jTable1.getModel());
             }
         ;
     }
@@ -68,7 +68,6 @@ public class TableDonHang extends javax.swing.JPanel {
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
-        System.out.println("Xuat thanh cong");
         jScrollPane1.repaint();
 
     }

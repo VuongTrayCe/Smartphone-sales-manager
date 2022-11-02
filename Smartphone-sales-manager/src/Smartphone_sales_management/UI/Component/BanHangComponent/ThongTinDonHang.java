@@ -48,14 +48,13 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     LocalDateTime now;
     int SL=0;
         int TT = 0;
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
     public ThongTinDonHang(ArrayList<Model_GioHang> data,JPanel a,JDialog inforDonHang) {
         initComponents();
         this.data=data;
         this.a = a;
         this.inforDonHangDialog = inforDonHang;
-        this.now = LocalDateTime.now();  
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
-        String formatDateTime = now.format(format);  
+       
 
         danhsachkhachhang = qlbh_bus.getALLKhachHang();
         btnComplete.setBackground(new Color(255, 255, 255));
@@ -64,27 +63,12 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         btnBack.setBackground(new Color(255, 255, 255));
  
         // Lấy danh sách khách hàng
-        for (String khachhang : danhsachkhachhang) {
-            cbbKhachHang.addItem((khachhang));
-        }
-        
-        // set giá sau khi áp dụng khuyến mãi
-        int giasaukm=0;
-        for (Model_GioHang model_GioHang : data) {
-            giasaukm +=giasaukm+  model_GioHang.getKhuyenmai()*model_GioHang.getTongTien();
-           SL+=model_GioHang.getSoluong();
-           TT+=model_GioHang.getTongTien();
-//           cbbSanPham.addItem(model_GioHang.getName());
-        }
-       lbNgayBan.setText(formatDateTime);
+       
 //    final DefaultComboBoxModel model = new DefaultComboBoxModel(danhsachsanpham); 
 //    cbbKhachHang.setModel(model);
-        lbSoLuong.setText(String.valueOf(SL));
-        lbnTongTien.setText(String.valueOf(TT)+ " VND");
-        lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm));
-        lbThanhToan.setText("Thanh toán trực tiếp");
+     
         // set data Table
-        
+        LoadInforData();
         model.addColumn("STT");        
         model.addColumn("Tên sản phẩm");        
         model.addColumn("Loại");
@@ -105,6 +89,29 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 //                jTable1.setSize(jTable1.getWidth(),jTable1.getRowHeight()*model.getRowCount());
 
     }
+    // load dữ liệu liên quan lên form
+   public void LoadInforData()
+   {
+       for (String khachhang : danhsachkhachhang) {
+            cbbKhachHang.addItem((khachhang));
+        }
+        // Load thông tin dữ liệu
+        // set giá sau khi áp dụng khuyến mãi
+        int giasaukm=0;
+        for (Model_GioHang model_GioHang : data) {
+            giasaukm +=giasaukm +  (model_GioHang.getKhuyenmai()*1.0/100) *model_GioHang.getTongTien();
+           SL+=model_GioHang.getSoluong();
+           TT+=model_GioHang.getTongTien();
+//           cbbSanPham.addItem(model_GioHang.getName());
+        }
+       this.now = LocalDateTime.now();  
+       String formatDateTime = now.format(format);  
+       lbNgayBan.setText(formatDateTime); 
+       lbSoLuong.setText(String.valueOf(SL));
+        lbnTongTien.setText(String.valueOf(TT)+ " VND");
+        lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm)+" VND");
+        lbThanhToan.setText("Thanh toán trực tiếp");
+   }
      public void SetDefautlTable() {
         
         jTable1.removeAll();

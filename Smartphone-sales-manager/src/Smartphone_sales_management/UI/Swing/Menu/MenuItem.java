@@ -22,7 +22,7 @@ public class MenuItem extends javax.swing.JPanel {
     public MenuItem(Model_Menu data,int index) {
                 initComponents();
         this.data=data;
-        this.setBackground(Color.GRAY);
+        this.setBackground(new Color(152, 141, 172));
         if(data.getType() == Model_Menu.MenuType.MENU)
             {
                 lbIcon.setIcon(data.toIcon());
@@ -75,6 +75,11 @@ public class MenuItem extends javax.swing.JPanel {
         lbName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 51, 0));
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
 
         lbName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
@@ -99,6 +104,11 @@ public class MenuItem extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        System.out.println("Da Di chuyen qua");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseMoved
 
 //@Override
 //    protected void paintChildren(Graphics g) {

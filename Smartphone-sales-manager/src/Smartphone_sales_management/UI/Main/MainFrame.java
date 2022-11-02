@@ -33,8 +33,8 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
 
-//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
@@ -42,8 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         jPanel1.setLayout(new GridLayout());
         jPanel1.add(a);
-
-        pack();
+        a.validate();
         menu2.addEventMenu(new EventMenu() {
             @Override
             public void selected(int index) {
@@ -58,19 +57,39 @@ public class MainFrame extends javax.swing.JFrame {
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
-                    System.out.println("Vuong da vao nef 0");
-                    pack();
+                    a.validate();
+//                    pack();
 
                 }
                 if (index == 1) {
-                    jPanel1.removeAll();
-                    pack();
-                    jPanel1.repaint();
+                    
+                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+
+                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+//                    pack();
+                    
+//                    
+//                    jPanel1.removeAll();
+//                    pack();
+//                    jPanel1.repaint();
 
                 }
                 if (index == 2) {
+                    
+                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+
                     jPanel1.removeAll();
-                    jPanel1.repaint();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+//                    pack();
+//                    jPanel1.removeAll();
+//                    jPanel1.repaint();
 
                 }
 

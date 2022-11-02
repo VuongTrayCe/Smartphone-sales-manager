@@ -153,10 +153,10 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addComponent(detailDonHangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -167,11 +167,11 @@ public class MainContentDonHang extends javax.swing.JPanel {
                                 .addGap(26, 26, 26)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                                 .addGap(12, 12, 12)
-                                .addComponent(txtTimkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                                .addComponent(txtTimkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox2, 0, 140, Short.MAX_VALUE)))
+                                .addComponent(jComboBox2, 0, 139, Short.MAX_VALUE)))
                         .addGap(25, 25, 25))))
         );
         jPanel1Layout.setVerticalGroup(

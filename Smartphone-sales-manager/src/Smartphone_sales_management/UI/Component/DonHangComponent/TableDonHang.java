@@ -68,6 +68,7 @@ public class TableDonHang extends javax.swing.JPanel {
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
+        System.out.println("Xuat thanh cong");
         jScrollPane1.repaint();
 
     }

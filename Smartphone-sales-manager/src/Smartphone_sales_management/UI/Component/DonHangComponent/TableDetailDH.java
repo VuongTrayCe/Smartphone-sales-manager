@@ -25,9 +25,10 @@ public class TableDetailDH extends javax.swing.JPanel {
 //    public int indexSelected
     public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+    TableDonHang donHang = new TableDonHang("", 0);
     ArrayList data = new ArrayList();
     String tenTrangThai = "ALL";
-   
+
     public TableDetailDH(int index, String tenTrangThai) {
         initComponents();
         selectedIndex = index;
@@ -45,7 +46,7 @@ public class TableDetailDH extends javax.swing.JPanel {
             jComboBox1.setModel(modelTenSP);
             DisplayInfor();
         }
-        
+
     }
 
     public void DisplayInfor() {
@@ -360,8 +361,9 @@ public class TableDetailDH extends javax.swing.JPanel {
     private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?");
         if (a == JOptionPane.YES_OPTION) {
-            qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
+//            qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
             DisplayInfor();
+            donHang.SetDefaultTable(tenTrangThai, selectedIndex);
         }
     }//GEN-LAST:event_deleteBtnMouseClicked
 

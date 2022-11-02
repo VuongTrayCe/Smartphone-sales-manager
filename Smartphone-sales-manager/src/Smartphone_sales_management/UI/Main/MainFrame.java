@@ -58,19 +58,36 @@ public class MainFrame extends javax.swing.JFrame {
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
-                    System.out.println("Vuong da vao nef 0");
                     pack();
 
                 }
                 if (index == 1) {
-                    jPanel1.removeAll();
+                    
+                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+
+                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
                     pack();
-                    jPanel1.repaint();
+                    
+//                    
+//                    jPanel1.removeAll();
+//                    pack();
+//                    jPanel1.repaint();
 
                 }
                 if (index == 2) {
+                    
+                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+
                     jPanel1.removeAll();
-                    jPanel1.repaint();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    pack();
+//                    jPanel1.removeAll();
+//                    jPanel1.repaint();
 
                 }
 

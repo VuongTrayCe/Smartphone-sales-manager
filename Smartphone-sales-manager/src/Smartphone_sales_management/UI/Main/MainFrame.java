@@ -33,8 +33,8 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
 
-//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 

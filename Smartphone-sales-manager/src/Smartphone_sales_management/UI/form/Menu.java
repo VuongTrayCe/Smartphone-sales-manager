@@ -24,6 +24,9 @@ import java.text.AttributedCharacterIterator;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
+import Smartphone_sales_management.UI.Swing.Menu.NewJPanel;
+import javax.swing.JList;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -36,56 +39,81 @@ public class Menu extends javax.swing.JPanel {
      */
     private EventMenu event;
     
-    
+    int index;
      public void addEventMenu(EventMenu event) {
         this.event = event;
 //        event.selected(0);
 //        listMenu1.addEventMenu(event);
 
 
-     listMenu1.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(listMenu1.getSelectedIndex()==0)
+//     listMenu1.addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//                if(listMenu1.getSelectedIndex()==0)
+//                {
+//                   selectedIndex=0;
+//                   listMenu1.repaint();
+//                  event.selected(selectedIndex);4
+
+   listMenu1.addMouseListener(new MouseAdapter() {
+    public void mouseClicked(MouseEvent evt) {
+        JList list = (JList)evt.getSource();
+
+
+        if (evt.getClickCount() == 1) {
+
+            // Double-click detected
+           index = list.locationToIndex(evt.getPoint());
+        }
+//        } else if (evt.getClickCount() == 3) {
+//            
+//            // Triple-click detected
+//           index = list.locationToIndex(evt.getPoint());         
+//                }
+        
+                if(index==0)
                 {
                    selectedIndex=0;
                    listMenu1.repaint();
                   event.selected(selectedIndex);
-                  
-                  
-                  
                 }
-                if(listMenu1.getSelectedIndex()==1)
+                if(index==1)
                 {
                     selectedIndex=1;
                    listMenu1.repaint();
-                  event.selected(1);
-                  
+                  event.selected(1); 
                 }
-                if(listMenu1.getSelectedIndex()==2)
+                if(index==2)
                 {
                     selectedIndex=2;
                    listMenu1.repaint();
-                  event.selected(2);
-                  
+                  event.selected(2);             
                 }
-                if(listMenu1.getSelectedIndex()==3)
+                if(index==3)
                 {
                     selectedIndex=3;
                    listMenu1.repaint();
                   event.selected(3);
-                  
                 }
-                if(listMenu1.getSelectedIndex()==4)
+                if(index==4)
                 {
                     selectedIndex=4;
                    listMenu1.repaint();
                   event.selected(4);
+//                          listMenu1.add2(5,new NewJPanel());
+
+                }
+                if(index==5)
+                {
+                    
+                    selectedIndex=5;
+                   listMenu1.repaint();
+                  event.selected(5);
                   
                 }
-                if(listMenu1.getSelectedIndex()==5)
+                 if(index==6)
                 {
-                    selectedIndex=5;
+                    selectedIndex=6;
                    listMenu1.repaint();
                   event.selected(5);
                   
@@ -107,6 +135,7 @@ public class Menu extends javax.swing.JPanel {
          init();
         setOpaque(false);
         listMenu1.setOpaque(false);
+//        listMenu1.setBorder(new EmptyBorder(50,10, 10, 10));
 //        listMenu1.addListSelectionListener(new ListSelectionListener() {
 //            @Override
 //            public void valueChanged(ListSelectionEvent e) {
@@ -153,6 +182,8 @@ public class Menu extends javax.swing.JPanel {
                    listMenu1.addItem(new Model_Menu("PhieuNhap","Phiếu Nhập", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("NhanVien","Con Người", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("ThongKe","Thống Kê", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("TaiKhoan","Tài Khoản", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("TaiKhoan","Tài Khoản", Model_Menu.MenuType.MENU));
 
 
     }

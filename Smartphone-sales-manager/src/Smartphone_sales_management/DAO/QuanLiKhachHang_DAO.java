@@ -5,12 +5,11 @@
 package Smartphone_sales_management.DAO;
 
 import Smartphone_sales_management.DBConnect;
-import Smartphone_sales_management.UI.Component.KhachHangComponent.khachhang;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.Vector;
@@ -34,14 +33,14 @@ public class QuanLiKhachHang_DAO {
         ArrayList<Model_KhachHang> dskh = new ArrayList<Model_KhachHang>();
         db.setupConnection();
         try {
-            preparedStatement stm = db.getConnection().preparedStatement("select * KhachHang");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * khachhang");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_KhachHang a = new Model_KhachHang();
                 a.setMakh(rs.getInt("Makh"));
                 a.setTenkh(rs.getString("Tenkh"));
                 a.setCmnd(rs.getString("Cmnd"));
-                a.setSDT(rs.Int("SDT"));
+                a.setSDT(rs.getInt("SDT"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setEmail(rs.getString("Email"));
                 a.setNgaytao(rs.getString("Ngaytao"));
@@ -52,10 +51,11 @@ public class QuanLiKhachHang_DAO {
             }
              return dskh;
         } catch (SQLException ex) {
-            return null;
+            System.out.println(ex);
         } finally {
             db.closeConnection();
         }
+        return null;
     }
     public boolean inserKhachHang(Model_KhachHang KhachHang) {
         boolean isSuccess = false;
@@ -136,7 +136,8 @@ public class QuanLiKhachHang_DAO {
         
         return isSuccess;
     }
-    public boolean updatekhachhang(Model_KhachHang) {
+    
+    public boolean updatekhachhang(Model_KhachHang khachhang) {
         boolean isSuccess = false;
         System.out.println(khachhang.getMakh());
         System.out.println(khachhang.getTenkh());

@@ -57,7 +57,7 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText(),modelGiohang.getKhuyenmai(),modelGiohang.getBaohanh());
+                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText(),modelGiohang.getKhuyenmai(),modelGiohang.getBaohanh(),modelGiohang.getMasp(),modelGiohang.getMakhuyenmai(),modelGiohang.getMabaohanh());
 //                  modelGiohang.setSoluong(1);
 //                Model_GioHang data = modelGiohang;
                 event.addGiohang(data);
@@ -95,7 +95,7 @@ public class TableDetailBH extends javax.swing.JPanel {
             chuoiChinh += (string + "\n");
         }
         taThongSo.setText(chuoiChinh);
-        System.out.println(chuoiChinh);
+//        System.out.println(chuoiChinh);
 
         if (model.getIcon() != null) {
             this.urlImage = model.getIcon();
@@ -114,6 +114,10 @@ public class TableDetailBH extends javax.swing.JPanel {
         modelGiohang.setBaohanh(model.getBaohanh());
         modelGiohang.setIcon(urlImage);
         modelGiohang.setType(GioHangType.MENU);
+        modelGiohang.setMasp(model.getMasp());
+        modelGiohang.setMakhuyenmai(model.getMakm());
+        modelGiohang.setMabaohanh(model.getMabh());
+
 //        System.out.println(modelGiohang.getSoluong()); 
 
     }

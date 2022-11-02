@@ -21,9 +21,6 @@ import java.util.logging.Logger;
 public class QuanLyNhanVien_BUS {
     private ArrayList<Model_NhanVien> dsnv = null;
     private QuanLyNhanVien_DAO qlnv = new QuanLyNhanVien_DAO();
-//    public QuanLyNhanVien_BUS(){
-//        this.dsnv = qlnv.getDanhSachNhanVien_DAO();
-//    }
     public ArrayList<Model_NhanVien> getDanhSachNhanVien(){
         this.dsnv = qlnv.getDanhSachNhanVien_DAO();
         return dsnv;
@@ -34,6 +31,7 @@ public class QuanLyNhanVien_BUS {
         if(nhanvien != null){
         qlnv.insertNhanVien(nhanvien);
         }
+        
         return isSuccess;
     }
     public int getSoTTMANV(){
@@ -61,11 +59,11 @@ public class QuanLyNhanVien_BUS {
         return isSuccess;
      }
         
-        public boolean ExistsNhanVien(String cccd) {
+        public boolean ExistsNhanVien(int cccd) {
 		boolean isExists = false;	
 
 		for(Model_NhanVien nhanVien : dsnv) {
-			if (nhanVien.getSoCCCD().equals(cccd)) {
+			if (nhanVien.getSoCCCD() == cccd) {
 				isExists = true;
 				break;
 			}
@@ -101,7 +99,7 @@ public class QuanLyNhanVien_BUS {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<Model_NhanVien> nvds = new ArrayList<>();
         for (Model_NhanVien nv : dsnv) {
-            String  cccd = nv.getSoCCCD().toLowerCase();
+            String  cccd = Integer.toString(nv.getSoCCCD()).toLowerCase();
             if (cccd.contains(tuKhoa)) {
                 nvds.add(nv);
             }

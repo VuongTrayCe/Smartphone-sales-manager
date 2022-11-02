@@ -36,7 +36,7 @@ public class QuanLyNhanVien_DAO {
                 Model_NhanVien a = new Model_NhanVien();
                 a.setMaNV(rs.getInt("Manv"));
                 a.setTenNV(rs.getString("Tennv"));
-                a.setSoCCCD(rs.getString("SoCCCD"));
+                a.setSoCCCD(rs.getInt("SoCCCD"));
                 a.setTuoi(rs.getInt("Tuoi"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setChucDanh(rs.getString("Chucdanh"));
@@ -59,7 +59,7 @@ public class QuanLyNhanVien_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
                         preparedStatement.setInt(1, NhanVien.getMaNV());
 			preparedStatement.setString(2, NhanVien.getTenNV());
-                        preparedStatement.setString(3, NhanVien.getSoCCCD());
+                        preparedStatement.setInt(3, NhanVien.getSoCCCD());
                         preparedStatement.setInt(4, NhanVien.getTuoi());
                         preparedStatement.setString(5, NhanVien.getDiaChi());
                         preparedStatement.setString(6, NhanVien.getChucDanh());
@@ -125,12 +125,6 @@ public class QuanLyNhanVien_DAO {
 	}
        public boolean updateNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
-                System.out.println(NhanVien.getMaNV());
-                System.out.println(NhanVien.getTenNV());
-                System.out.println(NhanVien.getSoCCCD());
-                System.out.println(NhanVien.getDiaChi());
-                System.out.println(NhanVien.getChucDanh());
-                System.out.println(NhanVien.getTrangThai());
                 db.setupConnection();
 		String sqlString = "update nhanvien set TenNV = ?, SoCCCD = ?, Tuoi = ?, DiaChi = ?, ChucDanh = ? where Manv=?";
 
@@ -138,7 +132,7 @@ public class QuanLyNhanVien_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
 			preparedStatement.setString(1, NhanVien.getTenNV());
-			preparedStatement.setString(2, NhanVien.getSoCCCD());
+			preparedStatement.setInt(2, NhanVien.getSoCCCD());
 			preparedStatement.setInt(3, NhanVien.getTuoi());
                         preparedStatement.setString(4, NhanVien.getDiaChi());
 			preparedStatement.setString(5, NhanVien.getChucDanh());

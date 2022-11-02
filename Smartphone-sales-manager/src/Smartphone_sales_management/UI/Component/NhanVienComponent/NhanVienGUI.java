@@ -4,7 +4,6 @@
  */
 package Smartphone_sales_management.UI.Component.NhanVienComponent;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
-import Smartphone_sales_management.KHONGCHONHAPCHU;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.awt.Color;
@@ -12,6 +11,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
@@ -27,7 +27,6 @@ import javax.swing.text.AbstractDocument;
 public class NhanVienGUI extends javax.swing.JPanel {
 
        private QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
-//        private DefaultTableModel model = new DefaultTableModel();
        DefaultTableModel model;
         // = 1 la trang thai them nhan vien, 2 la thang trai chinh sua thong tin
         private int stateForm;
@@ -39,8 +38,11 @@ public class NhanVienGUI extends javax.swing.JPanel {
         initComponents();
         jLMaNV.setVisible(false);
         jtMaNV.setVisible(false);
+        jButtonUpdate.setToolTipText("UPDATE NHÂN VIÊN");
+        jButtonXoa.setToolTipText("DELETE NHÂN VIÊN");
+        jbthemnv.setToolTipText("INSERT NHÂN VIÊN");
+        jBrefesh.setToolTipText("REFRESH");
         model = (DefaultTableModel) jTable1.getModel();
-        setDocument();
         model.addColumn("MaNV");        
          model.addColumn("TenNV");
          model.addColumn("SoCCCD");
@@ -79,22 +81,14 @@ public class NhanVienGUI extends javax.swing.JPanel {
         }
         jScrollPane1.repaint();
     }
-      private void setDocument(){
-          AbstractDocument jt = (AbstractDocument)jtMaNV.getDocument();
-        jt.setDocumentFilter(new KHONGCHONHAPCHU());
-        AbstractDocument jtcd = (AbstractDocument)jtcccd.getDocument();
-        jtcd.setDocumentFilter(new KHONGCHONHAPCHU());
-         AbstractDocument jtTuoinv = (AbstractDocument)jtTuoi.getDocument();
-        jtTuoinv.setDocumentFilter(new KHONGCHONHAPCHU());
 
-    }
        public void showAll(ArrayList<Model_NhanVien> nv) {
         model.setRowCount(0);
         for (int i = 0; i < nv.size(); i++) {
             model.addRow(new String[]{
                 Integer.toString(nv.get(i).getMaNV()),
                 nv.get(i).getTenNV(),
-                nv.get (i).getSoCCCD(),
+                Integer.toString(nv.get (i).getSoCCCD()),
                 Integer.toString(nv.get(i).getTuoi()),
                 nv.get(i).getDiaChi(),
                 nv.get(i).getChucDanh(),
@@ -331,6 +325,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(233, 213, 218));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "TÌM KIẾM", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Baloo 2", 1, 18))); // NOI18N
         jPanel4.setToolTipText("");
+        jPanel4.setVerifyInputWhenFocusTarget(false);
 
         jLabel10.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
         jLabel10.setText("Nhập từ khóa");
@@ -349,6 +344,11 @@ public class NhanVienGUI extends javax.swing.JPanel {
         buttonGroup2.add(rdbDiaChi);
         rdbDiaChi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         rdbDiaChi.setText("Địa chỉ");
+        rdbDiaChi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbDiaChiActionPerformed(evt);
+            }
+        });
 
         rdbSocccd.setBackground(new java.awt.Color(233, 213, 218));
         buttonGroup2.add(rdbSocccd);
@@ -573,8 +573,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -620,6 +620,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String diachi = jTextDiaChi.getText();
         String chucdanh = jtChucdanh.getText();
 
+        Pattern p = Pattern.compile("^[0-9]+$");
+        
         if(ten.length() == 0){
             JOptionPane.showMessageDialog(jtTen,"Bạn chưa nhập tên nhân viên");
             return;
@@ -630,15 +632,18 @@ public class NhanVienGUI extends javax.swing.JPanel {
         }
         if( Integer.parseInt(tuoi) < 18){
             JOptionPane.showMessageDialog(jtTuoi,"Bạn cần nhập lại tuổi");
+            return;
         }
         if( Integer.parseInt(tuoi) > 70){
             JOptionPane.showMessageDialog(jtTuoi,"Số tuổi cần nhập lại tuổi");
+            return;
         }
+        
         if(Socccd.length() < 0){
             JOptionPane.showMessageDialog(jtcccd,"Bạn cần nhập số CCCD");
             return;
         }
-        if(qlnv.ExistsNhanVien(Socccd)){
+        if(qlnv.ExistsNhanVien(Integer.parseInt(Socccd))){
             JOptionPane.showMessageDialog(jtcccd, "Số căn cước đã tồn tại");
             return;
         }
@@ -652,30 +657,41 @@ public class NhanVienGUI extends javax.swing.JPanel {
         }
         if(diachi.length()>= 50){
             JOptionPane.showMessageDialog(jTextDiaChi,"Bạn nhập sai thông tin diachi");
+            return;
 
         }
         if(chucdanh.length() == 0){
             JOptionPane.showMessageDialog(jtChucdanh,"Bạn chưa nhập chức danh");
+            return;
         }
         if(chucdanh.length()>= 50){
             JOptionPane.showMessageDialog(jtChucdanh,"Bạn nhập sai thông tin chuc danh");
-
+            return;
         }
         QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
 
         Model_NhanVien NhanVien = new Model_NhanVien();
         NhanVien.setTenNV(ten);
+        if(p.matcher(tuoi).find()){
         NhanVien.setTuoi(Integer.parseInt(tuoi));
-        NhanVien.setSoCCCD(Socccd);
+        }else{
+            JOptionPane.showMessageDialog(jtTuoi,"Bạn nhập sai kiểu dữ liệu của tuổi");
+                return;
+        }
+        if(p.matcher(Socccd).find()){
+        NhanVien.setSoCCCD(Integer.parseInt(Socccd));
+        }else{
+            JOptionPane.showMessageDialog(jtTuoi,"Bạn nhập sai kiểu dữ liệu của SoCCCD");
+               return;
+        }
         NhanVien.setDiaChi(diachi);
         NhanVien.setChucDanh(chucdanh);
         NhanVien.setTrangThai("T");
         NhanVien.setMaNV(qlnv.getSoTTMANV());
         
         qlnv.AddNhanVien(NhanVien);
-        
+
         SetDefaultTable();
-        jtMaNV.setText("");
         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");
@@ -699,7 +715,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
       jtMaNV.setText(Integer.toString(NhanVien.getMaNV()));
       jtTen.setText(NhanVien.getTenNV());
       jtTuoi.setText(Integer.toString(NhanVien.getTuoi()));
-      jtcccd.setText(NhanVien.getSoCCCD());
+      jtcccd.setText(Integer.toString(NhanVien.getSoCCCD()));
       jTextDiaChi.setText(NhanVien.getDiaChi());
       jtChucdanh.setText(NhanVien.getChucDanh());
       jtTen.repaint();
@@ -720,7 +736,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         NhanVien.setMaNV(Integer.parseInt(Manv));
         NhanVien.setTenNV(Ten);
         NhanVien.setTuoi(Integer.parseInt(Tuoi));
-        NhanVien.setSoCCCD((SoCCCD));
+        NhanVien.setSoCCCD(Integer.parseInt(Tuoi));
         NhanVien.setDiaChi(Diachi);
         NhanVien.setChucDanh(Chucdanh);       
         truyendulieu(NhanVien);
@@ -731,12 +747,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
 			JOptionPane.showMessageDialog(jButtonXoa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhân viên để xóa");
 			return;
 		}
-        String tennv = jtMaNV.getText();
-      if(tennv.length()>0){
+        String manv = jtMaNV.getText();
+      if(manv.length()>0){
        qlnv.deleteNhanVien(Integer.parseInt(jtMaNV.getText()));
        SetDefaultTable();
       }
-      if(tennv.length() == 0){
+      if(manv.length() == 0){
         JOptionPane.showMessageDialog(jlTenNhanVien, "Bạn cần phải nhập mã nhân viên cần xóa");
     }
      jtMaNV.setText("");
@@ -764,7 +780,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String Socccd = jtcccd.getText();
         String diachi = jTextDiaChi.getText();
         String chucdanh = jtChucdanh.getText();
-
+    
         if(ten.length() == 0){
             JOptionPane.showMessageDialog(jtTen,"Bạn chưa nhập tên nhân viên");
             return;
@@ -775,9 +791,11 @@ public class NhanVienGUI extends javax.swing.JPanel {
         }
         if( Integer.parseInt(tuoi) < 18){
             JOptionPane.showMessageDialog(jtTuoi,"Bạn cần nhập lại tuổi");
+            return;
         }
         if( Integer.parseInt(tuoi) > 70){
             JOptionPane.showMessageDialog(jtTuoi,"Số tuổi cần nhập lại tuổi");
+            return;
         }
         if(Socccd.length() < 0){
             JOptionPane.showMessageDialog(jtcccd,"Bạn cần nhập số CCCD");
@@ -805,13 +823,22 @@ public class NhanVienGUI extends javax.swing.JPanel {
         QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
         Model_NhanVien NhanVien = new Model_NhanVien();
         NhanVien.setMaNV(Integer.parseInt(manv));
-        
         NhanVien.setTenNV(ten);
+        Pattern p = Pattern.compile("^[0-9]+$");
+        if(p.matcher(tuoi).find()){
         NhanVien.setTuoi(Integer.parseInt(tuoi));
-        NhanVien.setSoCCCD(Socccd);
+        }else{
+            JOptionPane.showMessageDialog(jtTuoi,"Bạn nhập sai kiểu dữ liệu của tuổi");
+            return;
+        }
+        if(p.matcher(Socccd).find()){
+        NhanVien.setSoCCCD(Integer.parseInt(Socccd));
+        }else{
+            JOptionPane.showMessageDialog(jtTuoi,"Bạn nhập sai kiểu dữ liệu của SoCCCD");
+             return;
+        }
         NhanVien.setDiaChi(diachi);
-        NhanVien.setChucDanh(chucdanh);
-        NhanVien.setTrangThai("T");
+        NhanVien.setChucDanh(chucdanh); 
         
        qlnv.updateNhanVien(NhanVien);
        
@@ -830,7 +857,6 @@ public class NhanVienGUI extends javax.swing.JPanel {
         stateForm = 1;
         jLMaNV.setVisible(false);
         jtMaNV.setVisible(false);
-        jtMaNV.setText("");
         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");
@@ -881,19 +907,31 @@ public class NhanVienGUI extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Không được bỏ trống thông tin", "Thông báo", JOptionPane.WARNING_MESSAGE);
 
                 } else {
+                        Pattern p = Pattern.compile("^[0-9]+$");
+                     if (p.matcher(txtMaBD.getText()).find() && p.matcher(txtMaKT.getText()).find()) {
                     ArrayList<Model_NhanVien> dsnv = qlnv.timKiemMaNVNangCao(txtMaBD.getText(), txtMaKT.getText());
                     showAll(dsnv);
+                    }else{
+                    JOptionPane.showMessageDialog(null, "Bạn phải nhập vào kiểu Int cho MaNV", "Thông báo", JOptionPane.WARNING_MESSAGE);
+
+                     }
                 }
             }
-        
+   
             if (rdbTuoiNC.isSelected()) {
                 if (txtTuoiBD.getText().equals("") && txtTuoiKT.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Không được  bỏ trống thông tin", "Thông báo", JOptionPane.WARNING_MESSAGE);
-                
+//                
+                   
                 } else {
-                    ArrayList<Model_NhanVien> dsnv = qlnv.timKiemTuoiNangCao(txtTuoiBD.getText(), txtTuoiKT.getText());
-                    showAll(dsnv);
-                    System.out.println("error");
+                    Pattern p = Pattern.compile("^[0-9]+$");
+                    if (p.matcher(txtTuoiBD.getText()).find() && p.matcher(txtTuoiKT.getText()).find()) {
+                        ArrayList<Model_NhanVien> dsnv = qlnv.timKiemTuoiNangCao(txtTuoiBD.getText(), txtTuoiKT.getText());
+                        showAll(dsnv);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Bạn phải nhập vào kiểu Int cho Tuổi", "Thông báo", JOptionPane.WARNING_MESSAGE);
+
+                    }
                 }
             }
         }  
@@ -918,6 +956,10 @@ public class NhanVienGUI extends javax.swing.JPanel {
         buttonGroup2.clearSelection();
         buttonGroup3.clearSelection();
     }//GEN-LAST:event_jLALLMouseClicked
+
+    private void rdbDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbDiaChiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbDiaChiActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnResetSearch;

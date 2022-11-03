@@ -110,5 +110,9 @@ public class Model_KhachHang {
     public String[] toArrayString() {
 		return new String[] {Integer.toString(Makh),Tenkh,Cmnd,Integer.toString(SDT),DiaChi,Email,Ngaytao,Integer.toString(Diemso),TrangThai};
 }
+
+    public void setSĐT(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

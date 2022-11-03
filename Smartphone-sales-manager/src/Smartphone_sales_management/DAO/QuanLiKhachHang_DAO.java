@@ -33,7 +33,7 @@ public class QuanLiKhachHang_DAO {
         ArrayList<Model_KhachHang> dskh = new ArrayList<Model_KhachHang>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * khachhang");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from khachhang");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_KhachHang a = new Model_KhachHang();
@@ -192,5 +192,46 @@ public class QuanLiKhachHang_DAO {
                             
         
     }
+      public boolean insertKhachHang(Model_KhachHang KhachHang) {
+		boolean isSuccess = false;
+                 db.setupConnection();
+		String sqlString = "insert into khachhang values (?, ?, ?, ? )";
+		try {
+			preparedStatement = db.getConnection().prepareStatement(sqlString);
+                        preparedStatement.setInt(1, KhachHang.getMakh());
+			preparedStatement.setString(2, KhachHang.getTenkh());
+                        preparedStatement.setString(3, KhachHang.getCmnd());
+                        preparedStatement.setInt(4, KhachHang.getSDT());
+                        preparedStatement.setString(5, KhachHang.getDiaChi());
+                        preparedStatement.setString(6, KhachHang.getEmail());
+                        preparedStatement.setString(7, KhachHang.getNgaytao());
+                        preparedStatement.setInt(8, KhachHang.getDiemso());
+                        preparedStatement.setString(9, KhachHang.getTrangThai());
+                        
+                        
+			int n = preparedStatement.executeUpdate();
+                        if (n != 0) {
+                     JOptionPane.showMessageDialog(null, "Thêm dữ liệu thành công", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
+			isSuccess = true;
+                        }
+		}
+		catch(SQLException ex) {
+			 System.out.println(ex);
+                        JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+		}
+		finally {
+			try {
+                                   db.closeConnection();
+				preparedStatement.close();
+			}
+			catch(SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		return isSuccess;
+                
+	}
    
 }

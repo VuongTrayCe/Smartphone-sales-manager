@@ -5,6 +5,7 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLiKhachHang_DAO;
+import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
 import java.util.ArrayList;
 
@@ -47,6 +48,22 @@ public boolean updateKhachHang(Model_KhachHang KhachHang){
     boolean isSuccess = false;
     qlkh.updatekhachhang(KhachHang);
     
- return isSuccess;
+    return isSuccess;
 }
+public boolean addkh(Model_KhachHang KhachHang) {
+     boolean isSuccess = false;
+        if(KhachHang != null){
+        qlkh.insertKhachHang(KhachHang);
+        }
+        
+        return isSuccess;
+    }
+
+    public boolean ExistsKhachHang(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int getSoTTMakh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -24,9 +24,9 @@ public class QuanLiSanPham_DAO {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n"
-                    + "FROM sanpham\n"
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp\n"
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n "
+                    + "FROM sanpham\n "
+                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp\n "
                     + "ORDER BY sanpham.Masp ASC");
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -51,14 +51,13 @@ public class QuanLiSanPham_DAO {
     public ArrayList layDanhSachChiTietSanPham(int Masp) {
         ArrayList result = new ArrayList();
         db.setupConnection();
-        System.out.println(Masp);
-        try {
-            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon\n"
-                    + "FROM sanpham\n"
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n"
-                    + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
-                    + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n"
-                    + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
+        try {System.out.println(Masp);
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon\n "
+                    + "FROM sanpham\n "
+                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n "
+                    + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n "
+                    + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n "
+                    + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n "
                     + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Machitietkhuyenmai");
             stm.setInt(1, Masp);
             rs = stm.executeQuery();
@@ -69,8 +68,8 @@ public class QuanLiSanPham_DAO {
                     result.add(rs.getDouble(3));
                     result.add(rs.getInt(4));
                     result.add(rs.getString(5));
-                    result.add(rs.getInt(6));
-                    result.add(rs.getInt(7));
+                    result.add(rs.getString(6));
+                    result.add(rs.getString(7));
                     result.add(rs.getDouble(8));
                     result.add(rs.getString(9));
                     result.add(rs.getString(10));

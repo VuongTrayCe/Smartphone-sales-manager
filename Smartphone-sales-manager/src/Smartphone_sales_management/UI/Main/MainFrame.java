@@ -8,7 +8,8 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanH
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
-import Smartphone_sales_management.UI.Component.KhachHangComponent.khachhang;
+import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
+import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import java.awt.Color;
@@ -37,9 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
 
-       MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-        
-     //   MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
@@ -52,12 +52,13 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-
-                  //  MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
+KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-                    khachhang a = new khachhang();
+
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());

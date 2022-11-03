@@ -26,7 +26,8 @@ public class QuanLiSanPham_DAO {
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n"
                     + "FROM sanpham\n"
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp");
+                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp\n"
+                    + "ORDER BY sanpham.Masp ASC");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
@@ -46,9 +47,88 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
-    
-//    public ArrayList layDanhSachChiTietSanPham(int Masp) {
-//        
-//    }
+
+    public ArrayList layDanhSachChiTietSanPham(int Masp) {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        System.out.println(Masp);
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon\n"
+                    + "FROM sanpham\n"
+                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n"
+                    + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
+                    + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n"
+                    + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
+                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Machitietkhuyenmai");
+            stm.setInt(1, Masp);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt(1));
+                    result.add(rs.getString(2));
+                    result.add(rs.getDouble(3));
+                    result.add(rs.getInt(4));
+                    result.add(rs.getString(5));
+                    result.add(rs.getInt(6));
+                    result.add(rs.getInt(7));
+                    result.add(rs.getDouble(8));
+                    result.add(rs.getString(9));
+                    result.add(rs.getString(10));
+                    result.add(rs.getString(11));
+                }
+            }
+            return result;
+
+        } catch (Exception e) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+
+    }
+
+    public ArrayList layMadh() {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp\n"
+                    + "FROM sanpham\n"
+                    + "ORDER BY sanpham.Masp ASC");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt("Masp"));
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public ArrayList layMadh2(String tenTrangThai) {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp\n"
+                    + "FROM sanpham\n"
+                    + "WHERE sanpham.TrangThai = ?"
+                    + "ORDER BY sanpham.Masp ASC");
+            stm.setString(1, tenTrangThai);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt("Masp"));
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
 
 }

@@ -26,7 +26,6 @@ public class TableSanPham extends javax.swing.JPanel {
      */
     QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
     DefaultTableModel model = new DefaultTableModel();
-    EventSanPham event;
     private String keyWord;
     private int selectedIndex;
 
@@ -45,19 +44,22 @@ public class TableSanPham extends javax.swing.JPanel {
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable(keyWord,selectedIndex);
+        SetDefaultTable(keyWord, selectedIndex);
         jTable1.setModel(model);
     }
-    
+
     public void addEventSanPham(EventSanPham event) {
-        this.event = event;
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 event.selectedIndex(jTable1.getSelectedRow());
             }
-        });
+        ;
     }
+
+    );
+    }
+
     public void SetDefaultTable(String keyWord, int selectedIndex) {
         jTable1.removeAll();
         model.setRowCount(0);
@@ -67,7 +69,8 @@ public class TableSanPham extends javax.swing.JPanel {
             model.addRow((Vector<?>) dataList.get(i));
         }
         panelTable.repaint();
-    } 
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

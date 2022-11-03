@@ -4,7 +4,11 @@
  */
 package Smartphone_sales_management.UI.Component.SanPhamComponent;
 
+import Smartphone_sales_management.UI.Event.SanPham.EventSanPham;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.awt.GridLayout;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -24,6 +28,38 @@ public class MainContentSanPham extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         sanPham = new TableSanPham("", jComboBox2.getSelectedIndex());
         jScrollPane1.setViewportView(sanPham);
+//        detailSPPanel.setLayout(new GridLayout());
+        sanPham.addEventSanPham(new EventSanPham() {
+            @Override
+            public int selectedIndex(int index) {
+                detailSPPanel.removeAll();
+                tableDetail = new TableDetailSP(index,jComboBox2.getSelectedItem().toString(),sanPham);
+                tableDetail.setBounds(0,0,detailSPPanel.getWidth(),detailSPPanel.getHeight());
+                detailSPPanel.add(tableDetail);
+                repaint();
+                tableDetail.validate();
+                return index;
+            }
+        });
+        
+               txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+            }
+        });
         
         
     }
@@ -39,10 +75,10 @@ public class MainContentSanPham extends javax.swing.JPanel {
 
         mainPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        detailSPPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
@@ -54,33 +90,33 @@ public class MainContentSanPham extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search-icon (1).png"))); // NOI18N
         jLabel8.setText("Tìm kiếm");
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setText("Nhập thông tin tìm kiếm");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtTimKiem.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtTimKiem.setForeground(new java.awt.Color(153, 153, 153));
+        txtTimKiem.setText("Nhập thông tin tìm kiếm");
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtTimKiemActionPerformed(evt);
             }
         });
 
         jComboBox2.setBackground(new java.awt.Color(204, 204, 255));
         jComboBox2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 51, 51));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên sản phẩm", "Loại sản phẩm", "Màu sắc", " " }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "T", "F", " " }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout detailSPPanelLayout = new javax.swing.GroupLayout(detailSPPanel);
+        detailSPPanel.setLayout(detailSPPanelLayout);
+        detailSPPanelLayout.setHorizontalGroup(
+            detailSPPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 325, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        detailSPPanelLayout.setVerticalGroup(
+            detailSPPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -94,12 +130,12 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(detailSPPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))))
@@ -109,13 +145,13 @@ public class MainContentSanPham extends javax.swing.JPanel {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(39, 39, 39)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(detailSPPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
         );
 
@@ -135,21 +171,22 @@ public class MainContentSanPham extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+        txtTimKiem.setText("");
+    }//GEN-LAST:event_txtTimKiemActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+        txtTimKiem.setText("");
+        sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel detailSPPanel;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

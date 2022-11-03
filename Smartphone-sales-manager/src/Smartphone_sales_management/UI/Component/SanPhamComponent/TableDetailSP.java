@@ -4,6 +4,10 @@
  */
 package Smartphone_sales_management.UI.Component.SanPhamComponent;
 
+import Smartphone_sales_management.BUS.QuanLiSanPham_BUS;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Admin
@@ -13,8 +17,40 @@ public class TableDetailSP extends javax.swing.JPanel {
     /**
      * Creates new form ChiTietSanPham
      */
-    public TableDetailSP() {
+    public static int selectedIndex = -1;
+    public String tenTrangThai;
+    QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
+    TableSanPham sanpham;
+    public TableDetailSP(int index, String tenTrangThai,TableSanPham sanpham) {
         initComponents();
+        this.selectedIndex =index;
+        this.sanpham = sanpham;
+        this.tenTrangThai = tenTrangThai;
+        DisplayInfo();
+    }
+    
+    public void DisplayInfo() {
+        ArrayList data = new ArrayList();
+        data = qlsp_BUS.layChitietSanPham(selectedIndex,this.tenTrangThai);
+//        System.out.println(data);
+        masplb.setText(data.get(0).toString());
+        tensplb.setText(data.get(1).toString());
+        giasplb.setText(data.get(2).toString()+"VND");
+        soluongsplb.setText(data.get(3).toString());
+        mausaclb.setText(data.get(4).toString());
+        namsxlb.setText(data.get(5).toString());
+        tgbhlb.setText(data.get(6).toString());
+        loaikmlb.setText(data.get(7).toString());
+        trangthailb.setText(data.get(8).toString());
+        taThongSo.setText(data.get(9).toString());
+        String icon =data.get(10).toString();
+        if(icon != null) {
+            char tem = '\\';
+            icon.replace(tem,'/');
+        }
+        imglbl.setIcon(new ImageIcon(getClass().getResource(icon)));
+        
+         
     }
 
     /**

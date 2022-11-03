@@ -56,13 +56,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="detailSPPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" pref="118" max="-2" attributes="0"/>
                           <EmptySpace pref="14" max="32767" attributes="0"/>
-                          <Component id="jTextField3" min="-2" pref="631" max="-2" attributes="0"/>
+                          <Component id="txtTimKiem" min="-2" pref="631" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jComboBox2" min="-2" pref="178" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -76,14 +76,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField3" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="txtTimKiem" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" pref="432" max="32767" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="detailSPPanel" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               </Group>
@@ -105,7 +105,7 @@
             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="txtTimKiem">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="16" style="0"/>
@@ -116,7 +116,7 @@
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p th&#xf4;ng tin t&#xec;m ki&#x1ebf;m"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTimKiemActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox2">
@@ -132,9 +132,9 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="T&#xea;n s&#x1ea3;n ph&#x1ea9;m"/>
-                <StringItem index="1" value="Lo&#x1ea1;i s&#x1ea3;n ph&#x1ea9;m"/>
-                <StringItem index="2" value="M&#xe0;u s&#x1eaf;c"/>
+                <StringItem index="0" value="All"/>
+                <StringItem index="1" value="T"/>
+                <StringItem index="2" value="F"/>
                 <StringItem index="3" value=" "/>
               </StringArray>
             </Property>
@@ -150,7 +150,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="detailSPPanel">
 
           <Layout>
             <DimensionLayout dim="0">

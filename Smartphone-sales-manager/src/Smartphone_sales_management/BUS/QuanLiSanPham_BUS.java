@@ -36,4 +36,21 @@ public class QuanLiSanPham_BUS {
         }
         return null;
     }
+
+    public ArrayList layChitietSanPham(int selectedIndex, String tenTrangThai) {
+        ArrayList dsctsp = new ArrayList();
+        ArrayList MaspList = new ArrayList();
+        if (tenTrangThai.equals("ALL")) {
+            MaspList = qlsp.layMadh();
+        } else {
+            MaspList = qlsp.layMadh2(tenTrangThai);
+        }
+        try {
+            dsctsp = qlsp.layDanhSachChiTietSanPham((int) MaspList.get(selectedIndex));
+        } catch (Exception e) {
+            return null;
+        }
+//        System.out.println(dsctsp);
+        return dsctsp;
+    }
 }

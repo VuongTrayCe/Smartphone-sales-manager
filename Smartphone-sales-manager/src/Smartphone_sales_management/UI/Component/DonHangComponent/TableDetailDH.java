@@ -27,7 +27,7 @@ public class TableDetailDH extends javax.swing.JPanel {
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
     TableDonHang donhang;
     ArrayList data = new ArrayList();
-    String tenTrangThai = "ALL";
+    String tenTrangThai;
 
     public TableDetailDH(int index, String tenTrangThai,DefaultTableModel model,TableDonHang donhang) {
         initComponents();

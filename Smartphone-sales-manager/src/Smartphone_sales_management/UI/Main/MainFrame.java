@@ -8,6 +8,8 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanH
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
+import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
+import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import java.awt.Color;
@@ -50,8 +52,9 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-
-                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
+KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);

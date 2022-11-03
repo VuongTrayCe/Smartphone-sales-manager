@@ -19,6 +19,33 @@ public class Model_BanHang_ChiTietSanPham {
     private String icon;
     private int ptkm;
     private String baohanh;
+    private int masp;
+    private int makm;
+    private int mabh;
+
+    public void setMasp(int masp) {
+        this.masp = masp;
+    }
+
+    public void setMakm(int makm) {
+        this.makm = makm;
+    }
+
+    public void setMabh(int mabh) {
+        this.mabh = mabh;
+    }
+
+    public int getMasp() {
+        return masp;
+    }
+
+    public int getMakm() {
+        return makm;
+    }
+
+    public int getMabh() {
+        return mabh;
+    }
 
     public String getBaohanh() {
         return baohanh;

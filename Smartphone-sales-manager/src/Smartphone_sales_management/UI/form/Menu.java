@@ -183,7 +183,7 @@ public class Menu extends javax.swing.JPanel {
                    listMenu1.addItem(new Model_Menu("NhanVien","Con Người", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("ThongKe","Thống Kê", Model_Menu.MenuType.MENU));
                    listMenu1.addItem(new Model_Menu("TaiKhoan","Tài Khoản", Model_Menu.MenuType.MENU));
-                   listMenu1.addItem(new Model_Menu("TaiKhoan","Tài Khoản", Model_Menu.MenuType.MENU));
+                   listMenu1.addItem(new Model_Menu("TaiKhoan","Chính sách", Model_Menu.MenuType.MENU));
 
 
     }

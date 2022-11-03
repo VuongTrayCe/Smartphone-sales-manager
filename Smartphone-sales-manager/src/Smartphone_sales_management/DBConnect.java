@@ -31,9 +31,9 @@ public class DBConnect {
     Connection conn = null;
 
     String server = "localhost:3306";
-    String dbName = "smartphonemanagement";
+    String dbName = "banhangdienthoai";
     String userName = "root";
-    String pass = "";
+    String pass = "03102002";
 
     public DBConnect() {
         checkDriver();

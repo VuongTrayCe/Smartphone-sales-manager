@@ -21,6 +21,8 @@ public class Model_GioHang {
     private String giatien;
     private int Soluong;
     private String Icon;
+    private int khuyenmai;
+    private String baohanh;
     
     
     
@@ -33,16 +35,43 @@ public class Model_GioHang {
     
     }
 
-    public Model_GioHang(String Name, String Loai, int Soluong, String Icon,GioHangType type,String giatien) {
+    public Model_GioHang(String Name, String Loai, int Soluong, String Icon,GioHangType type,String giatien,int khuyenmai,String baohanh) {
         this.Name = Name;
         this.Loai = Loai;
         this.Soluong = Soluong;
         this.Icon = Icon;
         this.type = type;
         this.giatien=giatien;
+        this.khuyenmai=khuyenmai;
+        this.baohanh=baohanh;
 
         
     }
+
+    public void setGiatien(String giatien) {
+        this.giatien = giatien;
+    }
+
+    public void setKhuyenmai(int khuyenmai) {
+        this.khuyenmai = khuyenmai;
+    }
+
+    public void setBaohanh(String baohanh) {
+        this.baohanh = baohanh;
+    }
+
+    public void setType(GioHangType type) {
+        this.type = type;
+    }
+
+    public int getKhuyenmai() {
+        return khuyenmai;
+    }
+
+    public String getBaohanh() {
+        return baohanh;
+    }
+    
     public Double getTongTien()
     {
         Double x = this.Soluong* Double.parseDouble(this.giatien.split(" ")[0]);

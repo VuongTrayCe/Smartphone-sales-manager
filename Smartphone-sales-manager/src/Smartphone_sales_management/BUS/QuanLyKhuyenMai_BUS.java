@@ -5,7 +5,7 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyKhuyenMai_DAO;
-import Smartphone_sales_management.UI.Model.Model_KhuyenMai;
+import Smartphone_sales_management.DTO.Model_KhuyenMai;
 import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import java.sql.SQLException;
 import java.util.ArrayList;

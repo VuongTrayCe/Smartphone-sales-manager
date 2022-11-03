@@ -7,21 +7,27 @@ package Smartphone_sales_management.UI.Component.KhuyenMaiComponent;
 import Smartphone_sales_management.BUS.QuanLyKhuyenMai_BUS;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
-import Smartphone_sales_management.UI.Model.Model_KhuyenMai;
+import Smartphone_sales_management.DTO.Model_KhuyenMai;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author lehongthai
  */
 public class KhuyenMaiGUI extends javax.swing.JPanel {
+
     private QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();
     private DefaultTableModel modelKM;
     private DefaultTableModel modelCTKM;
+
     /**
      * Creates new form KhuyenMaiGUI
      */
@@ -30,52 +36,73 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         showCTKM();
         showKM();
     }
-    
-    private void showCTKM(){
+
+    private void showCTKM() {
         modelCTKM = (DefaultTableModel) jTable1.getModel();
         modelCTKM.addColumn("MaChiTietKM");
         modelCTKM.addColumn("MaSP");
+        modelCTKM.addColumn("TenSP");
+
         modelCTKM.addColumn("MaKM");
         modelCTKM.addColumn("TrangThai");
+        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
+        });
+        jTable1.setRowHeight(25);
+        jTable1.getTableHeader().setForeground(Color.WHITE);
+        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+
+        jTable1.setModel(modelCTKM);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
+        jTable1.setRowSorter(sorter);
         setDefaultTableModelCTKM();
     }
-    
-    private void showKM(){
+
+    private void showKM() {
         modelKM = (DefaultTableModel) jTable2.getModel();
         modelKM.addColumn("MaKM");
         modelKM.addColumn("TenKM");
         modelKM.addColumn("PhanTramKM");
         modelKM.addColumn("TrangThai");
-        
+        jTable2.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTable2.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
+        });
+        jTable2.setRowHeight(25);
+        jTable2.getTableHeader().setForeground(Color.WHITE);
+        jTable2.getTableHeader().setBackground(new Color(14, 14, 14));
+
+        jTable2.setModel(modelKM);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable2.getModel());
+        jTable2.setRowSorter(sorter);
         setDefaultTableModelKM();
-}
-    
-     public void setDefaultTableModelCTKM(){
+    }
+
+    public void setDefaultTableModelCTKM() {
         jTable1.removeAll();
         modelCTKM.setRowCount(0);
         ArrayList<Model_ChiTietKM> dataList = new ArrayList<Model_ChiTietKM>();
         dataList = qlkm.getDanhSachKMChiTiet();
-        for(int i=0;i<dataList.size();i++){
+        for (int i = 0; i < dataList.size(); i++) {
             modelCTKM.addRow(dataList.get(i).toArrayString());
         }
         jScrollChiTietKM.repaint();
     }
-    
-    public void setDefaultTableModelKM(){
+
+    public void setDefaultTableModelKM() {
         jTable2.removeAll();
         modelKM.setRowCount(0);
         ArrayList<Model_KhuyenMai> dataList = new ArrayList<Model_KhuyenMai>();
         dataList = qlkm.getDanhSachKhuyenMai();
-        for(int i=0;i<dataList.size();i++){
+        for (int i = 0; i < dataList.size(); i++) {
             modelKM.addRow(dataList.get(i).toArrayString());
         }
         jScrollKM.repaint();
     }
-    public void truyendulieuKM(){
-    
-    
+
+    public void truyendulieuKM() {
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -123,6 +150,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(1045, 530));
 
         jPanelChiTietKM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jScrollChiTietKM.setPreferredSize(new java.awt.Dimension(402, 402));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,45 +213,50 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelMaCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextMaCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBRefeshCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCTMaSP, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBUpdateCTKM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jBUpdateCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextCTMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                        .addGap(52, 52, 52)
+                        .addComponent(jLabelCTMaSP)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextCTMaSP)
+                        .addGap(46, 46, 46)
                         .addComponent(jLableCTMaKM)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
                         .addComponent(jBThemCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBDeleteCTKM)
                     .addComponent(jTexCTMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextMaCTKM)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCTMaSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextCTMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLableCTMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelCTMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelMaCTKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTexCTMaKM))
+                        .addComponent(jLabelMaCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextMaCTKM)
+                        .addComponent(jTextCTMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTexCTMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLableCTMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBDeleteCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,17 +271,19 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanelChiTietKMLayout.setHorizontalGroup(
             jPanelChiTietKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelChiTietKMLayout.setVerticalGroup(
             jPanelChiTietKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelChiTietKMLayout.createSequentialGroup()
-                .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                .addGap(5, 5, 5)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelKM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jScrollKM.setPreferredSize(new java.awt.Dimension(402, 402));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,6 +311,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         });
 
         jBrefesh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Refresh.png"))); // NOI18N
+        jBrefesh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBrefeshActionPerformed(evt);
+            }
+        });
 
         jBThemKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add.png"))); // NOI18N
         jBThemKM.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +355,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jBrefesh, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +367,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextTenKm, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -367,14 +408,14 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanelKMLayout.setHorizontalGroup(
             jPanelKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollKM)
+            .addComponent(jScrollKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelKMLayout.setVerticalGroup(
             jPanelKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelKMLayout.createSequentialGroup()
-                .addComponent(jScrollKM, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(5, 5, 5)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollKM, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "TÌM KIẾM CHI TIẾT KHUYẾN MÃI", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
@@ -387,7 +428,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 104, Short.MAX_VALUE)
+            .addGap(0, 108, Short.MAX_VALUE)
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "TÌM KIẾM KHUYẾN MÃI", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
@@ -416,7 +457,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(3, 3, 3))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,10 +466,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelChiTietKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelChiTietKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6))
         );
 
@@ -463,10 +504,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextPtkmActionPerformed
 
     private void jBThemCTKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemCTKMActionPerformed
-       String Mactkm = jTextMaCTKM.getText();
-       String masp = jTextCTMaSP.getText();
-       String makm = jTexCTMaKM.getText();
-       
+        String Mactkm = jTextMaCTKM.getText();
+        String masp = jTextCTMaSP.getText();
+        String makm = jTexCTMaKM.getText();
+
         QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();
         Model_ChiTietKM ChiTietKM = new Model_ChiTietKM();
         ChiTietKM.setMachitietkhuyenmai(Integer.parseInt(Mactkm));
@@ -475,74 +516,95 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         ChiTietKM.setTrangThai("T");
         qlkm.insertChiTietKM(ChiTietKM);
         setDefaultTableModelCTKM();
+
+        jTextMaCTKM.setText("");
+        jTextCTMaSP.setText("");
+        jTexCTMaKM.setText("");
     }//GEN-LAST:event_jBThemCTKMActionPerformed
 
     private void jBThemKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemKMActionPerformed
         String makm = jTextMakm.getText();
         String tenkm = jTextTenKm.getText();
         String phantramkm = jTextPtkm.getText();
-        
+
         QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();
         Model_KhuyenMai KhuyenMai = new Model_KhuyenMai();
-        
+
         KhuyenMai.setMakm(Integer.parseInt(makm));
         KhuyenMai.setTenkm(tenkm);
         KhuyenMai.setPhantramkm(Float.parseFloat(phantramkm));
         KhuyenMai.setTrangthai("T");
-        
+
         qlkm.Addkhuyenmai(KhuyenMai);
-         setDefaultTableModelKM();
+        setDefaultTableModelKM();
+        jTextMakm.setText("");
+        jTextTenKm.setText("");
+        jTextPtkm.setText("");
     }//GEN-LAST:event_jBThemKMActionPerformed
 
     private void jBdeleteKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdeleteKMActionPerformed
         String makm = jTextMakm.getText();
-     if(makm.length()>0){
-         qlkm.deleteKhuyenMai(Integer.parseInt(jTextMakm.getText()));
-         setDefaultTableModelKM();
-     }
-        
+        if (makm.length() > 0) {
+            qlkm.deleteKhuyenMai(Integer.parseInt(jTextMakm.getText()));
+            setDefaultTableModelKM();
+        }
+        jTextMakm.setText("");
+        jTextTenKm.setText("");
+        jTextPtkm.setText("");
     }//GEN-LAST:event_jBdeleteKMActionPerformed
 
     private void jBUpdateKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUpdateKMActionPerformed
         String makm = jTextMakm.getText();
         String tenkm = jTextTenKm.getText();
         String ptkm = jTextPtkm.getText();
-        
+
         QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();
         Model_KhuyenMai KhuyenMai = new Model_KhuyenMai();
         KhuyenMai.setMakm(Integer.parseInt(makm));
         KhuyenMai.setTenkm(tenkm);
         KhuyenMai.setPhantramkm(Float.parseFloat(ptkm));
         KhuyenMai.setTrangthai("T");
-        
+
         qlkm.updateKhuyenMai(KhuyenMai);
         setDefaultTableModelKM();
-        
+        jTextMakm.setText("");
+        jTextTenKm.setText("");
+        jTextPtkm.setText("");
     }//GEN-LAST:event_jBUpdateKMActionPerformed
 
     private void jBDeleteCTKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteCTKMActionPerformed
         String machitietkm = jTexCTMaKM.getText();
-        if(machitietkm.length()>0){
+        if (machitietkm.length() > 0) {
             qlkm.deleteChiTietKM(Integer.parseInt(jTexCTMaKM.getText()));
         }
         setDefaultTableModelCTKM();
+        jTextMaCTKM.setText("");
+        jTextCTMaSP.setText("");
+        jTexCTMaKM.setText("");
     }//GEN-LAST:event_jBDeleteCTKMActionPerformed
 
     private void jBUpdateCTKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUpdateCTKMActionPerformed
         String mactkm = jTexCTMaKM.getText();
         String masp = jTextCTMaSP.getText();
         String makm = jTexCTMaKM.getText();
-        
+
         QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();
         Model_ChiTietKM ChiTietKM = new Model_ChiTietKM();
         ChiTietKM.setMachitietkhuyenmai(Integer.parseInt(mactkm));
         ChiTietKM.setMaSP(Integer.parseInt(masp));
         ChiTietKM.setMaKM(Integer.parseInt(makm));
         ChiTietKM.setTrangThai("T");
-        
+
         qlkm.updateChiTietKM(ChiTietKM);
         setDefaultTableModelCTKM();
+        jTextMaCTKM.setText("");
+        jTextCTMaSP.setText("");
+        jTexCTMaKM.setText("");
     }//GEN-LAST:event_jBUpdateCTKMActionPerformed
+
+    private void jBrefeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBrefeshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBrefeshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

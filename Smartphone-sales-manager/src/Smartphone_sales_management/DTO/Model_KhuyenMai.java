@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Smartphone_sales_management.UI.Model;
+package Smartphone_sales_management.DTO;
 
 /**
  *
@@ -13,6 +13,16 @@ public class Model_KhuyenMai {
     private String Tenkm;
     private float phantramkm;
     private String Trangthai;
+    private String tensp;
+
+    public String getTensp() {
+        return tensp;
+    }
+
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
+    }
+    
 
     public Model_KhuyenMai() {
     }

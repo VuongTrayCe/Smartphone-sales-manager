@@ -5,7 +5,7 @@
 package Smartphone_sales_management.DAO;
 
 import Smartphone_sales_management.DBConnect;
-import Smartphone_sales_management.UI.Model.Model_KhuyenMai;
+import Smartphone_sales_management.DTO.Model_KhuyenMai;
 import java.sql.PreparedStatement;
 import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import java.sql.ResultSet;
@@ -53,7 +53,7 @@ public class QuanLyKhuyenMai_DAO {
         ArrayList<Model_ChiTietKM> dsctkm = new ArrayList<Model_ChiTietKM>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from chitietkhuyenmai");
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp from chitietkhuyenmai,sanpham where sanpham.Masp=chitietkhuyenmai.Masp");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_ChiTietKM a = new Model_ChiTietKM();
@@ -61,6 +61,7 @@ public class QuanLyKhuyenMai_DAO {
                 a.setMaSP(rs.getInt("MaSP"));
                 a.setMaKM(rs.getInt("Makm"));
                 a.setTrangThai(rs.getString("TrangThai"));
+//                a.set
                 
                 dsctkm.add(a);
 

@@ -26,38 +26,38 @@ public class khachhang extends javax.swing.JFrame {
      */
     public khachhang() {
        initComponents();
-        model = (DefaultTableModel) jTable1.getModel();
-        model.addColumn("MaKH");        
-         model.addColumn("TenKH");
-         model.addColumn("SoCMND");
-         model.addColumn("SDT");
-         model.addColumn("DiaChi");        
-         model.addColumn("Email");
-         model.addColumn("NgayTao");
-         model.addColumn("DiemSo");
-         model.addColumn("TrangThai");
-         jTable1.setOpaque(false);
-        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
-        });
-        jTable1.setRowHeight(25);
-        jTable1.getTableHeader().setForeground(Color.WHITE);
-        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable();
-        jTable1.setModel(model);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);
-    }
-     public void SetDefaultTable() {
-        jTable1.removeAll();
-        model.setRowCount(0);
-        ArrayList<Model_KhachHang> dataList = new ArrayList<Model_KhachHang>();
-        dataList = qlkh.getDanhSachKhachHang();
-        for (int i = 0; i < dataList.size(); i++) {
-            
-            model.addRow( dataList.get(i).toArrayString());
-        }
-        jScrollPane1.repaint();
+//        model = (DefaultTableModel) jTable1.getModel();
+//        model.addColumn("MaKH");        
+//         model.addColumn("TenKH");
+//         model.addColumn("SoCMND");
+//         model.addColumn("SDT");
+//         model.addColumn("DiaChi");        
+//         model.addColumn("Email");
+//         model.addColumn("NgayTao");
+//         model.addColumn("DiemSo");
+//         model.addColumn("TrangThai");
+//         jTable1.setOpaque(false);
+//        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
+//        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
+//        });
+//        jTable1.setRowHeight(25);
+//        jTable1.getTableHeader().setForeground(Color.WHITE);
+//        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+//        SetDefaultTable();
+//        jTable1.setModel(model);
+//        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
+//        jTable1.setRowSorter(sorter);
+//    }
+//     public void SetDefaultTable() {
+//        jTable1.removeAll();
+//        model.setRowCount(0);
+//        ArrayList<Model_KhachHang> dataList = new ArrayList<Model_KhachHang>();
+//        dataList = qlkh.getDanhSachKhachHang();
+//        for (int i = 0; i < dataList.size(); i++) {
+//            
+//            model.addRow( dataList.get(i).toArrayString());
+//        }
+//        jScrollPane1.repaint();
     }
     /**
      * This method is called from within the constructor to initialize the form.

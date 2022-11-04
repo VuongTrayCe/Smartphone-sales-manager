@@ -54,7 +54,7 @@ public class QuanLyNhanVien_DAO {
     public boolean insertNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
                  db.setupConnection();
-		String sqlString = "insert into nhanvien values (?, ?, ?, ?, ?, ?,? )";
+		String sqlString = "insert into nhanvien values ( ?,?, ?, ?, ?, ?,? )";
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
                         preparedStatement.setInt(1, NhanVien.getMaNV());

@@ -65,6 +65,7 @@ public class QuanLiSanPham_DAO {
             if (rs != null) {
                 while (rs.next()) {
                     result.add(rs.getInt(1));
+                    System.out.println("123");
                     result.add(rs.getString(2));
                     result.add(rs.getDouble(3));
                     result.add(rs.getInt(4));

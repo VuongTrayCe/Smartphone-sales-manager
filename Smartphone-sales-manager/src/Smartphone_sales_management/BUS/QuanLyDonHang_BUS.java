@@ -136,7 +136,7 @@ public class QuanLyDonHang_BUS {
         try {
             dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
 
-        } catch (SQLException ex) {
+        }   catch (SQLException ex) {
             Logger.getLogger(QuanLyDonHang_BUS.class
                     .getName()).log(Level.SEVERE, null, ex);
         }

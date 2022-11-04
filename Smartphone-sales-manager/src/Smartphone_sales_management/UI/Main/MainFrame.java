@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if (index == 0) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -68,25 +68,24 @@ KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
 
                 }
                 if (index == 1) {
-                    
-                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 
-                     jPanel1.removeAll();
+                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+
+                    jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
                     a.validate();
 //                    pack();
-                    
+
 //                    
 //                    jPanel1.removeAll();
 //                    pack();
 //                    jPanel1.repaint();
-
                 }
                 if (index == 2) {
-                    
-                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+
+                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -99,8 +98,8 @@ KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
 
                 }
                 if (index == 4) {
-                    ConNguoi a =  new ConNguoi();
-                     jPanel1.removeAll();
+                    ConNguoi a = new ConNguoi();
+                    jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);

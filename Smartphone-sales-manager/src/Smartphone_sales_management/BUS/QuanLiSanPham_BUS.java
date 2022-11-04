@@ -27,7 +27,56 @@ public class QuanLiSanPham_BUS {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
                     String masp = Integer.toString((int) y.get(0));
-                    if (masp.contains(keyWord)) {
+                    String tenSp = (String) y.get(1);
+                    if (masp.contains(keyWord) || tenSp.contains(keyWord)) {
+                        dsspOffical.add(y);
+                    }
+                }
+                return dsspOffical;
+            }
+        }
+        if (selectedIndex == 1) {
+            if (keyWord == "") {
+                for (Object x : dssp) {
+                    Vector y = (Vector) x;
+                    String tenTrangThai = (String) y.get(5);
+                    if (tenTrangThai.equals("T")) {
+                        dsspOffical.add(y);
+                    }
+                }
+                return dsspOffical;
+            } else {
+                for (Object x : dssp) {
+                    Vector y = (Vector) x;
+                    String masp = Integer.toString((int) y.get(0));
+                    String tenTrangThai = (String) y.get(5);
+                    String tenSp = (String) y.get(1);
+                    if (masp.contains(keyWord) || tenSp.contains(keyWord) && tenTrangThai.equals("T")) {
+                        dsspOffical.add(y);
+                    }
+
+                }
+                return dsspOffical;
+            }
+        }
+
+        if (selectedIndex == 2) {
+            if (keyWord == "") {
+                for (Object x : dssp) {
+                    Vector y = (Vector) x;
+                    String tenTrangThai = (String) y.get(5);
+                    if (tenTrangThai.equals("F")) {
+                        dsspOffical.add(y);
+                    }
+                }
+                return dsspOffical;
+            } else {
+                for (Object x : dssp) {
+                    Vector y = (Vector) x;
+                    String masp = Integer.toString((int) y.get(0));
+                    String tenTrangThai = (String) y.get(5);
+                    String tenSp = (String) y.get(1);
+                    if (masp.contains(keyWord) || tenSp.contains(keyWord) && tenTrangThai.equals("F")) {
                         dsspOffical.add(y);
                     }
                 }
@@ -39,7 +88,7 @@ public class QuanLiSanPham_BUS {
 
     public ArrayList layChitietSanPham(int selectedIndex, String tenTrangThai) {
         System.out.println(selectedIndex);
-                System.out.println(tenTrangThai);
+        System.out.println(tenTrangThai);
         ArrayList dsctsp = new ArrayList();
         ArrayList MaspList = new ArrayList();
         if (tenTrangThai.equals("All")) {

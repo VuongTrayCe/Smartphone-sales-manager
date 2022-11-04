@@ -46,11 +46,9 @@ public class TableDetailSP extends javax.swing.JPanel {
         String icon =data.get(10).toString();
         if(icon != null) {
             char tem = '\\';
-            icon.replace(tem,'/');
-        }
-        imglbl.setIcon(new ImageIcon(getClass().getResource(icon)));
-        
-         
+            String Newicon = icon.replace(tem,'/');
+            imglbl.setIcon(new ImageIcon(getClass().getResource(Newicon)));
+        }                
     }
 
     /**

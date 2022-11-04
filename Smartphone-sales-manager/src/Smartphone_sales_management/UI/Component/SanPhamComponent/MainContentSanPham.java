@@ -33,6 +33,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
             @Override
             public int selectedIndex(int index) {
                 detailSPPanel.removeAll();
+//                System.out.println(index);
                 tableDetail = new TableDetailSP(index,jComboBox2.getSelectedItem().toString(),sanPham);
                 tableDetail.setBounds(0,0,detailSPPanel.getWidth(),detailSPPanel.getHeight());
                 detailSPPanel.add(tableDetail);

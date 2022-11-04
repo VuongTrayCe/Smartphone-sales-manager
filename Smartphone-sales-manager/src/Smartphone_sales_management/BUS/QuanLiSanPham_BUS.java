@@ -38,15 +38,18 @@ public class QuanLiSanPham_BUS {
     }
 
     public ArrayList layChitietSanPham(int selectedIndex, String tenTrangThai) {
+        System.out.println(selectedIndex);
+                System.out.println(tenTrangThai);
         ArrayList dsctsp = new ArrayList();
         ArrayList MaspList = new ArrayList();
-        if (tenTrangThai.equals("ALL")) {
+        if (tenTrangThai.equals("All")) {
             MaspList = qlsp.layMadh();
         } else {
             MaspList = qlsp.layMadh2(tenTrangThai);
         }
         try {
             dsctsp = qlsp.layDanhSachChiTietSanPham((int) MaspList.get(selectedIndex));
+//            System.out.println(dsctsp.size());
         } catch (Exception e) {
             return null;
         }

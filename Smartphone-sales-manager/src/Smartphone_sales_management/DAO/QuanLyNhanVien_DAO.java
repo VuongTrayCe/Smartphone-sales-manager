@@ -54,16 +54,16 @@ public class QuanLyNhanVien_DAO {
     public boolean insertNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
                  db.setupConnection();
-		String sqlString = "insert into nhanvien values ( ?,?, ?, ?, ?, ?,? )";
+                   String sqlString = ("insert into nhanvien(Tennv,SoCCCD,Tuoi,Diachi,ChucDanh,TrangThai) values (?,?,?,?,?,?)");
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
-                        preparedStatement.setInt(1, NhanVien.getMaNV());
-			preparedStatement.setString(2, NhanVien.getTenNV());
-                        preparedStatement.setInt(3, NhanVien.getSoCCCD());
-                        preparedStatement.setInt(4, NhanVien.getTuoi());
-                        preparedStatement.setString(5, NhanVien.getDiaChi());
-                        preparedStatement.setString(6, NhanVien.getChucDanh());
-                        preparedStatement.setString(7, NhanVien.getTrangThai());
+//                        preparedStatement.setInt(1, NhanVien.getMaNV());
+			preparedStatement.setString(1, NhanVien.getTenNV());
+                        preparedStatement.setInt(2, NhanVien.getSoCCCD());
+                        preparedStatement.setInt(3, NhanVien.getTuoi());
+                        preparedStatement.setString(4, NhanVien.getDiaChi());
+                        preparedStatement.setString(5, NhanVien.getChucDanh());
+                        preparedStatement.setString(6, NhanVien.getTrangThai());
                         
                         
 

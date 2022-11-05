@@ -680,11 +680,15 @@ public class NhanVienGUI extends javax.swing.JPanel {
 if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
                     JOptionPane.showMessageDialog(this, "Vui lòng chọn trường hợp cần tìm", "THÔNG BÁO", JOptionPane.WARNING_MESSAGE);
                     return;
-}
+                    }
         if (rdbThongThuong.isSelected()) {
             if (txtTuKhoa.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin cần tìm kiếm", "THÔNG BÁO", JOptionPane.WARNING_MESSAGE);
             } else {
+                if(rdbMaNV.isSelected() == false && rdbTenNV.isSelected()== false && rdbTuoi.isSelected()== false && rdbSocccd.isSelected()==false && rdbDiaChi.isSelected()==false && rdbchucdanh.isSelected()==false){
+                 JOptionPane.showMessageDialog(this, "Vui lòng chọn trường hợp cần tìm", "THÔNG BÁO", JOptionPane.WARNING_MESSAGE);
+                 return;
+                 }
                 if (rdbMaNV.isSelected()) {
                     ArrayList<Model_NhanVien> dsnv = qlnv.timKiemTheoMaNV(txtTuKhoa.getText());
                     showAll(dsnv);
@@ -794,7 +798,10 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
     private void jLabelThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelThemMouseClicked
     jLMaNV.setVisible(false);
         jtMaNV.setVisible(false);
-
+//        if(stateForm != 1) {
+//			JOptionPane.showMessageDialog(jLabelThem, "Vui lòng nhấn nút làm mới để có thể thêm dữ liệu");
+//			return;
+//		}
         String ten = jtTen.getText();
         String tuoi = jtTuoi.getText();
         String Socccd = jtcccd.getText();
@@ -865,7 +872,6 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
         NhanVien.setDiaChi(diachi);
         NhanVien.setChucDanh(chucdanh);
         NhanVien.setTrangThai("T");
-        NhanVien.setMaNV(qlnv.getSoTTMANV());
         
         qlnv.AddNhanVien(NhanVien);
 
@@ -952,7 +958,6 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
        qlnv.updateNhanVien(NhanVien);
        
        SetDefaultTable();
-        jtMaNV.setText("");
         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");

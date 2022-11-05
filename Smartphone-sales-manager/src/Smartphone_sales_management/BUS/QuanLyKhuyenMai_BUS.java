@@ -6,7 +6,8 @@ package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyKhuyenMai_DAO;
 import Smartphone_sales_management.DTO.Model_KhuyenMai;
-import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
+import Smartphone_sales_management.DTO.Model_ChiTietKM;
+import Smartphone_sales_management.DTO.Model_KhachHang;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -33,6 +34,11 @@ public class QuanLyKhuyenMai_BUS {
         return dsctkm;
     }
 
+    public ArrayList getAllKM(){
+        ArrayList danhsachkm = new ArrayList();
+         danhsachkm = qlkm.getALLKhuyenMai();
+        return danhsachkm;
+    }
     public boolean Addkhuyenmai(Model_KhuyenMai khuyenmai) {
         boolean isSuccess = false;
         if (khuyenmai != null) {
@@ -87,4 +93,106 @@ public class QuanLyKhuyenMai_BUS {
         qlkm.updateChiTietKM(ChiTietKM);
         return isSuccess;
     }
+     
+      public ArrayList<Model_ChiTietKM> timKiemTheoMaCTKM(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_ChiTietKM> ctkmds = new ArrayList<>();
+        for (Model_ChiTietKM ctkm : dsctkm) {
+            String MaCTKM = Integer.toString(ctkm.getMachitietkhuyenmai());
+            if (MaCTKM.contains(tuKhoa)) {
+                ctkmds.add(ctkm);
+            }
+        }
+        return ctkmds;
+    }
+     
+      public ArrayList<Model_ChiTietKM> timKiemTheoTenSP(String tuKhoa){
+          tuKhoa = tuKhoa.toLowerCase();
+          ArrayList<Model_ChiTietKM> ctkmds = new ArrayList<>();
+          for(Model_ChiTietKM ctkm : dsctkm){
+              String Tensp = ctkm.getTenSP().toLowerCase();
+              if(Tensp.contains(tuKhoa)) {
+                    ctkmds.add(ctkm);
+                }
+          }
+      return ctkmds;
+      }
+      
+       public ArrayList<Model_KhuyenMai> timKiemTheoMaKM(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhuyenMai> kmds = new ArrayList<>();
+        for (Model_KhuyenMai km : dskm) {
+            String MaNV = Integer.toString(km.getMakm());
+            if (MaNV.contains(tuKhoa)) {
+                kmds.add(km);
+            }
+        }
+        return kmds;
+    }
+       
+          public ArrayList<Model_KhuyenMai> timKiemTheoPhanTramKM(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhuyenMai> kmds = new ArrayList<>();
+        for (Model_KhuyenMai km : dskm) {
+            String PhanTramKM = Float.toString(km.getPhantramkm());
+            if (PhanTramKM.contains(tuKhoa)) {
+                kmds.add(km);
+            }
+        }
+        return kmds;
+    }
+          
+              public ArrayList<Model_KhuyenMai> timKiemTheoTenKM(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhuyenMai> kmds = new ArrayList<>();
+        for (Model_KhuyenMai km : dskm) {
+            String Tenkm = km.getTenkm();
+            if (Tenkm.contains(tuKhoa)) {
+                kmds.add(km);
+            }
+        }
+        return kmds;
+    }
+              
+          public ArrayList<Model_ChiTietKM> timKiemMaCTKMNangCao(String tuKhoaA, String tuKhoaB){
+        ArrayList<Model_ChiTietKM> ctkmds = new ArrayList<>();
+        for(Model_ChiTietKM ctkm : dsctkm){
+            int mactkm = ctkm.getMachitietkhuyenmai();
+            int min = Integer.parseInt(tuKhoaA);
+            int max = Integer.parseInt(tuKhoaB);
+            if( min <= mactkm && mactkm <= max){
+                ctkmds.add(ctkm);
+            }
+        }
+        return ctkmds;
+    }
+          
+             public ArrayList<Model_ChiTietKM> timKiemMaspNangCao(String tuKhoaA, String tuKhoaB){
+        ArrayList<Model_ChiTietKM> ctkmds = new ArrayList<>();
+        for(Model_ChiTietKM ctkm : dsctkm){
+            int masp = (ctkm.getMaSP());
+            int min = Integer.parseInt(tuKhoaA);
+            int max = Integer.parseInt(tuKhoaB);
+            if( min <= masp && masp <= max){
+                ctkmds.add(ctkm);
+            }
+        }
+        return ctkmds;
+    }
+             
+                  public ArrayList<Model_KhuyenMai> timKiemMaKmNangCao(String tuKhoaA, String tuKhoaB){
+        ArrayList<Model_KhuyenMai> kmds = new ArrayList<>();
+        for(Model_KhuyenMai km : dskm){
+            int makm = km.getMakm();
+            int min = Integer.parseInt(tuKhoaA);
+            int max = Integer.parseInt(tuKhoaB);
+            if( min <= makm && makm <= max){
+                kmds.add(km);
+            }
+        }
+        return kmds;
+    }
 }
+
+
+  

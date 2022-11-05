@@ -40,17 +40,17 @@ public class Test extends javax.swing.JFrame {
     }
 private void initUI() throws SQLException {
 
-//      JDBCCategoryDataset dataset;
-//
-//        
-//         DBConnect db = new DBConnect();
-//         ResultSet rs = null;
-//            db.setupConnection();
-//       dataset = new JDBCCategoryDataset(db.getConnection());
-//       dataset.executeQuery("select Tenkm,Ptkm from khuyenmai");
+      JDBCCategoryDataset dataset;
 
-        DefaultPieDataset dataset = createDataset2();
-        JFreeChart chart = createChart2(dataset);
+        
+         DBConnect db = new DBConnect();
+         ResultSet rs = null;
+            db.setupConnection();
+       dataset = new JDBCCategoryDataset(db.getConnection());
+       dataset.executeQuery("select Tenkm,Ptkm from khuyenmai");
+
+//        DefaultPieDataset dataset = createDataset2();
+        JFreeChart chart = createChart(dataset);
         ChartPanel chartPanel = new ChartPanel(chart);
 //        chartPanel.setSize(new Dimension(510,270));
 //        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));

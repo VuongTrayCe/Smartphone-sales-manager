@@ -4,74 +4,94 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.UI.Event.ThongKe.AddXemChiTiet;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author Vuong
  */
-public class TableBanHang_TheoHangHoa extends javax.swing.JPanel {
+public class TableChiPhiNhapHang extends javax.swing.JPanel {
 
     /**
-     * Creates new form TableBanHang_TheoHangHoa
+     * Creates new form TableChiPhiNhapHang
      */
+    AddXemChiTiet event;
     ThongKeBaoCao_BUS tkbc = new ThongKeBaoCao_BUS();
-
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model;
     private String type;
     private String hinhthuc;
-    private Date datetart;
-    private Date dateEnd;
 
-    public TableBanHang_TheoHangHoa(String type, String hinhthuc, Date dateStart, Date dateEnd) {
+    public TableChiPhiNhapHang(String type, String hinhthuc) {
         initComponents();
         this.type = type;
         this.hinhthuc = hinhthuc;
-        this.dateEnd = dateEnd;
-        this.datetart = dateStart;
-
         SetDefautlTable();
-        jTable1.setModel(model);
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(5);
+        columnModel.getColumn(1).setPreferredWidth(5);
+
     }
 
-    public void SetDefautlTable() {
+    public void addXemChiTiet(AddXemChiTiet event) {
+        this.event = event;
+
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int i = jTable1.getSelectedRow();
+                event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
+            }
+        ;
+    }
+
+    );
+    } 
+       
+      public void SetDefautlTable() {
         jTable1.removeAll();
-        model.setRowCount(0);
+        model = new DefaultTableModel();
         if (hinhthuc.equals("Hàng Hóa")) {
             this.model.addColumn("STT");
             model.addColumn("Mã Hàng");
             model.addColumn("Tên Hàng");
+            model.addColumn("Số Lần Nhập");
             model.addColumn("Số Lượng");
-//            model.addColumn("Số Lượng còn");
-
-        } 
-         if (hinhthuc.equals("Ngày Bán")) {
-            this.model.addColumn("STT");
-            model.addColumn("Mã Hàng");
-            model.addColumn("Tên Hàng");
-            model.addColumn("Số Lượng");
-             System.out.println(dateEnd.toString());
-             System.out.println(datetart.toString());
-             System.out.println(datetart.compareTo(dateEnd));
+            model.addColumn("Tổng Tiền");
+            model.addColumn("Đơn Vị Tiền");
 
 //            model.addColumn("Số Lượng còn");
-
-        } 
-        if(hinhthuc.equals("Khách Hàng")) {
+        }
+//        if (hinhthuc.equals("Ngày Bán")) {
+//            this.model.addColumn("STT");
+//            model.addColumn("Ngày Bán");
+//            model.addColumn("Số Đơn Hàng");
+//            model.addColumn("Số Lượng");
+//            model.addColumn("Tổng Hàng");
+////             System.out.println(dateEnd.toString());
+////             System.out.println(datetart.toString());
+////             System.out.println(datetart.compareTo(dateEnd));
+//
+////            model.addColumn("Số Lượng còn");
+//        }
+        if (hinhthuc.equals("Nhà Cung Cấp")) {
             this.model.addColumn("STT");
-            model.addColumn("Mã Khách Hàng");
-            model.addColumn("Tên Khách Hàng");
-            model.addColumn("Số Đơn");
+            model.addColumn("Mã Nhà Cung Cấp");
+            model.addColumn("Tên Nhà Cung Cấp");
+            model.addColumn("Số phiếu");
             model.addColumn("Số Lượng");
             model.addColumn("Tồng tiền");
-
         }
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
@@ -80,15 +100,15 @@ public class TableBanHang_TheoHangHoa extends javax.swing.JPanel {
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
 //        jTable1.s  (jTable1.getWidth(), new double[]{0.5, 1, 1, 1, 2, 1, 2, 2, 2});
-        if(datetart==null || dateEnd==null)
-        {
-                    ArrayList dataList = new ArrayList<>();
-        dataList =tkbc.getThongKeBaoCaoBanHang(type,hinhthuc);
+
+//  Lấy dữ liệu theo hình thức và type sau đó add dữ liệu vào bảng
+        ArrayList dataList = new ArrayList<>();
+        dataList = tkbc.getThongKeBaoCaoNhapHang(type, hinhthuc);
 //            System.out.println(hinhthuc);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
-        }
+        jTable1.setModel(model);
         jScrollPane1.repaint();
     }
 
@@ -115,7 +135,6 @@ public class TableBanHang_TheoHangHoa extends javax.swing.JPanel {
 
             }
         ));
-        jTable1.setFocusable(false);
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
         jTable1.setRowHeight(25);
         jTable1.setSelectionBackground(new java.awt.Color(255, 0, 0));
@@ -125,11 +144,11 @@ public class TableBanHang_TheoHangHoa extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,8 +157,4 @@ public class TableBanHang_TheoHangHoa extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    private ArrayList getThongKeBaoCaoBanHang(String type, String hinhthuc) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

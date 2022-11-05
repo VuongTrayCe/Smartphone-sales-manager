@@ -156,12 +156,12 @@ public class QuanLyBanHang_DAO {
             stm.setString(6, model_khachhang.getNgaytao());
             stm.setInt(7, model_khachhang.getDiemso());
             stm.setString(8, "T");
-            System.out.println(model_khachhang.getTenkhachhang());
-            System.out.println(model_khachhang.getCmnd());
-            System.out.println(model_khachhang.getDiachi());
-            System.out.println(model_khachhang.getEmail());
-            System.out.println(model_khachhang.getSdt());
-            System.out.println(model_khachhang.getNgaytao());
+//            System.out.println(model_khachhang.getTenkhachhang());
+//            System.out.println(model_khachhang.getCmnd());
+//            System.out.println(model_khachhang.getDiachi());
+//            System.out.println(model_khachhang.getEmail());
+//            System.out.println(model_khachhang.getSdt());
+//            System.out.println(model_khachhang.getNgaytao());
 
             success = db.sqlUpdate(stm);
 //            JOptionPane.showMessageDialog(null, "Thêm thành công!!");

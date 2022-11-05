@@ -7,63 +7,59 @@ package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Vuong
  */
-public class TableBanHang_TheoKhachHang extends javax.swing.JPanel {
+public class DoanhThuBanHang_Detail_KhachHang extends javax.swing.JPanel {
 
     /**
-     * Creates new form TableBanHang_TheoKhachHang
+     * Creates new form DoanhThuBanHang_Detail_KhachHang
      */
-   ThongKeBaoCao_BUS tkbc= new ThongKeBaoCao_BUS();
+     ThongKeBaoCao_BUS tkbc = new ThongKeBaoCao_BUS();
 
-    DefaultTableModel model = new DefaultTableModel();
-    private String type;
-    private String hinhthuc;
-    private Date datetart;
-    private Date dateEnd;
-
-    public TableBanHang_TheoKhachHang(String type, String hinhthuc, Date dateStart, Date dateEnd) {
+    DefaultTableModel model;
+    private String makh;
+     JDialog inforDonHang;
+    public DoanhThuBanHang_Detail_KhachHang(String makh) {
         initComponents();
-        this.type = type;
-        this.hinhthuc = hinhthuc;
-        this.dateEnd=dateEnd;
-        this.datetart=dateStart;
+        this.makh=makh;
+        System.out.println(makh);
+        SetDefautlTable();
+    }
+    public void SetDefautlTable() {
+//        JTable.removeAll();
+        model  = new DefaultTableModel();
+        model.setRowCount(0);
         this.model.addColumn("STT");
-        model.addColumn("Mã Hàng");
-        model.addColumn("Tên Hàng");
+        model.addColumn("Mã Đơn");
+        model.addColumn("Ngày bán");
+
         model.addColumn("Số Lượng");
-        model.addColumn("Tiền Hàng");
+        model.addColumn("Số điểm");
+        model.addColumn("Tổng Tiền");
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefautlTable();
+        ArrayList dataList = new ArrayList<>();
+        dataList = tkbc.getThongKeBaoCaoBanHang_Detail_KhachHang(Integer.parseInt(makh));
+
+//            Logger.getLogger(TableBanHang_TheoHangHoa.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println(hinhthuc);
+        for (int i = 0; i < dataList.size(); i++) {
+            model.addRow((Vector<?>) dataList.get(i));
+        }
+        jScrollPane1.repaint();
         jTable1.setModel(model);
     }
-
-    public void SetDefautlTable() {
-
-        jTable1.removeAll();
-        model.setRowCount(0);
-//        if(datetart==null || dateEnd==null)
-//        {
-//                    ArrayList dataList = new ArrayList<>();
-//        dataList =tkbc.getThongKeBaoCaoBanHang(type,hinhthuc);
-//        for (int i = 0; i < dataList.size(); i++) {
-//            model.addRow((Vector<?>) dataList.get(i));
-//        }
-//        }
-
-        jScrollPane1.repaint();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

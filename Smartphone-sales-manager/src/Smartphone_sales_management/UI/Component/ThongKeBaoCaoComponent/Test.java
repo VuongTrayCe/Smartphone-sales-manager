@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
+import Smartphone_sales_management.DAO.testGetID;
 import Smartphone_sales_management.DBConnect;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -66,6 +67,9 @@ private void initUI() throws SQLException {
         setTitle("Bar chart");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        testGetID  a =new testGetID();
+        int id =a.test();
+        System.out.println(id);
     }
 
     private CategoryDataset createDataset() {

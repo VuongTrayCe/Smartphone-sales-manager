@@ -50,7 +50,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
                     }
                     else
                     {
-                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"",0,"");
+                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"",0,"",0,0,0);
                     }
                     GioHangItem item;
                     if(selectedIndexGioHang==index)

@@ -117,7 +117,7 @@ public class TableBanHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        System.out.println("Da Chọn");
+//        System.out.println("Da Chọn");
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked

@@ -36,41 +36,43 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 
     /**
      * Creates new form ThongTinDonHang
-     */    
+     */
     DefaultTableModel model = new DefaultTableModel();
-
+    
     private ArrayList<Model_GioHang> data;
-    private ArrayList<String> danhsachkhachhang ;
-    private ArrayList<String> danhsachsanpham;
+    private ArrayList<Object> danhsachkhachhang;
+    private ArrayList<Object> danhsachsanpham;
     JDialog inforDonHangDialog;
-    QuanLyBanHang_BUS qlbh_bus= new QuanLyBanHang_BUS();
+    QuanLyBanHang_BUS qlbh_bus = new QuanLyBanHang_BUS();
     JPanel a;
     LocalDateTime now;
-    int SL=0;
-        int TT = 0;
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
-    public ThongTinDonHang(ArrayList<Model_GioHang> data,JPanel a,JDialog inforDonHang) {
+    int SL = 0;
+    int TT = 0;
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    int giasaukm = 0;
+    int diem;
+    
+    public ThongTinDonHang(ArrayList<Model_GioHang> data, JPanel a, JDialog inforDonHang) {
         initComponents();
-        this.data=data;
+        this.data = data;
         this.a = a;
         this.inforDonHangDialog = inforDonHang;
-       
-
+        
+        Model_GioHang tets = data.get(0);
+        System.out.println(tets.getMakhuyenmai());
         danhsachkhachhang = qlbh_bus.getALLKhachHang();
         btnComplete.setBackground(new Color(255, 255, 255));
         btnComplete.setBorder(null);
         btnBack.setBorder(null);
         btnBack.setBackground(new Color(255, 255, 255));
- 
+
         // Lấy danh sách khách hàng
-       
 //    final DefaultComboBoxModel model = new DefaultComboBoxModel(danhsachsanpham); 
 //    cbbKhachHang.setModel(model);
-     
         // set data Table
         LoadInforData();
-        model.addColumn("STT");        
-        model.addColumn("Tên sản phẩm");        
+        model.addColumn("STT");
+        model.addColumn("Tên sản phẩm");
         model.addColumn("Loại");
         model.addColumn("Giá tiền");
         model.addColumn("Số lượng");
@@ -89,52 +91,61 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 //                jTable1.setSize(jTable1.getWidth(),jTable1.getRowHeight()*model.getRowCount());
 
     }
+
     // load dữ liệu liên quan lên form
-   public void LoadInforData()
-   {
-       for (String khachhang : danhsachkhachhang) {
-            cbbKhachHang.addItem((khachhang));
+    public void LoadInforData() {
+        for (Object khachhang : danhsachkhachhang) {
+            Vector a = (Vector) khachhang;
+            cbbKhachHang.addItem((a.get(0)).toString());
         }
+        Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
+        cbDiem.setText(b.get(1).toString());
+        diem = (int) b.get(1);
         // Load thông tin dữ liệu
         // set giá sau khi áp dụng khuyến mãi
-        int giasaukm=0;
+        giasaukm = 0;
         for (Model_GioHang model_GioHang : data) {
-            giasaukm +=giasaukm +  (model_GioHang.getKhuyenmai()*1.0/100) *model_GioHang.getTongTien();
-           SL+=model_GioHang.getSoluong();
-           TT+=model_GioHang.getTongTien();
+            giasaukm += (model_GioHang.getKhuyenmai() * 1.0 / 100) * model_GioHang.getTongTien();
+            SL += model_GioHang.getSoluong();
+            TT += model_GioHang.getTongTien();
 //           cbbSanPham.addItem(model_GioHang.getName());
         }
-       this.now = LocalDateTime.now();  
-       String formatDateTime = now.format(format);  
-       lbNgayBan.setText(formatDateTime); 
-       lbSoLuong.setText(String.valueOf(SL));
-        lbnTongTien.setText(String.valueOf(TT)+ " VND");
-        lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm)+" VND");
+        this.now = LocalDateTime.now();
+        String formatDateTime = now.format(format);
+        lbNgayBan.setText(formatDateTime);
+        lbSoLuong.setText(String.valueOf(SL));
+        lbnTongTien.setText(String.valueOf(TT) + " VND");
+        lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm) + " VND");
         lbThanhToan.setText("Thanh toán trực tiếp");
-   }
-     public void SetDefautlTable() {
+//        if(cbDiem.isSelected())
+//        {
+//                    giasaukm +=Integer.parseInt(cbDiem.getText());
+        lbTongTienThanhToan.setText(String.valueOf(giasaukm));
+    }
+    
+    public void SetDefautlTable() {
         
         jTable1.removeAll();
         model.setRowCount(0);
-        int i=1;
-         for (Model_GioHang model_GioHang : data) {
-             Vector a = new Vector();
-             a.add(i);
-             a.add(model_GioHang.getName());
-             a.add(model_GioHang.getLoai());
-             a.add(model_GioHang.getGiatien());
-             a.add(model_GioHang.getSoluong());
-             a.add(model_GioHang.getKhuyenmai()+ " %");
-             a.add(model_GioHang.getBaohanh());
-           model.addRow(a);
-           i+=1;
-
-         }
-        jScrollPane1.setLayout(new ScrollPaneLayout());
+        int i = 1;
+        for (Model_GioHang model_GioHang : data) {
+            Vector a = new Vector();
+            a.add(i);
+            a.add(model_GioHang.getName());
+            a.add(model_GioHang.getLoai());
+            a.add(model_GioHang.getGiatien());
+            a.add(model_GioHang.getSoluong());
+            a.add(model_GioHang.getKhuyenmai() + " %");
+            a.add(model_GioHang.getBaohanh());
+            model.addRow(a);
+            i += 1;
             
+        }
+        jScrollPane1.setLayout(new ScrollPaneLayout());
+        
         jScrollPane1.repaint();
     }
-
+    
     ThongTinDonHang() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -234,6 +245,11 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         cbbKhachHang.setOpaque(true);
+        cbbKhachHang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbKhachHangItemStateChanged(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add - Copy.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -307,7 +323,12 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Tổng Tiền: ");
 
-        cbDiem.setText("jCheckBox1");
+        cbDiem.setText("0");
+        cbDiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDiemActionPerformed(evt);
+            }
+        });
 
         lbnGiaSauKhuyenMai.setText("jLabel11");
 
@@ -443,41 +464,74 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-    
-            this.inforDonHangDialog.dispose();
+        
+        this.inforDonHangDialog.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
-       Model_BanHang_HoaDon hoadon = new  Model_BanHang_HoaDon();
-      int Makh =  qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString()); 
-       hoadon.setMakh(WIDTH);
-       hoadon.setManv(0);
-       hoadon.setTime(now);
-       hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
-       hoadon.setTongtien(TT);
+        Model_BanHang_HoaDon hoadon = new Model_BanHang_HoaDon();
+        int Makh = qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString());
+        hoadon.setMakh(WIDTH);
+        hoadon.setManv(0);
+        hoadon.setTime(now);
+        hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
+        hoadon.setTongtien(TT);
         
-        qlbh_bus.InsertDonHang(hoadon,data);
+        qlbh_bus.InsertDonHang(hoadon, data);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         // Hàm thêm khách hàng
-          Window win = SwingUtilities.getWindowAncestor(this);
-                JDialog inforDonHang= new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
+        Window win = SwingUtilities.getWindowAncestor(this);
+        JDialog inforDonHang = new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
-          AddKhachHang themkhachhang= new AddKhachHang(inforDonHang,this);
-          inforDonHang.setSize(626,488);
-            inforDonHang.setLayout(new GridLayout());
-            inforDonHang.setTitle("Thêm khách hàng");
-            inforDonHang.add(themkhachhang);
-            themkhachhang.validate();
-          inforDonHang.setLocationRelativeTo(null);
-          inforDonHang.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            inforDonHang.setVisible(true);
+        AddKhachHang themkhachhang = new AddKhachHang(inforDonHang, this);
+        inforDonHang.setSize(626, 488);
+        inforDonHang.setLayout(new GridLayout());
+        inforDonHang.setTitle("Thêm khách hàng");
+        inforDonHang.add(themkhachhang);
+        themkhachhang.validate();
+        inforDonHang.setLocationRelativeTo(null);
+        inforDonHang.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        inforDonHang.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiemActionPerformed
+        
+        int gia = giasaukm;
+        gia -= diem;
+        
+        if (cbDiem.isSelected()) {
+            if (gia > 0) {
+//                gia -= Integer.parseInt(cbDiem.getText());
+                lbTongTienThanhToan.setText(String.valueOf(gia));
+                cbDiem.setText(cbDiem.getText() + "/" + cbDiem.getText());
+            } else {
+                int x = Math.abs(gia);
+                cbDiem.setText(String.valueOf(diem-x) + "/" + String.valueOf(diem));
+                lbTongTienThanhToan.setText("0 VND");
+            }
+        } else {
+            
+            lbTongTienThanhToan.setText(String.valueOf(giasaukm) + " VND");
+            cbDiem.setText(String.valueOf(diem));
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbDiemActionPerformed
+
+    private void cbbKhachHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbKhachHangItemStateChanged
+        
+        Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
+        cbDiem.setText(b.get(1).toString());
+        diem=(int) b.get(1);
+        cbDiem.setSelected(false);
+
+    }//GEN-LAST:event_cbbKhachHangItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

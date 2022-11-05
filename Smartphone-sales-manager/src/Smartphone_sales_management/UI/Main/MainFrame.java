@@ -4,7 +4,10 @@
  */
 package Smartphone_sales_management.UI.Main;
 
+import Smartphone_sales_management.DAO.ThongKeBaoCao_DAO;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
+import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
+
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
@@ -37,8 +40,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-
-        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+ ThongKeMainPanel a = new ThongKeMainPanel();
+//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
@@ -116,6 +119,14 @@ public class MainFrame extends javax.swing.JFrame {
 //                    jPanel1.setLayout(new GridLayout());
 //                    jPanel1.add(a);
 //                    a.validate();
+                }
+                if (index == 5) {
+                    ThongKeMainPanel a = new ThongKeMainPanel();
+                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
                 }
 
             }

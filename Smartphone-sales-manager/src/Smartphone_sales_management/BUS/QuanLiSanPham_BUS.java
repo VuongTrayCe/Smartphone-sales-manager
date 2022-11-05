@@ -5,6 +5,8 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLiSanPham_DAO;
+import Smartphone_sales_management.DTO.Model_SanPham;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -27,7 +29,7 @@ public class QuanLiSanPham_BUS {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
                     String masp = Integer.toString((int) y.get(0));
-                    String tenSp = (String) y.get(1);
+                    String tenSp = ((String) y.get(1));
                     if (masp.contains(keyWord) || tenSp.contains(keyWord)) {
                         dsspOffical.add(y);
                     }
@@ -39,7 +41,7 @@ public class QuanLiSanPham_BUS {
             if (keyWord == "") {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
-                    String tenTrangThai = (String) y.get(5);
+                    String tenTrangThai = ((String) y.get(5));
                     if (tenTrangThai.equals("T")) {
                         dsspOffical.add(y);
                     }
@@ -49,9 +51,10 @@ public class QuanLiSanPham_BUS {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
                     String masp = Integer.toString((int) y.get(0));
-                    String tenTrangThai = (String) y.get(5);
+                    String tenTrangThai = ((String) y.get(5));
+                    System.out.println(tenTrangThai);
                     String tenSp = (String) y.get(1);
-                    if (masp.contains(keyWord) || tenSp.contains(keyWord) && tenTrangThai.equals("T")) {
+                    if ((masp.contains(keyWord) || tenSp.equals(keyWord)) && tenTrangThai.equals("T")) {
                         dsspOffical.add(y);
                     }
 
@@ -64,7 +67,8 @@ public class QuanLiSanPham_BUS {
             if (keyWord == "") {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
-                    String tenTrangThai = (String) y.get(5);
+                    String tenTrangThai = ((String) y.get(5));
+                    System.out.println(tenTrangThai);
                     if (tenTrangThai.equals("F")) {
                         dsspOffical.add(y);
                     }
@@ -74,12 +78,15 @@ public class QuanLiSanPham_BUS {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
                     String masp = Integer.toString((int) y.get(0));
-                    String tenTrangThai = (String) y.get(5);
+                    String tenTrangThai = ((String) y.get(5));
+                    System.out.println(tenTrangThai);
                     String tenSp = (String) y.get(1);
-                    if (masp.contains(keyWord) || tenSp.contains(keyWord) && tenTrangThai.equals("F")) {
+                    if ((masp.contains(keyWord) || tenSp.equals(keyWord)) && tenTrangThai.equals("F")) {
                         dsspOffical.add(y);
                     }
+
                 }
+
                 return dsspOffical;
             }
         }
@@ -87,8 +94,7 @@ public class QuanLiSanPham_BUS {
     }
 
     public ArrayList layChitietSanPham(int selectedIndex, String tenTrangThai) {
-        System.out.println(selectedIndex);
-        System.out.println(tenTrangThai);
+
         ArrayList dsctsp = new ArrayList();
         ArrayList MaspList = new ArrayList();
         if (tenTrangThai.equals("All")) {
@@ -104,5 +110,30 @@ public class QuanLiSanPham_BUS {
         }
 //        System.out.println(dsctsp);
         return dsctsp;
+    }
+
+    public boolean themSP(Model_SanPham model) throws SQLException {
+        try {
+            int id = qlsp.themSanPham(model);
+            qlsp.themGiaSP(id, model);
+            qlsp.themKM(id, model);
+            qlsp.themBH(id, model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public ArrayList layDanhSachKM() {
+        ArrayList dskm = new ArrayList();
+        dskm = qlsp.layDanhSachKM();
+        return dskm;
+    }
+    
+    public ArrayList layDanhSachBH() {
+        ArrayList dsbh = new ArrayList();
+        dsbh = qlsp.layDanhSachBH();
+        return dsbh;
     }
 }

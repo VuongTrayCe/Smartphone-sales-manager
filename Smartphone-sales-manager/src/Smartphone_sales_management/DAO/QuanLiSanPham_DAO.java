@@ -5,6 +5,8 @@
 package Smartphone_sales_management.DAO;
 
 import Smartphone_sales_management.DBConnect;
+import Smartphone_sales_management.DTO.Model_SanPham;
+import com.mysql.cj.xdevapi.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,14 +53,15 @@ public class QuanLiSanPham_DAO {
     public ArrayList layDanhSachChiTietSanPham(int Masp) {
         ArrayList result = new ArrayList();
         db.setupConnection();
-        try {System.out.println(Masp);
+        try {
+            System.out.println(Masp);
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon\n "
                     + "FROM sanpham\n "
                     + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n "
                     + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n "
                     + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n "
                     + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n "
-                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Machitietkhuyenmai");
+                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm");
             stm.setInt(1, Masp);
             rs = stm.executeQuery();
             if (rs != null) {
@@ -126,6 +129,137 @@ public class QuanLiSanPham_DAO {
             return result;
         } catch (Exception e) {
             return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public int themSanPham(Model_SanPham model) throws SQLException {
+        int id = 1;
+        Boolean success;
+        db.setupConnection();
+        try {
+//            String sql = "INSERT INTO	sanpham(Tensp,Loaisp,soluong,MauSac,Namsx,TrangThai,Icon,ThongSo)\n"
+//                    + "VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO sanpham(Tensp,Loaisp,soluong,MauSac,Namsx,TrangThai,Icon,ThongSo)\n"
+                    + "VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement stm;
+            stm = db.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            stm.setString(1, model.getTenSp());
+            stm.setString(2, model.getLoaiSp());
+            stm.setInt(3, model.getSoLuong());
+            stm.setString(4, model.getMauSac());
+            stm.setString(5, model.getNamSX());
+            stm.setString(6, model.getTrangThai());
+            stm.setString(7, model.getIcon());
+            stm.setString(8, model.getThongSo());
+            success = db.sqlUpdate(stm);
+            if (success == true) {
+                rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    id = rs.getInt(1);
+                }
+                return id;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+        return 0;
+    }
+
+    public void themGiaSP(int maSp, Model_SanPham model) {
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO giasanpham(Masp,Giaban,Ngayupdate,TrangThai)\n"
+                    + "VALUES (?,?,?,?)");
+            stm.setInt(1, maSp);
+            stm.setDouble(2, model.getGia());
+            stm.setString(3, model.getNgayTao());
+            stm.setString(4, model.getTrangThai());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public ArrayList layDanhSachKM() {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT khuyenmai.Tenkm,khuyenmai.Ptkm,khuyenmai.Makm\n"
+                    + "FROM khuyenmai");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Vector a = new Vector();
+                    a.add(rs.getString("Tenkm"));
+                    a.add(rs.getInt("Ptkm"));
+                    a.add(rs.getInt("Makm"));
+                    result.add(a);
+                }
+                return result;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+        return null;
+    }
+
+    public void themKM(int Masp, Model_SanPham model) {
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO chitietkhuyenmai(Masp,Makm,TrangThai)\n"
+                    + "VALUES (?,?,\"T\")");
+            stm.setInt(1, Masp);
+            stm.setInt(2, model.getMakm());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public ArrayList layDanhSachBH() {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT baohanh.Thoigianbaohanh,baohanh.Mabaohanh\n"
+                    + "FROM baohanh");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Vector a = new Vector();
+                    a.add(rs.getString("Thoigianbaohanh"));
+                    a.add(rs.getInt("Mabaohanh"));
+                    result.add(a);
+                }
+                return result;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+        return null;
+    }
+
+    public void themBH(int Masp, Model_SanPham model) {
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO chitietbaohanh(Mabaohanh,Masp,TrangThai)\n"
+                    + "VALUES (?,?,\"T\")");
+            stm.setInt(1, model.getMabh());
+            stm.setInt(2, Masp);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             db.closeConnection();
         }

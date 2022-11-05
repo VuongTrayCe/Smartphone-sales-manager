@@ -81,7 +81,9 @@ public class MainContentSanPham extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         detailSPPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btnFormThemSP = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JLabel();
+        btnFormUpdate = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
@@ -123,10 +125,24 @@ public class MainContentSanPham extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnFormThemSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add.png"))); // NOI18N
+        btnFormThemSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                btnFormThemSPMouseClicked(evt);
+            }
+        });
+
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Close-icon.png"))); // NOI18N
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
+
+        btnFormUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/fix.png"))); // NOI18N
+        btnFormUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFormUpdateMouseClicked(evt);
             }
         });
 
@@ -150,8 +166,12 @@ public class MainContentSanPham extends javax.swing.JPanel {
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(detailSPPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(265, 265, 265)))
+                                .addComponent(btnFormThemSP)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnDelete)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnFormUpdate)
+                                .addGap(136, 136, 136)))
                         .addGap(6, 6, 6))))
         );
         mainPanelLayout.setVerticalGroup(
@@ -163,7 +183,10 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFormThemSP)
+                    .addComponent(btnDelete)
+                    .addComponent(btnFormUpdate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
@@ -196,21 +219,31 @@ public class MainContentSanPham extends javax.swing.JPanel {
         sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void btnFormThemSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormThemSPMouseClicked
         JFrame frame = new JFrame("Them thong tin");
-        FormThemSanPham themSanPham = new FormThemSanPham();
-        frame.setSize(750,600);
+        FormThemSanPham themSanPham = new FormThemSanPham(frame,sanPham);
+        frame.setSize(900,600);
         frame.setLocationRelativeTo(null);
         frame.add(themSanPham);
         frame.setVisible(true);
         
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_btnFormThemSPMouseClicked
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnFormUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormUpdateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFormUpdateMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnDelete;
+    private javax.swing.JLabel btnFormThemSP;
+    private javax.swing.JLabel btnFormUpdate;
     private javax.swing.JPanel detailSPPanel;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;

@@ -9,6 +9,7 @@ import Smartphone_sales_management.DBConnect;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.GridLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,9 +68,9 @@ private void initUI() throws SQLException {
         setTitle("Bar chart");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        testGetID  a =new testGetID();
-        int id =a.test();
-        System.out.println(id);
+//        testGetID  a =new testGetID();
+//        int id =a.test();
+//        System.out.println(id);
     }
 
     private CategoryDataset createDataset() {
@@ -122,6 +123,7 @@ private void initUI() throws SQLException {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,25 +138,51 @@ private void initUI() throws SQLException {
             .addGap(0, 270, Short.MAX_VALUE)
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(25, 25, 25)
+                .addComponent(jButton1)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+     FileDialog fd = new FileDialog(new JFrame(), "Xuất excel", FileDialog.LOAD);
+        fd.setVisible(true);
+
+              String url = fd.getDirectory() + fd.getFile();
+
+//                lbImage.setIcon(new ImageIcon(new URL(url)));
+              String[] url2= url.split("src");
+              String a = url2[1].replace("\\","/");
+              System.out.println(a);        
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +224,7 @@ private void initUI() throws SQLException {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

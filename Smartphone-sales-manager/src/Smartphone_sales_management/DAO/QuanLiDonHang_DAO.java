@@ -132,7 +132,8 @@ public class QuanLiDonHang_DAO {
         }
         return result;
     }
-
+// Lay ma don hang theo ten ma
+    
     public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
 
         ArrayList dsdh = new ArrayList();

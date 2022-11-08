@@ -54,7 +54,6 @@ public class QuanLiSanPham_DAO {
         ArrayList result = new ArrayList();
         db.setupConnection();
         try {
-            System.out.println(Masp);
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon\n "
                     + "FROM sanpham\n "
                     + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n "
@@ -67,7 +66,6 @@ public class QuanLiSanPham_DAO {
             if (rs != null) {
                 while (rs.next()) {
                     result.add(rs.getInt(1));
-                    System.out.println("123");
                     result.add(rs.getString(2));
                     result.add(rs.getDouble(3));
                     result.add(rs.getInt(4));
@@ -169,6 +167,22 @@ public class QuanLiSanPham_DAO {
         return 0;
     }
 
+    public void xoaSP(int maSp) {
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE sanpham\n"
+                    + "SET sanpham.TrangThai = \"F\" WHERE sanpham.Masp = ?;");
+            stm.setInt(1, maSp);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+// Cau truy van Them gia san pham
     public void themGiaSP(int maSp, Model_SanPham model) {
         db.setupConnection();
         try {
@@ -185,6 +199,7 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
+// Cau truy van Khuyen mai
 
     public ArrayList layDanhSachKM() {
         ArrayList result = new ArrayList();
@@ -225,6 +240,7 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
+// Cau truy van Bao Hanh
 
     public ArrayList layDanhSachBH() {
         ArrayList result = new ArrayList();

@@ -6,12 +6,14 @@ package Smartphone_sales_management.UI.Component.SanPhamComponent;
 
 import Smartphone_sales_management.BUS.QuanLiSanPham_BUS;
 import Smartphone_sales_management.UI.Event.SanPham.EventSanPham;
+import Smartphone_sales_management.UI.Event.SanPham.LayMasp;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -56,9 +58,22 @@ public class TableSanPham extends javax.swing.JPanel {
             }
         ;
     }
-
     );
     }
+    
+    
+//    public void layMasp(LayMasp event) {
+//        jTable1.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//                int column = 0;
+//                String valueCell = (String) jTable1.getValueAt(jTable1.getSelectedRow(), column);
+//                System.out.println("Ma da den"+valueCell);
+//                event.layMasp(Integer.parseInt(valueCell));
+//            }
+//        }
+//        );
+//    }
 
     public void SetDefaultTable(String keyWord, int selectedIndex) {
         jTable1.removeAll();
@@ -70,7 +85,8 @@ public class TableSanPham extends javax.swing.JPanel {
         }
         panelTable.repaint();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

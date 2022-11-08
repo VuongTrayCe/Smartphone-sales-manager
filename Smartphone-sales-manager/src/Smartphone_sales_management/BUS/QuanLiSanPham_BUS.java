@@ -125,12 +125,35 @@ public class QuanLiSanPham_BUS {
         return true;
     }
 
+    public boolean xoaSP(int maSp) {
+        try {
+            qlsp.xoaSP(maSp);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean kiemTraTrangThaiSP(int maSp) {
+            ArrayList trangThai = qlsp.layDanhSachChiTietSanPham(maSp);
+            String temp = trangThai.get(8).toString();
+            System.out.println(maSp);
+            System.out.println(temp);
+            if(temp.equals("F")) {
+                return false;
+            }
+            return true;
+    }
+// BUS khuyen mai
+
     public ArrayList layDanhSachKM() {
         ArrayList dskm = new ArrayList();
         dskm = qlsp.layDanhSachKM();
         return dskm;
     }
-    
+//   BUS bao hanh 
+
     public ArrayList layDanhSachBH() {
         ArrayList dsbh = new ArrayList();
         dsbh = qlsp.layDanhSachBH();

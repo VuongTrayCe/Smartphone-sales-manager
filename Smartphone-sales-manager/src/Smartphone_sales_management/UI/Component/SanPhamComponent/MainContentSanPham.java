@@ -4,10 +4,18 @@
  */
 package Smartphone_sales_management.UI.Component.SanPhamComponent;
 
+import Smartphone_sales_management.BUS.QuanLiSanPham_BUS;
 import Smartphone_sales_management.UI.Event.SanPham.EventSanPham;
+import Smartphone_sales_management.UI.Event.SanPham.LayMasp;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -23,28 +31,39 @@ public class MainContentSanPham extends javax.swing.JPanel {
     MainFrame mainFrame;
     TableDetailSP tableDetail;
     TableSanPham sanPham;
+    EventSanPham event;
+    int maSp = -1;
+    String keyWord = "";
+
     public MainContentSanPham(MainFrame mainFrame) {
         initComponents();
-        
+
         this.mainFrame = mainFrame;
-        sanPham = new TableSanPham("", jComboBox2.getSelectedIndex());
+        sanPham = new TableSanPham(keyWord, jComboBox2.getSelectedIndex());
         jScrollPane1.setViewportView(sanPham);
+        btnDelete.setOpaque(true);
+        btnFormThemSP.setOpaque(true);
+        btnFormUpdate.setOpaque(true);
 //        detailSPPanel.setLayout(new GridLayout());
         sanPham.addEventSanPham(new EventSanPham() {
             @Override
             public int selectedIndex(int index) {
+                ArrayList data = new ArrayList();
                 detailSPPanel.removeAll();
-//                System.out.println(index);
-                tableDetail = new TableDetailSP(index,jComboBox2.getSelectedItem().toString(),sanPham);
-                tableDetail.setBounds(0,0,detailSPPanel.getWidth(),detailSPPanel.getHeight());
+                tableDetail = new TableDetailSP(index, jComboBox2.getSelectedItem().toString(), sanPham);
+                tableDetail.setBounds(0, 0, detailSPPanel.getWidth(), detailSPPanel.getHeight());
+                QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
+                data = qlsp_BUS.layChitietSanPham(index, (String) jComboBox2.getSelectedItem());
+//                System.out.println(data.get(0));
+                maSp = (int) data.get(0);
                 detailSPPanel.add(tableDetail);
                 repaint();
                 tableDetail.validate();
                 return index;
             }
         });
-        
-               txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
 
@@ -62,10 +81,19 @@ public class MainContentSanPham extends javax.swing.JPanel {
                 sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
             }
         });
-        
-        
+
     }
 
+//    public void btnDelete(int index, String tenTrangThai) {
+//        btnDelete.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                System.out.println("123");
+//                System.out.println(index);
+//                System.out.println(tenTrangThai);
+//            }
+//        });
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,9 +109,10 @@ public class MainContentSanPham extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         detailSPPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         btnFormThemSP = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JLabel();
         btnFormUpdate = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
@@ -125,13 +154,31 @@ public class MainContentSanPham extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jPanel1.setBackground(java.awt.Color.cyan);
+
+        btnFormThemSP.setBackground(java.awt.Color.cyan);
+        btnFormThemSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnFormThemSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add.png"))); // NOI18N
         btnFormThemSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnFormThemSPMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnFormThemSPMousePressed(evt);
+            }
         });
 
+        btnFormUpdate.setBackground(java.awt.Color.cyan);
+        btnFormUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnFormUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/fix.png"))); // NOI18N
+        btnFormUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFormUpdateMouseClicked(evt);
+            }
+        });
+
+        btnDelete.setBackground(java.awt.Color.cyan);
+        btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Close-icon.png"))); // NOI18N
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -139,12 +186,23 @@ public class MainContentSanPham extends javax.swing.JPanel {
             }
         });
 
-        btnFormUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/fix.png"))); // NOI18N
-        btnFormUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnFormUpdateMouseClicked(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnFormThemSP, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(btnFormUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnFormThemSP, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnFormUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -160,19 +218,13 @@ public class MainContentSanPham extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane1)
-                        .addGap(10, 10, 10)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(detailSPPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                                .addComponent(btnFormThemSP)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnDelete)
-                                .addGap(37, 37, 37)
-                                .addComponent(btnFormUpdate)
-                                .addGap(136, 136, 136)))
-                        .addGap(6, 6, 6))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(detailSPPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(15, 15, 15))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,14 +234,11 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(27, 27, 27)
+                .addGap(32, 32, 32)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFormThemSP)
-                    .addComponent(btnDelete)
-                    .addComponent(btnFormUpdate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                     .addComponent(detailSPPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
         );
@@ -198,7 +247,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1003, Short.MAX_VALUE)
+            .addGap(0, 1030, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -218,24 +267,72 @@ public class MainContentSanPham extends javax.swing.JPanel {
         txtTimKiem.setText("");
         sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
     }//GEN-LAST:event_jComboBox2ActionPerformed
-
+    public void Doimau() {
+        btnFormThemSP.setBackground(Color.CYAN);
+        btnDelete.setBackground(Color.CYAN);
+        btnFormUpdate.setBackground(Color.CYAN);
+    }
     private void btnFormThemSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormThemSPMouseClicked
+        Doimau();
+        if (btnFormThemSP.getBackground() != Color.CYAN) {
+            btnFormThemSP.setBackground(Color.CYAN);
+        } else {
+            btnFormThemSP.setBackground(Color.red);
+        }
+        System.out.println(btnFormThemSP.getBackground());
         JFrame frame = new JFrame("Them thong tin");
-        FormThemSanPham themSanPham = new FormThemSanPham(frame,sanPham);
-        frame.setSize(900,600);
+        FormThemSanPham themSanPham = new FormThemSanPham(frame, sanPham);
+        frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
         frame.add(themSanPham);
         frame.setVisible(true);
-        
-    }//GEN-LAST:event_btnFormThemSPMouseClicked
 
+    }//GEN-LAST:event_btnFormThemSPMouseClicked
+    public boolean checkMasp(int Masp) {
+        if (maSp != -1) {
+            return true;
+        }
+        return false;
+    }
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        // TODO add your handling code here:
+        Doimau();
+        if (btnDelete.getBackground() != Color.CYAN) {
+            btnDelete.setBackground(Color.CYAN);
+        } else {
+            btnDelete.setBackground(Color.red);
+        }
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa ?");
+        if (a == JOptionPane.YES_OPTION) {
+            if (checkMasp(maSp)) {
+                QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
+                if (qlsp_BUS.kiemTraTrangThaiSP(maSp) && qlsp_BUS.xoaSP(maSp)) {
+                    JOptionPane.showMessageDialog(null, "Xóa thành công");
+                    maSp = -1;
+                    System.out.println(txtTimKiem.getText());
+                    sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Xóa thất bại!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Chưa chọn sản phẩm muốn xóa");
+            }
+        }
+
+
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnFormUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormUpdateMouseClicked
-        // TODO add your handling code here:
+        Doimau();
+        if (btnFormUpdate.getBackground() != Color.CYAN) {
+            btnFormUpdate.setBackground(Color.CYAN);
+        } else {
+            btnFormUpdate.setBackground(Color.red);
+        }
     }//GEN-LAST:event_btnFormUpdateMouseClicked
+
+    private void btnFormThemSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormThemSPMousePressed
+
+    }//GEN-LAST:event_btnFormThemSPMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -245,6 +342,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
     private javax.swing.JPanel detailSPPanel;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField txtTimKiem;

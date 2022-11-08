@@ -28,15 +28,17 @@ public class TableDetailDH extends javax.swing.JPanel {
     TableDonHang donhang;
     ArrayList data = new ArrayList();
     String tenTrangThai;
+    String keyWord;
 
-    public TableDetailDH(int index, String tenTrangThai,DefaultTableModel model,TableDonHang donhang) {
+    public TableDetailDH(int index, String tenTrangThai,DefaultTableModel model,TableDonHang donhang,String keyWord) {
         initComponents();
         this.donhang= donhang;
+        this.keyWord = keyWord;
         selectedIndex = index;
         this.tenTrangThai = tenTrangThai;
         if (selectedIndex != -1) {
 
-            data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai);
+            data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai,this.keyWord);
 
             DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
 //            Tao bien arrSp de luu tenSP roi add vao modelTenSP
@@ -52,7 +54,7 @@ public class TableDetailDH extends javax.swing.JPanel {
 
     public void DisplayInfor() {
         ArrayList data = new ArrayList();
-        data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai);
+        data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai,this.keyWord);
         Vector dataDetail = new Vector();
         dataDetail = (Vector) data.get(jComboBox1.getSelectedIndex());
         madhlb.setText(dataDetail.get(0).toString());

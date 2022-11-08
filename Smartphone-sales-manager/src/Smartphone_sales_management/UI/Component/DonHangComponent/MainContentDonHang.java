@@ -32,7 +32,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
             @Override
             public int SelectedInxex(int index,DefaultTableModel model) {
                 detailDonHangPanel.removeAll();
-                detailDH = new TableDetailDH(index,jComboBox2.getSelectedItem().toString(),model,donHang);
+                detailDH = new TableDetailDH(index,jComboBox2.getSelectedItem().toString(),model,donHang,txtTimkiem.getText());
                 detailDH.setBounds(0, 0, detailDonHangPanel.getWidth(), detailDonHangPanel.getHeight());
                 detailDonHangPanel.add(detailDH);
                 repaint();
@@ -87,7 +87,6 @@ public class MainContentDonHang extends javax.swing.JPanel {
 
         txtTimkiem.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         txtTimkiem.setForeground(new java.awt.Color(153, 153, 153));
-        txtTimkiem.setText("Nhập thông tin tìm kiếm");
         txtTimkiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtTimkiemMouseClicked(evt);

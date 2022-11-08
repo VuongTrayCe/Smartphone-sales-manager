@@ -40,7 +40,7 @@ public class TableDetailSP extends javax.swing.JPanel {
         mausaclb.setText(data.get(4).toString());
         namsxlb.setText(data.get(5).toString());
         tgbhlb.setText(data.get(6).toString());
-        loaikmlb.setText(data.get(7).toString());
+        loaikmlb.setText(data.get(7).toString()+"%");
         trangthailb.setText(data.get(8).toString());
         taThongSo.setText(data.get(9).toString());
         String icon =data.get(10).toString();

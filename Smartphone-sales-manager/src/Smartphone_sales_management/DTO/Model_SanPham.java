@@ -10,6 +10,7 @@ package Smartphone_sales_management.DTO;
  */
 public class Model_SanPham {
 
+    private int masp;
     private String tenSp;
     private String loaiSp;
     private int soLuong;
@@ -22,6 +23,14 @@ public class Model_SanPham {
     private String ngayTao;
     private int Makm;
     private int Mabh;
+
+    public int getMasp() {
+        return masp;
+    }
+
+    public void setMasp(int masp) {
+        this.masp = masp;
+    }
 
     public int getMakm() {
         return Makm;
@@ -38,7 +47,6 @@ public class Model_SanPham {
     public void setMabh(int Mabh) {
         this.Mabh = Mabh;
     }
-    
 
     public String getNgayTao() {
         return ngayTao;
@@ -56,16 +64,6 @@ public class Model_SanPham {
         this.gia = gia;
     }
 
-//    public Model_SanPham(String tenSp, String loaiSp, int soLuong, String mauSac, String namSX, String trangThai, String icon, String thongSo) {
-//        this.tenSp = tenSp;
-//        this.loaiSp = loaiSp;
-//        this.soLuong = soLuong;
-//        this.mauSac = mauSac;
-//        this.namSX = namSX;
-//        this.trangThai = trangThai;
-//        this.icon = icon;
-//        this.thongSo = thongSo;
-//    }
     public String getTenSp() {
         return tenSp;
     }

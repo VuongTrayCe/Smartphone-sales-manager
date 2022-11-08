@@ -623,9 +623,9 @@ public class FormThemSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_txtIconActionPerformed
 
     private void cbbBaoHanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbBaoHanhActionPerformed
-       ArrayList dsbh1 = new ArrayList();
-       dsbh1= qlsp_BUS.layDanhSachBH();
-       Vector data = (Vector) dsbh1.get(cbbBaoHanh.getSelectedIndex());
+        ArrayList dsbh1 = new ArrayList();
+        dsbh1 = qlsp_BUS.layDanhSachBH();
+        Vector data = (Vector) dsbh1.get(cbbBaoHanh.getSelectedIndex());
         txtMabh.setText(data.get(1).toString());
     }//GEN-LAST:event_cbbBaoHanhActionPerformed
 

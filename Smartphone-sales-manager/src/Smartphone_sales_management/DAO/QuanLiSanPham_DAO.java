@@ -54,7 +54,7 @@ public class QuanLiSanPham_DAO {
         ArrayList result = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon\n "
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon,khuyenmai.Makm,baohanh.Mabaohanh,khuyenmai.Tenkm,sanpham.Loaisp\n "
                     + "FROM sanpham\n "
                     + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n "
                     + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n "
@@ -76,6 +76,10 @@ public class QuanLiSanPham_DAO {
                     result.add(rs.getString(9));
                     result.add(rs.getString(10));
                     result.add(rs.getString(11));
+                    result.add(rs.getInt(12));
+                    result.add(rs.getInt(13));
+                    result.add(rs.getString(14));
+                    result.add(rs.getString(15));
                 }
             }
             return result;

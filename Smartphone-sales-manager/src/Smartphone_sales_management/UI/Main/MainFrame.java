@@ -13,7 +13,6 @@ import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonH
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
 import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
-import Smartphone_sales_management.UI.Component.PhieuNhap.MainConTentPhieuNhap;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import java.awt.Color;
@@ -57,7 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if (index == 0) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-//KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
                     MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -72,26 +71,8 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 1) {
-                    
-                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 
-                     jPanel1.removeAll();
-                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
-                    jPanel1.setLayout(new GridLayout());
-                    jPanel1.add(a);
-                    a.validate();
-//                    pack();
-                    
-//                    
-//                    jPanel1.removeAll();
-//                    pack();
-//                    jPanel1.repaint();
-
-                }
-                
-                if (index == 2) {
-                    
-                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -99,13 +80,15 @@ public class MainFrame extends javax.swing.JFrame {
                     jPanel1.add(a);
                     a.validate();
 //                    pack();
-//                    jPanel1.removeAll();
-//                    jPanel1.repaint();
 
+//                    
+//                    jPanel1.removeAll();
+//                    pack();
+//                    jPanel1.repaint();
                 }
-                if (index ==3) {
-                    
-                     MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this);
+                if (index == 2) {
+
+                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -118,8 +101,8 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 4) {
-                    ConNguoi a =  new ConNguoi();
-                     jPanel1.removeAll();
+                    ConNguoi a = new ConNguoi();
+                    jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);

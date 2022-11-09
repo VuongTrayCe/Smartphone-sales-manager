@@ -19,6 +19,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
+import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
+import java.awt.GridLayout;
 import javax.swing.JTable;
 
 /**
@@ -67,6 +69,11 @@ public class ConNguoi extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Quản Lý Nhân Viên");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_NhanVien.png"))); // NOI18N
 
@@ -172,6 +179,16 @@ public class ConNguoi extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+                    NhanVienGUI a = new NhanVienGUI();
+                            jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+//                    pack();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

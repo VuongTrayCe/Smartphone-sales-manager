@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.KhachHangComponent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import Smartphone_sales_management.BUS.QuanLyKhachHang_BUS;
 import Smartphone_sales_management.UI.Main.MainFrame;
@@ -16,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
 
 /**
  *
@@ -23,15 +26,20 @@ import javax.swing.table.TableRowSorter;
  */
 public class khachhang extends javax.swing.JFrame {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
       private QuanLyKhachHang_BUS qlkh = new QuanLyKhachHang_BUS();
        DefaultTableModel model;
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     /**
      * Creates new form khachhang
      */
     public khachhang() {
+<<<<<<< HEAD
 <<<<<<< HEAD
         initComponents();
     }
@@ -72,6 +80,11 @@ public class khachhang extends javax.swing.JFrame {
 //        jScrollPane1.repaint();
     }
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+        initComponents();
+    }
+
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +94,7 @@ public class khachhang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -97,11 +111,19 @@ public class khachhang extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -131,6 +153,7 @@ public class khachhang extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
 =======
         jLabel7 = new javax.swing.JLabel();
         txtMakh = new javax.swing.JTextField();
@@ -249,12 +272,17 @@ public class khachhang extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Mã khách hàng");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
         jLabel4.setText("Email");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -316,6 +344,7 @@ public class khachhang extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Xóa");
+<<<<<<< HEAD
 =======
         jLabel4.setText("Tên Khách Hàng");
 
@@ -510,12 +539,17 @@ public class khachhang extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -596,6 +630,7 @@ public class khachhang extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(226, Short.MAX_VALUE))
+<<<<<<< HEAD
 =======
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -605,12 +640,17 @@ public class khachhang extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -672,6 +712,7 @@ public class khachhang extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+<<<<<<< HEAD
 =======
     private void txttenKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttenKHActionPerformed
       
@@ -717,6 +758,8 @@ public class khachhang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -725,12 +768,16 @@ public class khachhang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+<<<<<<< HEAD
 =======
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -753,5 +800,7 @@ public class khachhang extends javax.swing.JFrame {
     private javax.swing.JButton txtXoa;
     private javax.swing.JTextField txttenKH;
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
+=======
+>>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     // End of variables declaration//GEN-END:variables
 }

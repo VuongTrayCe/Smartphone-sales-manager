@@ -136,4 +136,12 @@ public class QuanLiSanPham_BUS {
         dsbh = qlsp.layDanhSachBH();
         return dsbh;
     }
+    
+    public ArrayList<String> getAllSP(){
+        ArrayList danhsachsanpham = new ArrayList();
+         danhsachsanpham = qlsp.getALLSanPham();
+        return danhsachsanpham;
+    }
+
+    
 }

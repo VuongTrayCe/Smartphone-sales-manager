@@ -55,9 +55,9 @@ public class MainContentSanPham extends javax.swing.JPanel {
                 tableDetail = new TableDetailSP(Masp, sanPham);
                 tableDetail.setBounds(0, 0, detailSPPanel.getWidth(), detailSPPanel.getHeight());
                 QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
-//                data = qlsp_BUS.layChitietSanPham(index, (String) jComboBox2.getSelectedItem());
+                data = qlsp_BUS.layctsp_BUS(Masp);
 //                System.out.println(data.get(0));
-//                dataChitietSP = data;
+                dataChitietSP = data;
                 maSp = Masp;
                 detailSPPanel.add(tableDetail);
                 repaint();
@@ -296,7 +296,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
             btnFormThemSP.setBackground(Color.red);
         }
         JFrame frame = new JFrame("Them thong tin");
-        FormThemSanPham themSanPham = new FormThemSanPham(frame, sanPham);
+        FormThemSanPham themSanPham = new FormThemSanPham(frame, sanPham, jComboBox2.getSelectedItem().toString());
         frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
         frame.add(themSanPham);
@@ -324,7 +324,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Xóa thành công");
                     maSp = -1;
                     System.out.println(txtTimKiem.getText());
-//                    sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+                    sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
                 } else {
                     JOptionPane.showMessageDialog(null, "Xóa thất bại!");
                 }
@@ -352,7 +352,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     btnFormUpdate.setBackground(Color.red);
                 }
                 JFrame frame = new JFrame("Them thong tin");
-                FormSuaSanPham suaSanPham = new FormSuaSanPham(frame, sanPham, dataChitietSP);
+                FormSuaSanPham suaSanPham = new FormSuaSanPham(frame, sanPham, dataChitietSP, jComboBox2.getSelectedItem().toString());
                 frame.setSize(900, 700);
                 frame.setLocationRelativeTo(null);
                 frame.add(suaSanPham);

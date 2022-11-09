@@ -32,6 +32,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
     QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
     TableSanPham sanpham;
     ArrayList dataCTSP;
+    String tenTrangThai;
     DefaultComboBoxModel modelkm = new DefaultComboBoxModel();
     DefaultComboBoxModel modelbh = new DefaultComboBoxModel();
     int countkm = 0;
@@ -42,11 +43,12 @@ public class FormSuaSanPham extends javax.swing.JPanel {
     /**
      * Creates new form FormSuaSanPham
      */
-    public FormSuaSanPham(JFrame frame, TableSanPham sanpham, ArrayList data) {
+    public FormSuaSanPham(JFrame frame, TableSanPham sanpham, ArrayList data,String tenTrangThai) {
         initComponents();
         this.frame = frame;
         this.sanpham = sanpham;
         this.dataCTSP = data;
+        this.tenTrangThai = tenTrangThai;
         ArrayList dskm = new ArrayList();
         ArrayList dsbh = new ArrayList();
         dsbh = qlsp_BUS.layDanhSachBH();
@@ -651,7 +653,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
             }
             if (check == true) {
                 JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công !");
-//                sanpham.SetDefaultTable("", 0);
+                sanpham.SetDefaultTable("", tenTrangThai);
                 frame.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại !");
@@ -663,7 +665,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn muốn quay lại ?", "Quay lại", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             frame.dispose();
-        } 
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

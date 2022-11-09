@@ -11,5 +11,5 @@ import javax.swing.table.DefaultTableModel;
  * @author Admin
  */
 public interface EventDonHang {
-    public int SelectedInxex(int index,DefaultTableModel model);
+    public int SelectedInxex(int index);
 }

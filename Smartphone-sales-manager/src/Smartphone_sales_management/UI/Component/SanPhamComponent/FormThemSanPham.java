@@ -34,14 +34,16 @@ public class FormThemSanPham extends javax.swing.JPanel {
     JFrame frame;
     QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
     TableSanPham sanpham;
+    String tenTrangThai;
 
     /**
      * Creates new form FormThemSanPham
      */
-    public FormThemSanPham(JFrame frame, TableSanPham sanpham) {
+    public FormThemSanPham(JFrame frame, TableSanPham sanpham,String tenTrangThai) {
         initComponents();
         this.frame = frame;
         this.sanpham = sanpham;
+        this.tenTrangThai = tenTrangThai;
         ArrayList dskm = new ArrayList();
         ArrayList dsbh = new ArrayList();
         dskm = qlsp_BUS.layDanhSachKM();
@@ -589,7 +591,7 @@ public class FormThemSanPham extends javax.swing.JPanel {
             }
             if (check == true) {
                 JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công !");
-//                sanpham.SetDefaultTable("", 0);
+                sanpham.SetDefaultTable("", tenTrangThai);
                 frame.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại !");

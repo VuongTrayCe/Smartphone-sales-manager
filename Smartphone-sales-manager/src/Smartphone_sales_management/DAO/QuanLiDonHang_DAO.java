@@ -44,35 +44,6 @@ public class QuanLiDonHang_DAO {
         }
     }
 
-    public ArrayList layDanhSachDonHangTheoTrangThai_DAO(String tenTrangThai) {
-        ArrayList dsdhtct = new ArrayList();
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\\n\"\n"
-                    + "                    + \"FROM	donhang \n"
-                    + "WHERE donhang.Trangthai = ?");
-            stm.setString(1, tenTrangThai);
-            rs = stm.executeQuery();
-            if (rs != null) {
-                while (rs.next()) {
-                    Vector a = new Vector();
-                    a.add(rs.getInt("Madh"));
-                    a.add(rs.getDate("Ngayban"));
-                    a.add(rs.getInt("SoLuong"));
-                    a.add(rs.getInt("Tongtien"));
-                    a.add(rs.getString("Trangthai"));
-                    dsdhtct.add(a);
-                }
-            }
-            return dsdhtct;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            dbConnect.closeConnection();
-        }
-    }
-
     public ArrayList layDanhSachChiTietDonHang(int Madh) throws SQLException {
         ArrayList result = new ArrayList();
         dbConnect.setupConnection();
@@ -161,7 +132,6 @@ public class QuanLiDonHang_DAO {
         }
         return result;
     }
-// Lay ma don hang theo ten ma
 
     public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
 
@@ -194,7 +164,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
         try {
             PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE donhang\n"
-                    + "SET donhang.Trangthai = \"Đã Hủy\"\n"
+                    + "SET donhang.Trangthai = \"Hủy đơn\"\n"
                     + "WHERE donhang.Madh = ?");
             stm.setInt(1, Madh);
             stm.executeUpdate();

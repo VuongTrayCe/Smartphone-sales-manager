@@ -6,7 +6,6 @@ package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DTO.Model_KhachHang;
-import Smartphone_sales_management.UI.Component.KhachHangComponent.khachhang;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;

@@ -26,11 +26,12 @@ public class TableDonHang extends javax.swing.JPanel {
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
     DefaultTableModel model = new DefaultTableModel();
     private String keyWord;
-    String tenTrangThai;
-    public TableDonHang(String keyWord, String tenTrangThai) {
+    private int selectedIndex;
+
+    public TableDonHang(String keyWord, int selectedIndex) {
         initComponents();
         this.keyWord = keyWord;
-        this.tenTrangThai = tenTrangThai;
+        this.selectedIndex = selectedIndex;
         model.addColumn("MaDH");
         model.addColumn("NgayBan");
         model.addColumn("TongSoLuong");
@@ -41,16 +42,16 @@ public class TableDonHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable(keyWord, tenTrangThai);
+        SetDefaultTable(keyWord, selectedIndex);
         jTable1.setModel(model);
     }
 
     public void addEventDonHang(EventDonHang event) {
-//        event.SelectedInxex(0,);
+        event.SelectedInxex(0);
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event.SelectedInxex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                event.SelectedInxex(jTable1.getSelectedRow());
             }
         ;
     }
@@ -59,11 +60,11 @@ public class TableDonHang extends javax.swing.JPanel {
     }
     
    
-    public void SetDefaultTable(String keyWord, String tenTrangThai) {
+    public void SetDefaultTable(String keyWord, int selectedIndex) {
         jTable1.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
-        dataList = qldh_BUS.layDanhSachDonHang(keyWord,tenTrangThai);
+        dataList = qldh_BUS.layDanhSachDonHang(keyWord, selectedIndex);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
@@ -71,7 +72,9 @@ public class TableDonHang extends javax.swing.JPanel {
 
     }
     
-   
+    public DefaultTableModel getModel() {
+        return this.model;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

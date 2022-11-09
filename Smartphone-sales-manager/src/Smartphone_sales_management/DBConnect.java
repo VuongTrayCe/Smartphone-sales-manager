@@ -5,6 +5,7 @@
  */
 package Smartphone_sales_management;
 
+
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -84,6 +85,7 @@ public class DBConnect {
             return false;
         }
     }
+  
 
     public ResultSet sqlQry(PreparedStatement stm) {
         if (checkConnection()) {
@@ -103,11 +105,11 @@ public class DBConnect {
         if (checkConnection()) {
             try {
                 stm.executeUpdate();
-//                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
+                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
                 return true;
             } catch (SQLException e) {
-                e.printStackTrace();
-//                JOptionPane.showMessageDialog(null, "Gia tri cua khoa vua nhap khong ton tai !!");
+//                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gia tri cua khoa vua nhap khong ton tai !!");
             }
         }
         return false;
@@ -147,8 +149,8 @@ public class DBConnect {
             JOptionPane.showMessageDialog(null, "Khong tim thay Driver mysql !!");
         }
     }
-
-    public Connection getConnection() {
+    
+    public Connection getConnection(){
         return conn;
     }
 

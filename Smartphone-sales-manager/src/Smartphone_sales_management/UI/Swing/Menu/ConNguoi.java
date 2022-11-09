@@ -19,11 +19,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
-import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
-import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.GridLayout;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 
 /**
@@ -36,13 +33,10 @@ public class ConNguoi extends javax.swing.JPanel {
      * Creates new form TestPanel2
      */
 
-    JPanel panel;
-    MainFrame frame;
-    public ConNguoi(MainFrame frame,JPanel panel) {
+    
+    public ConNguoi() {
         
         initComponents();
-        this.panel=panel;
-        this.frame=frame;
        
     }
    
@@ -72,14 +66,14 @@ public class ConNguoi extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 102));
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel3MouseClicked(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Quản Lý Nhân Viên");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_NhanVien.png"))); // NOI18N
 
@@ -110,11 +104,6 @@ public class ConNguoi extends javax.swing.JPanel {
         jPanel1.add(jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel4MouseClicked(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Quản Lý Khách Hàng");
@@ -148,11 +137,6 @@ public class ConNguoi extends javax.swing.JPanel {
         jPanel1.add(jPanel4);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Quản Lý Nhà Cung Cấp");
@@ -196,46 +180,15 @@ public class ConNguoi extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
- 
-        
-             NhanVienGUI a = new NhanVienGUI(frame);
-//KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
-//              MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-
-                                      panel.removeAll();
-
-                    a.setBounds(0, 0,panel.getWidth(),panel.getHeight());
-                    panel.setLayout(new GridLayout());
-                    panel.add(a);
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+                    NhanVienGUI a = new NhanVienGUI();
+                            jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
                     a.validate();
-         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel3MouseClicked
-
-    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-//       hanVienGUI a = new NhanVienGUI(frame);
-          KhuyenMaiGUI a = new KhuyenMaiGUI(frame);
-//              MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-
-                                         panel.removeAll();
-
-                    a.setBounds(0, 0,panel.getWidth(),panel.getHeight());
-                    panel.setLayout(new GridLayout());
-                    panel.add(a);
-                    a.validate();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel4MouseClicked
-
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-     
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2MouseClicked
+//                    pack();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

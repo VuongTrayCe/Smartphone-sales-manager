@@ -51,22 +51,4 @@ public class QuanLiSanPham_DAO {
 //        
 //    }
 
-     public ArrayList getALLSanPham() {
-        ArrayList result = new ArrayList<>();
-        db.setupConnection();
-        try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select Masp from sanpham ");
-            rs = db.sqlQry(stm);
-            if (rs != null) {
-                while (rs.next()) {
-                    result.add(rs.getString("Masp"));
-                }
-            }
-        } catch (SQLException ex) {
-         System.out.println("Lỗi"+ex);
-        } finally {
-            db.closeConnection();
-        }
-        return result;
-    }
 }

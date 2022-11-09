@@ -34,6 +34,10 @@ public class QuanLyNhanVien_BUS {
         
         return isSuccess;
     }
+    public int getSoTTMANV(){
+       return this.getDanhSachNhanVien().size()+1;
+          
+    }
     
 	public boolean deleteNhanVien(int Manv) {
 		boolean isSuccess = false;
@@ -95,7 +99,7 @@ public class QuanLyNhanVien_BUS {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<Model_NhanVien> nvds = new ArrayList<>();
         for (Model_NhanVien nv : dsnv) {
-            String  cccd = Integer.toString(nv.getSoCCCD());
+            String  cccd = Integer.toString(nv.getSoCCCD()).toLowerCase();
             if (cccd.contains(tuKhoa)) {
                 nvds.add(nv);
             }

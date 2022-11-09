@@ -7,7 +7,7 @@ package Smartphone_sales_management.DAO;
 import Smartphone_sales_management.DBConnect;
 import Smartphone_sales_management.DTO.Model_KhuyenMai;
 import java.sql.PreparedStatement;
-import Smartphone_sales_management.DTO.Model_ChiTietKM;
+import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class QuanLyKhuyenMai_DAO {
             while (rs.next()) {
                 Model_KhuyenMai a = new Model_KhuyenMai();
                 a.setMakm(rs.getInt("Makm"));
-                a.setTenkm(rs.getString("Tenkm"));              
+                a.setTenkm(rs.getString("Tenkm"));
                 a.setPhantramkm(rs.getFloat("Ptkm"));
                 a.setTrangthai(rs.getString("Trangthai"));
                 dskm.add(a);
@@ -53,16 +53,15 @@ public class QuanLyKhuyenMai_DAO {
         ArrayList<Model_ChiTietKM> dsctkm = new ArrayList<Model_ChiTietKM>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select chitietkhuyenmai.Machitietkhuyenmai,chitietkhuyenmai.Masp,sanpham.Tensp,chitietkhuyenmai.Makm,chitietkhuyenmai.TrangThai from chitietkhuyenmai,sanpham where sanpham.Masp=chitietkhuyenmai.Masp");
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp from chitietkhuyenmai,sanpham where sanpham.Masp=chitietkhuyenmai.Masp");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_ChiTietKM a = new Model_ChiTietKM();
                 a.setMachitietkhuyenmai(rs.getInt("Machitietkhuyenmai"));
                 a.setMaSP(rs.getInt("MaSP"));
-                a.setTenSP(rs.getString("Tensp"));
                 a.setMaKM(rs.getInt("Makm"));
                 a.setTrangThai(rs.getString("TrangThai"));
-//               
+//                a.set
                 
                 dsctkm.add(a);
 
@@ -76,36 +75,16 @@ public class QuanLyKhuyenMai_DAO {
         }
         return null;
     }
-    
-       public ArrayList getALLKhuyenMai() {
-        ArrayList result = new ArrayList<>();
-        db.setupConnection();
-        try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select Makm  from khuyenmai where khuyenmai.Trangthai='T' ");
-            rs = db.sqlQry(stm);
-            if (rs != null) {
-                while (rs.next()) {
-                    result.add(rs.getString("Makm"));
-                }
-            }
-        } catch (SQLException ex) {
-         System.out.println("Lỗi"+ex);
-        } finally {
-            db.closeConnection();
-        }
-        return result;
-    }
-       
-       
       public boolean insertKhuyenMai(Model_KhuyenMai KhuyenMai) {
 		boolean isSuccess = false;
                  db.setupConnection();
-		String sqlString = "insert into khuyenmai(Tenkm,Ptkm,Trangthai) values (?, ?, ? )";
+		String sqlString = "insert into khuyenmai values (?, ?, ?, ? )";
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
-			preparedStatement.setString(1, KhuyenMai.getTenkm());
-                        preparedStatement.setFloat(2, KhuyenMai.getPhantramkm());
-                        preparedStatement.setString(3, KhuyenMai.getTrangthai());
+                        preparedStatement.setInt(1, KhuyenMai.getMakm());
+			preparedStatement.setString(2, KhuyenMai.getTenkm());
+                        preparedStatement.setFloat(3, KhuyenMai.getPhantramkm());
+                        preparedStatement.setString(4, KhuyenMai.getTrangthai());
                         
                         
 			int n = preparedStatement.executeUpdate();
@@ -206,12 +185,13 @@ public class QuanLyKhuyenMai_DAO {
        public boolean InsertCTKM(Model_ChiTietKM ChiTietKM){
            boolean isSuccess = false;
            db.setupConnection();
-           String sqlString = "insert into chitietkhuyenmai(Masp,Makm,TrangThai) values (?, ?, ?)";
+           String sqlString = "insert into chitietkhuyenmai values (?, ?, ?, ?)";
            try {
                preparedStatement = db.getConnection().prepareStatement(sqlString);
-               preparedStatement.setInt(1,ChiTietKM.getMaSP());
-               preparedStatement.setInt(2,ChiTietKM.getMaKM());
-               preparedStatement.setString(3,ChiTietKM.getTrangThai());
+               preparedStatement.setInt(1,ChiTietKM.getMachitietkhuyenmai());
+               preparedStatement.setInt(2,ChiTietKM.getMaSP());
+               preparedStatement.setInt(3,ChiTietKM.getMaKM());
+               preparedStatement.setString(4,ChiTietKM.getTrangThai());
                
                int n = preparedStatement.executeUpdate();
                if( n!= 0 ){

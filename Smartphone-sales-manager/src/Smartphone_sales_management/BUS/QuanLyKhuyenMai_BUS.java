@@ -33,12 +33,25 @@ public class QuanLyKhuyenMai_BUS {
         this.dsctkm = qlkm.getDanhSachChiTietKM_DAO();
         return dsctkm;
     }
-
+      
     public ArrayList getAllKM(){
         ArrayList danhsachkm = new ArrayList();
          danhsachkm = qlkm.getALLKhuyenMai();
         return danhsachkm;
     }
+  
+      public boolean ExistsCTKM(int masp,int makm) {
+		boolean isExists = false;	
+
+		for(Model_ChiTietKM CTKM : dsctkm) {
+			if (CTKM.getMaSP()== masp && CTKM.getMaKM() == makm) {
+				isExists = true;
+				break;
+			}
+		}
+
+		return isExists;
+	}
     public boolean Addkhuyenmai(Model_KhuyenMai khuyenmai) {
         boolean isSuccess = false;
         if (khuyenmai != null) {

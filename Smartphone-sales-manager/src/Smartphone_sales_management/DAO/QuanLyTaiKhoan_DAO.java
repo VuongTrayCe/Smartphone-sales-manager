@@ -3,70 +3,68 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Smartphone_sales_management.DAO;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 import Smartphone_sales_management.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
+import java.util.Vector;
 
 public class QuanLyTaiKhoan_DAO {
-        DBConnect db = new DBConnect();
+
+    DBConnect db = new DBConnect();
     ResultSet rs = null;
     // Thêm một nhân viên
-    public ArrayList getDanhsachTaiKhoan()
-    {
-    ArrayList<String> result = new ArrayList<>();
+
+    public ArrayList getDanhsachTaiKhoan() {
+        ArrayList ds = new ArrayList<>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from TaiKhoan");
-            
-            rs =  stm.executeQuery();
-                while (rs.next()) {
-                     result.add(rs.getString("Matk"));
-                     result.add(rs.getString("Manv"));
-                     result.add(rs.getString("Taikhoan"));
-                     result.add(rs.getString("Matkhau"));                    
-                     result.add(rs.getString("TrangThai"));
-                    
-
-                }
-                for (String string : result) {
-                    System.out.println(string);
-                
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk , taikhoan.Manv, taikhoan.Tendangnhap, taikhoan.Matkhau, taikhoan.TrangThai\n"
+                    + "FROM taikhoan");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(rs.getInt("Matk"));
+                a.add(rs.getInt("Manv"));
+                a.add(rs.getString("Tendangnhap"));
+                a.add(rs.getString("Matkhau")) ;
+                a.add(rs.getString("TrangThai"));
+                ds.add(a);
             }
-            return result;
-        }catch (SQLException ex) {
+            System.out.println(rs);
+            return ds;
+        } catch (SQLException ex) {
             return null;
-        }finally{
+        } finally {
             db.closeConnection();
         }
-}
-     public ArrayList getDanhSachChiTiet1TaiKhoan_DAO(int selectedIndex) throws SQLException {
+    }
+
+    public ArrayList getDanhSachChiTiet1TaiKhoan_DAO(int selectedIndex) throws SQLException {
 
         ArrayList result = new ArrayList();
         db.setupConnection();
 
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Manv,taikhoan.Taikhoan,taikhoan.Matkhau,taikhoan.TrangThai"
-                    + "from Manv,Taikhoan,Matkhau, quyen,TrangThai "
-                    + "where taikhoan.Manv=? and taikhoan.Manv=nhavien.Manv") ;
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk , taikhoan.Manv, taikhoan.Tendangnhap, taikhoan.Matkhau, taikhoan.TrangThai\n"
+                    + "FROM taikhoan");
             stm.setInt(1, selectedIndex);
             rs = db.sqlQry(stm);
             if (rs != null) {
                 while (rs.next()) {
-                    result.add(rs.getString(1));
-                    result.add(rs.getString(2));
-                    result.add(rs.getString(3));
-                    result.add(rs.getString(4));
-                    result.add(rs.getString(5));
-                    
-
-
-
+                    Model_TaiKhoan model = new Model_TaiKhoan();
+                    model.setMaTaiKhoan(rs.getInt(1));
+                    model.setMaNhanVien(rs.getInt(2));
+                    model.setTaiKhoan(rs.getString(3));
+                    model.setMatKhau(rs.getString(4));
+                    model.setQuyen(rs.getInt(5));
 
                 }
             }
@@ -78,7 +76,8 @@ public class QuanLyTaiKhoan_DAO {
 
         return result;
     }
-     public ArrayList getMa() {
+
+    public ArrayList getMa() {
 
         ArrayList result = new ArrayList<>();
         db.setupConnection();
@@ -100,4 +99,4 @@ public class QuanLyTaiKhoan_DAO {
         return result;
     }
 
-}		
+}

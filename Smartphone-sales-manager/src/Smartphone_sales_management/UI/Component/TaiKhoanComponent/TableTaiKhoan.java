@@ -27,6 +27,7 @@ public class TableTaiKhoan extends javax.swing.JPanel {
     /**
      * Creates new form TableTaiKhoan
      */
+        
     public TableTaiKhoan(EventTaiKhoan event) {
         initComponents();
         model.addColumn("MaTK");        
@@ -65,6 +66,7 @@ public class TableTaiKhoan extends javax.swing.JPanel {
         model.setRowCount(0);
         ArrayList dataList = new ArrayList<>();
         dataList = qltk.layDanhSachTaiKhoan(keyWord);
+//         System.out.println(dataList);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }

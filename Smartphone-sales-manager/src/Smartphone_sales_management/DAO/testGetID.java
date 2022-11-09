@@ -5,6 +5,7 @@
 package Smartphone_sales_management.DAO;
 
 import Smartphone_sales_management.DBConnect;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,18 +14,19 @@ import java.util.Vector;
 
 /**
  *
- * @author Vuong    
+ * @author Vuong
  */
 public class testGetID {
 
     DBConnect db = new DBConnect();
     ResultSet rs = null;
 
-    public int test() {
-        Boolean success;
+    public int test() throws SQLException {
+        int id=-1;
+      Boolean success;
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("insert into khachhang(Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai)  values (?,?,?,?,?,?,?,?)");
+            PreparedStatement stm = db.getConnection().prepareStatement("insert into khuyenmai(Tenkm,Ptkm,Trangthai) values(\"tesst\",30,\"T\")",Statement.RETURN_GENERATED_KEYS);
 //            System.out.println(model_khachhang.getTenkhachhang());
 //            System.out.println(model_khachhang.getCmnd());
 //            System.out.println(model_khachhang.getDiachi());
@@ -33,6 +35,13 @@ public class testGetID {
 //            System.out.println(model_khachhang.getNgaytao());
 
             success = db.sqlUpdate(stm);
+            if(success==true)
+            {
+                 rs = stm.getGeneratedKeys();
+                if(rs.next())
+                    id= rs.getInt(1);
+
+            }
 //            JOptionPane.showMessageDialog(null, "Thêm thành công!!");
 
         } catch (SQLException ex) {
@@ -40,7 +49,7 @@ public class testGetID {
         } finally {
             db.closeConnection();
         }
-        return 0;
+        return id;
     }
 
 }

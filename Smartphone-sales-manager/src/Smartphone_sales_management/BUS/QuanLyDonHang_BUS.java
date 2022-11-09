@@ -23,11 +23,12 @@ public class QuanLyDonHang_BUS {
 
     }
 
-    public ArrayList layDanhSachDonHang(String keyWord, int selectedIndex) {
+    public ArrayList layDanhSachDonHang(String keyWord, String tenTrangThai) {
         ArrayList dsdh = new ArrayList();
         ArrayList dsdhOfficial = new ArrayList();
+        ArrayList dsdhtt = new ArrayList();
         dsdh = qldh.layDanhSachDonHang_DAO();
-        if (selectedIndex == 0) {
+        if (tenTrangThai == "ALL") {
             if (keyWord == "") {
                 return dsdh;
             } else {
@@ -39,115 +40,39 @@ public class QuanLyDonHang_BUS {
                     }
                 }
                 return dsdhOfficial;
-
             }
-
-        }
-
-        if (selectedIndex == 1) {
+        } else {
             if (keyWord == "") {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(4));
-                    if (trangthai.equals("Đã xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
+                return dsdhtt = qldh.getDanhSachDonHangTheoTrangThai(tenTrangThai);
             } else {
-                for (Object x : dsdh) {
+                for (Object x : dsdhtt) {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(4));
-                    if (madh.contains(keyWord) && trangthai.equals("Đã xử lí")) {
+                    if (madh.contains(keyWord)) {
                         dsdhOfficial.add(y);
                     }
                 }
                 return dsdhOfficial;
-
             }
         }
-
-        if (selectedIndex == 2) {
-            if (keyWord == "") {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(4));
-                    if (trangthai.equals("Chưa xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-            } else {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(4));
-                    if (madh.contains(keyWord) && trangthai.equals("Chưa xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-
-            }
-        }
-        if (selectedIndex == 3) {
-            if (keyWord == "") {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(4));
-                    if (trangthai.equals("Hủy đơn")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-            } else {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(4));
-                    if (madh.contains(keyWord) && trangthai.equals("Hủy đơn")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-
-            }
-        }
-
-        return null;
-
     }
 
-    public ArrayList layDanhSachChiTietDonHang(int selectedIndex,String tenTrangThai) {
-//        ArrayList danhsachDonHangTheoTrangThai = qldh.getDanhSachDonHangTheoTrangThai(tenTrangThai);
-        ArrayList dsctdh = new ArrayList();
-        ArrayList MaDHList = new ArrayList();
-        if(tenTrangThai.equals("ALL"))
-        {
-                    MaDHList = qldh.layMadh();
 
-        }
-        else
-        {
-                    MaDHList = qldh.layMadh2(tenTrangThai);
-
-        }
+    public ArrayList layctdh(int Madh) {
+        ArrayList ctdh = new ArrayList();
         try {
-            dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
-
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyDonHang_BUS.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            ctdh = qldh.layDanhSachChiTietDonHang(Madh);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+        return ctdh;
+    }
 
-        return dsctdh;
-    }
-    
     public void updateHuyDonHang(int Madh) {
-       qldh.updateHuyDonHang(Madh);
+        qldh.updateHuyDonHang(Madh);
     }
-    
+
     public void updateXacNhanDonHang(int Madh) {
         qldh.updateXacNhanDonHang(Madh);
     }

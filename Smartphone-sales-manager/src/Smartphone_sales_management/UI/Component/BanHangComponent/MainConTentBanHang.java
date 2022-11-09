@@ -67,7 +67,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 jPanel2.removeAll();
 //                TableDetailBH b = new TableDetailBH(event);
 //                b.setMinimumSize(new Dimension(100,100));
-//                b.setMaximumSize(new Dimension(jPanel2.getWidth(),jPanel2.getHeight()));
+//                b.setMaximumSize(new Dimension(jPanel2.getWidThongTinDonHang(),jPanel2.getHeight()));
 
                 jPanel2.setLayout(new GridLayout());
                 jPanel2.add(c);

@@ -5,7 +5,7 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLiKhachHang_DAO;
-//import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
+import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
 import java.util.ArrayList;
 

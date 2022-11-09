@@ -60,18 +60,18 @@ public class QuanLiKhachHang_DAO {
     public boolean inserKhachHang(Model_KhachHang KhachHang) {
         boolean isSuccess = false;
         db.setupConnection();
-        String sqlString = "insert into khachhang values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlString = "insert into khachhang(tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai) values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             preparedStatement = db.getConnection().prepareStatement(sqlString);
-            preparedStatement.setInt(1, KhachHang.getMakh());
-            preparedStatement.setString(2, KhachHang.getTenkh());
-            preparedStatement.setString(3, KhachHang.getCmnd());
-            preparedStatement.setInt(4, KhachHang.getSDT());
-            preparedStatement.setString(5, KhachHang.getDiaChi());
-            preparedStatement.setString(6, KhachHang.getEmail());
-            preparedStatement.setString(7, KhachHang.getNgaytao());
-            preparedStatement.setInt(8, KhachHang.getDiemso());
-            preparedStatement.setString(9, KhachHang.getTrangThai());
+//            preparedStatement.setInt(1, KhachHang.getMakh());
+            preparedStatement.setString(1, KhachHang.getTenkh());
+            preparedStatement.setString(2, KhachHang.getCmnd());
+            preparedStatement.setInt(3, KhachHang.getSDT());
+            preparedStatement.setString(4, KhachHang.getDiaChi());
+            preparedStatement.setString(5, KhachHang.getEmail());
+            preparedStatement.setString(6, KhachHang.getNgaytao());
+            preparedStatement.setInt(7, KhachHang.getDiemso());
+            preparedStatement.setString(8, KhachHang.getTrangThai());
             
             
             
@@ -149,7 +149,7 @@ public class QuanLiKhachHang_DAO {
         System.out.println(khachhang.getDiemso());
         System.out.println(khachhang.getTrangThai());
         db.setupConnection();
-        String sqlString = "update khachhang set Tenkh = ?, Cmnd = ?, DiaChi = ?, Email = ? where Makh=?";
+        String sqlString = "update khachhang set  Tenkh = ?, Cmnd = ?, SDT = ?,DiaChi = ?, Email = ?, Ngaytao = ?, Diemso = ?, TrangThai = ? where Makh=?";
         
         try {
             preparedStatement = db.getConnection().prepareStatement(sqlString);

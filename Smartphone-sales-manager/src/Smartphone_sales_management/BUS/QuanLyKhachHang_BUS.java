@@ -30,13 +30,13 @@ public boolean AddKhachHang(Model_KhachHang KhachHang){
     return isSuccess;
     }
 
-public boolean deleteKhachHang(int Makh){
+public boolean deleteKhachHang(int makh){
     boolean isSuccess = false;
     
-    for(Model_KhachHang kh:dskh){
-        if(kh.getMakh()== Makh){
+    for(Model_KhachHang kh : dskh){
+        if(kh.getMakh()== makh){
             dskh.remove(kh);
-            qlkh.deleteKhachHang(Makh);
+            qlkh.deleteKhachHang(makh);
             isSuccess = true;
             break;
             
@@ -58,12 +58,79 @@ public boolean addkh(Model_KhachHang KhachHang) {
         
         return isSuccess;
     }
-
-    public boolean ExistsKhachHang(int parseInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//public boolean ExistsKhachHang(int Cmnd) {
+//		boolean isExists = false;	
+//
+//		for(Model_KhachHang khachHang : dskh) {
+//			pif (khachHang.getCmnd()== Cmnd) {
+//				isExists = true;
+//				break;
+//			}
+//		}
+//
+//		return isExists;
+//	}
+//        
+        
+         public ArrayList<Model_KhachHang> timKiemTheoMaKh(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String MaKh = Integer.toString(kh.getMakh());
+            if (MaKh.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
+    }
+           public ArrayList<Model_KhachHang> timKiemTheoTen(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String TenKh = kh.getTenkh().toLowerCase();
+            if (TenKh.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
     }
 
-    public int getSoTTMakh() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+               public ArrayList<Model_KhachHang> timKiemTheoDiaChi(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String  Diachi = kh.getDiaChi().toLowerCase();
+            if (Diachi.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
+    }
+         
+          public ArrayList<Model_KhachHang> timKiemMaNVNangCao(String tuKhoaA, String tuKhoaB){
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for(Model_KhachHang kh : dskh){
+            int Makh = kh.getMakh();
+            int min = Integer.parseInt(tuKhoaA);
+            int max = Integer.parseInt(tuKhoaB);
+            if( min <= Makh && Makh <= max){
+                khds.add(kh);
+            }
+        }
+        return khds;
+    }
+                public ArrayList<Model_KhachHang> timKiemTuoiNangCao(String tuKhoaA, String tuKhoaB){
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for(Model_KhachHang kh : dskh){
+            int SĐT = kh.getSDT();
+            int min = Integer.parseInt(tuKhoaA);
+            int max = Integer.parseInt(tuKhoaB);
+            if( min <= SĐT && SĐT <= max){
+                khds.add(kh);
+            }
+        }
+        return khds;
     }
 }
+
+

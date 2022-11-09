@@ -23,19 +23,20 @@ import javax.swing.table.DefaultTableModel;
 public class TableDetailDH extends javax.swing.JPanel {
 
 //    public int indexSelected
-    public static int selectedIndex = -1;
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+    TableDonHang donhang;
     ArrayList data = new ArrayList();
-    String tenTrangThai = "ALL";
-   
-    public TableDetailDH(int index, String tenTrangThai) {
+    public int Madh = -1;
+    String tenTrangThai;
+
+    public TableDetailDH(int Madh, TableDonHang donhang, String tenTrangThai) {
         initComponents();
-        selectedIndex = index;
+        this.donhang = donhang;
+        this.Madh = Madh;
         this.tenTrangThai = tenTrangThai;
-        if (selectedIndex != -1) {
+        if (this.Madh != -1) {
 
-            data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai);
-
+            data = qldh_BUS.layctdh(Madh);
             DefaultComboBoxModel modelTenSP = new DefaultComboBoxModel();
 //            Tao bien arrSp de luu tenSP roi add vao modelTenSP
             for (Object object : data) {
@@ -45,12 +46,12 @@ public class TableDetailDH extends javax.swing.JPanel {
             jComboBox1.setModel(modelTenSP);
             DisplayInfor();
         }
-        
+
     }
 
     public void DisplayInfor() {
         ArrayList data = new ArrayList();
-        data = qldh_BUS.layDanhSachChiTietDonHang(this.selectedIndex, tenTrangThai);
+        data = qldh_BUS.layctdh(this.Madh);
         Vector dataDetail = new Vector();
         dataDetail = (Vector) data.get(jComboBox1.getSelectedIndex());
         madhlb.setText(dataDetail.get(0).toString());
@@ -63,10 +64,10 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcGia1.setText(dataDetail.get(6).toString());
         lbcgiasaukm.setText(dataDetail.get(7).toString());
         trangthailb1.setText(dataDetail.get(8).toString());
-        if (dataDetail.get(8).toString().equals("Đã xử lí") || dataDetail.get(8).toString().equals("Hủy đơn")) {
+        if (dataDetail.get(8).toString().equals("Đã xử lí") || dataDetail.get(8).toString().equals("Đã Hủy")) {
             confirmBtn.setVisible(false);
             deleteBtn.setVisible(false);
-        } else if (dataDetail.get(8).toString().equals("Chưa xử lí")) {
+        } else if (dataDetail.get(8).toString().equals("Đặt Hàng")) {
             confirmBtn.setVisible(true);
             deleteBtn.setVisible(true);
         }
@@ -358,18 +359,20 @@ public class TableDetailDH extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
-        int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?");
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?", "Hủy đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
             DisplayInfor();
+            donhang.SetDefaultTable("", tenTrangThai);
         }
     }//GEN-LAST:event_deleteBtnMouseClicked
 
     private void confirmBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmBtnMouseClicked
-        int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn xác nhận ?");
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xác nhận ?", "Xác nhận đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
             DisplayInfor();
+            donhang.SetDefaultTable("", tenTrangThai);
         }
     }//GEN-LAST:event_confirmBtnMouseClicked
 

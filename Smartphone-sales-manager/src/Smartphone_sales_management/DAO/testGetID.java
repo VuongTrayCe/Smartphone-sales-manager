@@ -13,7 +13,7 @@ import java.util.Vector;
 
 /**
  *
- * @author Vuong
+ * @author Vuong    
  */
 public class testGetID {
 
@@ -21,7 +21,7 @@ public class testGetID {
     ResultSet rs = null;
 
     public int test() {
- Boolean success;
+        Boolean success;
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("insert into khachhang(Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai)  values (?,?,?,?,?,?,?,?)");
@@ -40,6 +40,7 @@ public class testGetID {
         } finally {
             db.closeConnection();
         }
+        return 0;
     }
 
 }

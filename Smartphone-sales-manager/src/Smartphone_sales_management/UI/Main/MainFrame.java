@@ -57,8 +57,8 @@ public class MainFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if (index == 0) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-//KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
-                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
@@ -118,7 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 4) {
-                    ConNguoi a =  new ConNguoi();
+                    ConNguoi a =  new ConNguoi(MainFrame.this,jPanel1);
                      jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());

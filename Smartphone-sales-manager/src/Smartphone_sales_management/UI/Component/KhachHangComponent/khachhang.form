@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -12,12 +9,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
-<<<<<<< HEAD
 =======
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -34,9 +28,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -96,23 +87,17 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-<<<<<<< HEAD
 =======
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -153,20 +138,14 @@
               </Group>
               <EmptySpace pref="226" max="32767" attributes="0"/>
           </Group>
-<<<<<<< HEAD
 =======
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -355,7 +334,6 @@
         <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
       </Properties>
     </Component>
-<<<<<<< HEAD
 =======
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -827,7 +805,5 @@
       </SubComponents>
     </Container>
 >>>>>>> parent of 33b7c9e (Merge branch 'Hiệp' of https://github.com/VuongTrayCe/Smartphone-sales-manager into Hiệp)
-=======
->>>>>>> parent of 2da10e1 (Merge pull request #44 from VuongTrayCe/Hiệp)
   </SubComponents>
 </Form>

@@ -128,14 +128,15 @@ public class QuanLyDonHang_BUS {
         if (tenTrangThai.equals("ALL")) {
             if (keyWord.equals("")) {
                 MaDHList = qldh.layMadh();
+            } else {
+                
             }
+                    
         } else {
             MaDHList = qldh.layMadh2(tenTrangThai);
-
         }
         try {
             dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
-
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyDonHang_BUS.class
                     .getName()).log(Level.SEVERE, null, ex);

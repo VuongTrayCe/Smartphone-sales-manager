@@ -18,98 +18,68 @@ public class QuanLiSanPham_BUS {
 
     QuanLiSanPham_DAO qlsp = new QuanLiSanPham_DAO();
 
-    public ArrayList layDanhSachSanPham(String keyWord, int selectedIndex) {
+    public ArrayList layDanhSachSanPham(String keyWord, String tenTrangThai) {
         ArrayList dsspOffical = new ArrayList();
         ArrayList dssp = new ArrayList();
+        ArrayList dsspTrangThai = new ArrayList();
+        dsspTrangThai = qlsp.layDanhSachSanPhamTheoTrangThai(tenTrangThai);
         dssp = qlsp.layDanhSachSanPham();
-        if (selectedIndex == 0) {
+        if (tenTrangThai.equals("All")) {
             if (keyWord == "") {
                 return dssp;
             } else {
                 for (Object x : dssp) {
                     Vector y = (Vector) x;
                     String masp = Integer.toString((int) y.get(0));
-                    String tenSp = ((String) y.get(1));
-                    if (masp.contains(keyWord) || tenSp.contains(keyWord)) {
+                    if (masp.contains(keyWord)) {
                         dsspOffical.add(y);
                     }
                 }
                 return dsspOffical;
             }
-        }
-        if (selectedIndex == 1) {
+        } else {
             if (keyWord == "") {
-                for (Object x : dssp) {
-                    Vector y = (Vector) x;
-                    String tenTrangThai = ((String) y.get(5));
-                    if (tenTrangThai.equals("T")) {
-                        dsspOffical.add(y);
-                    }
-                }
-                return dsspOffical;
+                return dsspTrangThai;
             } else {
-                for (Object x : dssp) {
-                    Vector y = (Vector) x;
-                    String masp = Integer.toString((int) y.get(0));
-                    String tenTrangThai = ((String) y.get(5));
-                    System.out.println(tenTrangThai);
-                    String tenSp = (String) y.get(1);
-                    if ((masp.contains(keyWord) || tenSp.equals(keyWord)) && tenTrangThai.equals("T")) {
+                for (Object x1 : dsspTrangThai) {
+                    Vector y = (Vector) x1;
+                    String maSP = Integer.toString((int) y.get(0));
+                    if (maSP.contains(keyWord)) {
                         dsspOffical.add(y);
                     }
-
                 }
                 return dsspOffical;
             }
         }
-
-        if (selectedIndex == 2) {
-            if (keyWord == "") {
-                for (Object x : dssp) {
-                    Vector y = (Vector) x;
-                    String tenTrangThai = ((String) y.get(5));
-                    System.out.println(tenTrangThai);
-                    if (tenTrangThai.equals("F")) {
-                        dsspOffical.add(y);
-                    }
-                }
-                return dsspOffical;
-            } else {
-                for (Object x : dssp) {
-                    Vector y = (Vector) x;
-                    String masp = Integer.toString((int) y.get(0));
-                    String tenTrangThai = ((String) y.get(5));
-                    System.out.println(tenTrangThai);
-                    String tenSp = (String) y.get(1);
-                    if ((masp.contains(keyWord) || tenSp.equals(keyWord)) && tenTrangThai.equals("F")) {
-                        dsspOffical.add(y);
-                    }
-
-                }
-
-                return dsspOffical;
-            }
-        }
-        return null;
     }
 
-    public ArrayList layChitietSanPham(int selectedIndex, String tenTrangThai) {
-
-        ArrayList dsctsp = new ArrayList();
-        ArrayList MaspList = new ArrayList();
-        if (tenTrangThai.equals("All")) {
-            MaspList = qlsp.layMadh();
-        } else {
-            MaspList = qlsp.layMadh2(tenTrangThai);
-        }
+//    public ArrayList layChitietSanPham(int selectedIndex, String tenTrangThai) {
+//
+//        ArrayList dsctsp = new ArrayList();
+//        ArrayList MaspList = new ArrayList();
+//        if (tenTrangThai.equals("All")) {
+//            MaspList = qlsp.layMadh();
+//        } else {
+//            MaspList = qlsp.layMadh2(tenTrangThai);
+//        }
+//        try {
+//            dsctsp = qlsp.layDanhSachChiTietSanPham((int) MaspList.get(selectedIndex));
+////            System.out.println(dsctsp.size());
+//        } catch (Exception e) {
+//            return null;
+//        }
+////        System.out.println(dsctsp);
+//        return dsctsp;
+//    }
+    public ArrayList layctsp_BUS(int Masp) {
+        ArrayList ctsp = new ArrayList();
         try {
-            dsctsp = qlsp.layDanhSachChiTietSanPham((int) MaspList.get(selectedIndex));
-//            System.out.println(dsctsp.size());
+            ctsp = qlsp.layDanhSachChiTietSanPham(Masp);
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
-//        System.out.println(dsctsp);
-        return dsctsp;
+        return ctsp;
     }
 
     public boolean themSP(Model_SanPham model) throws SQLException {
@@ -134,16 +104,23 @@ public class QuanLiSanPham_BUS {
         }
         return true;
     }
-    
+
     public boolean kiemTraTrangThaiSP(int maSp) {
-            ArrayList trangThai = qlsp.layDanhSachChiTietSanPham(maSp);
-            String temp = trangThai.get(8).toString();
-            System.out.println(maSp);
-            System.out.println(temp);
-            if(temp.equals("F")) {
-                return false;
-            }
+        ArrayList trangThai = qlsp.layDanhSachChiTietSanPham(maSp);
+        String temp = trangThai.get(8).toString();
+        System.out.println(maSp);
+        System.out.println(temp);
+        if (temp.equals("F")) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean suaSP(Model_SanPham model) {
+        if (qlsp.suaSP(model) && qlsp.suaGiasp(model) && qlsp.suaBH(model) && qlsp.suaKM(model)) {
             return true;
+        }
+        return false;
     }
 // BUS khuyen mai
 

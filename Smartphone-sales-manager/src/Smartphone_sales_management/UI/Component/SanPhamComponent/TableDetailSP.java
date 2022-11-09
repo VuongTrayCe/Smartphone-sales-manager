@@ -17,21 +17,19 @@ public class TableDetailSP extends javax.swing.JPanel {
     /**
      * Creates new form ChiTietSanPham
      */
-    public static int selectedIndex = -1;
-    public String tenTrangThai;
     QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
     TableSanPham sanpham;
-    public TableDetailSP(int index, String tenTrangThai,TableSanPham sanpham) {
+    private int Masp;
+    public TableDetailSP(int Masp,TableSanPham sanpham) {
         initComponents();
-        this.selectedIndex =index;
         this.sanpham = sanpham;
-        this.tenTrangThai = tenTrangThai;
+        this.Masp = Masp;
         DisplayInfo();
     }
     
     public void DisplayInfo() {
         ArrayList data = new ArrayList();
-        data = qlsp_BUS.layChitietSanPham(selectedIndex,this.tenTrangThai);
+        data = qlsp_BUS.layctsp_BUS(Masp);
 //        System.out.println(data);
         masplb.setText(data.get(0).toString());
         tensplb.setText(data.get(1).toString());

@@ -63,7 +63,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
         for (Object x1 : dsbh) {
             Vector y = (Vector) x1;
             String tentgbh = (String) y.get(0);
-           
+
             if (tentgbh.equals((String) dataCTSP.get(6))) {
                 resultbh = countbh;
             }
@@ -95,7 +95,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
         txtIcon = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -201,13 +201,13 @@ public class FormSuaSanPham extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 51, 51));
-        jButton3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Quay lại");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 51, 51));
+        btnBack.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Quay lại");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -249,7 +249,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnConfirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 23, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -263,7 +263,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
                 .addGap(77, 77, 77)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirm)
-                    .addComponent(jButton3))
+                    .addComponent(btnBack))
                 .addGap(185, 185, 185))
         );
 
@@ -628,44 +628,43 @@ public class FormSuaSanPham extends javax.swing.JPanel {
         return true;
     }
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-//        if (checkData()) {
-//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = new Date();
-//            boolean check = true;
-//            String ngayTao = (String) dateFormat.format(date);
-//            Model_SanPham model = new Model_SanPham();
-//            model.setTenSp(txtTensp.getText());
-//            model.setLoaiSp(txtLoaisp.getText());
-//            model.setSoLuong(Integer.parseInt(txtSoluong.getText()));
-//            model.setMauSac(txtMausac.getText());
-//            model.setNamSX(txtNamsx.getText());
-//            model.setTrangThai(txtTrangThai.getText());
-//            model.setIcon(txtIcon.getText());
-//            model.setThongSo(txtThongso.getText());
-//            model.setGia(Double.parseDouble(txtGia.getText()));
-//            model.setNgayTao(ngayTao);
-//            model.setMakm(Integer.parseInt(txtMakm.getText()));
-//            model.setMabh(Integer.parseInt(txtMabh.getText()));
-//            QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
-////            try {
-////                check = qlsp_BUS.themSP(model);
-////            } catch (SQLException ex) {
-////                Logger.getLogger(FormSuaSanPham.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-//            if (check == true) {
-//                JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công !");
+        if (checkData()) {
+            boolean check = true;
+            Model_SanPham model = new Model_SanPham();
+            model.setMasp(Integer.parseInt(txtMasp.getText()));
+            model.setTenSp(txtTensp.getText());
+            model.setLoaiSp(txtLoaisp.getText());
+            model.setSoLuong(Integer.parseInt(txtSoluong.getText()));
+            model.setMauSac(txtMausac.getText());
+            model.setNamSX(txtNamsx.getText());
+            model.setTrangThai(txtTrangThai.getText());
+            model.setIcon(txtIcon.getText());
+            model.setThongSo(txtThongso.getText());
+            model.setGia(Double.parseDouble(txtGia.getText()));
+            model.setMakm(Integer.parseInt(txtMakm.getText()));
+            model.setMabh(Integer.parseInt(txtMabh.getText()));
+            QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
+            if (qlsp_BUS.suaSP(model)) {
+                check = true;
+            } else {
+                check = false;
+            }
+            if (check == true) {
+                JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công !");
 //                sanpham.SetDefaultTable("", 0);
-//                frame.dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại !");
-//            }
-//        }
-        System.out.println(dataCTSP);
+                frame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại !");
+            }
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn quay lại ?", "Quay lại", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            frame.dispose();
+        } 
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         JFileChooser fc = new JFileChooser();
@@ -705,10 +704,10 @@ public class FormSuaSanPham extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JComboBox<String> cbbBaoHanh;
     private javax.swing.JComboBox<String> cbbkm;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

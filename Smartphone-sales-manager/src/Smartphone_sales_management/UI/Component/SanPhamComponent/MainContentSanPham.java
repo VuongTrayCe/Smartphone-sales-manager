@@ -41,7 +41,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         initComponents();
 
         this.mainFrame = mainFrame;
-        sanPham = new TableSanPham(keyWord, jComboBox2.getSelectedIndex());
+        sanPham = new TableSanPham(keyWord, jComboBox2.getSelectedItem().toString());
         jScrollPane1.setViewportView(sanPham);
         btnDelete.setOpaque(true);
         btnFormThemSP.setOpaque(true);
@@ -49,20 +49,20 @@ public class MainContentSanPham extends javax.swing.JPanel {
 //        detailSPPanel.setLayout(new GridLayout());
         sanPham.addEventSanPham(new EventSanPham() {
             @Override
-            public int selectedIndex(int index) {
+            public int selectedIndex(int Masp) {
                 ArrayList data = new ArrayList();
                 detailSPPanel.removeAll();
-                tableDetail = new TableDetailSP(index, jComboBox2.getSelectedItem().toString(), sanPham);
+                tableDetail = new TableDetailSP(Masp, sanPham);
                 tableDetail.setBounds(0, 0, detailSPPanel.getWidth(), detailSPPanel.getHeight());
                 QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
-                data = qlsp_BUS.layChitietSanPham(index, (String) jComboBox2.getSelectedItem());
+//                data = qlsp_BUS.layChitietSanPham(index, (String) jComboBox2.getSelectedItem());
 //                System.out.println(data.get(0));
-                dataChitietSP = data;
-                maSp = (int) data.get(0);
+//                dataChitietSP = data;
+                maSp = Masp;
                 detailSPPanel.add(tableDetail);
                 repaint();
                 tableDetail.validate();
-                return index;
+                return Masp;
             }
         });
 
@@ -70,18 +70,18 @@ public class MainContentSanPham extends javax.swing.JPanel {
             @Override
             public void changedUpdate(DocumentEvent e) {
 
-                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
 
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+                sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
             }
         });
 
@@ -112,6 +112,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         detailSPPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnFormThemSP = new javax.swing.JLabel();
         btnFormUpdate = new javax.swing.JLabel();
@@ -150,15 +151,22 @@ public class MainContentSanPham extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/empty.png"))); // NOI18N
+        jLabel1.setText("Chưa chọn sản phẩm ");
+        jLabel1.setOpaque(true);
+
         javax.swing.GroupLayout detailSPPanelLayout = new javax.swing.GroupLayout(detailSPPanel);
         detailSPPanel.setLayout(detailSPPanelLayout);
         detailSPPanelLayout.setHorizontalGroup(
             detailSPPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         detailSPPanelLayout.setVerticalGroup(
             detailSPPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(java.awt.Color.cyan);
@@ -199,7 +207,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnFormThemSP, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(btnFormUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,11 +250,12 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(32, 32, 32)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                    .addComponent(detailSPPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(detailSPPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addGap(9, 9, 9))
         );
 
@@ -272,7 +281,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         txtTimKiem.setText("");
-        sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+        sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox2ActionPerformed
     public void ResetMau() {
         btnFormThemSP.setBackground(Color.CYAN);
@@ -307,7 +316,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         } else {
             btnDelete.setBackground(Color.red);
         }
-        int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa ?");
+        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "Xóa sản phẩm ", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             if (checkMasp(maSp)) {
                 QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
@@ -315,7 +324,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Xóa thành công");
                     maSp = -1;
                     System.out.println(txtTimKiem.getText());
-                    sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
+//                    sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedIndex());
                 } else {
                     JOptionPane.showMessageDialog(null, "Xóa thất bại!");
                 }
@@ -333,7 +342,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         return false;
     }
     private void btnFormUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormUpdateMouseClicked
-        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa sản phẩm !");
+        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa ?", "Sửa sản phẩm ", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             if (checkDataCTSP()) {
                 ResetMau();
@@ -371,6 +380,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
     private javax.swing.JLabel btnFormUpdate;
     private javax.swing.JPanel detailSPPanel;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -50,6 +50,35 @@ public class QuanLiSanPham_DAO {
         }
     }
 
+    public ArrayList layDanhSachSanPhamTheoTrangThai(String tenTrangThai) {
+        ArrayList dssp = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n"
+                    + "                    FROM sanpham\n"
+                    + "                    INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.TrangThai = ?\n"
+                    + "                    ORDER BY sanpham.Masp ASC");
+            stm.setString(1, tenTrangThai);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(rs.getInt("MaSP"));
+                a.add(rs.getString("TenSp"));
+                a.add(rs.getString("LoaiSp"));
+                a.add(rs.getDouble("GiaBan"));
+                a.add(rs.getInt("SoLuong"));
+                a.add(rs.getString("TrangThai"));
+                dssp.add(a);
+            }
+            return dssp;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+
     public ArrayList layDanhSachChiTietSanPham(int Masp) {
         ArrayList result = new ArrayList();
         db.setupConnection();
@@ -186,6 +215,32 @@ public class QuanLiSanPham_DAO {
         }
     }
 
+    public boolean suaSP(Model_SanPham model) {
+        db.setupConnection();
+        boolean success = true;
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE sanpham\n"
+                    + "SET sanpham.Tensp = ? , sanpham.Loaisp =? ,sanpham.MauSac=? , sanpham.Namsx=?, sanpham.TrangThai = ? ,sanpham.Icon = ? , sanpham.ThongSo = ? "
+                    + "WHERE sanpham.Masp = ?");
+            stm.setString(1, model.getTenSp());
+            stm.setString(2, model.getLoaiSp());
+            stm.setString(3, model.getMauSac());
+            stm.setString(4, model.getNamSX());
+            stm.setString(5, model.getTrangThai());
+            stm.setString(6, model.getIcon());
+            stm.setString(7, model.getThongSo());
+            stm.setInt(8, model.getMasp());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sua sp that bai");
+            success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
+    }
+
 // Cau truy van Them gia san pham
     public void themGiaSP(int maSp, Model_SanPham model) {
         db.setupConnection();
@@ -202,6 +257,66 @@ public class QuanLiSanPham_DAO {
         } finally {
             db.closeConnection();
         }
+    }
+
+// Sua gia san pham 
+    public boolean suaGiasp(Model_SanPham model) {
+        boolean success = true;
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE giasanpham\n"
+                    + "SET giasanpham.Giaban = ? WHERE giasanpham.Masp = ?");
+            stm.setDouble(1, model.getGia());
+            stm.setInt(2, model.getMasp());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sua gia that bai");
+            success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
+    }
+
+//    Sua chitietbaohanh
+    public boolean suaBH(Model_SanPham model) {
+        boolean success = true;
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE chitietbaohanh\n"
+                    + "SET chitietbaohanh.Mabaohanh = ? WHERE chitietbaohanh.Masp = ?");
+            stm.setInt(1, model.getMabh());
+            stm.setInt(2, model.getMasp());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sua bao hanh that bai");
+            success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
+    }
+//    Sua chitietkhuyenmai 
+
+    public boolean suaKM(Model_SanPham model) {
+        boolean success = true;
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE chitietkhuyenmai\n"
+                    + "SET chitietkhuyenmai.Makm = ? WHERE chitietkhuyenmai.Masp = ?");
+            stm.setInt(1, model.getMakm());
+            stm.setInt(2, model.getMasp());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sua khuyen mai that bai");
+            success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
     }
 // Cau truy van Khuyen mai
 

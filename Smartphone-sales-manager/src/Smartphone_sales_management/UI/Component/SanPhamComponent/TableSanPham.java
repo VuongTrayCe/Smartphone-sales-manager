@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JApplet;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -29,12 +30,12 @@ public class TableSanPham extends javax.swing.JPanel {
     QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
     DefaultTableModel model = new DefaultTableModel();
     private String keyWord;
-    private int selectedIndex;
+    private String tenTrangThai;
 
-    public TableSanPham(String keyWord, int selectedIndex) {
+    public TableSanPham(String keyWord, String tenTrangThai) {
         initComponents();
         this.keyWord = keyWord;
-        this.selectedIndex = selectedIndex;
+        this.tenTrangThai = tenTrangThai;
         model.addColumn("MaSP");
         model.addColumn("TenSP");
         model.addColumn("LoaiSP");
@@ -46,7 +47,7 @@ public class TableSanPham extends javax.swing.JPanel {
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable(keyWord, selectedIndex);
+        SetDefaultTable(keyWord, tenTrangThai);
         jTable1.setModel(model);
     }
 
@@ -54,10 +55,13 @@ public class TableSanPham extends javax.swing.JPanel {
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event.selectedIndex(jTable1.getSelectedRow());
+//                event.selectedIndex(jTable1.getSelectedRow());
+                   event.selectedIndex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                   System.out.println((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             }
         ;
     }
+
     );
     }
     
@@ -75,18 +79,17 @@ public class TableSanPham extends javax.swing.JPanel {
 //        );
 //    }
 
-    public void SetDefaultTable(String keyWord, int selectedIndex) {
+    public void SetDefaultTable(String keyWord, String tenTrangThai) {
         jTable1.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
-        dataList = qlsp_BUS.layDanhSachSanPham(keyWord, selectedIndex);
+        dataList = qlsp_BUS.layDanhSachSanPham(keyWord, tenTrangThai);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
         panelTable.repaint();
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

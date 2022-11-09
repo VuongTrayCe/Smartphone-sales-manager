@@ -82,7 +82,7 @@ public class FormThemSanPham extends javax.swing.JPanel {
         txtIcon = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -186,13 +186,13 @@ public class FormThemSanPham extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 51, 51));
-        jButton3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Quay lại");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 51, 51));
+        btnBack.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Quay lại");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -233,7 +233,7 @@ public class FormThemSanPham extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnConfirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 14, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(lbImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,7 +248,7 @@ public class FormThemSanPham extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirm)
-                    .addComponent(jButton3))
+                    .addComponent(btnBack))
                 .addGap(104, 104, 104))
         );
 
@@ -589,7 +589,7 @@ public class FormThemSanPham extends javax.swing.JPanel {
             }
             if (check == true) {
                 JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công !");
-                sanpham.SetDefaultTable("", 0);
+//                sanpham.SetDefaultTable("", 0);
                 frame.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại !");
@@ -597,9 +597,12 @@ public class FormThemSanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn quay lại ?","Quay lại", JOptionPane.YES_NO_OPTION);
+        if(a==JOptionPane.YES_OPTION) {
+            frame.dispose();
+        } 
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         JFileChooser fc = new JFileChooser();
@@ -639,10 +642,10 @@ public class FormThemSanPham extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JComboBox<String> cbbBaoHanh;
     private javax.swing.JComboBox<String> cbbkm;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -29,6 +29,21 @@ public class TableTaiKhoan extends javax.swing.JPanel {
      */
     public TableTaiKhoan(EventTaiKhoan event) {
         initComponents();
+        model.addColumn("MaTK");        
+        model.addColumn("MaNV");
+        model.addColumn("TaiKoan");
+        model.addColumn("Matkhau");
+        model.addColumn("quyen");
+        jTable1.setOpaque(false);
+        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
+        });
+        jTable1.getTableHeader().setForeground(Color.WHITE);
+        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+        
+        SetDefautlTable("");
+        
+        jTable1.setModel(model);
     }
 
    
@@ -70,14 +85,14 @@ public class TableTaiKhoan extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1", "1", "1", "1"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Mã Nhân Viên", "Tài Khoản", "Mật Khẩu", "Quyền", "Trạng Thái"
+
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -18,6 +18,9 @@ import java.util.logging.Logger;
 public class QuanLyTaiKhoan_BUS {
     QuanLyTaiKhoan_DAO qltk = new QuanLyTaiKhoan_DAO();
     
+    public QuanLyTaiKhoan_BUS(){
+    }
+    
     public ArrayList layDanhSachTaiKhoan(String keyWord) {
         ArrayList dstk = new ArrayList();
         ArrayList dstkOfficial = new ArrayList();
@@ -28,7 +31,8 @@ public class QuanLyTaiKhoan_BUS {
             for (Object x : dstk) {
                 Vector y = (Vector) x;
                 String matk = Integer.toString((int) y.get(0));
-                if (matk.contains(keyWord)) {
+                
+                if (matk.contains(keyWord) ) {
                     dstkOfficial.add(y);
                 }
             }

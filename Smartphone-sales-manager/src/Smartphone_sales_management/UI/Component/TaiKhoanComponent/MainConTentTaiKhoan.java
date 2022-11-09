@@ -10,11 +10,11 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang;
 import Smartphone_sales_management.UI.Event.TaiKhoan.EventTaiKhoan;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.GridLayout;
-
 import Smartphone_sales_management.UI.Event.TaiKhoan.AddDetailTK;
 import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
 import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 /**
  *
@@ -56,6 +56,27 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                 return index;
             }
         });
+        timkiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                taikhoan.SetDefautlTable(timkiem.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                taikhoan.SetDefautlTable(timkiem.getText());
+
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                taikhoan.SetDefautlTable(timkiem.getText());
+
+            }
+        });
+
+    
         
     }
 
@@ -70,22 +91,24 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
 
         jLabel5 = new javax.swing.JLabel();
         javax.swing.JPanel Nền = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
+        timkiem = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         DetailTaiKhoanPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
 
         Nền.setBackground(new java.awt.Color(0, 153, 153));
 
-        jTextField4.setText("Tìm kiếm theo Mã Nhân Viên");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        timkiem.setText("Tìm kiếm theo Mã Nhân Viên");
+        timkiem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        timkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                timkiemActionPerformed(evt);
             }
         });
 
@@ -135,7 +158,7 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -146,7 +169,7 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(36, Short.MAX_VALUE)
@@ -165,18 +188,24 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
+
         javax.swing.GroupLayout NềnLayout = new javax.swing.GroupLayout(Nền);
         Nền.setLayout(NềnLayout);
         NềnLayout.setHorizontalGroup(
             NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NềnLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(NềnLayout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                        .addGap(301, 301, 301)))
-                .addGap(10, 10, 10)
+                        .addGap(12, 12, 12)
+                        .addComponent(timkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addGap(267, 267, 267))
+                    .addGroup(NềnLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(NềnLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,8 +221,10 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(NềnLayout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addGroup(NềnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(8, 8, 8)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                     .addGroup(NềnLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -207,7 +238,10 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Nền, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Nền, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,9 +256,9 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         taikhoan.validate();
         DetailTaiKhoanPanel.repaint();
       }
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timkiemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_timkiemActionPerformed
        
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         //
@@ -243,11 +277,12 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DetailTaiKhoanPanel;
     private javax.swing.JButton btnThem;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField timkiem;
     // End of variables declaration//GEN-END:variables
 }

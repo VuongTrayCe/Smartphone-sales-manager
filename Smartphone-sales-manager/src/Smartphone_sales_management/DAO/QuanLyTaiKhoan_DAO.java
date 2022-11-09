@@ -51,7 +51,7 @@ public class QuanLyTaiKhoan_DAO {
 
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Manv,taikhoan.Taikhoan,taikhoan.Matkhau,taikhoan.quyen,taikhoan.TrangThai"
+            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Manv,taikhoan.Taikhoan,taikhoan.Matkhau,taikhoan.TrangThai"
                     + "from Manv,Taikhoan,Matkhau, quyen,TrangThai "
                     + "where taikhoan.Manv=? and taikhoan.Manv=nhavien.Manv") ;
             stm.setInt(1, selectedIndex);

@@ -205,11 +205,11 @@ public class LoginFrom extends javax.swing.JFrame {
                 sb.append("Chưa nhập mật khẩu");
             }
             if(sb.length()>0){
-                JOptionPane.showMessageDialog(this, toString(), "456", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, sb.toString(), "456", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Statement stmt = db.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery(toString());
+            ResultSet rs = stmt.executeQuery(pwd);
             if(username.equals("tendangnhap") && pwd.equals("Matkhau"))
             new MainFrame().setVisible(true);
         }catch(Exception e){

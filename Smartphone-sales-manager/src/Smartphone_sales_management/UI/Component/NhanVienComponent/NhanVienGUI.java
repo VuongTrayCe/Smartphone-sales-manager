@@ -33,7 +33,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
     
         
         
-    public NhanVienGUI(MainFrame mainFrame) {
+    public NhanVienGUI() {
       
         initComponents();
         jLabelXoa.setEnabled(false);

@@ -36,4 +36,12 @@ public class QuanLiSanPham_BUS {
         }
         return null;
     }
+    
+    public ArrayList<String> getAllSP(){
+        ArrayList danhsachsanpham = new ArrayList();
+         danhsachsanpham = qlsp.getALLSanPham();
+        return danhsachsanpham;
+    }
+
+    
 }

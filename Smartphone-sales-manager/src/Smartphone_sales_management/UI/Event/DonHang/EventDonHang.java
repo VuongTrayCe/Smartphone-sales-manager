@@ -4,8 +4,6 @@
  */
 package Smartphone_sales_management.UI.Event.DonHang;
 
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Admin

@@ -13,7 +13,16 @@ public class Model_KhuyenMai {
     private String Tenkm;
     private float phantramkm;
     private String Trangthai;
+    private String tensp;
 
+    public String getTensp() {
+        return tensp;
+    }
+
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
+    }
+    
 
     public Model_KhuyenMai() {
     }

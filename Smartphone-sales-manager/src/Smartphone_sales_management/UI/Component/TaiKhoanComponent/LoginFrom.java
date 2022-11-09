@@ -8,6 +8,7 @@ package Smartphone_sales_management.UI.Component.TaiKhoanComponent;
 import com.sun.jdi.connect.spi.Connection;
 import java.sql.*;
 import javax.swing.JOptionPane;
+
 import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
 import Smartphone_sales_management.DBConnect;
 import Smartphone_sales_management.BUS.QuanLyTaiKhoan_BUS;
@@ -54,6 +55,8 @@ public class LoginFrom extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +67,8 @@ public class LoginFrom extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Smarphone Manager");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/phone.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,8 +150,16 @@ public class LoginFrom extends javax.swing.JFrame {
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 20, 40));
 
         jLabel7.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 30, 30));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/password.png"))); // NOI18N
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 30, 30));
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, 30));
+
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/user.png"))); // NOI18N
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 30, 30));
+
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 30, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 350, 350));
 
@@ -196,7 +209,7 @@ public class LoginFrom extends javax.swing.JFrame {
                 return;
             }
             Statement stmt = db.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery(toString());
             if(username.equals("tendangnhap") && pwd.equals("Matkhau"))
             new MainFrame().setVisible(true);
         }catch(Exception e){
@@ -261,6 +274,8 @@ public class LoginFrom extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

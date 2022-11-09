@@ -118,7 +118,7 @@ KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
 
                 }
                 if (index == 4) {
-                    ConNguoi a =  new ConNguoi();
+                    ConNguoi a =  new ConNguoi(MainFrame.this,jPanel1);
                      jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
@@ -139,6 +139,15 @@ KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
                 }
                 if (index == 5) {
                     ThongKeMainPanel a = new ThongKeMainPanel();
+                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+                }
+                if (index == 7) {
+                    KhuyenMaiGUI a =new KhuyenMaiGUI(MainFrame.this);
+//                    ThongKeMainPanel a = new ThongKeMainPanel();
                      jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());

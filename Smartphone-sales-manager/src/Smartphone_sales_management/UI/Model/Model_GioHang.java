@@ -15,12 +15,40 @@ import javax.swing.ImageIcon;
 
 
 public class Model_GioHang {
-    
+    private int masp;
+    private int makhuyenmai;
+    private int mabaohanh;
     private String Name;
     private String Loai;
     private String giatien;
-    private String Soluong;
+    private int Soluong;
     private String Icon;
+    private int khuyenmai;
+    private String baohanh;
+
+    public void setMasp(int masp) {
+        this.masp = masp;
+    }
+
+    public void setMakhuyenmai(int makhuyenmai) {
+        this.makhuyenmai = makhuyenmai;
+    }
+
+    public void setMabaohanh(int mabaohanh) {
+        this.mabaohanh = mabaohanh;
+    }
+
+    public int getMasp() {
+        return masp;
+    }
+
+    public int getMakhuyenmai() {
+        return makhuyenmai;
+    }
+
+    public int getMabaohanh() {
+        return mabaohanh;
+    }
     
     
     
@@ -33,19 +61,49 @@ public class Model_GioHang {
     
     }
 
-    public Model_GioHang(String Name, String Loai, String Soluong, String Icon,GioHangType type,String giatien) {
+    public Model_GioHang(String Name, String Loai, int Soluong, String Icon,GioHangType type,String giatien,int khuyenmai,String baohanh,int masp,int makm,int mabh) {
         this.Name = Name;
         this.Loai = Loai;
         this.Soluong = Soluong;
         this.Icon = Icon;
         this.type = type;
         this.giatien=giatien;
+        this.khuyenmai=khuyenmai;
+        this.baohanh=baohanh;
+        this.masp=masp;
+        this.makhuyenmai=makm;
+        this.mabaohanh=mabh;
 
         
     }
+
+    public void setGiatien(String giatien) {
+        this.giatien = giatien;
+    }
+
+    public void setKhuyenmai(int khuyenmai) {
+        this.khuyenmai = khuyenmai;
+    }
+
+    public void setBaohanh(String baohanh) {
+        this.baohanh = baohanh;
+    }
+
+    public void setType(GioHangType type) {
+        this.type = type;
+    }
+
+    public int getKhuyenmai() {
+        return khuyenmai;
+    }
+
+    public String getBaohanh() {
+        return baohanh;
+    }
+    
     public Double getTongTien()
     {
-        Double x = Integer.parseInt(this.Soluong)* Double.parseDouble(this.giatien.split(" ")[0]);
+        Double x = this.Soluong* Double.parseDouble(this.giatien.split(" ")[0]);
         System.out.println(x);
         return x;
     }
@@ -70,7 +128,7 @@ public class Model_GioHang {
         return Loai;
     }
 
-    public String getSoluong() {
+    public int getSoluong() {
         return Soluong;
     }
 
@@ -85,7 +143,7 @@ public class Model_GioHang {
     public void setLoai(String Loai) {
         this.Loai = Loai;
     }
-    public void setSoluong(String Soluong) {
+    public void setSoluong(int Soluong) {
         this.Soluong = Soluong;
     }
 

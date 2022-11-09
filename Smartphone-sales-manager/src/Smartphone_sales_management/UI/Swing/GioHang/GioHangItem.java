@@ -5,6 +5,7 @@
 package Smartphone_sales_management.UI.Swing.GioHang;
 
 import Smartphone_sales_management.UI.Model.Model_GioHang;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -26,7 +27,7 @@ public class GioHangItem extends javax.swing.JPanel {
      * Creates new form GioHangItem
      */
     Model_GioHang data;
-    public GioHangItem(Model_GioHang data) throws IOException {
+    public GioHangItem(Model_GioHang data,int selectedIndexGioHang) throws IOException {
         this.data=data;
         BufferedImage image;
         initComponents();
@@ -40,13 +41,18 @@ public class GioHangItem extends javax.swing.JPanel {
 //          {
 //              
 //          }
+            if(selectedIndexGioHang != -1)
+            {
+                this.setBackground(new Color(44, 151, 75));
+            }
+            
            DrawImage a=  new DrawImage(data);
            jPanel1.setLayout(new GridLayout());
            jPanel1.add(a);
        }
         lbName.setText(data.getName());
         lbGia.setText(data.getGiatien());
-        lbSL.setText(data.getSoluong());
+        lbSL.setText(Integer.toString(data.getSoluong()));
     }
 
     /**

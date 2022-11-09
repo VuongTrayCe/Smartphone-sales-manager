@@ -25,15 +25,15 @@ public class TableDonHang extends javax.swing.JPanel {
 
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
     DefaultTableModel model = new DefaultTableModel();
-    EventDonHang event;
-
-    public TableDonHang() {
+    private String keyWord;
+    String tenTrangThai;
+    public TableDonHang(String keyWord, String tenTrangThai) {
         initComponents();
+        this.keyWord = keyWord;
+        this.tenTrangThai = tenTrangThai;
         model.addColumn("MaDH");
-//        model.addColumn("MaKH");
-//        model.addColumn("MaNV");
         model.addColumn("NgayBan");
-//        model.addColumn("TongSoLuong");
+        model.addColumn("TongSoLuong");
         model.addColumn("TongTien");
         model.addColumn("TrangThai");
         jTable1.setOpaque(false);
@@ -41,34 +41,37 @@ public class TableDonHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-
-        SetDefaultTable("");
+        SetDefaultTable(keyWord, tenTrangThai);
         jTable1.setModel(model);
-
     }
 
     public void addEventDonHang(EventDonHang event) {
-        this.event = event;
+//        event.SelectedInxex(0,);
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event.SelectedInxex(jTable1.getSelectedRow());
+                event.SelectedInxex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             }
         ;
     }
 
     );
     }
-    public void SetDefaultTable(String keyWord) {
+    
+   
+    public void SetDefaultTable(String keyWord, String tenTrangThai) {
         jTable1.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
-        dataList = qldh_BUS.layDanhSachDonHang(keyWord);
+        dataList = qldh_BUS.layDanhSachDonHang(keyWord,tenTrangThai);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
         jScrollPane1.repaint();
+
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

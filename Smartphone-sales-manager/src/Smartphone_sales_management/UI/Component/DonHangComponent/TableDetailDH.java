@@ -64,7 +64,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcGia1.setText(dataDetail.get(6).toString());
         lbcgiasaukm.setText(dataDetail.get(7).toString());
         trangthailb1.setText(dataDetail.get(8).toString());
-        if (dataDetail.get(8).toString().equals("Đã xử lí") || dataDetail.get(8).toString().equals("Đã Hủy")) {
+        if (dataDetail.get(8).toString().equals("Hoàn Thành") || dataDetail.get(8).toString().equals("Đã Hủy")) {
             confirmBtn.setVisible(false);
             deleteBtn.setVisible(false);
         } else if (dataDetail.get(8).toString().equals("Đặt Hàng")) {

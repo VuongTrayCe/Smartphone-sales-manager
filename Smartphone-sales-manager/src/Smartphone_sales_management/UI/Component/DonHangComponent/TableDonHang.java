@@ -32,9 +32,13 @@ public class TableDonHang extends javax.swing.JPanel {
         this.keyWord = keyWord;
         this.tenTrangThai = tenTrangThai;
         model.addColumn("MaDH");
+        model.addColumn("TenKM");
+        model.addColumn("TenNV");
         model.addColumn("NgayBan");
         model.addColumn("TongSoLuong");
         model.addColumn("TongTien");
+        model.addColumn("DiemApDung");
+        model.addColumn("DiemThuong");
         model.addColumn("TrangThai");
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);

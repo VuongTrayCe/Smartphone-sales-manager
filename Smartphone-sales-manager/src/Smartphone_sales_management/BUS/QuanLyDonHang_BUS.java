@@ -28,6 +28,8 @@ public class QuanLyDonHang_BUS {
         ArrayList dsdhOfficial = new ArrayList();
         ArrayList dsdhtt = new ArrayList();
         dsdh = qldh.layDanhSachDonHang_DAO();
+        dsdhtt = qldh.getDanhSachDonHangTheoTrangThai(tenTrangThai);
+        System.out.println(tenTrangThai);
         if (tenTrangThai == "ALL") {
             if (keyWord == "") {
                 return dsdh;
@@ -43,7 +45,7 @@ public class QuanLyDonHang_BUS {
             }
         } else {
             if (keyWord == "") {
-                return dsdhtt = qldh.getDanhSachDonHangTheoTrangThai(tenTrangThai);
+                return dsdhtt;
             } else {
                 for (Object x : dsdhtt) {
                     Vector y = (Vector) x;
@@ -56,7 +58,6 @@ public class QuanLyDonHang_BUS {
             }
         }
     }
-
 
     public ArrayList layctdh(int Madh) {
         ArrayList ctdh = new ArrayList();

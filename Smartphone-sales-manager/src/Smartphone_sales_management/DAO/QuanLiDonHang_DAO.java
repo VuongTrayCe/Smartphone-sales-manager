@@ -24,15 +24,21 @@ public class QuanLiDonHang_DAO {
         ArrayList dsdh = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
-                    + "FROM	donhang ");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh , khachhang.Tenkh, nhanvien.Tennv,donhang.Ngayban,donhang.SoLuong,donhang.Tongtien,donhang.Diemapdung,donhang.Diemthuong,donhang.Trangthai\n"
+                    + "FROM donhang\n"
+                    + "INNER JOIN khachhang ON khachhang.Makh = donhang.Makh\n"
+                    + "INNER JOIN nhanvien ON nhanvien.Manv = donhang.Manv");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
                 a.add(rs.getInt("Madh"));
-                a.add(rs.getDate("Ngayban"));
+                a.add(rs.getString("Tenkh"));
+                a.add(rs.getString("Tennv"));
+                a.add(rs.getDate("NgayBan"));
                 a.add(rs.getInt("SoLuong"));
-                a.add(rs.getInt("Tongtien"));
+                a.add(rs.getDouble("TongTien"));
+                a.add(rs.getInt("Diemapdung"));
+                a.add(rs.getInt("Diemthuong"));
                 a.add(rs.getString("Trangthai"));
                 dsdh.add(a);
             }
@@ -48,9 +54,10 @@ public class QuanLiDonHang_DAO {
         ArrayList dsdhtct = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\\n\"\n"
-                    + "                    + \"FROM	donhang \n"
-                    + "WHERE donhang.Trangthai = ?");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh , khachhang.Tenkh, nhanvien.Tennv,donhang.Ngayban,donhang.SoLuong,donhang.Tongtien,donhang.Diemapdung,donhang.Diemthuong,donhang.Trangthai\n"
+                    + "FROM donhang\n"
+                    + "INNER JOIN khachhang ON khachhang.Makh = donhang.Makh AND donhang.TrangThai = ?\n"
+                    + "INNER JOIN nhanvien ON nhanvien.Manv = donhang.Manv");
             stm.setString(1, tenTrangThai);
             rs = stm.executeQuery();
             if (rs != null) {
@@ -209,7 +216,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
         try {
             PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE donhang\n"
-                    + "SET donhang.Trangthai = \"Đã xử lí\"\n"
+                    + "SET donhang.Trangthai = \"Hoàn Thành\"\n"
                     + "WHERE donhang.Madh = ?");
             stm.setInt(1, Madh);
             stm.executeUpdate();

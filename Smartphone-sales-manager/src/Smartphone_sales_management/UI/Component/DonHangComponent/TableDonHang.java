@@ -10,7 +10,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -27,10 +29,14 @@ public class TableDonHang extends javax.swing.JPanel {
     DefaultTableModel model = new DefaultTableModel();
     private String keyWord;
     String tenTrangThai;
-    public TableDonHang(String keyWord, String tenTrangThai) {
+   Date dateStart;
+   Date dateEnd;
+    public TableDonHang(String keyWord, String tenTrangThai,Date start, Date end) throws ParseException {
         initComponents();
         this.keyWord = keyWord;
         this.tenTrangThai = tenTrangThai;
+        this.dateStart = start;
+        this.dateEnd = end;
         model.addColumn("MaDH");
         model.addColumn("TenKM");
         model.addColumn("TenNV");
@@ -45,7 +51,7 @@ public class TableDonHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable(keyWord, tenTrangThai);
+        SetDefaultTable(keyWord, tenTrangThai,start,end);
         jTable1.setModel(model);
     }
 
@@ -63,17 +69,29 @@ public class TableDonHang extends javax.swing.JPanel {
     }
     
    
-    public void SetDefaultTable(String keyWord, String tenTrangThai) {
+    public void SetDefaultTable(String keyWord, String tenTrangThai,Date start, Date end) throws ParseException{
         jTable1.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
-        dataList = qldh_BUS.layDanhSachDonHang(keyWord,tenTrangThai);
+        dataList = qldh_BUS.layDanhSachDonHang(keyWord,tenTrangThai,start,end);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
         jScrollPane1.repaint();
 
     }
+    
+//    public void SetDefaultTableTheoNgay(String keyWord, String tenTrangThai,Date dateStart, Date dateEnd){
+//        jTable1.removeAll();
+//        model.setRowCount(0);
+//        ArrayList dataList = new ArrayList();
+//        dataList = qldh_BUS.layDanhSachDonHangTheoNgay(keyWord,tenTrangThai,dateStart,dateEnd);
+//        for (int i = 0; i < dataList.size(); i++) {
+//            model.addRow((Vector<?>) dataList.get(i));
+//        }
+//        jScrollPane1.repaint();
+//
+//    }
     
    
 

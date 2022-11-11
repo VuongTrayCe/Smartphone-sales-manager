@@ -8,7 +8,10 @@ import Smartphone_sales_management.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -49,6 +52,9 @@ public class QuanLiDonHang_DAO {
             dbConnect.closeConnection();
         }
     }
+    
+//    So sanh ngay ban co nam trong khoang Datestart -> DateEnd khong
+   
 
     public ArrayList layDanhSachDonHangTheoTrangThai_DAO(String tenTrangThai) {
         ArrayList dsdhtct = new ArrayList();
@@ -64,9 +70,13 @@ public class QuanLiDonHang_DAO {
                 while (rs.next()) {
                     Vector a = new Vector();
                     a.add(rs.getInt("Madh"));
-                    a.add(rs.getDate("Ngayban"));
+                    a.add(rs.getString("Tenkh"));
+                    a.add(rs.getString("Tennv"));
+                    a.add(rs.getDate("NgayBan"));
                     a.add(rs.getInt("SoLuong"));
-                    a.add(rs.getInt("Tongtien"));
+                    a.add(rs.getDouble("TongTien"));
+                    a.add(rs.getInt("Diemapdung"));
+                    a.add(rs.getInt("Diemthuong"));
                     a.add(rs.getString("Trangthai"));
                     dsdhtct.add(a);
                 }
@@ -85,7 +95,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
 
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai\n"
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai,sanpham.Icon\n"
                     + "FROM donhang\n"
                     + "INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
                     + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
@@ -107,6 +117,7 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getDouble(7));
                     a.add(rs.getDouble(8));
                     a.add(rs.getString(9));
+                    a.add(rs.getString(10));
                     result.add(a);
                 }
             }
@@ -114,6 +125,30 @@ public class QuanLiDonHang_DAO {
             return result;
         } catch (SQLException e) {
             return null;
+        } finally {
+            dbConnect.closeConnection();
+        }
+
+    }
+
+    public int laySoLuongctdh(int Madh) {
+        int result = 0;
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT COUNT(donhang.Madh) AS \"So Chi tiet\"\n"
+                    + "FROM chitietdonhang \n"
+                    + "INNER JOIN donhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                if (rs.next()) {
+                    result = rs.getInt("So Chi tiet");
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         } finally {
             dbConnect.closeConnection();
         }
@@ -170,33 +205,32 @@ public class QuanLiDonHang_DAO {
     }
 // Lay ma don hang theo ten ma
 
-    public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
-
-        ArrayList dsdh = new ArrayList();
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
-                    + "FROM	donhang where donhang.Trangthai = ? ");
-            stm.setString(1, tenTrangThai);
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                Vector a = new Vector();
-                a.add(rs.getInt("Madh"));
-                a.add(rs.getDate("Ngayban"));
-                a.add(rs.getInt("SoLuong"));
-                a.add(rs.getInt("Tongtien"));
-                a.add(rs.getString("Trangthai"));
-                dsdh.add(a);
-            }
-            return dsdh;
-        } catch (SQLException e) {
-            return null;
-        } finally {
-            dbConnect.closeConnection();
-        }
-
-    }
-
+//    public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
+//
+//        ArrayList dsdh = new ArrayList();
+//        dbConnect.setupConnection();
+//        try {
+//            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
+//                    + "FROM	donhang where donhang.Trangthai = ? ");
+//            stm.setString(1, tenTrangThai);
+//            rs = stm.executeQuery();
+//            while (rs.next()) {
+//                Vector a = new Vector();
+//                a.add(rs.getInt("Madh"));
+//                a.add(rs.getDate("Ngayban"));
+//                a.add(rs.getInt("SoLuong"));
+//                a.add(rs.getInt("Tongtien"));
+//                a.add(rs.getString("Trangthai"));
+//                dsdh.add(a);
+//            }
+//            return dsdh;
+//        } catch (SQLException e) {
+//            return null;
+//        } finally {
+//            dbConnect.closeConnection();
+//        }
+//
+//    }
     public void updateHuyDonHang(int Madh) {
         dbConnect.setupConnection();
         try {

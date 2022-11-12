@@ -23,9 +23,6 @@ import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -44,7 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-        ThongKeMainPanel a = new ThongKeMainPanel();
+ ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -60,7 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if (index == 0) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-//                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
                     MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -75,30 +72,26 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 1) {
+                    
+                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 
-                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-
-                    jPanel1.removeAll();
+                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
                     a.validate();
 //                    pack();
-
+                    
 //                    
 //                    jPanel1.removeAll();
 //                    pack();
 //                    jPanel1.repaint();
+
                 }
-
+                
                 if (index == 2) {
-
-                    MainContentDonHang a = null;
-                    try {
-                        a = new MainContentDonHang(MainFrame.this);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
+                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -110,9 +103,9 @@ public class MainFrame extends javax.swing.JFrame {
 //                    jPanel1.repaint();
 
                 }
-                if (index == 3) {
-
-                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this);
+                if (index ==3) {
+                    
+                     MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -125,8 +118,8 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 4) {
-                    ConNguoi a = new ConNguoi();
-                    jPanel1.removeAll();
+                    ConNguoi a =  new ConNguoi(MainFrame.this,jPanel1);
+                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
@@ -146,7 +139,16 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 if (index == 5) {
                     ThongKeMainPanel a = new ThongKeMainPanel();
-                    jPanel1.removeAll();
+                     jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+                }
+                if (index == 7) {
+                    KhuyenMaiGUI a =new KhuyenMaiGUI(MainFrame.this);
+//                    ThongKeMainPanel a = new ThongKeMainPanel();
+                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);

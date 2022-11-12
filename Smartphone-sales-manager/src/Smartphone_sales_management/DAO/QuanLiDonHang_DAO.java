@@ -8,7 +8,10 @@ import Smartphone_sales_management.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -24,15 +27,21 @@ public class QuanLiDonHang_DAO {
         ArrayList dsdh = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
-                    + "FROM	donhang ");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh , khachhang.Tenkh, nhanvien.Tennv,donhang.Ngayban,donhang.SoLuong,donhang.Tongtien,donhang.Diemapdung,donhang.Diemthuong,donhang.Trangthai\n"
+                    + "FROM donhang\n"
+                    + "INNER JOIN khachhang ON khachhang.Makh = donhang.Makh\n"
+                    + "INNER JOIN nhanvien ON nhanvien.Manv = donhang.Manv");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
                 a.add(rs.getInt("Madh"));
-                a.add(rs.getDate("Ngayban"));
+                a.add(rs.getString("Tenkh"));
+                a.add(rs.getString("Tennv"));
+                a.add(rs.getDate("NgayBan"));
                 a.add(rs.getInt("SoLuong"));
-                a.add(rs.getInt("Tongtien"));
+                a.add(rs.getDouble("TongTien"));
+                a.add(rs.getInt("Diemapdung"));
+                a.add(rs.getInt("Diemthuong"));
                 a.add(rs.getString("Trangthai"));
                 dsdh.add(a);
             }
@@ -44,22 +53,28 @@ public class QuanLiDonHang_DAO {
         }
     }
 
+//    So sanh ngay ban co nam trong khoang Datestart -> DateEnd khong
     public ArrayList layDanhSachDonHangTheoTrangThai_DAO(String tenTrangThai) {
         ArrayList dsdhtct = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\\n\"\n"
-                    + "                    + \"FROM	donhang \n"
-                    + "WHERE donhang.Trangthai = ?");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh , khachhang.Tenkh, nhanvien.Tennv,donhang.Ngayban,donhang.SoLuong,donhang.Tongtien,donhang.Diemapdung,donhang.Diemthuong,donhang.Trangthai\n"
+                    + "FROM donhang\n"
+                    + "INNER JOIN khachhang ON khachhang.Makh = donhang.Makh AND donhang.TrangThai = ?\n"
+                    + "INNER JOIN nhanvien ON nhanvien.Manv = donhang.Manv");
             stm.setString(1, tenTrangThai);
             rs = stm.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
                     Vector a = new Vector();
                     a.add(rs.getInt("Madh"));
-                    a.add(rs.getDate("Ngayban"));
+                    a.add(rs.getString("Tenkh"));
+                    a.add(rs.getString("Tennv"));
+                    a.add(rs.getDate("NgayBan"));
                     a.add(rs.getInt("SoLuong"));
-                    a.add(rs.getInt("Tongtien"));
+                    a.add(rs.getDouble("TongTien"));
+                    a.add(rs.getInt("Diemapdung"));
+                    a.add(rs.getInt("Diemthuong"));
                     a.add(rs.getString("Trangthai"));
                     dsdhtct.add(a);
                 }
@@ -78,7 +93,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
 
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai\n"
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai,sanpham.Icon\n"
                     + "FROM donhang\n"
                     + "INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
                     + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
@@ -100,6 +115,7 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getDouble(7));
                     a.add(rs.getDouble(8));
                     a.add(rs.getString(9));
+                    a.add(rs.getString(10));
                     result.add(a);
                 }
             }
@@ -107,6 +123,30 @@ public class QuanLiDonHang_DAO {
             return result;
         } catch (SQLException e) {
             return null;
+        } finally {
+            dbConnect.closeConnection();
+        }
+
+    }
+
+    public int laySoLuongctdh(int Madh) {
+        int result = 0;
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT COUNT(donhang.Madh) AS \"So Chi tiet\"\n"
+                    + "FROM chitietdonhang \n"
+                    + "INNER JOIN donhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                if (rs.next()) {
+                    result = rs.getInt("So Chi tiet");
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         } finally {
             dbConnect.closeConnection();
         }
@@ -161,33 +201,91 @@ public class QuanLiDonHang_DAO {
         }
         return result;
     }
-// Lay ma don hang theo ten ma
+// Lay ma khach hang theo ma don hang
 
-    public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
-
-        ArrayList dsdh = new ArrayList();
+    public int layMakhTheoMadh(int Madh) {
+        int result = -1;
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
-                    + "FROM	donhang where donhang.Trangthai = ? ");
-            stm.setString(1, tenTrangThai);
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Makh\n"
+                    + "FROM donhang\n"
+                    + "WHERE donhang.Madh = ?");
+            stm.setInt(1, Madh);
             rs = stm.executeQuery();
-            while (rs.next()) {
-                Vector a = new Vector();
-                a.add(rs.getInt("Madh"));
-                a.add(rs.getDate("Ngayban"));
-                a.add(rs.getInt("SoLuong"));
-                a.add(rs.getInt("Tongtien"));
-                a.add(rs.getString("Trangthai"));
-                dsdh.add(a);
+            if (rs != null) {
+                if (rs.next()) {
+                    result = rs.getInt("Makh");
+                }
             }
-            return dsdh;
-        } catch (SQLException e) {
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
+    public int layDiemTheoMakh(int Makh) {
+        int result = -1;
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT khachhang.Diemso\n"
+                    + "FROM khachhang\n"
+                    + "WHERE khachhang.Makh = ?");
+            stm.setInt(1, Makh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                if (rs.next()) {
+                    result = rs.getInt("Diemso");
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
+    public ArrayList layDADvaDT(int Madh) {
+        ArrayList result = new ArrayList();
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Diemapdung, donhang.Diemthuong\n"
+                    + "FROM donhang\n"
+                    + "WHERE donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt("Diemapdung"));
+                    result.add(rs.getInt("Diemthuong"));
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         } finally {
             dbConnect.closeConnection();
         }
+    }
 
+    public void updateDiemKH(int Makh, int Diemso) {
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE khachhang\n"
+                    + "SET khachhang.Diemso = ? WHERE khachhang.Makh = ?");
+            stm.setInt(1, Diemso);
+            stm.setInt(2, Makh);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConnect.closeConnection();
+        }
     }
 
     public void updateHuyDonHang(int Madh) {
@@ -209,7 +307,7 @@ public class QuanLiDonHang_DAO {
         dbConnect.setupConnection();
         try {
             PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE donhang\n"
-                    + "SET donhang.Trangthai = \"Đã xử lí\"\n"
+                    + "SET donhang.Trangthai = \"Hoàn Thành\"\n"
                     + "WHERE donhang.Madh = ?");
             stm.setInt(1, Madh);
             stm.executeUpdate();

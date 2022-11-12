@@ -26,9 +26,9 @@ public class QuanLiSanPham_DAO {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n "
-                    + "FROM sanpham\n "
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp\n "
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n"
+                    + "                    FROM sanpham\n"
+                    + "                    INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp \n"
                     + "ORDER BY sanpham.Masp ASC");
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -400,7 +400,7 @@ public class QuanLiSanPham_DAO {
         }
     }
 
-     public ArrayList getALLSanPham() {
+    public ArrayList getALLSanPham() {
         ArrayList result = new ArrayList<>();
         db.setupConnection();
         try {
@@ -412,7 +412,7 @@ public class QuanLiSanPham_DAO {
                 }
             }
         } catch (SQLException ex) {
-         System.out.println("Lỗi"+ex);
+            System.out.println("Lỗi" + ex);
         } finally {
             db.closeConnection();
         }

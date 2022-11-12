@@ -23,6 +23,9 @@ import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -57,8 +60,8 @@ public class MainFrame extends javax.swing.JFrame {
             public void selected(int index) {
                 if (index == 0) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
-//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
@@ -90,7 +93,12 @@ public class MainFrame extends javax.swing.JFrame {
 
                 if (index == 2) {
 
-                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+                    MainContentDonHang a = null;
+                    try {
+                        a = new MainContentDonHang(MainFrame.this);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

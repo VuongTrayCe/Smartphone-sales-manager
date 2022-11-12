@@ -52,10 +52,8 @@ public class QuanLiDonHang_DAO {
             dbConnect.closeConnection();
         }
     }
-    
-//    So sanh ngay ban co nam trong khoang Datestart -> DateEnd khong
-   
 
+//    So sanh ngay ban co nam trong khoang Datestart -> DateEnd khong
     public ArrayList layDanhSachDonHangTheoTrangThai_DAO(String tenTrangThai) {
         ArrayList dsdhtct = new ArrayList();
         dbConnect.setupConnection();
@@ -203,34 +201,93 @@ public class QuanLiDonHang_DAO {
         }
         return result;
     }
-// Lay ma don hang theo ten ma
+// Lay ma khach hang theo ma don hang
 
-//    public ArrayList getDanhSachDonHangTheoTrangThai(String tenTrangThai) {
-//
-//        ArrayList dsdh = new ArrayList();
-//        dbConnect.setupConnection();
-//        try {
-//            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, donhang.Ngayban, donhang.SoLuong, donhang.Tongtien, donhang.Trangthai\n"
-//                    + "FROM	donhang where donhang.Trangthai = ? ");
-//            stm.setString(1, tenTrangThai);
-//            rs = stm.executeQuery();
-//            while (rs.next()) {
-//                Vector a = new Vector();
-//                a.add(rs.getInt("Madh"));
-//                a.add(rs.getDate("Ngayban"));
-//                a.add(rs.getInt("SoLuong"));
-//                a.add(rs.getInt("Tongtien"));
-//                a.add(rs.getString("Trangthai"));
-//                dsdh.add(a);
-//            }
-//            return dsdh;
-//        } catch (SQLException e) {
-//            return null;
-//        } finally {
-//            dbConnect.closeConnection();
-//        }
-//
-//    }
+    public int layMakhTheoMadh(int Madh) {
+        int result = -1;
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Makh\n"
+                    + "FROM donhang\n"
+                    + "WHERE donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                if (rs.next()) {
+                    result = rs.getInt("Makh");
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
+    public int layDiemTheoMakh(int Makh) {
+        int result = -1;
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT khachhang.Diemso\n"
+                    + "FROM khachhang\n"
+                    + "WHERE khachhang.Makh = ?");
+            stm.setInt(1, Makh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                if (rs.next()) {
+                    result = rs.getInt("Diemso");
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
+    public ArrayList layDADvaDT(int Madh) {
+        ArrayList result = new ArrayList();
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Diemapdung, donhang.Diemthuong\n"
+                    + "FROM donhang\n"
+                    + "WHERE donhang.Madh = ?");
+            stm.setInt(1, Madh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt("Diemapdung"));
+                    result.add(rs.getInt("Diemthuong"));
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
+    public void updateDiemKH(int Makh, int Diemso) {
+        dbConnect.setupConnection();
+        try {
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE khachhang\n"
+                    + "SET khachhang.Diemso = ? WHERE khachhang.Makh = ?");
+            stm.setInt(1, Diemso);
+            stm.setInt(2, Makh);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConnect.closeConnection();
+        }
+    }
+
     public void updateHuyDonHang(int Madh) {
         dbConnect.setupConnection();
         try {

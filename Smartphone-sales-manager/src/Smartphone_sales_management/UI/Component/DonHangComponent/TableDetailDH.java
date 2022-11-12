@@ -451,6 +451,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xác nhận ?", "Xác nhận đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
+            qldh_BUS.tinhDiemChoKhachHang(Madh);
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);

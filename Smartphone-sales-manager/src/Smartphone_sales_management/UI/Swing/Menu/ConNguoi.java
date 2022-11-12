@@ -20,7 +20,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.GridLayout;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 
 /**
@@ -33,10 +35,13 @@ public class ConNguoi extends javax.swing.JPanel {
      * Creates new form TestPanel2
      */
 
-    
-    public ConNguoi() {
+    MainFrame frame;
+    JPanel panel;
+    public ConNguoi(MainFrame frame,JPanel panel) {
         
         initComponents();
+        this.frame=frame;
+        this.panel=panel;
        
     }
    
@@ -66,6 +71,11 @@ public class ConNguoi extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 102));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Quản Lý Nhân Viên");
@@ -189,6 +199,25 @@ public class ConNguoi extends javax.swing.JPanel {
                     a.validate();
 //                    pack();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+
+           NhanVienGUI a = new NhanVienGUI();
+//KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//              MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+
+                                      panel.removeAll();
+
+                    a.setBounds(0, 0,panel.getWidth(),panel.getHeight());
+                    panel.setLayout(new GridLayout());
+                    panel.add(a);
+                    a.validate();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

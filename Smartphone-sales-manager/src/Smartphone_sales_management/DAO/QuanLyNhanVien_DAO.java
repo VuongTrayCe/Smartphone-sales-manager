@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +29,7 @@ public class QuanLyNhanVien_DAO {
         ArrayList<Model_NhanVien> dsnv = new ArrayList<Model_NhanVien>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien ");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien where Trangthai = 'T'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_NhanVien a = new Model_NhanVien();
@@ -40,7 +39,7 @@ public class QuanLyNhanVien_DAO {
                 a.setTuoi(rs.getInt("Tuoi"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setChucDanh(rs.getString("Chucdanh"));
-                a.setTrangThai(rs.getString("Trangthai"));
+//                a.setTrangThai(rs.getString("Trangthai"));
                 dsnv.add(a);
 
             }
@@ -90,15 +89,16 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-    public boolean deleteNhanVien(int MaNV) {
+    public boolean deleteNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
 		db.setupConnection();
-		String sqlString = "delete from nhanvien where MaNV=?";
+			String sqlString = "update nhanvien set  TrangThai = ? where Manv=?";
 
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
-			preparedStatement.setInt(1, MaNV);
+			preparedStatement.setString(1, NhanVien.getTrangThai());
+                        preparedStatement.setInt(2,NhanVien.getMaNV());
 
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {

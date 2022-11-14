@@ -35,17 +35,9 @@ public class QuanLyNhanVien_BUS {
         return isSuccess;
     }
     
-	public boolean deleteNhanVien(int Manv) {
+	public boolean deleteNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
-
-		for(Model_NhanVien nv:dsnv) {
-			if(nv.getMaNV() == Manv) {
-				dsnv.remove(nv);
-				qlnv.deleteNhanVien(Manv);
-                                isSuccess = true;
-				break;
-			}
-		}
+            qlnv.deleteNhanVien(NhanVien);
                 return isSuccess;
        }
         public boolean updateNhanVien(Model_NhanVien nhanvien){

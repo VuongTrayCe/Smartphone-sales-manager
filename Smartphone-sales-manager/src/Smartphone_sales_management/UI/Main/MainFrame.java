@@ -48,11 +48,11 @@ public class MainFrame extends javax.swing.JFrame {
 // ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+//        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 
         
-//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
 //   TestPanel2  a = new TestPanel2();
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

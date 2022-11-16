@@ -23,6 +23,9 @@ import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -41,10 +44,14 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
- ThongKeMainPanel a = new ThongKeMainPanel();
+//        MainConTentPhieuNhap a = new MainConTentPhieuNhap(this);
+// ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-//        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+//                        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+
+        
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
 //   TestPanel2  a = new TestPanel2();
@@ -72,15 +79,15 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 1) {
-                    
+//                    
                 MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-
+//
                      jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
                     a.validate();
-//                    pack();
+                    pack();
                     
 //                    
 //                    jPanel1.removeAll();
@@ -91,7 +98,12 @@ public class MainFrame extends javax.swing.JFrame {
                 
                 if (index == 2) {
                     
-                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+                     MainContentDonHang a = null;
+                    try {
+                        a = new MainContentDonHang(MainFrame.this);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

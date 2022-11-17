@@ -419,6 +419,15 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel12.setText("đến");
 
         jLALL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Goback.png"))); // NOI18N
+        jLALL.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLALLAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jLALL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLALLMouseClicked(evt);
@@ -724,7 +733,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLMaNV.setVisible(true);
         jtMaNV.setVisible(true);   
         int index = jTable1.getSelectedRow();
-        Model_NhanVien NhanVien = new Model_NhanVien();
+            Model_NhanVien NhanVien = new Model_NhanVien();
 	TableModel model =jTable1.getModel();
 
         String Manv = model.getValueAt(index,0).toString();
@@ -960,6 +969,10 @@ public class NhanVienGUI extends javax.swing.JPanel {
     private void rdbDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbDiaChiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbDiaChiActionPerformed
+
+    private void jLALLAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLALLAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLALLAncestorAdded
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnResetSearch;

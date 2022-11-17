@@ -40,6 +40,7 @@ public class testGetID {
         } finally {
             db.closeConnection();
         }
+        return 0;
     }
 
 }

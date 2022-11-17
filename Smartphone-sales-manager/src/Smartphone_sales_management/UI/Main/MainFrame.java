@@ -7,11 +7,11 @@ package Smartphone_sales_management.UI.Main;
 import Smartphone_sales_management.DAO.ThongKeBaoCao_DAO;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
-
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
+import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
 import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
@@ -52,11 +52,12 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.add(a);
         a.validate();
         menu2.addEventMenu(new EventMenu() {
-            @Override
             public void selected(int index) {
                 if (index == 0) {
-//                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+             //       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
+KhachHangg a = new KhachHangg();
+//KhuyenMaiGUI a = new KhuyenMaiUI(MainFrame.this);
+//KhachHangg a = new KhachHangg();
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);

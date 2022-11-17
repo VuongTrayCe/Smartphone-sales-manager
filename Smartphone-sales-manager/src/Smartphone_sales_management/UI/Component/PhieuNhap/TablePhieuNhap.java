@@ -4,11 +4,13 @@
  */
 package Smartphone_sales_management.UI.Component.PhieuNhap;
 
-import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyPhieuNhap_BUS;
-import Smartphone_sales_management.UI.Event.BanHang.EventBanHang;
+import Smartphone_sales_management.UI.Event.PhieuNhap.EventPhieuNhap;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +26,7 @@ public class TablePhieuNhap extends javax.swing.JPanel {
      */
     QuanLyPhieuNhap_BUS qlpn = new QuanLyPhieuNhap_BUS();
     DefaultTableModel model = new DefaultTableModel();
-    EventBanHang event;
+    EventPhieuNhap event;
 
     public TablePhieuNhap() {
         initComponents();
@@ -42,6 +44,20 @@ public class TablePhieuNhap extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefautlTable("");
         jTable1.setModel(model);
+    }
+ public void addEventPhieuNhap(EventPhieuNhap event)
+    {
+        this.event = event;
+        jTable1.addMouseListener(new  MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                int index = jTable1.getSelectedRow();
+                int mapn = (int)jTable1.getValueAt(index,1);
+                String ngaynhap = (String) jTable1.getValueAt(index,2);
+                String tenncc = (String) jTable1.getValueAt(index,3);
+                event.infor(mapn, ngaynhap,tenncc);
+            };
+        });
     }
 
     public void SetDefautlTable(String keyWord) {
@@ -68,6 +84,7 @@ public class TablePhieuNhap extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -79,6 +96,13 @@ public class TablePhieuNhap extends javax.swing.JPanel {
 
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setRowHeight(40);
+        jTable1.setSelectionBackground(new java.awt.Color(204, 0, 0));
+        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

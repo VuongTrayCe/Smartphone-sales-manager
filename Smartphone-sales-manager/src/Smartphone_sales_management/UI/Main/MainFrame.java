@@ -44,7 +44,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-        ThongKeMainPanel a = new ThongKeMainPanel();
+        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
+//        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -111,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 if (index == 3) {
 
-                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this);
+                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this,jPanel1);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

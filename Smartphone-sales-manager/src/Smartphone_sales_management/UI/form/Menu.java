@@ -115,7 +115,14 @@ public class Menu extends javax.swing.JPanel {
                 {
                     selectedIndex=6;
                    listMenu1.repaint();
-                  event.selected(5);
+                  event.selected(6);
+                  
+                }
+                  if(index==7)
+                {
+                    selectedIndex=7;
+                   listMenu1.repaint();
+                  event.selected(7);
                   
                 }
 

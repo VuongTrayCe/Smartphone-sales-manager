@@ -6,7 +6,10 @@ package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLiDonHang_DAO;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,15 +26,76 @@ public class QuanLyDonHang_BUS {
 
     }
 
-    public ArrayList layDanhSachDonHang(String keyWord, int selectedIndex) {
+    public ArrayList layDanhSachDonHang(String keyWord, String tenTrangThai, Date start, Date end) throws ParseException {
         ArrayList dsdh = new ArrayList();
         ArrayList dsdhOfficial = new ArrayList();
+        ArrayList dsdsOffical2 = new ArrayList();
+        ArrayList dsdhtt = new ArrayList();
         dsdh = qldh.layDanhSachDonHang_DAO();
-        if (selectedIndex == 0) {
-            if (keyWord == "") {
-                return dsdh;
+        dsdhtt = qldh.layDanhSachDonHangTheoTrangThai_DAO(tenTrangThai);
+
+        if (tenTrangThai == "ALL") {
+            if (start == null && end == null) {
+                if (keyWord == "") {
+                    return dsdh;
+                } else {
+                    for (Object x : dsdh) {
+                        Vector y = (Vector) x;
+                        String madh = Integer.toString((int) y.get(0));
+                        if (madh.contains(keyWord)) {
+                            dsdhOfficial.add(y);
+                        }
+                    }
+                    return dsdhOfficial;
+                }
             } else {
-                for (Object x : dsdh) {
+                if (keyWord == "") {
+                    for (Object x : dsdh) {
+                        Vector y = (Vector) x;
+                        if (compareDate((Date) y.get(3), start, end)) {
+                            dsdhOfficial.add(y);
+                        }
+                    }
+                    return dsdhOfficial;
+                } else {
+                    for (Object x : dsdh) {
+                        Vector y = (Vector) x;
+                        if (compareDate((Date) y.get(3), start, end)) {
+                            dsdsOffical2.add(y);
+                        }
+                    }
+                    for (Object x : dsdsOffical2) {
+                        Vector y = (Vector) x;
+                        String madh = Integer.toString((int) y.get(0));
+                        if (madh.contains(keyWord)) {
+                            dsdhOfficial.add(y);
+                        }
+                    }
+                    return dsdhOfficial;
+                }
+            }
+        } else {
+            if (start == null && end == null) {
+                if (keyWord == "") {
+                    return dsdhtt;
+                } else {
+                    for (Object x : dsdhtt) {
+                        Vector y = (Vector) x;
+                        String madh = Integer.toString((int) y.get(0));
+                        if (madh.contains(keyWord)) {
+                            dsdhOfficial.add(y);
+                        }
+                    }
+                    return dsdhOfficial;
+                }
+            } else {
+                for (Object x : dsdhtt) {
+                    Vector y = (Vector) x;
+                    if (compareDate((Date) y.get(3), start, end)) {
+                        dsdsOffical2.add(y);
+                    }
+                }
+                for (Object x : dsdsOffical2) {
                     Vector y = (Vector) x;
                     String madh = Integer.toString((int) y.get(0));
                     if (madh.contains(keyWord)) {
@@ -39,115 +103,56 @@ public class QuanLyDonHang_BUS {
                     }
                 }
                 return dsdhOfficial;
-
-            }
-
-        }
-
-        if (selectedIndex == 1) {
-            if (keyWord == "") {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(4));
-                    if (trangthai.equals("Đã xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-            } else {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(4));
-                    if (madh.contains(keyWord) && trangthai.equals("Đã xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-
             }
         }
-
-        if (selectedIndex == 2) {
-            if (keyWord == "") {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(4));
-                    if (trangthai.equals("Chưa xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-            } else {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(4));
-                    if (madh.contains(keyWord) && trangthai.equals("Chưa xử lí")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-
-            }
-        }
-        if (selectedIndex == 3) {
-            if (keyWord == "") {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String trangthai = ((String) y.get(4));
-                    if (trangthai.equals("Hủy đơn")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-            } else {
-                for (Object x : dsdh) {
-                    Vector y = (Vector) x;
-                    String madh = Integer.toString((int) y.get(0));
-                    String trangthai = ((String) y.get(4));
-                    if (madh.contains(keyWord) && trangthai.equals("Hủy đơn")) {
-                        dsdhOfficial.add(y);
-                    }
-                }
-                return dsdhOfficial;
-
-            }
-        }
-
-        return null;
-
     }
 
-    public ArrayList layDanhSachChiTietDonHang(int selectedIndex,String tenTrangThai) {
-//        ArrayList danhsachDonHangTheoTrangThai = qldh.getDanhSachDonHangTheoTrangThai(tenTrangThai);
-        ArrayList dsctdh = new ArrayList();
-        ArrayList MaDHList = new ArrayList();
-        if(tenTrangThai.equals("ALL"))
-        {
-                    MaDHList = qldh.layMadh();
+    public void tinhDiemChoKhachHang(int Madh) {
+        int Makh = qldh.layMakhTheoMadh(Madh);
+        int Diemso = qldh.layDiemTheoMakh(Makh);
+        ArrayList diem = qldh.layDADvaDT(Madh);
+        int diemAD = (int) diem.get(0);
+        int diemThuong = (int) diem.get(1);
+        int diemKH = Diemso + diemThuong - diemAD;
+        qldh.updateDiemKH(Makh, diemKH);
+    }
 
-        }
-        else
-        {
-                    MaDHList = qldh.layMadh2(tenTrangThai);
+    public int laySoLuongctdh(int Madh) {
+        return qldh.laySoLuongctdh(Madh);
+    }
 
-        }
+    public ArrayList layctdh(int Madh) {
+        ArrayList ctdh = new ArrayList();
         try {
-            dsctdh = qldh.layDanhSachChiTietDonHang((int) MaDHList.get(selectedIndex));
-
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyDonHang_BUS.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            ctdh = qldh.layDanhSachChiTietDonHang(Madh);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+        return ctdh;
+    }
 
-        return dsctdh;
+    public Boolean compareDate(Date dateNgayBan, Date dateStart, Date dateEnd) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat  sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        String datestart2 = sdf.format(dateStart);
+        String dateEnd2 = sdf.format(dateEnd);
+        Date datestart22 = formatter.parse(datestart2);
+        Date dateEnd22 = formatter.parse(dateEnd2);
+        Boolean flag = false;
+
+        if (dateNgayBan.after(datestart22) == true && dateEnd22.after(dateNgayBan) == true) {
+            flag = true;
+        }
+        return flag;
     }
-    
+
     public void updateHuyDonHang(int Madh) {
-       qldh.updateHuyDonHang(Madh);
+        qldh.updateHuyDonHang(Madh);
     }
-    
+
     public void updateXacNhanDonHang(int Madh) {
         qldh.updateXacNhanDonHang(Madh);
     }

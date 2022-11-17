@@ -10,7 +10,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -26,32 +28,39 @@ public class TableDonHang extends javax.swing.JPanel {
     QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
     DefaultTableModel model = new DefaultTableModel();
     private String keyWord;
-    private int selectedIndex;
-
-    public TableDonHang(String keyWord, int selectedIndex) {
+    String tenTrangThai;
+   Date dateStart;
+   Date dateEnd;
+    public TableDonHang(String keyWord, String tenTrangThai,Date start, Date end) throws ParseException {
         initComponents();
         this.keyWord = keyWord;
-        this.selectedIndex = selectedIndex;
+        this.tenTrangThai = tenTrangThai;
+        this.dateStart = start;
+        this.dateEnd = end;
         model.addColumn("MaDH");
+        model.addColumn("TenKM");
+        model.addColumn("TenNV");
         model.addColumn("NgayBan");
         model.addColumn("TongSoLuong");
         model.addColumn("TongTien");
+        model.addColumn("DiemApDung");
+        model.addColumn("DiemThuong");
         model.addColumn("TrangThai");
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefaultTable(keyWord, selectedIndex);
+        SetDefaultTable(keyWord, tenTrangThai,start,end);
         jTable1.setModel(model);
     }
 
     public void addEventDonHang(EventDonHang event) {
-        event.SelectedInxex(0);
+//        event.SelectedInxex(0,);
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event.SelectedInxex(jTable1.getSelectedRow());
+                event.SelectedInxex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             }
         ;
     }
@@ -60,11 +69,11 @@ public class TableDonHang extends javax.swing.JPanel {
     }
     
    
-    public void SetDefaultTable(String keyWord, int selectedIndex) {
+    public void SetDefaultTable(String keyWord, String tenTrangThai,Date start, Date end) throws ParseException{
         jTable1.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
-        dataList = qldh_BUS.layDanhSachDonHang(keyWord, selectedIndex);
+        dataList = qldh_BUS.layDanhSachDonHang(keyWord,tenTrangThai,start,end);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
@@ -72,9 +81,19 @@ public class TableDonHang extends javax.swing.JPanel {
 
     }
     
-    public DefaultTableModel getModel() {
-        return this.model;
-    }
+//    public void SetDefaultTableTheoNgay(String keyWord, String tenTrangThai,Date dateStart, Date dateEnd){
+//        jTable1.removeAll();
+//        model.setRowCount(0);
+//        ArrayList dataList = new ArrayList();
+//        dataList = qldh_BUS.layDanhSachDonHangTheoNgay(keyWord,tenTrangThai,dateStart,dateEnd);
+//        for (int i = 0; i < dataList.size(); i++) {
+//            model.addRow((Vector<?>) dataList.get(i));
+//        }
+//        jScrollPane1.repaint();
+//
+//    }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

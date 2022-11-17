@@ -7,12 +7,13 @@ package Smartphone_sales_management.UI.Main;
 import Smartphone_sales_management.DAO.ThongKeBaoCao_DAO;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
+
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
-import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
 import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
+import Smartphone_sales_management.UI.Component.PhieuNhap.MainConTentPhieuNhap;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import java.awt.Color;
@@ -22,6 +23,9 @@ import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -40,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
- ThongKeMainPanel a = new ThongKeMainPanel();
+        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -52,13 +56,12 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.add(a);
         a.validate();
         menu2.addEventMenu(new EventMenu() {
+            @Override
             public void selected(int index) {
                 if (index == 0) {
-             //       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
-KhachHangg a = new KhachHangg();
-//KhuyenMaiGUI a = new KhuyenMaiUI(MainFrame.this);
-//KhachHangg a = new KhachHangg();
-//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
+//KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
@@ -72,25 +75,43 @@ KhachHangg a = new KhachHangg();
 
                 }
                 if (index == 1) {
-                    
-                MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 
-                     jPanel1.removeAll();
+                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+                    jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
                     a.validate();
 //                    pack();
-                    
+
 //                    
 //                    jPanel1.removeAll();
 //                    pack();
 //                    jPanel1.repaint();
+                }
+
+                if (index == 2) {
+
+                    MainContentDonHang a = null;
+                    try {
+                        a = new MainContentDonHang(MainFrame.this);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+//                    pack();
+//                    jPanel1.removeAll();
+//                    jPanel1.repaint();
 
                 }
-                if (index == 2) {
-                    
-                     MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+                if (index == 3) {
+
+                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -103,8 +124,8 @@ KhachHangg a = new KhachHangg();
 
                 }
                 if (index == 4) {
-                    ConNguoi a =  new ConNguoi();
-                     jPanel1.removeAll();
+                    ConNguoi a = new ConNguoi(MainFrame.this, jPanel1);
+                    jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);
@@ -124,7 +145,16 @@ KhachHangg a = new KhachHangg();
                 }
                 if (index == 5) {
                     ThongKeMainPanel a = new ThongKeMainPanel();
-                     jPanel1.removeAll();
+                    jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+                }
+                if (index == 7) {
+                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//                    ThongKeMainPanel a = new ThongKeMainPanel();
+                    jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
                     jPanel1.add(a);

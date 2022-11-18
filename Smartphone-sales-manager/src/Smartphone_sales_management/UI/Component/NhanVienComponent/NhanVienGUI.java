@@ -4,21 +4,15 @@
  */
 package Smartphone_sales_management.UI.Component.NhanVienComponent;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
-import Smartphone_sales_management.UI.Main.MainFrame;
-import Smartphone_sales_management.UI.Model.Model_NhanVien;
+import Smartphone_sales_management.DTO.Model_NhanVien;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
-import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.AbstractDocument;
 
 /**
  *

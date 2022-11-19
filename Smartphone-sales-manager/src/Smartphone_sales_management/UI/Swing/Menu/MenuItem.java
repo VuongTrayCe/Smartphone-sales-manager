@@ -22,7 +22,7 @@ public class MenuItem extends javax.swing.JPanel {
     public MenuItem(Model_Menu data,int index) {
                 initComponents();
         this.data=data;
-        this.setBackground(new Color(152, 141, 172));
+        this.setBackground(new Color(33, 29, 79));
         if(data.getType() == Model_Menu.MenuType.MENU)
             {
                 lbIcon.setIcon(data.toIcon());
@@ -75,6 +75,7 @@ public class MenuItem extends javax.swing.JPanel {
         lbName = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 51, 0));
+        setForeground(new java.awt.Color(0, 51, 51));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
@@ -82,6 +83,7 @@ public class MenuItem extends javax.swing.JPanel {
         });
 
         lbName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbName.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -67,7 +67,7 @@ public class AddKhachHang extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Thêm tài khoản");
+        jLabel1.setText("Thêm Khách Hàng");
 
         jLabel2.setText("Tên Khách Hàng (*) :");
 

@@ -25,6 +25,8 @@ import javax.swing.event.DocumentListener;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 import Smartphone_sales_management.UI.Event.PhieuNhap.EventPhieuNhap;
 import java.awt.Dialog;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Window;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -32,12 +34,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import Smartphone_sales_management.UI.Swing.GraphicsPanel;
+import Smartphone_sales_management.UI.Swing.GraphicsTextFied;
 
 /**
  *
  * @author Vuong
  */
-public class MainConTentPhieuNhap extends javax.swing.JPanel {
+public class MainConTentPhieuNhap extends JPanel {
 
     /**
      * Creates new form TestPanel
@@ -61,6 +65,12 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
 
         jScrollPane1.setViewportView(a);
+//                 jButton1.setBorderPainted(false);
+
+        jButton1.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
+        jButton2.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
+
+//         jButton2.setBorderPainted(false);
 ////        jPanel2.setLayout(new GridLayout());
 //        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
 //
@@ -71,7 +81,7 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
             @Override
             public int infor(int Mapn, String ngaynhap, String tenncc) {
 
-                c = new TableChiTietPhieuNhap(Mapn,ngaynhap,tenncc, frame);
+                c = new TableChiTietPhieuNhap(Mapn, ngaynhap, tenncc, frame);
 
                 JDialog inforDonHang = new JDialog();
 //        changePwdDialog.setUndecorated(true);
@@ -120,27 +130,30 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtTimKiem = new javax.swing.JTextField();
+        txtTimKiem = new GraphicsTextFied(15);
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        jPanel7 = new GraphicsPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
 
-        setBackground(new java.awt.Color(0, 153, 153));
+        setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(1030, 530));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(1030, 106));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Phiếu Nhập");
 
+        txtTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtTimKiem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -183,10 +196,10 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -209,9 +222,10 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel7.setBackground(new java.awt.Color(0, 51, 51));
         jPanel7.setPreferredSize(new java.awt.Dimension(1030, 412));
 
-        jScrollPane1.setBackground(new java.awt.Color(204, 0, 51));
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -226,7 +240,7 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -234,19 +248,15 @@ public class MainConTentPhieuNhap extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

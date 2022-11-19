@@ -9,6 +9,7 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanH
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
+import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
@@ -38,7 +39,6 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form TestFrame
      */
     public static int selectedIndex = -1;
-
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -75,8 +75,8 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 1) {
-
-                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+                    MainContentBaoHanh a = new MainContentBaoHanh();
+//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());

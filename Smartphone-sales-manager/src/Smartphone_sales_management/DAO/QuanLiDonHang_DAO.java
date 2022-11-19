@@ -37,7 +37,7 @@ public class QuanLiDonHang_DAO {
                 a.add(rs.getInt("Madh"));
                 a.add(rs.getString("Tenkh"));
                 a.add(rs.getString("Tennv"));
-                a.add(rs.getDate("NgayBan"));
+                a.add(rs.getString("NgayBan"));
                 a.add(rs.getInt("SoLuong"));
                 a.add(rs.getDouble("TongTien"));
                 a.add(rs.getInt("Diemapdung"));

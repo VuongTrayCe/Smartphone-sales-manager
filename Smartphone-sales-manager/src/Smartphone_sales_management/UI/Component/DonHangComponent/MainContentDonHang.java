@@ -32,7 +32,6 @@ public class MainContentDonHang extends javax.swing.JPanel {
     MainFrame mainFrame;
     TableDetailDH detailDH;
     TableDonHang donHang;
-
     public MainContentDonHang(MainFrame mainFrame) throws ParseException {
         initComponents();
         this.mainFrame = mainFrame;
@@ -146,7 +145,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         btnExcel.setBackground(new java.awt.Color(255, 0, 51));
         btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -234,9 +233,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
                         .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -282,7 +280,12 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
-        XuatExcel ex = new XuatExcel();
+        XuatExcel123 ex = new XuatExcel123(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+        try {
+            ex.xuatFileExcelDanhSachtHoaDon();
+        } catch (ParseException ex1) {
+            Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex1);
+        }
     }//GEN-LAST:event_btnExcelActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

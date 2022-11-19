@@ -19,7 +19,10 @@ import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.RenderingHints;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
@@ -44,7 +47,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-        ThongKeMainPanel a = new ThongKeMainPanel();
+        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
+//        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -111,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 if (index == 3) {
 
-                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this);
+                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this,jPanel1);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -173,7 +177,18 @@ public class MainFrame extends javax.swing.JFrame {
 //       System.out.println("Vuong da vao");
 //   pack();
     }
+    @Override
+    public void paintComponents(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(new Color(152, 141, 172));
+        g2.fillRoundRect(0,0,getWidth(),getHeight(),15,15);
+        g2.fillRect(getWidth()-100, 10,getWidth(), getHeight());
 
+        super.paintComponents(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,7 +222,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(menu2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(menu2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -270,6 +285,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

@@ -26,9 +26,10 @@ public class QuanLyPhieuNhap_BUS {
 
             for (Object x : dssp) {
                 Vector y = (Vector) x;
-                String masp = Integer.toString((int) y.get(0));
-                String name = (String) y.get(1);
-                if (masp.contains(keyWord) || name.contains(keyWord)) {
+                String mapn = Integer.toString((int) y.get(1));
+                System.out.println(mapn);
+//                String name = (String) y.get(1);
+                if (mapn.contains(keyWord)) {
                     {
                         dsspOfficial.add(y);
                     }
@@ -37,6 +38,28 @@ public class QuanLyPhieuNhap_BUS {
             }
             return dsspOfficial;
         }
+    }
+
+    public ArrayList getChiTietPhieuNhap(int Mapn) {
+        ArrayList data = qlpn.getChiTietPhieuNhap_DAO(Mapn);
+
+        return data;
+    }
+
+    public ArrayList<Object> getALLNhaCungCap() {
+
+        ArrayList dsnhacc = new ArrayList();
+
+        dsnhacc = qlpn.getALLNhaCungCap();
+        return dsnhacc;
+    }
+
+    public ArrayList getALLSanPham(int mancc) {
+        ArrayList dssp = new ArrayList();
+//        System.out.println("ALo");
+        dssp = qlpn.getALLSanPham(mancc);
+        return dssp;
+
     }
 
 }

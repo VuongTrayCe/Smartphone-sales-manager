@@ -4,21 +4,15 @@
  */
 package Smartphone_sales_management.UI.Component.NhanVienComponent;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
-import Smartphone_sales_management.UI.Main.MainFrame;
-import Smartphone_sales_management.UI.Model.Model_NhanVien;
+import Smartphone_sales_management.DTO.Model_NhanVien;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
-import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -47,7 +41,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
          model.addColumn("Tuoi");
          model.addColumn("DiaChi");        
          model.addColumn("ChucDanh");
-         model.addColumn("TrangThai");
+//         model.addColumn("TrangThai");
          jTable1.setOpaque(false);
          jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
@@ -802,6 +796,7 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
 //			JOptionPane.showMessageDialog(jLabelThem, "Vui lòng nhấn nút làm mới để có thể thêm dữ liệu");
 //			return;
 //		}
+
         String ten = jtTen.getText();
         String tuoi = jtTuoi.getText();
         String Socccd = jtcccd.getText();
@@ -809,8 +804,15 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
         String chucdanh = jtChucdanh.getText();
         String TUOI_Pattern = "\\d+";
         String CMND_Pattern = "\\d+";
-        
-        
+        Pattern p = Pattern.compile("[0-9]");
+                if (p.matcher(jtTen.getText()).find()){
+            JOptionPane.showMessageDialog(jtTen,"Bạn  nhập sai định dạng tên nhân viên");
+            return;
+        }
+             if (p.matcher(jtChucdanh.getText()).find()){
+            JOptionPane.showMessageDialog(jtTen,"Bạn  nhập sai định dạng chức danh ");
+            return;
+        }
         if(ten.length() == 0){
             JOptionPane.showMessageDialog(jtTen,"Bạn chưa nhập tên nhân viên");
             return;
@@ -818,6 +820,9 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
         if(ten.length()> 50){
             JOptionPane.showMessageDialog(jtTen,"Bạn nhập sai thông tin nhân viên");
             return;
+        }
+        if (p.matcher(jtTen.getText()).find()){
+            
         }
          if(Pattern.matches(TUOI_Pattern,tuoi)!=true)
         {
@@ -832,7 +837,10 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
             JOptionPane.showMessageDialog(jtTuoi,"Số tuổi cần nhập lại tuổi");
             return;
         }
-       
+        if(Socccd.length()>13){
+            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 12 số ");
+            return;
+        }
          if(Pattern.matches(CMND_Pattern,Socccd)!=true)
         {
                         JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân/Căn cước công dân không đúng định dạng");
@@ -842,10 +850,7 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
             JOptionPane.showMessageDialog(jtcccd, "Số căn cước đã tồn tại");
             return;
         }
-        if(Socccd.length()>13){
-            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 12 số ");
-            return;
-        }
+       
         if(diachi.length() == 0){
             JOptionPane.showMessageDialog(jTextDiaChi,"Bạn chưa nhập địa chỉ");
             return;
@@ -872,15 +877,19 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
         NhanVien.setDiaChi(diachi);
         NhanVien.setChucDanh(chucdanh);
         NhanVien.setTrangThai("T");
-        
-        qlnv.AddNhanVien(NhanVien);
+          int a = JOptionPane.showConfirmDialog(null, "Bạn muốn thêm không ?","Thêm Nhân Viên", JOptionPane.YES_NO_OPTION);
+        if(a==JOptionPane.YES_OPTION) {
+           qlnv.AddNhanVien(NhanVien);
 
         SetDefaultTable();
-        jtTen.setText("");
+         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");
         jTextDiaChi.setText("");
         jtChucdanh.setText("");
+        } 
+
+       
     }//GEN-LAST:event_jLabelThemMouseClicked
 
     private void jLabelChinhSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelChinhSuaMouseClicked
@@ -896,7 +905,15 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
         String chucdanh = jtChucdanh.getText();
         String TUOI_Pattern = "\\d+";
         String CMND_Pattern = "\\d+";
-        
+        Pattern p = Pattern.compile("[0-9]");
+                if (p.matcher(jtTen.getText()).find()){
+            JOptionPane.showMessageDialog(jtTen,"Bạn  nhập sai định dạng tên nhân viên");
+            return;
+        }
+             if (p.matcher(jtChucdanh.getText()).find()){
+            JOptionPane.showMessageDialog(jtTen,"Bạn  nhập sai định dạng chức danh ");
+            return;
+        }
         
         if(ten.length() == 0){
             JOptionPane.showMessageDialog(jtTen,"Bạn chưa nhập tên nhân viên");
@@ -955,14 +972,17 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
         NhanVien.setSoCCCD(Integer.parseInt(Socccd));
         NhanVien.setDiaChi(diachi);
         NhanVien.setChucDanh(chucdanh);  
-       qlnv.updateNhanVien(NhanVien);
-       
-       SetDefaultTable();
-        jtTen.setText("");
+              int a = JOptionPane.showConfirmDialog(null, "Bạn muốn chỉnh sửa thông tin không ?","Chỉnh sửa thông tin Nhân Viên", JOptionPane.YES_NO_OPTION);
+        if(a==JOptionPane.YES_OPTION) {
+           qlnv.updateNhanVien(NhanVien);
+
+        SetDefaultTable();
+         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");
         jTextDiaChi.setText("");
         jtChucdanh.setText("");
+        } 
     }//GEN-LAST:event_jLabelChinhSuaMouseClicked
 
     private void jLabelXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelXoaMouseClicked
@@ -973,19 +993,25 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
 			return;
 		}
         String manv = jtMaNV.getText();
-      if(manv.length()>0){
-       qlnv.deleteNhanVien(Integer.parseInt(jtMaNV.getText()));
-       SetDefaultTable();
-      }
-      if(manv.length() == 0){
-        JOptionPane.showMessageDialog(jlTenNhanVien, "Bạn cần phải nhập mã nhân viên cần xóa");
-    }
-     jtMaNV.setText("");
+        QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
+        
+        Model_NhanVien nhanvien = new Model_NhanVien();
+        nhanvien.setMaNV(Integer.parseInt(manv));
+        nhanvien.setTrangThai("F");
+            int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa không ?","Xóa Nhân Viên", JOptionPane.YES_NO_OPTION);
+        if(a==JOptionPane.YES_OPTION) {
+           qlnv.deleteNhanVien(nhanvien);
+        SetDefaultTable();
         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");
         jTextDiaChi.setText("");
         jtChucdanh.setText("");
+        jtTen.setText("");
+        jtTuoi.setText("");
+        jtcccd.setText("");
+        jTextDiaChi.setText("");
+        }
     }//GEN-LAST:event_jLabelXoaMouseClicked
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

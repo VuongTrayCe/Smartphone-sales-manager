@@ -11,8 +11,6 @@ import Smartphone_sales_management.DTO.Model_ChiTietKM;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,14 +27,14 @@ public class QuanLyKhuyenMai_DAO {
         ArrayList<Model_KhuyenMai> dskm = new ArrayList<Model_KhuyenMai>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from khuyenmai");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from khuyenmai where Trangthai = 'T'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_KhuyenMai a = new Model_KhuyenMai();
                 a.setMakm(rs.getInt("Makm"));
                 a.setTenkm(rs.getString("Tenkm"));              
                 a.setPhantramkm(rs.getFloat("Ptkm"));
-                a.setTrangthai(rs.getString("Trangthai"));
+//                a.setTrangthai(rs.getString("Trangthai"));
                 dskm.add(a);
 
             } 
@@ -53,7 +51,10 @@ public class QuanLyKhuyenMai_DAO {
         ArrayList<Model_ChiTietKM> dsctkm = new ArrayList<Model_ChiTietKM>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select chitietkhuyenmai.Machitietkhuyenmai,chitietkhuyenmai.Masp,sanpham.Tensp,chitietkhuyenmai.Makm,chitietkhuyenmai.TrangThai from chitietkhuyenmai,sanpham where sanpham.Masp=chitietkhuyenmai.Masp");
+            PreparedStatement stm = db.getConnection().prepareStatement("select chitietkhuyenmai.Machitietkhuyenmai,chitietkhuyenmai.Masp,sanpham.Tensp,chitietkhuyenmai.Makm,chitietkhuyenmai.TrangThai "
+                    + "from chitietkhuyenmai,sanpham "
+                    + "where sanpham.Masp=chitietkhuyenmai.Masp and chitietkhuyenmai.TrangThai='T'");
+
             rs = stm.executeQuery();
             while (rs.next()) {
                 Model_ChiTietKM a = new Model_ChiTietKM();
@@ -62,7 +63,6 @@ public class QuanLyKhuyenMai_DAO {
                 a.setTenSP(rs.getString("Tensp"));
                 a.setMaKM(rs.getInt("Makm"));
                 a.setTrangThai(rs.getString("TrangThai"));
-//               
                 
                 dsctkm.add(a);
 
@@ -132,15 +132,15 @@ public class QuanLyKhuyenMai_DAO {
 		return isSuccess;
                 
 	}
-       public boolean deleteKhuyenMai(int Makm) {
+       public boolean deleteKhuyenMai(Model_KhuyenMai KhuyenMai) {
 		boolean isSuccess = false;
 		db.setupConnection();
-		String sqlString = "delete from khuyenmai where Makm=?";
+		String sqlString = "update khuyenmai set Trangthai = ? where Makm=?";
 
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
-
-			preparedStatement.setInt(1, Makm);
+                        preparedStatement.setString(1,KhuyenMai.getTrangthai());
+			preparedStatement.setInt(2,KhuyenMai.getMakm());
 
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {
@@ -234,16 +234,16 @@ public class QuanLyKhuyenMai_DAO {
            return  isSuccess; 
        }
        
-       public boolean deleteChiTietKM(int MaChiTietKM){
+       public boolean deleteChiTietKM(Model_ChiTietKM ChiTietKM){
           boolean isSuccess = false;
 		db.setupConnection();
-		String sqlString = "delete from chitietkhuyenmai where Machitietkhuyenmai=?";
+		String sqlString = "update chitietkhuyenmai set TrangThai=? where Machitietkhuyenmai=?";
 
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
-
-			preparedStatement.setInt(1, MaChiTietKM);
-
+                        preparedStatement.setString(1,ChiTietKM.getTrangThai());
+			preparedStatement.setInt(2, ChiTietKM.getMachitietkhuyenmai());
+                        
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {
                         JOptionPane.showMessageDialog(null, "Xóa dữ liệu thành công", "Thông báo",

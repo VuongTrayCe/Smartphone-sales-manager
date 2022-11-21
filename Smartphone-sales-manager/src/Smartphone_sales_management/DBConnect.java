@@ -78,7 +78,6 @@ public class DBConnect {
             conn = DriverManager.getConnection(url, userName, pass);
             return conn.isValid(1000);
 //            JOptionPane.showMessageDialog(null, "Ket noi database " + dbName + " thanh cong");
-
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Khong the ket noi toi " + dbName);
@@ -165,4 +164,5 @@ public class DBConnect {
             JOptionPane.showMessageDialog(null, "-- ERROR! Không thể đóng kết nối tới " + dbName);
         }
     }
+    
 }

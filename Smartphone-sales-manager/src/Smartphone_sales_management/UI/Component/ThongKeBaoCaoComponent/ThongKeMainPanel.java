@@ -81,6 +81,8 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btExcel = new javax.swing.JButton();
@@ -99,6 +101,8 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+
+        jScrollPane2.setViewportView(jTextPane1);
 
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
@@ -550,6 +554,8 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbTitle;
     // End of variables declaration//GEN-END:variables
 }

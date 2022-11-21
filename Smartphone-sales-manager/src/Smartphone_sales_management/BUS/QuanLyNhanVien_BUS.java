@@ -7,7 +7,7 @@ package Smartphone_sales_management.BUS;
 import Smartphone_sales_management.DAO.QuanLiDonHang_DAO;
 import Smartphone_sales_management.DAO.QuanLyNhanVien_DAO;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
-import Smartphone_sales_management.UI.Model.Model_NhanVien;
+import Smartphone_sales_management.DTO.Model_NhanVien;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -35,17 +35,9 @@ public class QuanLyNhanVien_BUS {
         return isSuccess;
     }
     
-	public boolean deleteNhanVien(int Manv) {
+	public boolean deleteNhanVien(Model_NhanVien NhanVien) {
 		boolean isSuccess = false;
-
-		for(Model_NhanVien nv:dsnv) {
-			if(nv.getMaNV() == Manv) {
-				dsnv.remove(nv);
-				qlnv.deleteNhanVien(Manv);
-                                isSuccess = true;
-				break;
-			}
-		}
+            qlnv.deleteNhanVien(NhanVien);
                 return isSuccess;
        }
         public boolean updateNhanVien(Model_NhanVien nhanvien){

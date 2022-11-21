@@ -120,7 +120,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1030, 530));
 
-        mainPanel.setBackground(new java.awt.Color(153, 153, 153));
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setPreferredSize(new java.awt.Dimension(1030, 530));
         mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,6 +150,8 @@ public class MainContentSanPham extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setBackground(new java.awt.Color(255, 51, 0));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N

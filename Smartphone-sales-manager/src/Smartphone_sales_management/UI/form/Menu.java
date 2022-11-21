@@ -25,6 +25,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
 import Smartphone_sales_management.UI.Swing.Menu.NewJPanel;
+import java.awt.Dimension;
 import javax.swing.JList;
 import javax.swing.border.EmptyBorder;
 
@@ -115,7 +116,14 @@ public class Menu extends javax.swing.JPanel {
                 {
                     selectedIndex=6;
                    listMenu1.repaint();
-                  event.selected(5);
+                  event.selected(6);
+                  
+                }
+                  if(index==7)
+                {
+                    selectedIndex=7;
+                   listMenu1.repaint();
+                  event.selected(7);
                   
                 }
 
@@ -222,6 +230,8 @@ public class Menu extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        listMenu1.setBackground(new java.awt.Color(255, 51, 102));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,13 +253,30 @@ public class Menu extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(new Color(152, 141, 172));
-        g2.fillRoundRect(0,0,getWidth(),getHeight(),15,15);
+        g2.setColor(new Color(33, 29, 79));
+        g2.fillRoundRect(0,0,getWidth(),getHeight(),20,20);
         g2.fillRect(getWidth()-20, 0,getWidth(), getHeight());
 
         super.paintComponent(g);
     }
     
+//     @Override
+//        protected void paintComponent(Graphics g) {
+//            super.paintComponent(g);
+////            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+//            int width = getWidth();
+//            int height = getHeight();
+//            Graphics2D graphics = (Graphics2D) g;
+//            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//            graphics.setColor(new Color(152, 141, 172));
+//            //Draws the rounded panel with borders.
+//        graphics.fillRoundRect(0,0,getWidth(),getHeight(),50,50);
+//
+////            graphics.fillRoundRect(0, 0, width-1, height-1,50,50); //paint background
+////            graphics.setColor(getForeground());
+////            graphics.drawRoundRect(0, 0, width-1, height-1,50,50); //paint border
+//        }
+//    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

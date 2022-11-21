@@ -28,14 +28,14 @@ public class QuanLyBanHang_BUS {
 
     // Hàm lấy tất cã sản phẩm đang được bán
     public ArrayList getDanhSachSanPham(String keyWord) {
-        ArrayList dssp = new ArrayList();
+        ArrayList dspn = new ArrayList();
         ArrayList dsspOfficial = new ArrayList<>();
-        dssp = qlbh.getDanhSachSanPham_DAO();
+        dspn = qlbh.getDanhSachSanPham_DAO();
         if (keyWord == "") {
-            return dssp;
+            return dspn;
         } else {
-
-            for (Object x : dssp) {
+            
+            for (Object x : dspn) {
                 Vector y = (Vector) x;
                 String masp = Integer.toString((int) y.get(0));
                 String name = (String) y.get(1);

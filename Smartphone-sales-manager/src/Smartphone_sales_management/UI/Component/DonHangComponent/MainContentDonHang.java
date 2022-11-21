@@ -4,9 +4,21 @@
  */
 package Smartphone_sales_management.UI.Component.DonHangComponent;
 
+import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
+import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
 import Smartphone_sales_management.UI.Event.DonHang.EventDonHang;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.awt.Dialog;
 import java.awt.GridLayout;
+import java.awt.Window;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -21,22 +33,29 @@ public class MainContentDonHang extends javax.swing.JPanel {
     TableDetailDH detailDH;
     TableDonHang donHang;
 
-    public MainContentDonHang(MainFrame mainFrame) {
+    public MainContentDonHang(MainFrame mainFrame) throws ParseException {
         initComponents();
         this.mainFrame = mainFrame;
-        donHang = new TableDonHang("", jComboBox2.getSelectedItem().toString());
+        donHang = new TableDonHang("", jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
         jScrollPane1.setViewportView(donHang);
-        detailDonHangPanel.setLayout(new GridLayout());
-
+        //        detailDonHangPanel.setLayout(new GridLayout());
         donHang.addEventDonHang(new EventDonHang() {
             @Override
             public int SelectedInxex(int Madh) {
-                detailDonHangPanel.removeAll();
-                detailDH = new TableDetailDH(Madh, donHang, jComboBox2.getSelectedItem().toString());
-                detailDH.setBounds(0, 0, detailDonHangPanel.getWidth(), detailDonHangPanel.getHeight());
-                detailDonHangPanel.add(detailDH);
+                JFrame frame = new JFrame("Chi Tiet Don Hang");
+                detailDH = new TableDetailDH(Madh, donHang, jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+                QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+                qldh_BUS.laySoLuongctdh(Madh);
+                frame.setSize(600, 500);
+                frame.add(detailDH);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+//                detailDonHangPanel.removeAll();
+
+//                detailDH.setBounds(0, 0, detailDonHangPanel.getWidth(), detailDonHangPanel.getHeight());
+//                detailDonHangPanel.add(detailDH);
                 repaint();
-                detailDH.validate();
+//                detailDH.validate();
                 return Madh;
             }
         });
@@ -44,19 +63,30 @@ public class MainContentDonHang extends javax.swing.JPanel {
         txtTimkiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
-
-                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString());
+                try {
+                    donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+                } catch (ParseException ex) {
+                    Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString());
-
+                try {
+                    donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+                } catch (ParseException ex) {
+                    Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString());
+
+                try {
+                    donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+                } catch (ParseException ex) {
+                    Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });
@@ -72,17 +102,15 @@ public class MainContentDonHang extends javax.swing.JPanel {
         txtTimkiem = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        detailDonHangPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        DateStart = new com.toedter.calendar.JDateChooser();
+        DateEnd = new com.toedter.calendar.JDateChooser();
+        BtnLocTheoNgay = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 255, 102));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,7 +133,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jComboBox2.setBackground(new java.awt.Color(204, 204, 255));
         jComboBox2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 51, 51));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Đã xử lí", "Đặt hàng", "Đã hủy" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Hoàn Thành", "Đặt Hàng", "Đã Hủy" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox2ItemStateChanged(evt);
@@ -117,27 +145,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
-        detailDonHangPanel.setPreferredSize(new java.awt.Dimension(372, 414));
-
-        jLabel1.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Messaging-Sad-icon.png"))); // NOI18N
-        jLabel1.setText("Chưa chọn đơn hàng");
-        jLabel1.setOpaque(true);
-
-        javax.swing.GroupLayout detailDonHangPanelLayout = new javax.swing.GroupLayout(detailDonHangPanel);
-        detailDonHangPanel.setLayout(detailDonHangPanelLayout);
-        detailDonHangPanelLayout.setHorizontalGroup(
-            detailDonHangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        detailDonHangPanelLayout.setVerticalGroup(
-            detailDonHangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailDonHangPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
-        );
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -161,15 +170,21 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Từ ngày"));
+        DateStart.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Từ ngày"));
 
-        jDateChooser2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Đến ngày"));
+        DateEnd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Đến ngày"));
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search-icon (1).png"))); // NOI18N
-        jButton1.setText("XEM");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnLocTheoNgay.setBackground(new java.awt.Color(255, 0, 51));
+        BtnLocTheoNgay.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        BtnLocTheoNgay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BtnLocTheoNgay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search-icon (1).png"))); // NOI18N
+        BtnLocTheoNgay.setText("Xem");
+        BtnLocTheoNgay.setOpaque(true);
+        BtnLocTheoNgay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnLocTheoNgayMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,29 +196,27 @@ public class MainContentDonHang extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTimkiem))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, 0, 1, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(detailDonHangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,15 +229,13 @@ public class MainContentDonHang extends javax.swing.JPanel {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(detailDonHangPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
 
@@ -261,9 +272,13 @@ public class MainContentDonHang extends javax.swing.JPanel {
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         txtTimkiem.setText("");
-        donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString());
+        try {
+            donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
 
 // TODO add your handling code here:
+        } catch (ParseException ex) {
+            Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -273,17 +288,33 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+    private boolean checkDate() {
+        if (DateStart.getDate() != null && DateEnd.getDate() != null) {
+            return true;
+        }
+        return false;
+    }
+    private void BtnLocTheoNgayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLocTheoNgayMouseClicked
+        if (checkDate()) {
+            try {
+                donHang.SetDefaultTable(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+            } catch (ParseException ex) {
+                Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Chua chon ngay nhap");
+        }
+
+    }//GEN-LAST:event_BtnLocTheoNgayMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel detailDonHangPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel BtnLocTheoNgay;
+    private com.toedter.calendar.JDateChooser DateEnd;
+    private com.toedter.calendar.JDateChooser DateStart;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

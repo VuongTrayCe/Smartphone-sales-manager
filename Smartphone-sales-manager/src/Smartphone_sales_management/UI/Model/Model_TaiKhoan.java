@@ -13,7 +13,7 @@ public class Model_TaiKhoan {
         private int MaNhanVien; 
 	private String TaiKhoan;
 	private String MatKhau;
-	private int Quyen;
+	private String Trangthai;
       
     
         public int getMaTaiKhoan() {
@@ -40,11 +40,11 @@ public class Model_TaiKhoan {
 	public void setMatKhau(String matKhau) {
 		this.MatKhau = matKhau;
 	}
-	public int getQuyen() {
-		return Quyen;
+	public String getTrangthai() {
+		return Trangthai;
 	}
-	public void setQuyen(int quyen) {
-		Quyen = quyen;
+	public void setTrangthai(String trangthai) {
+		this.Trangthai = trangthai;
 	}
 	
     

@@ -23,12 +23,14 @@ import javax.swing.border.TitledBorder;
  * @author Dell
  */
 public class LoginFrom extends javax.swing.JFrame {
-
+    QuanLyTaiKhoan_BUS qltk =new QuanLyTaiKhoan_BUS();
     /**
      * Creates new form TEST
      */
     public LoginFrom() {
         initComponents();
+        
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -192,8 +194,6 @@ public class LoginFrom extends javax.swing.JFrame {
     }//GEN-LAST:event_passFocusGained
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DBConnect db = new DBConnect();
-        try{
             String username = this.username.getText();
             String pwd = new String(this.pass.getPassword());
             
@@ -208,13 +208,11 @@ public class LoginFrom extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, sb.toString(), "456", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Statement stmt = db.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery(pwd);
-            if(username.equals("tendangnhap") && pwd.equals("Matkhau"))
-            new MainFrame().setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+            if(username.equals("Tendangnhap") && pwd.equals("Matkhau")){
+                JOptionPane.showMessageDialog(this, "đăng nhập thành công");
+                System.out.println("123");
+            }
+           
         
         /*       DBConnect db = new DBConnect();
         

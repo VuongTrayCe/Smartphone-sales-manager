@@ -64,7 +64,7 @@ public class QuanLyTaiKhoan_DAO {
                     model.setMaNhanVien(rs.getInt(2));
                     model.setTaiKhoan(rs.getString(3));
                     model.setMatKhau(rs.getString(4));
-                    model.setQuyen(rs.getInt(5));
+                    model.setTrangthai(rs.getString(5));
 
                 }
             }
@@ -83,11 +83,11 @@ public class QuanLyTaiKhoan_DAO {
         db.setupConnection();
 
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select Manv from nhanvien");
+            PreparedStatement stm = db.getConnection().prepareStatement("select Matk from taikhoan");
             rs = db.sqlQry(stm);
             if (rs != null) {
                 while (rs.next()) {
-                    result.add(rs.getInt("Manv"));
+                    result.add(rs.getInt("Matk"));
                 }
             }
         } catch (SQLException ex) {
@@ -98,5 +98,32 @@ public class QuanLyTaiKhoan_DAO {
         }
         return result;
     }
+    
+     public ArrayList getThongTinTaiKhoan() {
+        ArrayList dstk = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan");
+            rs = stm.executeQuery();
+            int i = 1;
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(i);
+                a.add(rs.getString("Tendangnhap"));
+                
+                a.add(rs.getString("Matkhau"));
+                dstk.add(a);
+                i++;
+            }
+            return dstk;
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+
+    }
+    
+    
 
 }

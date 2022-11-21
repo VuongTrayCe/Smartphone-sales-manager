@@ -33,7 +33,6 @@ public class QuanLyTaiKhoan_BUS {
             for (Object x : dstk) {
                 Vector y = (Vector) x;
                 String matk = Integer.toString((int) y.get(0));
-
                 if (matk.contains(keyWord)) {
                     dstkOfficial.add(y);
                 }

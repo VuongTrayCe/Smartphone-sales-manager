@@ -27,7 +27,7 @@ public class QuanLyTaiKhoan_DAO {
         ArrayList ds = new ArrayList<>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk , taikhoan.Manv, taikhoan.Tendangnhap, taikhoan.Matkhau, taikhoan.TrangThai\n"
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk , taikhoan.Manv, taikhoan.Tendangnhap, taikhoan.Matkhau\n"
                     + "FROM taikhoan");
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -36,7 +36,6 @@ public class QuanLyTaiKhoan_DAO {
                 a.add(rs.getInt("Manv"));
                 a.add(rs.getString("Tendangnhap"));
                 a.add(rs.getString("Matkhau"));
-                a.add(rs.getString("TrangThai"));
                 ds.add(a);
             }
             System.out.println(rs);

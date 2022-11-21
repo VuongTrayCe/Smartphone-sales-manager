@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Main;
 
-import Smartphone_sales_management.DAO.ThongKeBaoCao_DAO;
+import Smartphone_sales_management.DAO.ThongKeBaoCaoBanHang_DAO;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
 

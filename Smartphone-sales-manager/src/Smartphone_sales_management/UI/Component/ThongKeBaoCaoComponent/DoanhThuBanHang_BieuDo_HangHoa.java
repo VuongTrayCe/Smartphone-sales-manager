@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
 import Smartphone_sales_management.DBConnect;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ public class DoanhThuBanHang_BieuDo_HangHoa extends javax.swing.JPanel {
     /**
      * Creates new form DoanhThuBanHang_BieuDo_HangHoa
      */
-        ThongKeBaoCao_BUS tkbc= new ThongKeBaoCao_BUS();
+        ThongKeBaoCaoBanHang_BUS tkbc= new ThongKeBaoCaoBanHang_BUS();
 
     public DoanhThuBanHang_BieuDo_HangHoa() {
         initComponents();

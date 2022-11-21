@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
 import Smartphone_sales_management.DBConnect;
 import Smartphone_sales_management.UI.Component.BanHangComponent.AddKhachHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
@@ -45,7 +45,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     public String ngaybanSelect;
     public String MaHangHoa_NhaCungCap;
     private int flag;
-    ThongKeBaoCao_BUS tkbc = new ThongKeBaoCao_BUS();
+    ThongKeBaoCaoBanHang_BUS tkbc = new ThongKeBaoCaoBanHang_BUS();
 
     public ThongKeMainPanel() {
         initComponents();

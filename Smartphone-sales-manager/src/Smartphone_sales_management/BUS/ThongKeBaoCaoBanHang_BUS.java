@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.BUS;
 
-import Smartphone_sales_management.DAO.ThongKeBaoCao_DAO;
+import Smartphone_sales_management.DAO.ThongKeBaoCaoBanHang_DAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import org.jfree.data.jdbc.JDBCCategoryDataset;
  *
  * @author Vuong
  */
-public class ThongKeBaoCao_BUS {
+public class ThongKeBaoCaoBanHang_BUS {
 
-    ThongKeBaoCao_DAO tkbc = new ThongKeBaoCao_DAO();
+    ThongKeBaoCaoBanHang_DAO tkbc = new ThongKeBaoCaoBanHang_DAO();
     ArrayList listdata = new ArrayList();
 
     public ArrayList getThongKeBaoCaoBanHang(String type, String hinhthuc, Date dateStart, Date dateEnd) throws ParseException {
@@ -87,17 +87,5 @@ public class ThongKeBaoCao_BUS {
          return tkbc.getKhachHang_BieuDo_KhachHang();
     }
 
-    public ArrayList getThongKeBaoCaoNhapHang(String type, String hinhthuc) {
-        ArrayList data=new ArrayList();
-        if(hinhthuc.equals("Hàng Hóa"))
-        {
-            System.out.println("Da Vao");
-            data = tkbc.getChiPhiPhieuNhap_HangHoa2();
-         }
-        else
-        {
-            data= tkbc.getChiPhiPhieuNhap_NhaCungCap();
-        }
-        return data;
-    }
+  
 }

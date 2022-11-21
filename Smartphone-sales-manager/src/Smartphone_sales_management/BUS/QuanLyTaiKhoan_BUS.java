@@ -54,4 +54,27 @@ public class QuanLyTaiKhoan_BUS {
 
         return dscttk;
     }
+
+    public Boolean KiemTraDangNhap(String username, String pwd) {
+        Boolean check = false;
+        Boolean checkUsername = false;
+        Boolean checkPwd = false;
+
+        ArrayList data = new ArrayList();
+        data = qltk.getALLAccount();
+        for (Object object : data) {
+            Vector dataRow = (Vector) object;
+            String username2 = dataRow.get(0).toString();
+            String pass = dataRow.get(1).toString();
+            if (username.equals(username2) && pwd.equals(pass)) {
+                checkUsername = true;
+            }
+        }
+        if (checkUsername == true) {
+            check = true;
+        }
+
+        return check;
+
+    }
 }

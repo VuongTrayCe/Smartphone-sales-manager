@@ -4,7 +4,6 @@
  */
 package Smartphone_sales_management.UI.Component.TaiKhoanComponent;
 
-
 import com.sun.jdi.connect.spi.Connection;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -18,18 +17,21 @@ import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.border.TitledBorder;
+
 /**
  *
  * @author Dell
  */
 public class LoginFrom extends javax.swing.JFrame {
-    QuanLyTaiKhoan_BUS qltk =new QuanLyTaiKhoan_BUS();
+
+    QuanLyTaiKhoan_BUS qltk = new QuanLyTaiKhoan_BUS();
+
     /**
      * Creates new form TEST
      */
     public LoginFrom() {
         initComponents();
-        
+
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -194,39 +196,35 @@ public class LoginFrom extends javax.swing.JFrame {
     }//GEN-LAST:event_passFocusGained
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            String username = this.username.getText();
-            String pwd = new String(this.pass.getPassword());
-            
-            StringBuilder sb =new StringBuilder();
-            if(username.equals("")){
-                sb.append("Chưa nhập tài khoản");
-            }
-            if(pwd.equals("")){
-                sb.append("Chưa nhập mật khẩu");
-            }
-            if(sb.length()>0){
-                JOptionPane.showMessageDialog(this, sb.toString(), "456", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(username.equals("Tendangnhap") && pwd.equals("Matkhau")){
+        String username = this.username.getText();
+         String pwd = String.valueOf(pass.getPassword());
+
+        StringBuilder sb = new StringBuilder();
+        Boolean flag = true;
+        if (username.equals("")) {
+            sb.append("Chưa nhập tài khoản");
+            flag = false;
+        }
+        if (pwd.equals("")) {
+            sb.append("Chưa nhập mật khẩu");
+            flag = false;
+        }
+        if (flag == true) {
+            System.out.println(pass);
+            Boolean l = qltk.KiemTraDangNhap(username, pwd);
+            if (l == true) {
                 JOptionPane.showMessageDialog(this, "đăng nhập thành công");
-                System.out.println("123");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "đăng nhập fail");
+
             }
-           
-        
-        /*       DBConnect db = new DBConnect();
-        
-        try{
-            
-            Statement stmt = db.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery();
-            String user=username.getText();
-            String pwd= new String (pass.getPassword());
-            if(user.equals("tendangnhap") && pwd.equals("Matkhau"))
-            new MainFrame().setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }*/
+        }
+//        if (username.equals("Tendangnhap") && pwd.equals("Matkhau")) {
+//            JOptionPane.showMessageDialog(this, "đăng nhập thành công");
+//        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

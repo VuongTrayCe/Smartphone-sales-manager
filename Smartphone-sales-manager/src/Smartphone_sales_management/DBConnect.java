@@ -31,9 +31,9 @@ public class DBConnect {
     Connection conn = null;
 
     String server = "localhost:3306";
-    String dbName = "mysql";
+    String dbName = "smartphonemanagement2";
     String userName = "root";
-    String pass = "";
+    String pass = "123456789lop11b2";
 
     public DBConnect() {
         checkDriver();

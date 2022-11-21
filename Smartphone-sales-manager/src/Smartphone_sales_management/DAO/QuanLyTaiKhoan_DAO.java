@@ -13,6 +13,8 @@ import Smartphone_sales_management.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
+import com.mysql.cj.MessageBuilder;
+import com.mysql.cj.protocol.Message;
 import java.util.Vector;
 
 public class QuanLyTaiKhoan_DAO {
@@ -33,7 +35,7 @@ public class QuanLyTaiKhoan_DAO {
                 a.add(rs.getInt("Matk"));
                 a.add(rs.getInt("Manv"));
                 a.add(rs.getString("Tendangnhap"));
-                a.add(rs.getString("Matkhau")) ;
+                a.add(rs.getString("Matkhau"));
                 a.add(rs.getString("TrangThai"));
                 ds.add(a);
             }
@@ -98,8 +100,8 @@ public class QuanLyTaiKhoan_DAO {
         }
         return result;
     }
-    
-     public ArrayList getThongTinTaiKhoan() {
+
+    public ArrayList getThongTinTaiKhoan() {
         ArrayList dstk = new ArrayList();
         db.setupConnection();
         try {
@@ -110,7 +112,7 @@ public class QuanLyTaiKhoan_DAO {
                 Vector a = new Vector();
                 a.add(i);
                 a.add(rs.getString("Tendangnhap"));
-                
+
                 a.add(rs.getString("Matkhau"));
                 dstk.add(a);
                 i++;
@@ -123,7 +125,29 @@ public class QuanLyTaiKhoan_DAO {
         }
 
     }
-    
-    
+
+    public ArrayList getALLAccount(){
+        ArrayList dstk = new ArrayList();
+        db.setupConnection();
+        try {
+            
+            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(rs.getString("Tendangnhap"));
+                    
+                a.add(rs.getString("Matkhau"));
+ 
+                dstk.add(a);
+            }
+            return dstk;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            db.closeConnection();
+        }
+return dstk;
+    }
 
 }

@@ -511,6 +511,7 @@ public class KhachHangg extends javax.swing.JPanel {
         {
                         JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân/Căn cước công dân không đúng định dạng");
                         flag=false;
+                        return;
                         
         }
         
@@ -518,6 +519,7 @@ public class KhachHangg extends javax.swing.JPanel {
         {
                         JOptionPane.showMessageDialog(null, "Số điện thoại không đúng định dạng");
                         flag=false;
+                        return;
         }
          if(diachi.length() == 0){
             JOptionPane.showMessageDialog(txtDiachi,"Bạn chưa nhập địa chỉ");
@@ -536,15 +538,18 @@ public class KhachHangg extends javax.swing.JPanel {
         {
                         JOptionPane.showMessageDialog(null, "Email không đúng định dạng");
                         flag=false;
+                        return;
         }
         
        if(Ngaytao.equals("")){
            JOptionPane.showMessageDialog(null, "Vui lòng nhập Ngày tạo");
             flag=false;
+            return;
        }
        if(Diemso.equals("")){
            JOptionPane.showMessageDialog(null, "Vui lòng nhập Điểm số");
             flag=false;
+            return;
     }
     if(flag==false)
     { 
@@ -686,6 +691,7 @@ public class KhachHangg extends javax.swing.JPanel {
         {
                         JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân/Căn cước công dân không đúng định dạng");
                         flag=false;
+                        return;
                         
         }
         
@@ -693,6 +699,7 @@ public class KhachHangg extends javax.swing.JPanel {
         {
                         JOptionPane.showMessageDialog(null, "Số điện thoại không đúng định dạng");
                         flag=false;
+                        return;
         }
          if(Diachi.length() == 0){
             JOptionPane.showMessageDialog(txtDiachi,"Bạn chưa nhập địa chỉ");
@@ -711,15 +718,18 @@ public class KhachHangg extends javax.swing.JPanel {
         {
                         JOptionPane.showMessageDialog(null, "Email không đúng định dạng");
                         flag=false;
+                        return;
         }
         
        if(Ngaytao.equals("")){
            JOptionPane.showMessageDialog(null, "Vui lòng nhập Ngày tạo");
             flag=false;
+            return;
        }
        if(Diemso.equals("")){
            JOptionPane.showMessageDialog(null, "Vui lòng nhập Điểm số");
             flag=false;
+            return;
     }
     if(flag==false)
     { 

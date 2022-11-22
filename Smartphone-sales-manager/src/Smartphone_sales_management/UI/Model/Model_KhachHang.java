@@ -111,6 +111,10 @@ public class Model_KhachHang {
 		return new String[] {Integer.toString(Makh),Tenkh,Cmnd,Integer.toString(SDT),DiaChi,Email,Ngaytao,Integer.toString(Diemso),TrangThai};
     }
 
+    public Object getSĐT() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
    
     
 }

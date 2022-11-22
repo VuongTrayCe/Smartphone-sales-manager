@@ -6,6 +6,7 @@ package Smartphone_sales_management.BUS;
 import Smartphone_sales_management.DAO.QuanLiKhachHang_DAO;
 //import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
+import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -54,19 +55,19 @@ public boolean addkh(Model_KhachHang KhachHang) {
         
         return isSuccess;
     }
-//public boolean ExistsKhachHang(int Cmnd) {
-//		boolean isExists = false;	
-//
-//		for(Model_KhachHang khachHang : dskh) {
-//			pif (khachHang.getCmnd()== Cmnd) {
-//				isExists = true;
-//				break;
-//			}
-//		}
-//
-//		return isExists;
-//	}
-//        
+public boolean ExistsKhachHang(String Cmnd) {
+		boolean isExists = false;	
+
+		for(Model_KhachHang KhachHang : dskh) {
+			if (KhachHang.getCmnd()== Cmnd) {
+				isExists = true;
+				break;
+			}
+		}
+
+		return isExists;
+	}
+       
         
          public ArrayList<Model_KhachHang> timKiemTheoMaKh(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
@@ -79,7 +80,7 @@ public boolean addkh(Model_KhachHang KhachHang) {
         }
         return khds;
     }
-           public ArrayList<Model_KhachHang> timKiemTheoTen(String tuKhoa) {
+           public ArrayList<Model_KhachHang> timKiemTheoTenkh(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<Model_KhachHang> khds = new ArrayList<>();
         for (Model_KhachHang kh : dskh) {
@@ -91,65 +92,7 @@ public boolean addkh(Model_KhachHang KhachHang) {
         return khds;
     }
 
-               public ArrayList<Model_KhachHang> timKiemTheoDiaChi(String tuKhoa) {
-        tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for (Model_KhachHang kh : dskh) {
-            String  Diachi = kh.getDiaChi().toLowerCase();
-            if (Diachi.contains(tuKhoa)) {
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-         
-          public ArrayList<Model_KhachHang> timKiemMaNVNangCao(String tuKhoaA, String tuKhoaB){
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for(Model_KhachHang kh : dskh){
-            int Makh = kh.getMakh();
-            int min = Integer.parseInt(tuKhoaA);
-            int max = Integer.parseInt(tuKhoaB);
-            if( min <= Makh && Makh <= max){
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-                public ArrayList<Model_KhachHang> timKiemTuoiNangCao(String tuKhoaA, String tuKhoaB){
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for(Model_KhachHang kh : dskh){
-            int SĐT = kh.getSDT();
-            int min = Integer.parseInt(tuKhoaA);
-            int max = Integer.parseInt(tuKhoaB);
-            if( min <= SĐT && SĐT <= max){
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-                 public ArrayList<Model_KhachHang> timKiemTheoMaKhachHang(String tuKhoa) {
-        tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for (Model_KhachHang kh : dskh) {
-            String Makh = Integer.toString(kh.getMakh());
-            if (Makh.contains(tuKhoa)) {
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-           public ArrayList<Model_KhachHang> timKiemTheoTenkh(String tuKhoa) {
-        tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for (Model_KhachHang kh : dskh) {
-            String Tenkh = kh.getTenkh().toLowerCase();
-            if (Tenkh.contains(tuKhoa)) {
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-             public ArrayList<Model_KhachHang> timKiemTheoCmnd(String tuKhoa) {
+               public ArrayList<Model_KhachHang> timKiemTheoCmnd(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<Model_KhachHang> khds = new ArrayList<>();
         for (Model_KhachHang kh : dskh) {
@@ -160,8 +103,7 @@ public boolean addkh(Model_KhachHang KhachHang) {
         }
         return khds;
     }
-             
-                 public ArrayList<Model_KhachHang> timKiemTheoSĐT(String tuKhoa) {
+               public ArrayList<Model_KhachHang> timKiemTheoSĐT(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<Model_KhachHang> khds = new ArrayList<>();
         for (Model_KhachHang kh : dskh) {
@@ -171,52 +113,5 @@ public boolean addkh(Model_KhachHang KhachHang) {
             }
         }
         return khds;
-                 }
-               public ArrayList<Model_KhachHang> timKiemTheoDiachi(String tuKhoa) {
-        tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for (Model_KhachHang kh : dskh) {
-            String  Diachi = kh.getDiaChi().toLowerCase();
-            if (Diachi.contains(tuKhoa)) {
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-          public ArrayList<Model_KhachHang> timKiemEmail(String tuKhoa) {
-        tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for (Model_KhachHang kh : dskh) {
-            String  Email = kh.getEmail().toLowerCase();
-            if (Email.contains(tuKhoa)) {
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-            public ArrayList<Model_KhachHang> timKiemTheoDiemso(String tuKhoa) {
-        tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for (Model_KhachHang kh : dskh) {
-            String Diemso = Integer.toString(kh.getDiemso());
-            if (Diemso.contains(tuKhoa)) {
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
-          public ArrayList<Model_KhachHang> timKiemMakhNangCao(String tuKhoaA, String tuKhoaB){
-        ArrayList<Model_KhachHang> khds = new ArrayList<>();
-        for(Model_KhachHang kh : dskh){
-            int Makh = kh.getMakh();
-            int min = Integer.parseInt(tuKhoaA);
-            int max = Integer.parseInt(tuKhoaB);
-            if( min <= Makh && Makh <= max){
-                khds.add(kh);
-            }
-        }
-        return khds;
-    }
 }
-
-  
+}

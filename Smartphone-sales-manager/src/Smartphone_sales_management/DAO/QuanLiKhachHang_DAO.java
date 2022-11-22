@@ -6,6 +6,7 @@ package Smartphone_sales_management.DAO;
 import Smartphone_sales_management.DBConnect;
 import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
+import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +24,7 @@ public class QuanLiKhachHang_DAO {
      DBConnect db = new DBConnect();
     private PreparedStatement preparedStatement;
     ResultSet rs = null;
+    private Iterable<Model_KhachHang> dskh;
     
     public ArrayList<Model_KhachHang> getDanhSachKhachHang_DAO(){
         
@@ -56,11 +58,20 @@ public class QuanLiKhachHang_DAO {
     public boolean inserKhachHang(Model_KhachHang KhachHang) {
         boolean isSuccess = false;
         db.setupConnection();
-        String sqlString = "insert into khachhang(tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlString = "insert into khachhang(Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Diemso,TrangThai) values (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             preparedStatement = db.getConnection().prepareStatement(sqlString);
          //   preparedStatement.setInt(1, KhachHang.getMakh());
-            preparedStatement.setString(1, KhachHang.getTenkh());
+//            preparedStatement.setString(1, KhachHang.getTenkh());
+//            preparedStatement.setString(2, KhachHang.getCmnd());
+//            preparedStatement.setInt(3, KhachHang.getSDT());
+//            preparedStatement.setString(4, KhachHang.getDiaChi());
+//            preparedStatement.setString(5, KhachHang.getEmail());
+//            preparedStatement.setString(6, KhachHang.getNgaytao());
+//            preparedStatement.setInt(7, KhachHang.getDiemso());
+//            preparedStatement.setString(8, KhachHang.getTrangThai());
+            
+             preparedStatement.setString(1, KhachHang.getTenkh());
             preparedStatement.setString(2, KhachHang.getCmnd());
             preparedStatement.setInt(3, KhachHang.getSDT());
             preparedStatement.setString(4, KhachHang.getDiaChi());
@@ -68,8 +79,6 @@ public class QuanLiKhachHang_DAO {
             preparedStatement.setString(6, KhachHang.getNgaytao());
             preparedStatement.setInt(7, KhachHang.getDiemso());
             preparedStatement.setString(8, KhachHang.getTrangThai());
-            
-            
             
             int n = preparedStatement.executeUpdate();
             if (n != 0) {
@@ -230,6 +239,4 @@ public class QuanLiKhachHang_DAO {
 		return isSuccess;
                 
 	}
-
-  
 }

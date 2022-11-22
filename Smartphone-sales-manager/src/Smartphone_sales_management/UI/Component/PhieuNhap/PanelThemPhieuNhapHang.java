@@ -5,16 +5,33 @@
 package Smartphone_sales_management.UI.Component.PhieuNhap;
 
 import Smartphone_sales_management.BUS.QuanLyPhieuNhap_BUS;
+import Smartphone_sales_management.UI.Component.NhaCungCap.AddNhaCungCap;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JTable.PrintMode;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Smartphone_sales_management.UI.Swing.GraphicsPanel;
+import java.time.LocalDateTime;
+import static java.time.LocalDateTime.now;
+import java.time.format.DateTimeFormatter;
+import Smartphone_sales_management.DTO.Model_PhieuNhap;
+import Smartphone_sales_management.DTO.Model_PhieuNhap_ChiTiet;
+
+import static Smartphone_sales_management.UI.Main.MainFrame.manv;
+import Smartphone_sales_management.UI.Swing.PrintPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vuong
@@ -29,16 +46,26 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
 
     QuanLyPhieuNhap_BUS qlpn = new QuanLyPhieuNhap_BUS();
     private int Mapn;
+    private int masp;
     private String ngaynhap;
     private String tenncc;
     DefaultTableModel model = new DefaultTableModel();
-    ArrayList<Vector> dataPhieuNhap = new ArrayList<>();
     private ArrayList<Object> danhsachNhaCungCap;
+    LocalDateTime now;
+    ArrayList<Model_PhieuNhap_ChiTiet> dataChiTietPhieuNhap = new ArrayList();
+    Model_PhieuNhap modelPhieuNhap;
+    Model_PhieuNhap_ChiTiet modelChiTietPhieuNhap;
 
     public PanelThemPhieuNhapHang(MainFrame frame, JPanel panel) {
         initComponents();
         this.panel = panel;
         this.frame = frame;
+        this.now = LocalDateTime.now();
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formatDateTime = now.format(format);
+
+        btnNgayNhap.setText(formatDateTime);
 
         model.addColumn("STT");
         model.addColumn("Mã Sản Phẩm");
@@ -53,34 +80,65 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         jTable1.setModel(model);
-        danhsachNhaCungCap = qlpn.getALLNhaCungCap();
         btnThem.setBorder(new RoundedBorderer(new Color(0, 102, 102), 2, 30));
         btnXoa.setBorder(new RoundedBorderer(new Color(0, 102, 102), 2, 30));
         btnHoanThanh.setBorder(new RoundedBorderer(new Color(0, 102, 102), 2, 30));
-
+        setComboboxNhaCungCap();
         DisplayDetailPhieuNhap();
 
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int index = jTable1.getSelectedRow();
+                masp = (int) jTable1.getValueAt(index, 1);
+
+            }
+        ;
     }
 
-    private void DisplayDetailPhieuNhap() {
+    );
+        
+        
+    }
+
+    // Hiển thị thông tin ra bảng chi tiết
+    public void DisplayDetailPhieuNhap() {
 //        
-        ArrayList data = new ArrayList();
-        data = qlpn.getChiTietPhieuNhap(Mapn);
         jTable1.removeAll();
         model.setRowCount(0);
-        for (int i = 0; i < data.size(); i++) {
-            model.addRow((Vector<?>) data.get(i));
+        int soluong = 0;
+        int tongtien = 0;
+        if (dataChiTietPhieuNhap.size() != 0) {
+            for (int i = 0; i < dataChiTietPhieuNhap.size(); i++) {
+                Model_PhieuNhap_ChiTiet modelrow = dataChiTietPhieuNhap.get(i);
+                Vector a = new Vector();
+                a.add(i + 1);
+                a.add(modelrow.getMasp());
+                a.add(modelrow.getTensp());
+                a.add(modelrow.getGianhap());
+                a.add(modelrow.getSoluong());
+                a.add(modelrow.getSoluong() * modelrow.getGianhap());
+                soluong += modelrow.getSoluong();
+                tongtien += modelrow.getGianhap() * modelrow.getSoluong();
+                model.addRow(a);
+            }
         }
+        btnTongSoLuong.setText(String.valueOf(soluong));
+        btnTongTien.setText(String.valueOf(tongtien));
         jScrollPane1.repaint();
-
-        for (Object nhacungcap : danhsachNhaCungCap) {
-            Vector a = (Vector) nhacungcap;
-            cbbNhaCungCap.addItem((a.get(1)).toString());
-        }
 
 //        lbMaPhieuNhap.setText(Integer.toString(Mapn));
 //        lbNgayNhap.setText(ngaynhap);
 //        lbNhaCungCap.setText(tenncc);
+    }
+
+    public void setComboboxNhaCungCap() {
+        danhsachNhaCungCap = qlpn.getALLNhaCungCap();
+        cbbNhaCungCap.removeAllItems();
+        for (Object nhacungcap : danhsachNhaCungCap) {
+            Vector a = (Vector) nhacungcap;
+            cbbNhaCungCap.addItem((a.get(1)).toString());
+        }
     }
 
     /**
@@ -147,9 +205,9 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Tổng TIền: ");
 
-        btnTongSoLuong.setText("0");
+        btnTongSoLuong.setText("10");
 
-        btnTongTien.setText("0 VND");
+        btnTongTien.setText("10000");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Danh Sách Sản Phẩm Nhập");
@@ -159,7 +217,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
 
         btnNgayNhap.setText("jLabel8");
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btnThem.setBackground(new java.awt.Color(51, 153, 0));
         btnThem.setText("Thêm");
@@ -171,10 +229,20 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
 
         btnXoa.setBackground(new java.awt.Color(204, 0, 0));
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnHoanThanh.setBackground(new java.awt.Color(0, 153, 0));
         btnHoanThanh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHoanThanh.setText("Hoàn Thành");
+        btnHoanThanh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHoanThanhActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -205,7 +273,18 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Tên Nhà Cung Cấp:");
 
+        cbbNhaCungCap.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbNhaCungCapItemStateChanged(evt);
+            }
+        });
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -215,7 +294,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbbNhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -249,24 +328,24 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addGap(19, 19, 19))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnNgayNhap))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel7))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnTongSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnTongTien))))
-                                .addGap(355, 355, 355))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addGap(19, 19, 19)))
+                                            .addComponent(btnTongTien)
+                                            .addComponent(btnTongSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(352, 352, 352)))
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(112, 112, 112))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -378,8 +457,9 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
 
         Vector b = (Vector) danhsachNhaCungCap.get(cbbNhaCungCap.getSelectedIndex());
         int mancc = (int) b.get(0);
-        PanelAddSanPhamPhieuNhap c = new PanelAddSanPhamPhieuNhap(dataPhieuNhap, mancc);
         JDialog inforDonHang = new JDialog();
+        PanelAddSanPhamPhieuNhap c = new PanelAddSanPhamPhieuNhap(mancc, dataChiTietPhieuNhap, Mapn, inforDonHang, PanelThemPhieuNhapHang.this);
+
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
         inforDonHang.setSize(400, 350);
@@ -392,6 +472,70 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+
+        AddNhaCungCap_PhieuNhap nhacungcap = new AddNhaCungCap_PhieuNhap(PanelThemPhieuNhapHang.this);
+        JDialog inforDonHang = new JDialog();
+//        changePwdDialog.setUndecorated(true);
+//          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
+        inforDonHang.setSize(380, 300);
+        inforDonHang.setLayout(new GridLayout());
+        inforDonHang.setTitle("Thêm khách hàng");
+        inforDonHang.add(nhacungcap);
+        nhacungcap.validate();
+        inforDonHang.setLocationRelativeTo(null);
+        inforDonHang.setVisible(true);
+
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
+
+        if (dataChiTietPhieuNhap.size() != 0) {
+
+            int indexmncc = cbbNhaCungCap.getSelectedIndex();
+            Vector ncc = (Vector) danhsachNhaCungCap.get(indexmncc);
+            int mancc = (int) ncc.get(0);
+            int soluong = Integer.parseInt(btnTongSoLuong.getText());
+            double tongtien = Double.valueOf(btnTongTien.getText());
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formatDateTime = now.format(format);
+            modelPhieuNhap = new Model_PhieuNhap(manv, mancc, soluong, formatDateTime, tongtien);
+            Mapn = qlpn.AddPhieuNhapHang(modelPhieuNhap);
+            for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : dataChiTietPhieuNhap) {
+                model_PhieuNhap_ChiTiet.setMapn(Mapn);
+                qlpn.AddChiTietPhieuNhap(model_PhieuNhap_ChiTiet);
+
+            }
+            dataChiTietPhieuNhap.clear();
+            DisplayDetailPhieuNhap();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Thêm Sản Phẩm Cần Nhập");
+        }
+
+    }//GEN-LAST:event_btnHoanThanhActionPerformed
+
+    private void cbbNhaCungCapItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbNhaCungCapItemStateChanged
+        dataChiTietPhieuNhap.clear();
+        DisplayDetailPhieuNhap();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_cbbNhaCungCapItemStateChanged
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+
+        ArrayList<Model_PhieuNhap_ChiTiet> arr = new ArrayList<>() ;
+           for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : dataChiTietPhieuNhap) {
+               if(model_PhieuNhap_ChiTiet.getMasp()!=masp)
+               {
+                   arr.add(model_PhieuNhap_ChiTiet);
+               }
+        }
+        dataChiTietPhieuNhap=arr;
+        DisplayDetailPhieuNhap();
+    }//GEN-LAST:event_btnXoaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

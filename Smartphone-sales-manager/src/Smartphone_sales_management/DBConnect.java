@@ -31,7 +31,7 @@ public class DBConnect {
     Connection conn = null;
 
     String server = "localhost:3306";
-    String dbName = "smartphonemanagement";
+    String dbName = "smartphonemanagement2";
     String userName = "root";
     String pass = "123456789lop11b2";
 

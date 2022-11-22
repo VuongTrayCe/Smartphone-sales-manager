@@ -3,65 +3,59 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Smartphone_sales_management.DAO;
-
 import Smartphone_sales_management.DBConnect;
-import Smartphone_sales_management.DTO.Model_NhanVien;
+import Smartphone_sales_management.DTO.Model_NhaCungCap;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author lehongthai
  */
-public class QuanLyNhanVien_DAO {
-
-    DBConnect db = new DBConnect();
+public class QuanLyNhaCungCap_DAO {
+     DBConnect db = new DBConnect();
     private PreparedStatement preparedStatement;
     ResultSet rs = null;
 
-    public ArrayList<Model_NhanVien> getDanhSachNhanVien_DAO() {
+    public ArrayList<Model_NhaCungCap> getDanhSachNhaCC_DAO() {
 
-        ArrayList<Model_NhanVien> dsnv = new ArrayList<Model_NhanVien>();
+        ArrayList<Model_NhaCungCap> dsncc = new ArrayList<Model_NhaCungCap>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from NhanVien where Trangthai = 'T'");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from nhacungcap where TrangThai='T'");
             rs = stm.executeQuery();
             while (rs.next()) {
-                Model_NhanVien a = new Model_NhanVien();
-                a.setMaNV(rs.getInt("Manv"));
-                a.setTenNV(rs.getString("Tennv"));
-                a.setSoCCCD(rs.getInt("SoCCCD"));
-                a.setTuoi(rs.getInt("Tuoi"));
+                Model_NhaCungCap a = new Model_NhaCungCap();
+                a.setMacc(rs.getInt("Mancc"));
+                a.setTenncc(rs.getString("Tenncc"));
+                a.setSDT(rs.getInt("SDT"));
                 a.setDiaChi(rs.getString("DiaChi"));
-                a.setChucDanh(rs.getString("Chucdanh"));
-//                a.setTrangThai(rs.getString("Trangthai"));
-                dsnv.add(a);
+                a.setDiaChi(rs.getString("DiaChi"));
+                dsncc.add(a);
 
             }
-            return dsnv;
+            return dsncc;
         } catch (SQLException ex) {
             return null;
         } finally {
             db.closeConnection();
         }
     }
-    public boolean insertNhanVien(Model_NhanVien NhanVien) {
+    public boolean insertNhaCC(Model_NhaCungCap NhaCungCap) {
 		boolean isSuccess = false;
                  db.setupConnection();
-                   String sqlString = ("insert into nhanvien(Tennv,SoCCCD,Tuoi,Diachi,ChucDanh,TrangThai) values (?,?,?,?,?,?)");
+                   String sqlString = ("insert into nhacungcap(Tenncc,SDT,Diachi,TrangThai) values (?,?,?,?)");
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 //                        preparedStatement.setInt(1, NhanVien.getMaNV());
-			preparedStatement.setString(1, NhanVien.getTenNV());
-                        preparedStatement.setInt(2, NhanVien.getSoCCCD());
-                        preparedStatement.setInt(3, NhanVien.getTuoi());
-                        preparedStatement.setString(4, NhanVien.getDiaChi());
-                        preparedStatement.setString(5, NhanVien.getChucDanh());
-                        preparedStatement.setString(6, NhanVien.getTrangThai());
+			preparedStatement.setString(1, NhaCungCap.getTenncc());
+                        preparedStatement.setInt(2, NhaCungCap.getSDT());
+                        preparedStatement.setString(3, NhaCungCap.getDiaChi());
+                        preparedStatement.setString(4, NhaCungCap.getTrangThai());
                         
                         
 
@@ -88,16 +82,16 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-    public boolean deleteNhanVien(Model_NhanVien NhanVien) {
+    public boolean deleteNhacc(Model_NhaCungCap NhaCC) {
 		boolean isSuccess = false;
 		db.setupConnection();
-			String sqlString = "update nhanvien set  TrangThai = ? where Manv=?";
+			String sqlString = "update nhacungcap set  TrangThai = ? where Mancc=?";
 
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
-			preparedStatement.setString(1, NhanVien.getTrangThai());
-                        preparedStatement.setInt(2,NhanVien.getMaNV());
+			preparedStatement.setString(1, NhaCC.getTrangThai());
+                        preparedStatement.setInt(2,NhaCC.getMacc());
 
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {
@@ -122,20 +116,18 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-       public boolean updateNhanVien(Model_NhanVien NhanVien) {
+       public boolean updateNhaCC(Model_NhaCungCap NhaCungCap) {
 		boolean isSuccess = false;
                 db.setupConnection();
-		String sqlString = "update nhanvien set TenNV = ?, SoCCCD = ?, Tuoi = ?, DiaChi = ?, ChucDanh = ? where Manv=?";
+		String sqlString = "update nhacungcap set Tenncc = ?, SDT = ?, DiaChi = ?  where Mancc=?";
 
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
-			preparedStatement.setString(1, NhanVien.getTenNV());
-			preparedStatement.setInt(2, NhanVien.getSoCCCD());
-			preparedStatement.setInt(3, NhanVien.getTuoi());
-                        preparedStatement.setString(4, NhanVien.getDiaChi());
-			preparedStatement.setString(5, NhanVien.getChucDanh());
-                        preparedStatement.setInt(6,NhanVien.getMaNV());
+			preparedStatement.setString(1, NhaCungCap.getTenncc());
+			preparedStatement.setInt(2, NhaCungCap.getSDT());
+                        preparedStatement.setString(3, NhaCungCap.getDiaChi());
+                        preparedStatement.setInt(4,NhaCungCap.getMacc());
 
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {
@@ -146,7 +138,7 @@ public class QuanLyNhanVien_DAO {
 		}
 		catch(SQLException ex) {
 			 System.out.println(ex);
-                        JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Update dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
 		}
 		finally {
 			try {
@@ -160,5 +152,6 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-    
+       
+       
 }

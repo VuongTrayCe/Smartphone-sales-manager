@@ -86,7 +86,7 @@ public class QuanLiSanPham_DAO {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon,khuyenmai.Makm,baohanh.Mabaohanh,khuyenmai.Tenkm,sanpham.Loaisp\n "
                     + "FROM sanpham\n "
                     + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n "
-                    + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n "
+                    + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp AND chitietbaohanh.TrangThai = \"T\"\n "
                     + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n "
                     + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n "
                     + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm");

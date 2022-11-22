@@ -13,7 +13,16 @@ public class ModelBaoHanh {
     private String thoigianbh;
     private String trangthai;
     private int Mabh;
+    private int Masp;
 
+    public int getMasp() {
+        return Masp;
+    }
+
+    public void setMasp(int Masp) {
+        this.Masp = Masp;
+    }
+    
     public int getMabh() {
         return Mabh;
     }

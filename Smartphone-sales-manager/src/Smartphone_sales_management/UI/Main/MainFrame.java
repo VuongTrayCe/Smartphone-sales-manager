@@ -79,8 +79,8 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 1) {
-                    MainContentBaoHanh a = new MainContentBaoHanh();
-//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+//                    MainContentBaoHanh a = new MainContentBaoHanh();
+                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());

@@ -51,7 +51,8 @@ public class QuanLiBaoHanh_DAO {
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT chitietbaohanh.Machitietbaohanh, chitietbaohanh.Mabaohanh, chitietbaohanh.Masp\n"
-                    + "FROM chitietbaohanh");
+                    + "                    FROM chitietbaohanh\n"
+                    + "                    WHERE chitietbaohanh.TrangThai =\"T\"");
             rs = stm.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -84,6 +85,30 @@ public class QuanLiBaoHanh_DAO {
                 while (rs.next()) {
                     result.add(rs.getString(1));
                     result.add(rs.getString(2));
+                }
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public ArrayList layctOfctBH(int Mactbh) {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT chitietbaohanh.Mabaohanh, chitietbaohanh.Masp\n"
+                    + "FROM chitietbaohanh\n"
+                    + "WHERE chitietbaohanh.Machitietbaohanh = ?");
+            stm.setInt(1, Mactbh);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt(1));
+                    result.add(rs.getInt(2));
                 }
             }
             return result;
@@ -137,9 +162,89 @@ public class QuanLiBaoHanh_DAO {
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("UPDATE baohanh\n"
                     + "SET baohanh.Thoigianbaohanh = ? ,baohanh.Trangthai = ? WHERE baohanh.Mabaohanh = ?");
-            stm.setString(1,model.getThoigianbh());
-            stm.setString(2,model.getTrangthai());
-            stm.setInt(3,model.getMabh());
+            stm.setString(1, model.getThoigianbh());
+            stm.setString(2, model.getTrangthai());
+            stm.setInt(3, model.getMabh());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
+    }
+
+    public ArrayList dsMasp() {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp\n"
+                    + "FROM sanpham");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt(1));
+                }
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public boolean themCTDH(ModelBaoHanh model) {
+        db.setupConnection();
+        boolean success = true;
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO chitietbaohanh(chitietbaohanh.Mabaohanh,chitietbaohanh.Masp,chitietbaohanh.TrangThai)\n"
+                    + "VALUES	(?,?,\"T\")");
+            stm.setInt(1, model.getMabh());
+            stm.setInt(2, model.getMasp());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
+    }
+
+    public int chitietbaohanh(ModelBaoHanh model) {
+        db.setupConnection();
+        int result = -1;
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT chitietbaohanh.Machitietbaohanh\n"
+                    + "FROM chitietbaohanh\n"
+                    + "WHERE chitietbaohanh.Mabaohanh = ? AND chitietbaohanh.Masp = ? AND chitietbaohanh.TrangThai = \"T\"");
+            stm.setInt(1, model.getMabh());
+            stm.setInt(2, model.getMasp());
+            rs = stm.executeQuery();
+            if (rs != null) {
+                if (rs.next()) {
+                    result = (int) rs.getInt(1);
+                }
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public boolean xoaCTBH(int Mactbh) {
+        db.setupConnection();
+        boolean success = true;
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE chitietbaohanh\n"
+                    + "SET chitietbaohanh.TrangThai = \"F\" WHERE chitietbaohanh.Machitietbaohanh = ?");
+            stm.setInt(1, Mactbh);
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,14 +5,19 @@
 package Smartphone_sales_management.UI.Component.BaoHanhComponent;
 
 import Smartphone_sales_management.BUS.QuanLiBaoHanh_BUS;
+import Smartphone_sales_management.BUS.QuanLiSanPham_BUS;
 import Smartphone_sales_management.DTO.ModelBaoHanh;
+import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
 import Smartphone_sales_management.UI.Event.BaoHanh.EventBaoHanh;
+import Smartphone_sales_management.UI.Swing.GraphicsPanel;
+import Smartphone_sales_management.UI.Swing.GraphicsTextFied;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,8 +29,12 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
 
     DefaultTableModel modelbh = new DefaultTableModel();
     DefaultTableModel modelctbh = new DefaultTableModel();
+    DefaultComboBoxModel<String> modelcbbBH = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelcbbSP = new DefaultComboBoxModel<>();
     QuanLiBaoHanh_BUS qlbh_BUS = new QuanLiBaoHanh_BUS();
+    QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
     public int mabh = -1;
+    public int mactbh = -1;
 
     public MainContentBaoHanh() {
         initComponents();
@@ -35,6 +44,10 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         setDefaultTableCTBH();
         tablebh.setModel(modelbh);
         tablectbh.setModel(modelctbh);
+        cbbbh.setModel(modelcbbBH);
+        cbbsp.setModel(modelcbbSP);
+        btnThemCT.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
+        btnDeleteCTSP.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
     }
 
     public void setColumnModelBH() {
@@ -67,6 +80,11 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         for (int i = 0; i < dsbh.size(); i++) {
             modelbh.addRow((Vector<?>) dsbh.get(i));
         }
+        for (Object x : dsbh) {
+            Vector y = (Vector) x;
+            String Mabh = y.get(0).toString();
+            modelcbbBH.addElement(Mabh);
+        }
         addEventTableBaoHanh();
         jscrollbh.repaint();
     }
@@ -75,7 +93,12 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         tablectbh.removeAll();
         modelctbh.setRowCount(0);
         ArrayList dsctbh = new ArrayList();
+        ArrayList dsMasp = new ArrayList();
         dsctbh = qlbh_BUS.layDSCTBH_BUS();
+        dsMasp = qlbh_BUS.dsMasp();
+        for (Object x : dsMasp) {
+            modelcbbSP.addElement(x.toString());
+        }
         for (int i = 0; i < dsctbh.size(); i++) {
             modelctbh.addRow((Vector<?>) dsctbh.get(i));
         }
@@ -88,13 +111,23 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent e) {
                 ArrayList ctbh = new ArrayList();
                 System.out.println(tablebh.getValueAt(tablebh.getSelectedRow(), 0));
-                mabh=(int)tablebh.getValueAt(tablebh.getSelectedRow(), 0);
-                ctbh = qlbh_BUS.layctbh((int) tablebh.getValueAt(tablebh.getSelectedRow(), 0));
+                mabh = (int) tablebh.getValueAt(tablebh.getSelectedRow(), 0);
+                ctbh = qlbh_BUS.layctbh(mabh);
                 txttgbh.setText(ctbh.get(0).toString());
                 txttrangthai.setText(ctbh.get(1).toString());
             }
         });
     }
+//    public void addEventTableCTBaoHanh() {
+//        tablectbh.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                ArrayList ctbh = new ArrayList();
+//                System.out.println(tablectbh.getValueAt(tablectbh.getSelectedRow(), 0));
+//                mactbh=(int)tablectbh.getValueAt(tablebh.getSelectedRow(), 0);
+//            }
+//        });
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,20 +142,18 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextField4 = new GraphicsTextFied(15);
         jComboBox3 = new javax.swing.JComboBox<>();
         jscrollctbh = new javax.swing.JScrollPane();
         tablectbh = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new GraphicsPanel(50,new Color(0,0,0));
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        btnThemCT = new javax.swing.JButton();
+        btnDeleteCTSP = new javax.swing.JButton();
+        cbbbh = new javax.swing.JComboBox<>();
+        cbbsp = new javax.swing.JComboBox<>();
         jscrollbh = new javax.swing.JScrollPane();
         tablebh = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -211,17 +242,11 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         tablectbh.setShowGrid(true);
         jscrollctbh.setViewportView(tablectbh);
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Chi tiết bảo hành");
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Mã ct bảo hành");
-
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -231,19 +256,32 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mã sp");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/sign-add-icon (1).png"))); // NOI18N
-        jLabel7.setText("Thêm chi tiết bảo hành");
+        btnThemCT.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnThemCT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/sign-add-icon (1).png"))); // NOI18N
+        btnThemCT.setText("Thêm");
+        btnThemCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThemCTMouseClicked(evt);
+            }
+        });
+        btnThemCT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemCTActionPerformed(evt);
+            }
+        });
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/remove.png"))); // NOI18N
-        jLabel11.setText("Xóa chi tiết bảo hành");
+        btnDeleteCTSP.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnDeleteCTSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/remove.png"))); // NOI18N
+        btnDeleteCTSP.setText("Xóa");
+        btnDeleteCTSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteCTSPMouseClicked(evt);
+            }
+        });
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cbbbh.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cbbsp.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -253,23 +291,25 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel2))
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel2)
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(btnThemCT, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(cbbbh, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(114, 114, 114))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(cbbsp, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnDeleteCTSP, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(117, 117, 117))))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,24 +317,18 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbbh, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(cbbsp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThemCT, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteCTSP, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
 
         tablebh.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -557,9 +591,9 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
     }
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa bảo hành ?", "Xóa bảo hành", JOptionPane.YES_NO_OPTION);
-        if(a==JOptionPane.OK_OPTION) {
-            if(checkMabh()) {
-                if(qlbh_BUS.xoaBH(mabh)){
+        if (a == JOptionPane.OK_OPTION) {
+            if (checkMabh()) {
+                if (qlbh_BUS.xoaBH(mabh)) {
                     JOptionPane.showMessageDialog(null, "Xóa thành công");
                     setDefaultTableBaoHanh();
                 } else {
@@ -568,60 +602,123 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(null, "Chưa chọn Mã bảo hành");
             }
-        } 
+        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-       int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn sửa bảo hành ?", "sửa bảo hành", JOptionPane.YES_NO_OPTION);
-       if(a==JOptionPane.OK_OPTION) {
-           if(checkMabh()) {
-                if(checkData()) {
-               ModelBaoHanh model = new ModelBaoHanh();
-               model.setMabh(mabh);
-               model.setThoigianbh(txttgbh.getText());
-               model.setTrangthai(txttrangthai.getText());
-               if(qlbh_BUS.suaBH(model)) {
-                   JOptionPane.showMessageDialog(null, "Sửa thành công!");
-                   setDefaultTableBaoHanh();
-               } else {
-                   JOptionPane.showMessageDialog(null, "Sửa thất bại!");
-               }
-           } else {
-               JOptionPane.showMessageDialog(null, "Nhập đầy đủ thông tin!");
-           }
-           } else {
-               JOptionPane.showMessageDialog(null, "Chưa chọn mã cần sửa");
-           }
-       }
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn sửa bảo hành ?", "sửa bảo hành", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.OK_OPTION) {
+            if (checkMabh()) {
+                if (checkData()) {
+                    ModelBaoHanh model = new ModelBaoHanh();
+                    model.setMabh(mabh);
+                    model.setThoigianbh(txttgbh.getText());
+                    model.setTrangthai(txttrangthai.getText());
+                    if (qlbh_BUS.suaBH(model)) {
+                        JOptionPane.showMessageDialog(null, "Sửa thành công!");
+                        setDefaultTableBaoHanh();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sửa thất bại!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nhập đầy đủ thông tin!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Chưa chọn mã cần sửa");
+            }
+        }
     }//GEN-LAST:event_btnUpdateMouseClicked
+    private boolean checkMasp() {
+        ArrayList dssp = new ArrayList();
+        dssp = qlbh_BUS.layDSCTBH_BUS();
+        for (Object x : dssp) {
+            Vector y = (Vector) x;
+            String Masp = y.get(2).toString();
+            if (Masp.equals(cbbsp.getSelectedItem().toString())) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private void btnThemCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemCTMouseClicked
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm bảo hành ?", "Thêm bảo hành", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.OK_OPTION) {
+            if (checkMasp()) {
+                ModelBaoHanh model = new ModelBaoHanh();
+                model.setMabh(Integer.parseInt(cbbbh.getSelectedItem().toString()));
+                model.setMasp(Integer.parseInt(cbbsp.getSelectedItem().toString()));
+                if (qlbh_BUS.themCTBH(model)) {
+                    JOptionPane.showMessageDialog(null, "Thêm thành công!");
+                    setDefaultTableCTBH();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Thêm không thành công!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Trùng sản phẩm!");
+            }
+        }
+    }//GEN-LAST:event_btnThemCTMouseClicked
+    private boolean checkCoMaChiTiet() {
+        if (mactbh != -1) {
+            return true;
+        }
+        return false;
+    }
+    private void btnDeleteCTSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteCTSPMouseClicked
+        int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa bảo hành ?", "Xóa bảo hành", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.OK_OPTION) {
+            if (checkMasp()) {
+                JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa áp dụng");
+            } else {
+                ModelBaoHanh model = new ModelBaoHanh();
+                model.setMabh(Integer.parseInt(cbbbh.getSelectedItem().toString()));
+                model.setMasp(Integer.parseInt(cbbsp.getSelectedItem().toString()));
+                mactbh = qlbh_BUS.layMactbh(model);
+                if (checkCoMaChiTiet()) {
+                    if (qlbh_BUS.xoaCTBH(mactbh)) {
+                        JOptionPane.showMessageDialog(null, "Xóa thành công!");
+                        mactbh =-1;
+                        setDefaultTableCTBH();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Xóa thất bại!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Bảo hành không hợp lệ!");
+                }
+            }
+
+        }
+    }//GEN-LAST:event_btnDeleteCTSPMouseClicked
+
+    private void btnThemCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThemCTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnDelete;
+    private javax.swing.JButton btnDeleteCTSP;
     private javax.swing.JLabel btnReset;
     private javax.swing.JLabel btnThemBH;
+    private javax.swing.JButton btnThemCT;
     private javax.swing.JLabel btnUpdate;
+    private javax.swing.JComboBox<String> cbbbh;
+    private javax.swing.JComboBox<String> cbbsp;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JScrollPane jscrollbh;
     private javax.swing.JScrollPane jscrollctbh;

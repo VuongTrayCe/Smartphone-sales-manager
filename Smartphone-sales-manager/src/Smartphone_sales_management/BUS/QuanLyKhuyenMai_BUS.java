@@ -7,7 +7,6 @@ package Smartphone_sales_management.BUS;
 import Smartphone_sales_management.DAO.QuanLyKhuyenMai_DAO;
 import Smartphone_sales_management.DTO.Model_KhuyenMai;
 import Smartphone_sales_management.DTO.Model_ChiTietKM;
-import Smartphone_sales_management.DTO.Model_KhachHang;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -52,6 +51,18 @@ public class QuanLyKhuyenMai_BUS {
 
 		return isExists;
 	}
+      
+      public boolean exitmakm(int masp){
+          boolean isExists = false;
+          for(Model_ChiTietKM CTKM : dsctkm){
+              if(CTKM.getMaSP()== masp && CTKM.getTrangThai().equals("T")){
+                  isExists = true;
+                  break;
+              }
+          }
+          return isExists;
+      }
+     
     public boolean Addkhuyenmai(Model_KhuyenMai khuyenmai) {
         boolean isSuccess = false;
         if (khuyenmai != null) {
@@ -60,17 +71,11 @@ public class QuanLyKhuyenMai_BUS {
         return isSuccess;
     }
 
-    public boolean deleteKhuyenMai(int Makm) {
+    public boolean deleteKhuyenMai(Model_KhuyenMai KhuyenMai) {
         boolean isSuccess = false;
 
-        for (Model_KhuyenMai km : dskm) {
-            if (km.getMakm() == Makm) {
-                dskm.remove(km);
-                qlkm.deleteKhuyenMai(Makm);
-                isSuccess = true;
-                break;
-            }
-        }
+        qlkm.deleteKhuyenMai(KhuyenMai);
+        
         return isSuccess;
     }
 
@@ -88,16 +93,9 @@ public class QuanLyKhuyenMai_BUS {
         return isSuccess;
     }
 
-    public boolean deleteChiTietKM(int MachiTietkm) {
+    public boolean deleteChiTietKM(Model_ChiTietKM ChiTietKM) {
         boolean isSuccess = false;
-        for (Model_ChiTietKM ctkm : dsctkm) {
-            if (ctkm.getMachitietkhuyenmai() == MachiTietkm) {
-                dsctkm.remove(ctkm);
-                qlkm.deleteChiTietKM(MachiTietkm);
-                isSuccess = true;
-                break;
-            }
-        }
+        qlkm.deleteChiTietKM(ChiTietKM);
         return isSuccess;
     }
     
@@ -205,6 +203,7 @@ public class QuanLyKhuyenMai_BUS {
         }
         return kmds;
     }
+   
 }
 
 

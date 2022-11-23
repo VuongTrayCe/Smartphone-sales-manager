@@ -32,7 +32,6 @@ public class MainContentDonHang extends javax.swing.JPanel {
     MainFrame mainFrame;
     TableDetailDH detailDH;
     TableDonHang donHang;
-
     public MainContentDonHang(MainFrame mainFrame) throws ParseException {
         initComponents();
         this.mainFrame = mainFrame;
@@ -102,7 +101,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         txtTimkiem = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jButton2 = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         DateStart = new com.toedter.calendar.JDateChooser();
         DateEnd = new com.toedter.calendar.JDateChooser();
@@ -146,16 +145,16 @@ public class MainContentDonHang extends javax.swing.JPanel {
         });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 51));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Logos-Excel-icon.png"))); // NOI18N
-        jButton2.setText("Xuất Excel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExcel.setBackground(new java.awt.Color(255, 0, 51));
+        btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Logos-Excel-icon.png"))); // NOI18N
+        btnExcel.setText("Xuất Excel");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExcelActionPerformed(evt);
             }
         });
 
@@ -212,7 +211,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
@@ -227,16 +226,15 @@ public class MainContentDonHang extends javax.swing.JPanel {
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -281,9 +279,14 @@ public class MainContentDonHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        XuatExcel123 ex = new XuatExcel123(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
+        try {
+            ex.xuatFileExcelDanhSachtHoaDon();
+        } catch (ParseException ex1) {
+            Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -312,7 +315,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private javax.swing.JLabel BtnLocTheoNgay;
     private com.toedter.calendar.JDateChooser DateEnd;
     private com.toedter.calendar.JDateChooser DateStart;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel8;

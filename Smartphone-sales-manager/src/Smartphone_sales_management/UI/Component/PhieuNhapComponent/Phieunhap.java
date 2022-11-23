@@ -8,6 +8,7 @@ package Smartphone_sales_management.UI.Component.PhieuNhapComponent;
  *
  * @author Hiep
  */
+
 public class Phieunhap extends javax.swing.JFrame {
 
     /**

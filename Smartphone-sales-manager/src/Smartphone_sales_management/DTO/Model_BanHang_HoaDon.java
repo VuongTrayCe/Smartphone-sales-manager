@@ -14,10 +14,44 @@ import java.time.format.DateTimeFormatter;
 public class Model_BanHang_HoaDon {
     private int makh;
     private int manv;
-    private LocalDateTime time ; 
-    private int sl;
+    private String ngayban; 
+    private int soluong;
     private int tongtien;
+    private int diemapdung;
+    private int diemthuong;
     private String trangthai;
+
+    public String getNgayban() {
+        return ngayban;
+    }
+
+    public int getSoluong() {
+        return soluong;
+    }
+
+    public int getDiemapdung() {
+        return diemapdung;
+    }
+
+    public int getDiemthuong() {
+        return diemthuong;
+    }
+
+    public void setNgayban(String ngayban) {
+        this.ngayban = ngayban;
+    }
+
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+    }
+
+    public void setDiemapdung(int diemapdung) {
+        this.diemapdung = diemapdung;
+    }
+
+    public void setDiemthuong(int diemthuong) {
+        this.diemthuong = diemthuong;
+    }
 
     public void setMakh(int makh) {
         this.makh = makh;
@@ -25,14 +59,6 @@ public class Model_BanHang_HoaDon {
 
     public void setManv(int manv) {
         this.manv = manv;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-
-    public void setSl(int sl) {
-        this.sl = sl;
     }
 
     public void setTongtien(int tongtien) {
@@ -50,15 +76,6 @@ public class Model_BanHang_HoaDon {
     public int getManv() {
         return manv;
     }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public int getSl() {
-        return sl;
-    }
-
     public int getTongtien() {
         return tongtien;
     }

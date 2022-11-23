@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import Smartphone_sales_management.UI.Model.Model_GioHang.GioHangType;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 
 /**
  *
@@ -40,6 +41,8 @@ public class TableDetailBH extends javax.swing.JPanel {
     public String urlImage;
     public Model_GioHang modelGiohang;
     QuanLyBanHang_BUS qlbh_BUS = new QuanLyBanHang_BUS();
+    ArrayList<Model_BanHang_ChiTietSanPham> datachitiet;
+    Model_BanHang_ChiTietSanPham model;
 
     public TableDetailBH(int index, MainFrame mainFrame) {
         initComponents();
@@ -57,7 +60,9 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText(),modelGiohang.getKhuyenmai(),modelGiohang.getBaohanh(),modelGiohang.getMasp(),modelGiohang.getMakhuyenmai(),modelGiohang.getMabaohanh());
+                Model_BanHang_ChiTietHoaDon data = new Model_BanHang_ChiTietHoaDon(model.getMasp(), selectedIndex, model.getMakm(), model.getMabh(), 125, model.getSl(), Integer.parseInt((Double.toString(model.getGiaban()))), 1100, model.getTensp(), model.getPtkm(), model.getBaohanh());
+
+//                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText(),modelGiohang.getKhuyenmai(),modelGiohang.getBaohanh(),modelGiohang.getMasp(),modelGiohang.getMakhuyenmai(),modelGiohang.getMabaohanh());
 //                  modelGiohang.setSoluong(1);
 //                Model_GioHang data = modelGiohang;
                 event.addGiohang(data);
@@ -73,9 +78,9 @@ public class TableDetailBH extends javax.swing.JPanel {
         
     }
     public void DisplayInfor() {
-        ArrayList<Model_BanHang_ChiTietSanPham> data = new ArrayList();
-        data = qlbh_BUS.getDanhSachChiTiet1SanPham(this.selectedIndex);
-        Model_BanHang_ChiTietSanPham model = data.get(0);
+        datachitiet = new ArrayList();
+        datachitiet = qlbh_BUS.getDanhSachChiTiet1SanPham(this.selectedIndex);
+        model = datachitiet.get(0);
         lbcName.setText(model.getTensp());
         lbcLoai.setText(model.getLoaisp());
         String km = String.valueOf(model.getPtkm()) + " %";
@@ -105,21 +110,19 @@ public class TableDetailBH extends javax.swing.JPanel {
             this.urlImage = "";
         }
 
-        modelGiohang = new Model_GioHang();
-        // Khởi tạo giá trị cho model giỏ hàng 
-        modelGiohang.setName(model.getTensp());
-        modelGiohang.setLoai(model.getLoaisp());
-        modelGiohang.setGiatien(model.getGiaban().toString());
-        modelGiohang.setKhuyenmai(model.getPtkm());
-        modelGiohang.setBaohanh(model.getBaohanh());
-        modelGiohang.setIcon(urlImage);
-        modelGiohang.setType(GioHangType.MENU);
-        modelGiohang.setMasp(model.getMasp());
-        modelGiohang.setMakhuyenmai(model.getMakm());
-        modelGiohang.setMabaohanh(model.getMabh());
-
+//        modelGiohang = new Model_GioHang();
+//        // Khởi tạo giá trị cho model giỏ hàng 
+//        modelGiohang.setName(model.getTensp());
+//        modelGiohang.setLoai(model.getLoaisp());
+//        modelGiohang.setGiatien(model.getGiaban().toString());
+//        modelGiohang.setKhuyenmai(model.getPtkm());
+//        modelGiohang.setBaohanh(model.getBaohanh());
+//        modelGiohang.setIcon(urlImage);
+//        modelGiohang.setType(GioHangType.MENU);
+//        modelGiohang.setMasp(model.getMasp());
+//        modelGiohang.setMakhuyenmai(model.getMakm());
+//        modelGiohang.setMabaohanh(model.getMabh());
 //        System.out.println(modelGiohang.getSoluong()); 
-
     }
 
     /**

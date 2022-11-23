@@ -470,15 +470,15 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
-        Model_BanHang_HoaDon hoadon = new Model_BanHang_HoaDon();
-        int Makh = qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString());
-        hoadon.setMakh(WIDTH);
-        hoadon.setManv(0);
-        hoadon.setTime(now);
-        hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
-        hoadon.setTongtien(TT);
-        
-        qlbh_bus.InsertDonHang(hoadon, data);
+//        Model_BanHang_HoaDon hoadon = new Model_BanHang_HoaDon();
+//        int Makh = qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString());
+//        hoadon.setMakh(WIDTH);
+//        hoadon.setManv(0);
+//        hoadon.setTime(now);
+//        hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
+//        hoadon.setTongtien(TT);
+//        
+//        qlbh_bus.InsertDonHang(hoadon, data);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompleteActionPerformed
 

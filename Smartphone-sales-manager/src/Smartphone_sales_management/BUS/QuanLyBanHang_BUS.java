@@ -53,10 +53,10 @@ public class QuanLyBanHang_BUS {
     // Hàm lấy chi tiết sản phẩm được chọn
     public ArrayList getDanhSachChiTiet1SanPham(int selectedIndex) {
         ArrayList dsctsp = new ArrayList();
-        ArrayList MaSPList = new ArrayList<>();
-        MaSPList = qlbh.getMapn();
+//        ArrayList MaSPList = new ArrayList<>();
+//        MaSPList = qlbh.getMapn();
         try {
-            dsctsp = qlbh.getDanhSachChiTiet1SanPham_DAO((int) MaSPList.get(selectedIndex));
+            dsctsp = qlbh.getDanhSachChiTiet1SanPham_DAO(selectedIndex);
         } catch (SQLException ex) {
             Logger.getLogger(QuanLyBanHang_BUS.class.getName()).log(Level.SEVERE, null, ex);
         }

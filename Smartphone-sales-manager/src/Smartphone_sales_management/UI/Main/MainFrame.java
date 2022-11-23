@@ -50,8 +50,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
-//        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
+//        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
+        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
 //        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);

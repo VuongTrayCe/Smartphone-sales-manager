@@ -56,8 +56,8 @@ public class TableBanHang extends javax.swing.JPanel {
         jTable1.addMouseListener(new  MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                
-                event.SelectedInxex(jTable1.getSelectedRow());
+                int index = jTable1.getSelectedRow();
+                event.SelectedInxex((int) jTable1.getValueAt(index,0));
             };
         });
     }

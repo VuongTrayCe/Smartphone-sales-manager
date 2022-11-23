@@ -24,6 +24,8 @@ import javax.swing.event.DocumentListener;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang.selectedIndexGioHang;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
+import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
 
 /**
  *
@@ -37,7 +39,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
     EventBanHang event;
     MainFrame frame;
     AddGioHang eventGioHang;
-    ArrayList<Object> arrListSanpham = new ArrayList<>();
+    ArrayList<Model_BanHang_ChiTietHoaDon> arrChiTietHoaDon = new ArrayList<>();
 
     TableDetailBH c;
     TableGioHang b ;
@@ -48,13 +50,13 @@ public class MainConTentBanHang extends javax.swing.JPanel {
 //        TableDetailBH c = new TableDetailBH(index);
 
         TableBanHang a = new TableBanHang(event);
-         b = new TableGioHang(arrListSanpham,IconGioHang,frame);
+         b = new TableGioHang(arrChiTietHoaDon,IconGioHang,frame);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
         b.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
 
         jScrollPane1.setViewportView(a);
 //        jPanel2.setLayout(new GridLayout());
-        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+        IconGioHang.setText(Integer.toString(arrChiTietHoaDon.size()));
 
 //        jPanel2.add(b);
 //        b.validate();
@@ -78,28 +80,29 @@ public class MainConTentBanHang extends javax.swing.JPanel {
                 // Bắt sự kiện nút thêm vào giỏ
                 c.addSanPhamVaoGio(new AddGioHang() {
                     @Override
-                    public void addGiohang(Model_GioHang data) {
-                        ArrayList a = new ArrayList<>();
-                        ArrayList arr = new ArrayList<>();
-                        a = arrListSanpham;
+                    public void addGiohang(Model_BanHang_ChiTietHoaDon data) {
+//                        ArrayList a = new ArrayList<>();
+//                        ArrayList arr = new ArrayList<>();
+                           arrChiTietHoaDon.add(data);
+//                        a = arrChiTietHoaDon;
                         boolean flag = false;
-                        for (Object object : a) {
-                            Model_GioHang x = (Model_GioHang) object;
-                            if (x.getName().equals(data.getName())) {
-                                flag = true;
-                                x.setSoluong(x.getSoluong() + data.getSoluong());
-                            }
-                            
-                            arr.add(x);
-
-                        }
-                        if (flag == true) {
-                            arrListSanpham = arr;
-                        } else {
-                            arrListSanpham.add(data);
-                        }
-//                       
-                        IconGioHang.setText(Integer.toString(arrListSanpham.size()));
+//                        for (Object object : a) {
+//                            Model_GioHang x = (Model_GioHang) object;
+//                            if (x.getName().equals(data.getName())) {
+//                                flag = true;
+//                                x.setSoluong(x.getSoluong() + data.getSoluong());
+//                            }
+//                            
+//                            arr.add(x);
+//
+//                        }
+//                        if (flag == true) {
+//                            arrChiTietHoaDon = arr;
+//                        } else {
+//                            arrChiTietHoaDon.add(data);
+//                        }
+////                       
+                        IconGioHang.setText(Integer.toString(arrChiTietHoaDon.size()));
                     }
 
                 });
@@ -314,7 +317,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         jPanel2.repaint();
     }
     private void IconGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconGioHangMouseClicked
-        if(arrListSanpham.size()==0)
+        if(arrChiTietHoaDon.size()==0)
         {
                             JOptionPane.showMessageDialog(null, "Vui lòng thêm sản phẩm vào giỏ hàng");
 
@@ -326,8 +329,7 @@ public class MainConTentBanHang extends javax.swing.JPanel {
         IconGioHang.setBackground(Color.red);
         selectedIndexGioHang = -1;
 
-        TableGioHang giohang = new TableGioHang(arrListSanpham,IconGioHang,frame);
-        Model_GioHang a = (Model_GioHang) arrListSanpham.get(0);
+        TableGioHang giohang = new TableGioHang(arrChiTietHoaDon,IconGioHang,frame);
 //            System.out.println(a.getSoluong());
         DisPlayComponent(giohang);
         }

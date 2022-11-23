@@ -4,12 +4,12 @@
  */
 package Smartphone_sales_management.UI.Event.BanHang;
 
-import Smartphone_sales_management.UI.Model.Model_GioHang;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 
 /**
  *
  * @author Vuong
  */
 public interface AddGioHang {
-    public void addGiohang(Model_GioHang data);
+    public void addGiohang(Model_BanHang_ChiTietHoaDon data);
 }

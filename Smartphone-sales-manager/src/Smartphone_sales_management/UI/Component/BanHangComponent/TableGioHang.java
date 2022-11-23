@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 
 /**
  *
@@ -34,7 +35,7 @@ public class TableGioHang extends javax.swing.JPanel {
      */
     public static int selectedIndexGioHang;
     QuanLyBanHang_BUS qlbh_bus = new QuanLyBanHang_BUS();
-    ArrayList data = new ArrayList();
+    ArrayList<Model_BanHang_ChiTietHoaDon> data = new ArrayList();
     JLabel sl;
     MainFrame frame;
     public TableGioHang(ArrayList data, JLabel SL,MainFrame mainFrame) {
@@ -168,64 +169,64 @@ public class TableGioHang extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // xử lý chọn nút để xóa một sản phẩm
-        if (selectedIndexGioHang != -1) {
-            int indexDelete = selectedIndexGioHang;
-            if (jComboBox1.getSelectedIndex() == 0) {
-                Model_GioHang x = (Model_GioHang) this.data.get(selectedIndexGioHang);
-                x.setSoluong(x.getSoluong() - 1);
-                if (x.getSoluong() == 0) {
-
-                    ((DefaultListModel) listGioHang1.getModel()).remove(selectedIndexGioHang);
-                    this.data.remove(indexDelete);
-                    this.sl.setText(Integer.toString(data.size()));
-                    lbTongTien.setText("0.00" + " VND");
-
-                }
-
-                listGioHang1.repaint();
-
-                int sum = 0;
-                for (Object object : data) {
-
-                    Model_GioHang model = (Model_GioHang) object;
-                    sum += model.getTongTien();
-                    lbTongTien.setText(Double.toString(sum) + " VND");
-
-                }
-
-            } else {
-                ((DefaultListModel) listGioHang1.getModel()).remove(selectedIndexGioHang);
-                this.data.remove(indexDelete);
-                this.sl.setText(Integer.toString(data.size()));
-
-                listGioHang1.repaint();
-                int sum = 0;
-                if(this.data.size()==0)
-                {
-                   lbTongTien.setText("0.00 "+ "VND");
-
-                }
-                else
-                {
-                for (Object object : data) {
-
-                    Model_GioHang model = (Model_GioHang) object;
-                    sum += model.getTongTien();
-                    lbTongTien.setText(Double.toString(sum) + " VND");
-
-                }
-                }
-            }
-
-        } else {
-            if (data.size() == 0) {
-                JOptionPane.showMessageDialog(null, "Không có sản phẩm nào để xóa");
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm cần xóa ");
-            }
-        }
+//        if (selectedIndexGioHang != -1) {
+//            int indexDelete = selectedIndexGioHang;
+//            if (jComboBox1.getSelectedIndex() == 0) {
+//                Model_GioHang x = (Model_GioHang) this.data.get(selectedIndexGioHang);
+//                x.setSoluong(x.getSoluong() - 1);
+//                if (x.getSoluong() == 0) {
+//
+//                    ((DefaultListModel) listGioHang1.getModel()).remove(selectedIndexGioHang);
+//                    this.data.remove(indexDelete);
+//                    this.sl.setText(Integer.toString(data.size()));
+//                    lbTongTien.setText("0.00" + " VND");
+//
+//                }
+//
+//                listGioHang1.repaint();
+//
+//                int sum = 0;
+//                for (Object object : data) {
+//
+//                    Model_GioHang model = (Model_GioHang) object;
+//                    sum += model.getTongTien();
+//                    lbTongTien.setText(Double.toString(sum) + " VND");
+//
+//                }
+//
+//            } else {
+//                ((DefaultListModel) listGioHang1.getModel()).remove(selectedIndexGioHang);
+//                this.data.remove(indexDelete);
+//                this.sl.setText(Integer.toString(data.size()));
+//
+//                listGioHang1.repaint();
+//                int sum = 0;
+//                if(this.data.size()==0)
+//                {
+//                   lbTongTien.setText("0.00 "+ "VND");
+//
+//                }
+//                else
+//                {
+//                for (Object object : data) {
+//
+//                    Model_GioHang model = (Model_GioHang) object;
+//                    sum += model.getTongTien();
+//                    lbTongTien.setText(Double.toString(sum) + " VND");
+//
+//                }
+//                }
+//            }
+//
+//        } else {
+//            if (data.size() == 0) {
+//                JOptionPane.showMessageDialog(null, "Không có sản phẩm nào để xóa");
+//
+//            } else {
+//
+//                JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm cần xóa ");
+//            }
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -236,19 +237,19 @@ public class TableGioHang extends javax.swing.JPanel {
       }
       else
       {
-//        frame.setVisible(false);
-        Window win = SwingUtilities.getWindowAncestor(this);
-                JDialog inforDonHang= new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
-//        changePwdDialog.setUndecorated(true);
-          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
-          inforDonHang.setSize(750,600);
-            inforDonHang.setLayout(new GridLayout());
-            inforDonHang.setTitle("Thông tin đơn hàng");
-            inforDonHang.add(donhang);
-            donhang.validate();
-          inforDonHang.setLocationRelativeTo(null);
-                    inforDonHang.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            inforDonHang.setVisible(true);
+////        frame.setVisible(false);
+//        Window win = SwingUtilities.getWindowAncestor(this);
+//                JDialog inforDonHang= new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
+////        changePwdDialog.setUndecorated(true);
+//          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
+//          inforDonHang.setSize(750,600);
+//            inforDonHang.setLayout(new GridLayout());
+//            inforDonHang.setTitle("Thông tin đơn hàng");
+//            inforDonHang.add(donhang);
+//            donhang.validate();
+//          inforDonHang.setLocationRelativeTo(null);
+//                    inforDonHang.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+//            inforDonHang.setVisible(true);
 
       }
              

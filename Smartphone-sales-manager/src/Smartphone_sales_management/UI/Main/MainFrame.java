@@ -42,12 +42,13 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form TestFrame
      */
     public static int selectedIndex = -1;
+
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
-        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
+        MainConTentPhieuNhap a = new MainConTentPhieuNhap(this, jPanel1);
 //        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
@@ -79,8 +80,8 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 if (index == 1) {
-//                    MainContentBaoHanh a = new MainContentBaoHanh();
-                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+                    MainContentBaoHanh a = new MainContentBaoHanh();
+//                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
@@ -115,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 if (index == 3) {
 
-                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this,jPanel1);
+                    MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this, jPanel1);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -177,18 +178,18 @@ public class MainFrame extends javax.swing.JFrame {
 //       System.out.println("Vuong da vao");
 //   pack();
     }
+
     @Override
     public void paintComponents(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(new Color(152, 141, 172));
-        g2.fillRoundRect(0,0,getWidth(),getHeight(),15,15);
-        g2.fillRect(getWidth()-100, 10,getWidth(), getHeight());
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+        g2.fillRect(getWidth() - 100, 10, getWidth(), getHeight());
 
         super.paintComponents(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -285,7 +286,6 @@ public class MainFrame extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

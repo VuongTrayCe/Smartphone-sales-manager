@@ -5,6 +5,8 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyPhieuNhap_DAO;
+import Smartphone_sales_management.DTO.Model_PhieuNhap;
+import Smartphone_sales_management.DTO.Model_PhieuNhap_ChiTiet;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -16,20 +18,20 @@ public class QuanLyPhieuNhap_BUS {
 
     QuanLyPhieuNhap_DAO qlpn = new QuanLyPhieuNhap_DAO();
 
-    public ArrayList getDanhSachPhieuNhap(String keyWord) {
+    public ArrayList getDanhSachPhieuNhap(String keyWord, String tranngthai) {
         ArrayList dssp = new ArrayList();
         ArrayList dsspOfficial = new ArrayList<>();
         dssp = qlpn.getDanhSachPhieuNhap_DAO();
-        if (keyWord == "") {
+        if (keyWord == "" && tranngthai.equals("ALL")) {
             return dssp;
-        } else {
-
+        }
+        if (keyWord != "" && tranngthai.equals("ALL")) {
             for (Object x : dssp) {
                 Vector y = (Vector) x;
                 String mapn = Integer.toString((int) y.get(1));
-                System.out.println(mapn);
+                String tenncc = y.get(3).toString();
 //                String name = (String) y.get(1);
-                if (mapn.contains(keyWord)) {
+                if (mapn.contains(keyWord) || tenncc.contains(keyWord)) {
                     {
                         dsspOfficial.add(y);
                     }
@@ -38,6 +40,28 @@ public class QuanLyPhieuNhap_BUS {
             }
             return dsspOfficial;
         }
+        if (tranngthai.equals("ALL") != true) {
+            dssp = qlpn.getALLPhieuNhapTheoTrangThai(tranngthai);
+
+            if (keyWord == "") {
+                return dssp;
+            } else {
+                for (Object x : dssp) {
+                    Vector y = (Vector) x;
+                    String mapn = Integer.toString((int) y.get(1));
+                    String tenncc = y.get(3).toString();
+//                String name = (String) y.get(1);
+                    if (mapn.contains(keyWord) || tenncc.contains(keyWord)) {
+                        {
+                            dsspOfficial.add(y);
+                        }
+
+                    }
+                }
+            }
+        }
+        return dsspOfficial;
+
     }
 
     public ArrayList getChiTietPhieuNhap(int Mapn) {
@@ -60,6 +84,19 @@ public class QuanLyPhieuNhap_BUS {
         dssp = qlpn.getALLSanPham(mancc);
         return dssp;
 
+    }
+
+    public int AddPhieuNhapHang(Model_PhieuNhap modelPhieuNhap) {
+        return qlpn.AddPhieuNhapHang(modelPhieuNhap);
+    }
+
+    public void AddChiTietPhieuNhap(Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet) {
+
+        qlpn.AddChiTietPhieuNhap(model_PhieuNhap_ChiTiet);
+    }
+
+    public Boolean UpdateTrangThai(int Mapn, String trangthai) {
+        return qlpn.UpdatePhieuNhap(Mapn,trangthai);
     }
 
 }

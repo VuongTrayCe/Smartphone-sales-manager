@@ -9,6 +9,6 @@ package Smartphone_sales_management.UI.Event.PhieuNhap;
  * @author Vuong
  */
 public interface EventPhieuNhap {
-        public int infor(int Mapn,String ngaynhap,String tenncc);
+        public int infor(int Mapn,String ngaynhap,String tenncc,String trangthai);
 
 }

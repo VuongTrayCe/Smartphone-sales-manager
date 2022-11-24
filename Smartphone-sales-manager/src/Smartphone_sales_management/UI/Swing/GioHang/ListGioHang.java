@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Swing.GioHang;
 
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import Smartphone_sales_management.UI.Model.Model_Menu;
 import Smartphone_sales_management.UI.Swing.Menu.MenuItem;
@@ -32,7 +33,7 @@ public class ListGioHang<E extends Object> extends JList<E> {
         setModel(model);
     }
     // Thêm một phần tử vào model JList
-    public void addItem(Model_GioHang data) {
+    public void addItem(Model_BanHang_ChiTietHoaDon data) {
         model.addElement(data);
     }
 
@@ -43,14 +44,16 @@ public class ListGioHang<E extends Object> extends JList<E> {
    public Component getListCellRendererComponent(JList<?> list, Object o,int index ,boolean isSelected,boolean cellHasFocus)
            {
                 try {
-                    Model_GioHang  data ;
-                    if (o instanceof Model_GioHang)
+                    Model_BanHang_ChiTietHoaDon  data ;
+                    if (o instanceof Model_BanHang_ChiTietHoaDon)
                     {
-                        data= (Model_GioHang) o;
+                        data= (Model_BanHang_ChiTietHoaDon) o;
                     }
                     else
                     {
-                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"",0,"",0,0,0);
+                        data = new Model_BanHang_ChiTietHoaDon(0, 0,0,"",0,0,0,0,"",0,"");
+
+//                        data = new Model_GioHang("","",1,o+"",Model_GioHang.GioHangType.EMPTY,"",0,"",0,0,0);
                     }
                     GioHangItem item;
                     if(selectedIndexGioHang==index)

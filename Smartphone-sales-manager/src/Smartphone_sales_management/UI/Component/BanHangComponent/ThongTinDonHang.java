@@ -6,8 +6,9 @@ package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
-import Smartphone_sales_management.UI.Model.Model_GioHang;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -27,6 +28,8 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import static Smartphone_sales_management.UI.Main.MainFrame.manv;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,28 +41,31 @@ public class ThongTinDonHang extends javax.swing.JPanel {
      * Creates new form ThongTinDonHang
      */
     DefaultTableModel model = new DefaultTableModel();
-    
-    private ArrayList<Model_GioHang> data;
+
+    private ArrayList<Model_BanHang_ChiTietHoaDon> data;
     private ArrayList<Object> danhsachkhachhang;
     private ArrayList<Object> danhsachsanpham;
+    private int diemdadung;
+    private int diemthuong;
     JDialog inforDonHangDialog;
     QuanLyBanHang_BUS qlbh_bus = new QuanLyBanHang_BUS();
-    JPanel a;
+    MainFrame a;
     LocalDateTime now;
     int SL = 0;
     int TT = 0;
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     int giasaukm = 0;
     int diem;
-    
-    public ThongTinDonHang(ArrayList<Model_GioHang> data, JPanel a, JDialog inforDonHang) {
+    MainConTentBanHang panelbanhang;
+
+    public ThongTinDonHang(ArrayList<Model_BanHang_ChiTietHoaDon> data,MainFrame a, JDialog inforDonHang,MainConTentBanHang panelbanhang) {
         initComponents();
         this.data = data;
         this.a = a;
         this.inforDonHangDialog = inforDonHang;
-        
-        Model_GioHang tets = data.get(0);
-        System.out.println(tets.getMakhuyenmai());
+        this.panelbanhang=panelbanhang;
+
+        Model_BanHang_ChiTietHoaDon tets = data.get(0);
         danhsachkhachhang = qlbh_bus.getALLKhachHang();
         btnComplete.setBackground(new Color(255, 255, 255));
         btnComplete.setBorder(null);
@@ -73,7 +79,6 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         LoadInforData();
         model.addColumn("STT");
         model.addColumn("Tên sản phẩm");
-        model.addColumn("Loại");
         model.addColumn("Giá tiền");
         model.addColumn("Số lượng");
         model.addColumn("Khuyến mãi");
@@ -84,7 +89,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        
+
         SetDefautlTable();
         jTable1.setModel(model);
         jScrollPane1.setMaximumSize(new Dimension(1000, 50));
@@ -96,18 +101,18 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     public void LoadInforData() {
         for (Object khachhang : danhsachkhachhang) {
             Vector a = (Vector) khachhang;
-            cbbKhachHang.addItem((a.get(0)).toString());
+            cbbKhachHang.addItem((a.get(1)).toString());
         }
         Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
-        cbDiem.setText(b.get(1).toString());
-        diem = (int) b.get(1);
+        cbDiem.setText(b.get(2).toString());
+        diem = (int) b.get(2);
         // Load thông tin dữ liệu
         // set giá sau khi áp dụng khuyến mãi
         giasaukm = 0;
-        for (Model_GioHang model_GioHang : data) {
-            giasaukm += (model_GioHang.getKhuyenmai() * 1.0 / 100) * model_GioHang.getTongTien();
-            SL += model_GioHang.getSoluong();
-            TT += model_GioHang.getTongTien();
+        for (Model_BanHang_ChiTietHoaDon model_ChiTietHoaDon : data) {
+            giasaukm += model_ChiTietHoaDon.getGiasaukm();
+            SL += model_ChiTietHoaDon.getSoluong();
+            TT += model_ChiTietHoaDon.getTongTien();
 //           cbbSanPham.addItem(model_GioHang.getName());
         }
         this.now = LocalDateTime.now();
@@ -122,30 +127,29 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 //                    giasaukm +=Integer.parseInt(cbDiem.getText());
         lbTongTienThanhToan.setText(String.valueOf(giasaukm));
     }
-    
+
     public void SetDefautlTable() {
-        
+
         jTable1.removeAll();
         model.setRowCount(0);
         int i = 1;
-        for (Model_GioHang model_GioHang : data) {
+        for (Model_BanHang_ChiTietHoaDon model_BanHang_ChiTietHoaDons : data) {
             Vector a = new Vector();
             a.add(i);
-            a.add(model_GioHang.getName());
-            a.add(model_GioHang.getLoai());
-            a.add(model_GioHang.getGiatien());
-            a.add(model_GioHang.getSoluong());
-            a.add(model_GioHang.getKhuyenmai() + " %");
-            a.add(model_GioHang.getBaohanh());
+            a.add(model_BanHang_ChiTietHoaDons.getTensp());
+            a.add(model_BanHang_ChiTietHoaDons.getGiaban());
+            a.add(model_BanHang_ChiTietHoaDons.getSoluong());
+            a.add(model_BanHang_ChiTietHoaDons.getPhantramkhuyenmai() + " %");
+            a.add(model_BanHang_ChiTietHoaDons.getThoigianbaohanh());
             model.addRow(a);
             i += 1;
-            
+
         }
         jScrollPane1.setLayout(new ScrollPaneLayout());
-        
+
         jScrollPane1.repaint();
     }
-    
+
     ThongTinDonHang() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -464,21 +468,39 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        
+
         this.inforDonHangDialog.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         Model_BanHang_HoaDon hoadon = new Model_BanHang_HoaDon();
-        int Makh = qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString());
-        hoadon.setMakh(WIDTH);
-        hoadon.setManv(0);
-        hoadon.setTime(now);
-        hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
+        int indexmakh = cbbKhachHang.getSelectedIndex();
+        Vector vectorKhachHang = (Vector) danhsachkhachhang.get(indexmakh);
+        int Makh =Integer.parseInt(vectorKhachHang.get(0).toString());
+        for (Model_BanHang_ChiTietHoaDon model_BanHang_ChiTietHoaDon : data) {
+            diemthuong+=model_BanHang_ChiTietHoaDon.getSoluong()*100000;         
+        }
+        System.out.println(Makh);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatDateTime = now.format(format);
+        hoadon.setMakh(Makh);
+        TT=TT-diemdadung;
+        hoadon.setDiemapdung(diemdadung);
+        hoadon.setManv(manv);
+        hoadon.setNgayban(formatDateTime);
+        hoadon.setSoluong(Integer.parseInt(lbSoLuong.getText()));
         hoadon.setTongtien(TT);
-        
-        qlbh_bus.InsertDonHang(hoadon, data);
+        hoadon.setDiemthuong(diemthuong);
+
+        int madh = qlbh_bus.InsertDonHang(hoadon);
+        for (Model_BanHang_ChiTietHoaDon object :data) {
+            object.setMadh(madh);
+            qlbh_bus.AddChiTietDonHang(object);      
+        }
+        JOptionPane.showMessageDialog(null,"Đã tạo đơn hàng thành công");
+        inforDonHangDialog.dispose();
+        panelbanhang.SetDefaultInit();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompleteActionPerformed
 
@@ -501,34 +523,37 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiemActionPerformed
-        
+
         int gia = giasaukm;
         gia -= diem;
-        
+
         if (cbDiem.isSelected()) {
             if (gia > 0) {
 //                gia -= Integer.parseInt(cbDiem.getText());
                 lbTongTienThanhToan.setText(String.valueOf(gia));
                 cbDiem.setText(cbDiem.getText() + "/" + cbDiem.getText());
+                diemdadung=diem;
             } else {
                 int x = Math.abs(gia);
-                cbDiem.setText(String.valueOf(diem-x) + "/" + String.valueOf(diem));
+                cbDiem.setText(String.valueOf(diem - x) + "/" + String.valueOf(diem));
                 lbTongTienThanhToan.setText("0 VND");
+                this.diemdadung=diem-x;
             }
         } else {
-            
+
             lbTongTienThanhToan.setText(String.valueOf(giasaukm) + " VND");
             cbDiem.setText(String.valueOf(diem));
+            this.diemdadung=0;
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDiemActionPerformed
 
     private void cbbKhachHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbKhachHangItemStateChanged
-        
+
         Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
-        cbDiem.setText(b.get(1).toString());
-        diem=(int) b.get(1);
+        cbDiem.setText(b.get(2).toString());
+        diem = (int) b.get(2);
         cbDiem.setSelected(false);
 
     }//GEN-LAST:event_cbbKhachHangItemStateChanged

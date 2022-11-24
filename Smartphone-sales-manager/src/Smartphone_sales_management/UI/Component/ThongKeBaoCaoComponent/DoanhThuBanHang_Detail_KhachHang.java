@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class DoanhThuBanHang_Detail_KhachHang extends javax.swing.JPanel {
     /**
      * Creates new form DoanhThuBanHang_Detail_KhachHang
      */
-     ThongKeBaoCao_BUS tkbc = new ThongKeBaoCao_BUS();
+     ThongKeBaoCaoBanHang_BUS tkbc = new ThongKeBaoCaoBanHang_BUS();
 
     DefaultTableModel model;
     private String makh;

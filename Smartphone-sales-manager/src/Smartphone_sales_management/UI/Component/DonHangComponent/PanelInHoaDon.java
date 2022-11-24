@@ -7,6 +7,7 @@ package Smartphone_sales_management.UI.Component.DonHangComponent;
 import Smartphone_sales_management.DTO.Model_DonHang;
 import java.awt.print.PrinterException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,8 @@ public class PanelInHoaDon extends javax.swing.JPanel {
     int i = 1;
     double total = 0;
     String tongtien = "";
+    String tenkhachhang="";
+    String ngaybandonhang="";
     JFrame frame;
     //y.get(1).toString() teen san pham
     //y.get(3).toString() so luong
@@ -57,9 +60,15 @@ public class PanelInHoaDon extends javax.swing.JPanel {
             dulieudonhang += data;
             total += subtotal;
             String tong = String.valueOf(total);
+            String tenKH = y.get(11).toString();
+            Date ngayBan = (Date) y.get(12);
+            ngaybandonhang=ngayBan.toString();
             tongtien = tong;
+            tenkhachhang=tenKH;
         };
-        textReceipt.append("\t\t\t Hóa đơn \t" + Madonhang
+        textReceipt.append("\t\t\t Hóa đơn \t" + Madonhang+
+                "\n Tên Khách Hàng: \t"+tenkhachhang+
+                "\n Ngày bán: \t\t"+ngaybandonhang
                 + "\n\n=============================================================================================\n"
                 + dulieudonhang + "\n"
                 + "Tổng tiền\t\t\t" + tongtien

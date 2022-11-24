@@ -28,16 +28,19 @@ public class TablePhieuNhap extends javax.swing.JPanel {
     DefaultTableModel model = new DefaultTableModel();
     EventPhieuNhap event;
     String trangthai;
+    ArrayList dataList;
+    MainConTentPhieuNhap mainframe;
 
-    public TablePhieuNhap(String trangthai) {
+    public TablePhieuNhap(String trangthai,MainConTentPhieuNhap mainframe) {
         initComponents();
+        this.mainframe=mainframe;
         model.addColumn("STT");
-        model.addColumn("Maphieunhap");
-        model.addColumn("NgayNhap");
-        model.addColumn("Nhacungcap");
-        model.addColumn("SoLuong");
-        model.addColumn("TongTien");
-        model.addColumn("Trangthai");
+        model.addColumn("Mã Phiếu Nhập");
+        model.addColumn("Ngày Nhập");
+        model.addColumn("Nhà Cung Cấp");
+        model.addColumn("Số Lượng");
+        model.addColumn("Tổng Tiền");
+        model.addColumn("Trạng Thái");
 
         this.trangthai = trangthai;
         jTable1.setOpaque(false);
@@ -48,6 +51,7 @@ public class TablePhieuNhap extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefautlTable("", trangthai);
         jTable1.setModel(model);
+
     }
 
     public void addEventPhieuNhap(EventPhieuNhap event) {
@@ -59,8 +63,8 @@ public class TablePhieuNhap extends javax.swing.JPanel {
                 int mapn = (int) jTable1.getValueAt(index, 1);
                 String ngaynhap = (String) jTable1.getValueAt(index, 2);
                 String tenncc = (String) jTable1.getValueAt(index, 3);
-                String trangthai = (String) jTable1.getValueAt(index,6);
-                event.infor(mapn, ngaynhap, tenncc,trangthai);
+                String trangthai = (String) jTable1.getValueAt(index, 6);
+                event.infor(mapn, ngaynhap, tenncc, trangthai);
             }
         ;
     }
@@ -72,12 +76,14 @@ public class TablePhieuNhap extends javax.swing.JPanel {
 
         jTable1.removeAll();
         model.setRowCount(0);
-        ArrayList dataList = new ArrayList<>();
+        dataList = new ArrayList<>();
         dataList = qlpn.getDanhSachPhieuNhap(keyWord, trangthai);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
         jScrollPane1.repaint();
+                        mainframe.setXuatExcel(dataList);
+
     }
 
     /**

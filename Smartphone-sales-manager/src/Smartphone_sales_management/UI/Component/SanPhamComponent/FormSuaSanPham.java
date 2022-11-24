@@ -731,6 +731,9 @@ public class FormSuaSanPham extends javax.swing.JPanel {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         if (checkData()) {
             boolean check = true;
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            String ngayTao = (String) dateFormat.format(date);
             Model_SanPham model = new Model_SanPham();
             model.setMasp(Integer.parseInt(txtMasp.getText()));
             model.setTenSp(txtTensp.getText());
@@ -746,6 +749,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
             model.setMakm(Integer.parseInt(txtMakm.getText()));
             model.setMabh(Integer.parseInt(txtMabh.getText()));
             model.setMancc(Integer.parseInt(txtmancc.getText()));
+            model.setNgayTao(ngayTao);
             
             QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
             if (qlsp_BUS.suaSP(model)) {

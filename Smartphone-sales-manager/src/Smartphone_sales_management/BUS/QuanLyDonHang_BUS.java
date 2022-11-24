@@ -109,14 +109,24 @@ public class QuanLyDonHang_BUS {
         }
     }
 
-    public void tinhDiemChoKhachHang(int Madh) {
+    public void tinhDiemChoKhachHangKhiHoanThanh(int Madh) {
         int Makh = qldh.layMakhTheoMadh(Madh);
         int Diemso = qldh.layDiemTheoMakh(Makh);
         ArrayList diem = qldh.layDADvaDT(Madh);
         int diemAD = (int) diem.get(0);
         int diemThuong = (int) diem.get(1);
         int diemKH = Diemso + diemThuong - diemAD;
+        System.out.println(diemKH);
         qldh.updateDiemKH(Makh, diemKH);
+    }
+    
+    public void tinhDiemChoKhachHangKhiHuy(int Madh) {
+        int Makh = qldh.layMakhTheoMadh(Madh);
+        int Diemso = qldh.layDiemTheoMakh(Makh);
+        ArrayList diem = qldh.layDADvaDT(Madh);
+       int diemAD = (int) diem.get(0);
+       int diemKH = Diemso + diemAD;
+       qldh.updateDiemKH(Makh, diemKH);
     }
 
     public int laySoLuongctdh(int Madh) {

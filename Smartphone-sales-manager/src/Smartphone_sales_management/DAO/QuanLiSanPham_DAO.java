@@ -18,10 +18,10 @@ import java.util.Vector;
  * @author Admin
  */
 public class QuanLiSanPham_DAO {
-
+    
     DBConnect db = new DBConnect();
     ResultSet rs = null;
-
+    
     public ArrayList layDanhSachSanPham() {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
@@ -49,7 +49,7 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
-
+    
     public ArrayList layDanhSachSanPhamTheoTrangThai(String tenTrangThai) {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
@@ -78,14 +78,14 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
-
+    
     public ArrayList layDanhSachChiTietSanPham(int Masp) {
         ArrayList result = new ArrayList();
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp, giasanpham.Giaban, sanpham.soluong, sanpham.MauSac, sanpham.Namsx, baohanh.Thoigianbaohanh, khuyenmai.Ptkm,sanpham.TrangThai,sanpham.ThongSo,sanpham.Icon,khuyenmai.Makm,baohanh.Mabaohanh,khuyenmai.Tenkm,sanpham.Loaisp,sanpham.Mancc,nhacungcap.Tenncc,giasanpham.Gianhap\n "
                     + "FROM sanpham\n "
-                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.Masp = ?\n "
+                    + "INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND giasanpham.TrangThai = \"T\" AND sanpham.Masp = ?\n "
                     + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp AND chitietbaohanh.TrangThai = \"T\"\n "
                     + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n "
                     + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n "
@@ -116,15 +116,15 @@ public class QuanLiSanPham_DAO {
                 }
             }
             return result;
-
+            
         } catch (Exception e) {
             return null;
         } finally {
             db.closeConnection();
         }
-
+        
     }
-
+    
     public ArrayList layMadh() {
         ArrayList result = new ArrayList();
         db.setupConnection();
@@ -145,7 +145,7 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
-
+    
     public ArrayList layMadh2(String tenTrangThai) {
         ArrayList result = new ArrayList();
         db.setupConnection();
@@ -168,7 +168,7 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
-
+    
     public int themSanPham(Model_SanPham model) throws SQLException {
         int id = 1;
         Boolean success;
@@ -204,7 +204,7 @@ public class QuanLiSanPham_DAO {
         }
         return 0;
     }
-
+    
     public void xoaSP(int maSp) {
         db.setupConnection();
         try {
@@ -212,14 +212,14 @@ public class QuanLiSanPham_DAO {
                     + "SET sanpham.TrangThai = \"F\" WHERE sanpham.Masp = ?;");
             stm.setInt(1, maSp);
             stm.executeUpdate();
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             db.closeConnection();
         }
     }
-
+    
     public boolean suaSP(Model_SanPham model) {
         db.setupConnection();
         boolean success = true;
@@ -267,14 +267,13 @@ public class QuanLiSanPham_DAO {
     }
 
 // Sua gia san pham 
-    public boolean suaGiasp(Model_SanPham model) {
+    public boolean suaGiasp(int Mactgia) {
         boolean success = true;
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("UPDATE giasanpham\n"
-                    + "SET giasanpham.Giaban = ? WHERE giasanpham.Masp = ?");
-            stm.setDouble(1, model.getGia());
-            stm.setInt(2, model.getMasp());
+                    + "SET giasanpham.TrangThai = \"F\" WHERE giasanpham.Magiasp = ?");
+            stm.setInt(1,Mactgia);
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -350,7 +349,7 @@ public class QuanLiSanPham_DAO {
         }
         return null;
     }
-
+    
     public void themKM(int Masp, Model_SanPham model) {
         db.setupConnection();
         try {
@@ -390,7 +389,7 @@ public class QuanLiSanPham_DAO {
         }
         return null;
     }
-
+    
     public void themBH(int Masp, Model_SanPham model) {
         db.setupConnection();
         try {
@@ -405,7 +404,7 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
-
+    
     public ArrayList getALLSanPham() {
         ArrayList result = new ArrayList<>();
         db.setupConnection();
@@ -424,7 +423,7 @@ public class QuanLiSanPham_DAO {
         }
         return result;
     }
-
+    
     public ArrayList layDSNCC() {
         ArrayList result = new ArrayList();
         db.setupConnection();
@@ -448,4 +447,52 @@ public class QuanLiSanPham_DAO {
             db.closeConnection();
         }
     }
+    
+    public ArrayList layDSgia() {
+        ArrayList dsgia = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT giasanpham.Masp, giasanpham.TrangThai\n"
+                    + "FROM giasanpham");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Vector a = new Vector();
+                    a.add(rs.getInt(1));
+                    a.add(rs.getString(2));
+                    dsgia.add(a);
+                }
+            }
+            return dsgia;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+    
+    public int layCTgia(Model_SanPham model) {
+        int id = -1;
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT giasanpham.Magiasp\n"
+                    + "FROM giasanpham \n"
+                    + "WHERE giasanpham.Masp = ? AND giasanpham.TrangThai = \"T\"");
+            stm.setInt(1,model.getMasp());
+            rs = stm.executeQuery();
+            if(rs!=null) {
+                while(rs.next()) {
+                    id = rs.getInt(1);
+                }
+            }
+            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        } finally{
+            db.closeConnection();
+        }
+    }
+    
 }

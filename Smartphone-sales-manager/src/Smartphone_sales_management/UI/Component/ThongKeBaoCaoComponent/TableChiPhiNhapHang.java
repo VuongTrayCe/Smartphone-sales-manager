@@ -4,7 +4,8 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoNhapHang_BUS;
 import Smartphone_sales_management.UI.Event.ThongKe.AddXemChiTiet;
 import java.awt.Color;
 import java.awt.Font;
@@ -28,7 +29,7 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
      * Creates new form TableChiPhiNhapHang
      */
     AddXemChiTiet event;
-    ThongKeBaoCao_BUS tkbc = new ThongKeBaoCao_BUS();
+    ThongKeBaoCaoNhapHang_BUS tkbc = new ThongKeBaoCaoNhapHang_BUS();
     DefaultTableModel model;
     private String type;
     private String hinhthuc;

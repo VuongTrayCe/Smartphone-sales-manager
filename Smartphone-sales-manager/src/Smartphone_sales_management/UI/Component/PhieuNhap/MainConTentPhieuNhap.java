@@ -54,6 +54,7 @@ public class MainConTentPhieuNhap extends JPanel {
     TableChiTietPhieuNhap c;
     TableGioHang b;
     JPanel panelCenter;
+    TablePhieuNhap a;
 
     public MainConTentPhieuNhap(MainFrame frame, JPanel panelCenter) {
         initComponents();
@@ -61,7 +62,7 @@ public class MainConTentPhieuNhap extends JPanel {
         this.panelCenter = panelCenter;
 //        TableDetailBH c = new TableDetailBH(index);
 //
-        TablePhieuNhap a = new TablePhieuNhap();
+        a = new TablePhieuNhap(cbbTrangThai.getSelectedItem().toString());
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
 
         jScrollPane1.setViewportView(a);
@@ -79,14 +80,14 @@ public class MainConTentPhieuNhap extends JPanel {
 //        // Hiển thị bảng chi tiết khi click sản phẩm từ bảng
         a.addEventPhieuNhap(new EventPhieuNhap() {
             @Override
-            public int infor(int Mapn, String ngaynhap, String tenncc) {
-
-                c = new TableChiTietPhieuNhap(Mapn, ngaynhap, tenncc, frame);
+            public int infor(int Mapn, String ngaynhap, String tenncc, String trangthai) {
 
                 JDialog inforDonHang = new JDialog();
+                c = new TableChiTietPhieuNhap(a, inforDonHang, Mapn, ngaynhap, tenncc, frame, trangthai);
+
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
-                inforDonHang.setSize(726, 588);
+                inforDonHang.setSize(826, 600);
                 inforDonHang.setLayout(new GridLayout());
                 inforDonHang.setTitle("Chi Tiết Phiếu Nhập");
                 inforDonHang.add(c);
@@ -102,18 +103,18 @@ public class MainConTentPhieuNhap extends JPanel {
             @Override
             public void changedUpdate(DocumentEvent e) {
 
-                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText(), cbbTrangThai.getSelectedItem().toString());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText(), cbbTrangThai.getSelectedItem().toString());
 
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                a.SetDefautlTable(txtTimKiem.getText());
+                a.SetDefautlTable(txtTimKiem.getText(), cbbTrangThai.getSelectedItem().toString());
 
             }
         });
@@ -136,6 +137,8 @@ public class MainConTentPhieuNhap extends JPanel {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbbTrangThai = new javax.swing.JComboBox<>();
         jPanel7 = new GraphicsPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
 
@@ -184,6 +187,24 @@ public class MainConTentPhieuNhap extends JPanel {
         jButton2.setText("Xuất Excel");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setOpaque(true);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Trạng Thái");
+
+        cbbTrangThai.setBackground(new java.awt.Color(0, 0, 0));
+        cbbTrangThai.setForeground(new java.awt.Color(255, 255, 255));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Đang Xử Lý", "Hoàn Thành", "Đã Hủy" }));
+        cbbTrangThai.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbTrangThaiItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -193,15 +214,21 @@ public class MainConTentPhieuNhap extends JPanel {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 557, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                        .addComponent(jLabel4)
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +245,10 @@ public class MainConTentPhieuNhap extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -302,10 +332,23 @@ public class MainConTentPhieuNhap extends JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cbbTrangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTrangThaiItemStateChanged
+
+        a.SetDefautlTable(txtTimKiem.getText(), cbbTrangThai.getSelectedItem().toString());
+// TODO add your handling code here:
+    }//GEN-LAST:event_cbbTrangThaiItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+             
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

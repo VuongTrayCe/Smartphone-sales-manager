@@ -5,7 +5,7 @@
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
-import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
 import Smartphone_sales_management.UI.Event.ThongKe.AddXemChiTiet;
 import java.awt.Color;
 import java.awt.Font;
@@ -28,7 +28,7 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
     /**
      * Creates new form TableBanHang_TheoHangHoa
      */
-    ThongKeBaoCao_BUS tkbc = new ThongKeBaoCao_BUS();
+    ThongKeBaoCaoBanHang_BUS tkbc = new ThongKeBaoCaoBanHang_BUS();
 
     DefaultTableModel model;
     private String type;

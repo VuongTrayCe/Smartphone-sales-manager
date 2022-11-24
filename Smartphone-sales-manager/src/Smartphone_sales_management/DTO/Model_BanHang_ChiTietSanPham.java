@@ -14,7 +14,7 @@ public class Model_BanHang_ChiTietSanPham {
     private int sl;
     private String namsx;
     private String tenncc;
-    private Double giaban;
+    private double giaban;
     private String chitiet;
     private String icon;
     private int ptkm;
@@ -22,6 +22,33 @@ public class Model_BanHang_ChiTietSanPham {
     private int masp;
     private int makm;
     private int mabh;
+    private int machitietkhuyenmai;
+    private int machitietbaohanh;
+    private int magiasanpham;
+
+    public void setMagiasanpham(int magiasanpham) {
+        this.magiasanpham = magiasanpham;
+    }
+
+    public int getMagiasanpham() {
+        return magiasanpham;
+    }
+
+    public void setMachitietkhuyenmai(int machitietkhuyenmai) {
+        this.machitietkhuyenmai = machitietkhuyenmai;
+    }
+
+    public void setMachitietbaohanh(int machitietbaohanh) {
+        this.machitietbaohanh = machitietbaohanh;
+    }
+
+    public int getMachitietkhuyenmai() {
+        return machitietkhuyenmai;
+    }
+
+    public int getMachitietbaohanh() {
+        return machitietbaohanh;
+    }
 
     public void setMasp(int masp) {
         this.masp = masp;
@@ -115,8 +142,8 @@ public class Model_BanHang_ChiTietSanPham {
         return tenncc;
     }
 
-    public Double getGiaban() {
-        return giaban;
+    public int getGiaban() {
+        return (int)giaban;
     }
 
     public String getChitiet() {

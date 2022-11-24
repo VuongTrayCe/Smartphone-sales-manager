@@ -5,8 +5,11 @@
 package Smartphone_sales_management.UI.Component.PhieuNhap;
 
 import Smartphone_sales_management.BUS.QuanLyPhieuNhap_BUS;
+import Smartphone_sales_management.DTO.Model_PhieuNhap_ChiTiet;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,11 +25,18 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
     private ArrayList<Object> danhsachsanpham;
     QuanLyPhieuNhap_BUS qlpn = new QuanLyPhieuNhap_BUS();
     private int mancc;
+    int mapn;
+    ArrayList<Model_PhieuNhap_ChiTiet> data;
+    JDialog c;
+    PanelThemPhieuNhapHang frame;
 
-    public PanelAddSanPhamPhieuNhap(ArrayList dataphieunhap, int mancc) {
+    public PanelAddSanPhamPhieuNhap(int mancc, ArrayList datachitietphieunhap, int mapn, JDialog c, PanelThemPhieuNhapHang frame) {
         initComponents();
-        this.dataphieunhap = dataphieunhap;
         this.mancc = mancc;
+        this.data = datachitietphieunhap;
+        this.mapn = mapn;
+        this.c = c;
+        this.frame = frame;
         DisplayDetailPhieuNhap();
     }
 
@@ -35,6 +45,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
         ArrayList data = new ArrayList();
 
         data = qlpn.getALLSanPham(this.mancc);
+        danhsachsanpham=data;
         for (Object sanpham : data) {
             Vector a = (Vector) sanpham;
             cbbSanPham.addItem((a.get(1)).toString());
@@ -42,6 +53,21 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
 //        lbMaPhieuNhap.setText(Integer.toString(Mapn));
 //        lbNgayNhap.setText(ngaynhap);
 //        lbNhaCungCap.setText(tenncc);
+    }
+
+    private boolean checkInfor() {
+        Boolean flag = true;
+        if (txtGiaNhap.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập giá nhập");
+
+            flag = false;
+        }
+        if (jSoluong.getValue().toString().equals("0")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng");
+            flag = false;
+
+        }
+        return flag;
     }
 
     /**
@@ -57,7 +83,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jSoluong = new javax.swing.JSpinner();
         txtGiaNhap = new javax.swing.JTextField();
         cbbSanPham = new javax.swing.JComboBox<>();
         btnAddSanPham = new javax.swing.JButton();
@@ -77,6 +103,11 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAdd.setText("Thêm Vào");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Bảng Chọn Sản Phẩm");
@@ -102,7 +133,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cbbSanPham, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addComponent(btnAddSanPham))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -128,7 +159,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -146,6 +177,24 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        if (checkInfor() == true) {
+            int indexcbbsanpham = cbbSanPham.getSelectedIndex();
+            Vector Row = (Vector) danhsachsanpham.get(indexcbbsanpham);
+            int masp = (int) Row.get(0);
+            String tensp = cbbSanPham.getSelectedItem().toString();
+            int soluong = Integer.parseInt(jSoluong.getValue().toString());
+            int gianhap = Integer.parseInt(txtGiaNhap.getText());
+            Model_PhieuNhap_ChiTiet modelRow = new Model_PhieuNhap_ChiTiet(masp, tensp, -1, gianhap, soluong);
+            data.add(modelRow);
+            frame.DisplayDetailPhieuNhap();
+            c.dispose();
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -156,7 +205,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSoluong;
     private javax.swing.JTextField txtGiaNhap;
     // End of variables declaration//GEN-END:variables
 }

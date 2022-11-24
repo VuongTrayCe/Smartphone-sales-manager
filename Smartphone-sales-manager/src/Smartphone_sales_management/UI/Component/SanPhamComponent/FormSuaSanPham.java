@@ -35,15 +35,18 @@ public class FormSuaSanPham extends javax.swing.JPanel {
     String tenTrangThai;
     DefaultComboBoxModel modelkm = new DefaultComboBoxModel();
     DefaultComboBoxModel modelbh = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelncc = new DefaultComboBoxModel();
     int countkm = 0;
     int countbh = 0;
+    int countncc = 0;
+    int resultncc = 0;
     int resultkm = 0;
     int resultbh = 0;
 
     /**
      * Creates new form FormSuaSanPham
      */
-    public FormSuaSanPham(JFrame frame, TableSanPham sanpham, ArrayList data,String tenTrangThai) {
+    public FormSuaSanPham(JFrame frame, TableSanPham sanpham, ArrayList data, String tenTrangThai) {
         initComponents();
         this.frame = frame;
         this.sanpham = sanpham;
@@ -51,8 +54,10 @@ public class FormSuaSanPham extends javax.swing.JPanel {
         this.tenTrangThai = tenTrangThai;
         ArrayList dskm = new ArrayList();
         ArrayList dsbh = new ArrayList();
+        ArrayList dsncc = new ArrayList();
         dsbh = qlsp_BUS.layDanhSachBH();
         dskm = qlsp_BUS.layDanhSachKM();
+        dsncc = qlsp_BUS.layDSNCC();
         for (Object x : dskm) {
             Vector y = (Vector) x;
             String tenKM = (String) y.get(0);
@@ -72,10 +77,21 @@ public class FormSuaSanPham extends javax.swing.JPanel {
             countbh += 1;
             modelbh.addElement(tentgbh);
         }
+        for (Object x2 : dsncc) {
+            Vector y2 = (Vector) x2;
+            String tenncc = (String) y2.get(1);
+            if (tenncc.equals(dataCTSP.get(16).toString())) {
+                resultncc = countncc;
+            }
+            countncc += 1;
+            modelncc.addElement(tenncc);
+        }
         cbbBaoHanh.setModel(modelbh);
         cbbkm.setModel(modelkm);
+        cbbncc.setModel(modelncc);
         cbbBaoHanh.setSelectedIndex(resultbh);
         cbbkm.setSelectedIndex(resultkm);
+        cbbncc.setSelectedIndex(resultncc);
         setData(dataCTSP);
     }
 
@@ -630,7 +646,7 @@ public class FormSuaSanPham extends javax.swing.JPanel {
         txtNamsx.setText(data.get(5).toString());//Nam sx
         txtTrangThai.setText(data.get(8).toString());//TrangThai
         txtGia.setText(data.get(2).toString());//Gia
-//        txtGianhap.setText(data.get)
+        txtGianhap.setText(data.get(17).toString());
 //        cbbkm.setModel();
 //        txtPTKM.setText();
 //        txtMakm.setText();
@@ -726,8 +742,11 @@ public class FormSuaSanPham extends javax.swing.JPanel {
             model.setIcon(txtIcon.getText());
             model.setThongSo(txtThongso.getText());
             model.setGia(Double.parseDouble(txtGia.getText()));
+            model.setGianhap(Double.parseDouble(txtGianhap.getText()));
             model.setMakm(Integer.parseInt(txtMakm.getText()));
             model.setMabh(Integer.parseInt(txtMabh.getText()));
+            model.setMancc(Integer.parseInt(txtmancc.getText()));
+            
             QuanLiSanPham_BUS qlsp_BUS = new QuanLiSanPham_BUS();
             if (qlsp_BUS.suaSP(model)) {
                 check = true;
@@ -788,7 +807,10 @@ public class FormSuaSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_cbbBaoHanhActionPerformed
 
     private void cbbnccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbnccActionPerformed
-        // TODO add your handling code here:
+        ArrayList dsncc1 = new ArrayList();
+        dsncc1 = qlsp_BUS.layDSNCC();
+        Vector data = (Vector) dsncc1.get(cbbncc.getSelectedIndex());
+        txtmancc.setText(data.get(0).toString());// TODO add your handling code here:
     }//GEN-LAST:event_cbbnccActionPerformed
 
 

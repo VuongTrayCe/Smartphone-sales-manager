@@ -60,7 +60,9 @@ public class QuanLyDonHang_BUS {
                 } else {
                     for (Object x : dsdh) {
                         Vector y = (Vector) x;
-                        if (compareDate((Date) y.get(3), start, end)) {
+                        System.out.println(y.get(3).toString());
+                        var  datee= y.get(3);
+                        if (compareDate((Date) datee, start, end)) {
                             dsdsOffical2.add(y);
                         }
                     }

@@ -68,7 +68,7 @@ public class QuanLiSanPham_BUS {
 //        } catch (Exception e) {
 //            return null;
 //        }
-////        System.out.println(dsctsp);
+////        System.out.println(dsctsp);     
 //        return dsctsp;
 //    }
     public ArrayList layctsp_BUS(int Masp) {

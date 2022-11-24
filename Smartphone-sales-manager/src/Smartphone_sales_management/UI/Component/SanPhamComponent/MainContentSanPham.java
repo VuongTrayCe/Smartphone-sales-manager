@@ -299,7 +299,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         }
         JFrame frame = new JFrame("Them thong tin");
         FormThemSanPham themSanPham = new FormThemSanPham(frame, sanPham, jComboBox2.getSelectedItem().toString());
-        frame.setSize(900, 600);
+        frame.setSize(900, 700);
         frame.setLocationRelativeTo(null);
         frame.add(themSanPham);
         frame.setVisible(true);

@@ -94,7 +94,13 @@ public class QuanLiSanPham_BUS {
         }
         return true;
     }
-
+    
+    
+    public ArrayList layDSNCC() {
+        ArrayList result = new ArrayList();
+        result = qlsp.layDSNCC();
+        return result;
+    }
     public boolean xoaSP(int maSp) {
         try {
             qlsp.xoaSP(maSp);

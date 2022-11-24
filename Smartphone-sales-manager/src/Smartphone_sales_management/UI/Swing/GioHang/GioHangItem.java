@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Swing.GioHang;
 
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -26,13 +27,14 @@ public class GioHangItem extends javax.swing.JPanel {
     /**
      * Creates new form GioHangItem
      */
-    Model_GioHang data;
-    public GioHangItem(Model_GioHang data,int selectedIndexGioHang) throws IOException {
+    Model_BanHang_ChiTietHoaDon data;
+    public GioHangItem(Model_BanHang_ChiTietHoaDon data,int selectedIndexGioHang) throws IOException {
         this.data=data;
         BufferedImage image;
         initComponents();
         if(data.getIcon()!="")
         {
+            System.out.println(data.getIcon()+"àasfasf");
 //            URL resource = getClass().getResource("cat2.jpg")
 //            URL resource = getClass().getResource(data.getIcon());
 //           ImageIcon a  = new ImageIcon(getClass().getResource(data.getIcon()));
@@ -50,8 +52,8 @@ public class GioHangItem extends javax.swing.JPanel {
            jPanel1.setLayout(new GridLayout());
            jPanel1.add(a);
        }
-        lbName.setText(data.getName());
-        lbGia.setText(data.getGiatien());
+        lbName.setText(data.getTensp());
+        lbGia.setText(String.valueOf(data.getGiasaukm()));
         lbSL.setText(Integer.toString(data.getSoluong()));
     }
 

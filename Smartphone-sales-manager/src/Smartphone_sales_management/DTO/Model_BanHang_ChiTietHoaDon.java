@@ -4,14 +4,19 @@
  */
 package Smartphone_sales_management.DTO;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Vuong
  */
 public class Model_BanHang_ChiTietHoaDon {
+
     private int masp;
     private int madh;
     private int mactkm;
+    private String icon;
     private int machitietbaohanh;
     private int magiasp;
     private int soluong;
@@ -21,18 +26,50 @@ public class Model_BanHang_ChiTietHoaDon {
     private int phantramkhuyenmai;
     private String thoigianbaohanh;
 
-    public Model_BanHang_ChiTietHoaDon(int masp, int madh, int mactkm, int machitietbaohanh, int magiasp, int soluong, int giaban, int giasaukm, String tensp, int phantramkhuyenmai, String thoigianbaohanh) {
+    public Model_BanHang_ChiTietHoaDon(int masp, int madh, int mactkm, String icon, int machitietbaohanh, int magiasp, int soluong, int giaban, String tensp, int phantramkhuyenmai, String thoigianbaohanh) {
         this.masp = masp;
         this.madh = madh;
         this.mactkm = mactkm;
+        this.icon = icon;
         this.machitietbaohanh = machitietbaohanh;
         this.magiasp = magiasp;
         this.soluong = soluong;
         this.giaban = giaban;
-        this.giasaukm = giasaukm;
         this.tensp = tensp;
         this.phantramkhuyenmai = phantramkhuyenmai;
         this.thoigianbaohanh = thoigianbaohanh;
+    }
+    
+    
+//    
+//    public Model_BanHang_ChiTietHoaDon(int masp, int madh, int mactkm, int machitietbaohanh, int magiasp, int soluong, int giaban, String tensp, int phantramkhuyenmai, String thoigianbaohanh) {
+//        this.masp = masp;
+//        this.madh = madh;
+//        this.mactkm = mactkm;
+//        this.machitietbaohanh = machitietbaohanh;
+//        this.magiasp = magiasp;
+//        this.soluong = soluong;
+//        this.giaban = giaban;
+//        this.giasaukm = giasaukm;
+//        this.tensp = tensp;
+//        this.phantramkhuyenmai = phantramkhuyenmai;
+//        this.thoigianbaohanh = thoigianbaohanh;
+//    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+    public int getTongTien() {
+        int x =this.soluong * getGiasaukm();
+        return x;
+    }
+
+    public Icon toIcon(String url) {
+        return new ImageIcon(getClass().getResource(url));
     }
 
     public String getTensp() {
@@ -98,12 +135,9 @@ public class Model_BanHang_ChiTietHoaDon {
     public void setMadh(int madh) {
         this.madh = madh;
     }
+
     public void setGiaban(int giaban) {
         this.giaban = giaban;
-    }
-
-    public void setGiasaukm(int giasaukm) {
-        this.giasaukm = giasaukm;
     }
 
     public int getMasp() {
@@ -119,9 +153,8 @@ public class Model_BanHang_ChiTietHoaDon {
     }
 
     public int getGiasaukm() {
-        return giasaukm;
+        int i = (int) (getGiaban() * ((100 - getPhantramkhuyenmai()) * 1.0 / 100));
+        return i;
     }
 
-
-  
 }

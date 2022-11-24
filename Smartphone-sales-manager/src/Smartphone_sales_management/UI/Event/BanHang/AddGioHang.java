@@ -5,6 +5,7 @@
 package Smartphone_sales_management.UI.Event.BanHang;
 
 import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
+import Smartphone_sales_management.UI.Model.Model_GioHang;
 
 /**
  *

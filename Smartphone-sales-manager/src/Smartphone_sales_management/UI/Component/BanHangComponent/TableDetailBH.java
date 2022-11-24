@@ -43,11 +43,12 @@ public class TableDetailBH extends javax.swing.JPanel {
     QuanLyBanHang_BUS qlbh_BUS = new QuanLyBanHang_BUS();
     ArrayList<Model_BanHang_ChiTietSanPham> datachitiet;
     Model_BanHang_ChiTietSanPham model;
-
-    public TableDetailBH(int index, MainFrame mainFrame) {
+    MainConTentBanHang panelbanhang;
+    public TableDetailBH(int index, MainFrame mainFrame,MainConTentBanHang panelbanhang) {
         initComponents();
 //        jButton1.setBackground(Color.WHITE);
         selectedIndex = index;
+        this.panelbanhang=panelbanhang;
         if (selectedIndex != -1) {
             DisplayInfor();
         }
@@ -60,8 +61,7 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Model_BanHang_ChiTietHoaDon data = new Model_BanHang_ChiTietHoaDon(model.getMasp(), selectedIndex, model.getMakm(), model.getMabh(), 125, model.getSl(), Integer.parseInt((Double.toString(model.getGiaban()))), 1100, model.getTensp(), model.getPtkm(), model.getBaohanh());
-
+                Model_BanHang_ChiTietHoaDon data = new Model_BanHang_ChiTietHoaDon(model.getMasp(), selectedIndex, model.getMachitietkhuyenmai(),model.getIcon(), model.getMachitietbaohanh(),model.getMagiasanpham(),1,model.getGiaban(), model.getTensp(), model.getPtkm(), model.getBaohanh());
 //                Model_GioHang data= new Model_GioHang(lbcName.getText(),lbcLoai.getText(),1,urlImage,GioHangType.MENU,lbcGia.getText(),modelGiohang.getKhuyenmai(),modelGiohang.getBaohanh(),modelGiohang.getMasp(),modelGiohang.getMakhuyenmai(),modelGiohang.getMabaohanh());
 //                  modelGiohang.setSoluong(1);
 //                Model_GioHang data = modelGiohang;

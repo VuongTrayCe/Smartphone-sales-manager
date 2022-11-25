@@ -82,7 +82,7 @@ public class QuanLiBaoHanh_BUS {
         
         ArrayList dsbh = new ArrayList();
         ArrayList dsspOfficial = new ArrayList<>();
-        dsbh = qlbh_DAO.getDanhSachBaoHanh_DAO();
+//        dsbh = qlbh_DAO.getDanhSachBaoHanh_DAO();
         if (keyWord == "" && trangthai.equals("ALL")) {
             return dsbh;
         }
@@ -102,7 +102,7 @@ public class QuanLiBaoHanh_BUS {
             return dsspOfficial;
         }
         if (trangthai.equals("ALL") != true) {
-            dsbh = qlbh_DAO.getALLBaoHanhTheoTrangThai(trangthai);
+//            dsbh = qlbh_DAO.getALLBaoHanhTheoTrangThai(trangthai);
 
             if (keyWord == "") {
                 return dsbh;
@@ -111,7 +111,7 @@ public class QuanLiBaoHanh_BUS {
                     Vector y = (Vector) x;
                     String mapn = Integer.toString((int) y.get(1));
                     String tenncc = y.get(3).toString();
-//                String name = (String) y.get(1);
+                String name = (String) y.get(1);
                     if (mapn.contains(keyWord) || tenncc.contains(keyWord)) {
                         {
                             dsspOfficial.add(y);

@@ -50,7 +50,7 @@ public class QuanLyPhieuNhap_BUS {
                     Vector y = (Vector) x;
                     String mapn = Integer.toString((int) y.get(1));
                     String tenncc = y.get(3).toString();
-//                String name = (String) y.get(1);
+                String name = (String) y.get(1);
                     if (mapn.contains(keyWord) || tenncc.contains(keyWord)) {
                         {
                             dsspOfficial.add(y);

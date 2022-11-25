@@ -99,4 +99,14 @@ public class QuanLyPhieuNhap_BUS {
         return qlpn.UpdatePhieuNhap(Mapn,trangthai);
     }
 
+    public void updateSLSanPham(int mapn,ArrayList dataChiTiet) {
+        int mancc = qlpn.getMaNCC(mapn);
+        for (Object object : dataChiTiet) {
+            Vector dataChiTietPhieuNhap = (Vector) object;
+            int masp= (int) dataChiTietPhieuNhap.get(1);
+            int sl =(int) dataChiTietPhieuNhap.get(4);
+                    qlpn.UpdateSLSanPham(masp,sl,mancc);
+        }
+    }
+
 }

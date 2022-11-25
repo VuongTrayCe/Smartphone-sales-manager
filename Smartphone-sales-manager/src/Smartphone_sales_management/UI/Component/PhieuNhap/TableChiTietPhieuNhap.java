@@ -5,10 +5,12 @@
 package Smartphone_sales_management.UI.Component.PhieuNhap;
 
 import Smartphone_sales_management.BUS.QuanLyPhieuNhap_BUS;
+import Smartphone_sales_management.UI.Component.PhieuNhap.PanelInHoaDon;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Swing.PrintPanel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JDialog;
@@ -34,17 +36,24 @@ public class TableChiTietPhieuNhap extends javax.swing.JPanel {
     String trangthai;
     JDialog dialog;
     TablePhieuNhap a;
-    public TableChiTietPhieuNhap(TablePhieuNhap a,JDialog dialog,int Maph, String Ngaynhap, String tenncc, MainFrame frame, String trangthai) {
+    ArrayList dataIn = new ArrayList();
+    ArrayList dataChiTiet;
+
+    public TableChiTietPhieuNhap(TablePhieuNhap a, JDialog dialog, int Maph, String Ngaynhap, String tenncc, MainFrame frame, String trangthai) {
         initComponents();
         this.frame = frame;
         this.ngaynhap = Ngaynhap;
         this.tenncc = tenncc;
         this.trangthai = trangthai;
         Mapn = Maph;
-        this.a= a;
-        this.dialog=dialog;
+        this.a = a;
+        this.dialog = dialog;
         this.tenncc = tenncc;
-
+        Vector dataPN = new Vector();
+        dataPN.add(Maph);
+        dataPN.add(tenncc);
+        dataPN.add(ngaynhap);
+        dataIn.add(dataPN);
         model.addColumn("STT");
         model.addColumn("Mã Sản Phẩm");
         model.addColumn("Tên Sản Phẩm");
@@ -68,6 +77,7 @@ public class TableChiTietPhieuNhap extends javax.swing.JPanel {
         if (this.trangthai.equals("Đang Xử Lý")) {
             btnHoanThanh.setVisible(true);
             btnHuy.setVisible(true);
+            System.out.println("Dasasfafasf");
         } else {
             btnHoanThanh.setVisible(false);
             btnHuy.setVisible(false);
@@ -77,19 +87,18 @@ public class TableChiTietPhieuNhap extends javax.swing.JPanel {
     private void DisplayDetailPhieuNhap() {
 //        
 
-        ArrayList data = new ArrayList();
-        data = qlpn.getChiTietPhieuNhap(Mapn);
+        dataChiTiet = new ArrayList();
+        dataChiTiet = qlpn.getChiTietPhieuNhap(Mapn);
         jTable1.removeAll();
         model.setRowCount(0);
-        for (int i = 0; i < data.size(); i++) {
-            model.addRow((Vector<?>) data.get(i));
+        for (int i = 0; i < dataChiTiet.size(); i++) {
+            model.addRow((Vector<?>) dataChiTiet.get(i));
         }
         jScrollPane1.repaint();
         lbMaPhieuNhap.setText(Integer.toString(Mapn));
         lbNgayNhap.setText(ngaynhap);
         lbNhaCungCap.setText(tenncc);
         setBtbHoanThanhHuyDon(trangthai);
-        
 
 //        Model_BanHang_ChiTietSanPham model = data.get(0);
 //        lbcName.setText(model.getTensp());
@@ -307,33 +316,46 @@ public class TableChiTietPhieuNhap extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PrintPanel print = new PrintPanel();
-        print.printRecord(jPanel1);
+//        PrintPanel print = new PrintPanel();
+//        print.printRecord(jPanel1);
+        JDialog inforDonHang = new JDialog();
+
+        PanelInHoaDon panelInPhieuNhap = new PanelInHoaDon(dataIn,dataChiTiet,inforDonHang);
+
+//        changePwdDialog.setUndecorated(true);
+//          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
+        inforDonHang.setSize(700, 550);
+        inforDonHang.setLayout(new GridLayout());
+        inforDonHang.setTitle("Chi Tiết Phiếu Nhập");
+        inforDonHang.add(panelInPhieuNhap);
+        panelInPhieuNhap.validate();
+        inforDonHang.setLocationRelativeTo(null);
+        inforDonHang.setVisible(true);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
-     
-       Boolean flag = qlpn.UpdateTrangThai(Mapn,"Hoàn Thành");  
-       if(flag==true)
-       {
-           JOptionPane.showMessageDialog(null,"Đã Chỉnh Sủa thành công");
-          dialog.dispose();
-          a.SetDefautlTable("",trangthai);
-       }
+
+        Boolean flag = qlpn.UpdateTrangThai(Mapn, "Hoàn Thành");
+        qlpn.updateSLSanPham(Mapn,dataChiTiet);
+        if (flag == true) {
+            JOptionPane.showMessageDialog(null, "Đã Update thành công");
+            dialog.dispose();
+            a.SetDefautlTable("","ALL");
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_btnHoanThanhActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-   
-               Boolean flag = qlpn.UpdateTrangThai(Mapn,"Đã Hủy");  
-       if(flag==true)
-       {
-           JOptionPane.showMessageDialog(null,"Đã Chỉnh Sủa thành công");
-          dialog.dispose();
-                    a.SetDefautlTable("",trangthai);
 
-       }
+        Boolean flag = qlpn.UpdateTrangThai(Mapn, "Đã Hủy");
+        if (flag == true) {
+            JOptionPane.showMessageDialog(null, "Đã hủy thành công");
+            dialog.dispose();
+            a.SetDefautlTable("", trangthai);
+
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHuyActionPerformed
 

@@ -40,6 +40,7 @@ public class TablePhieuNhap extends javax.swing.JPanel {
         model.addColumn("Nhà Cung Cấp");
         model.addColumn("Số Lượng");
         model.addColumn("Tổng Tiền");
+        model.addColumn("Đơn Vị");
         model.addColumn("Trạng Thái");
 
         this.trangthai = trangthai;
@@ -63,7 +64,7 @@ public class TablePhieuNhap extends javax.swing.JPanel {
                 int mapn = (int) jTable1.getValueAt(index, 1);
                 String ngaynhap = (String) jTable1.getValueAt(index, 2);
                 String tenncc = (String) jTable1.getValueAt(index, 3);
-                String trangthai = (String) jTable1.getValueAt(index, 6);
+                String trangthai = (String) jTable1.getValueAt(index, 7);
                 event.infor(mapn, ngaynhap, tenncc, trangthai);
             }
         ;

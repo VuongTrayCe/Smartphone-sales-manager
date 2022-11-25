@@ -93,23 +93,60 @@ public class QuanLiBaoHanh_BUS {
         return false;
     }
 
+    public double CheckNgayBaoHanh(Date ngayban, String[] tgbh, String ngayhientai) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date datestart22 = formatter.parse(ngayhientai);
+        String[] arrNgayBan = ngayban.toString().split("-");
+        int thoigianbaohanh = Integer.parseInt(tgbh[0]);
+        int year = Integer.parseInt(arrNgayBan[0]);
+        int Month = Integer.parseInt(arrNgayBan[1]);
+        int day = Integer.parseInt(arrNgayBan[2]);
+        int newyear = year;
+        int newMonth = Month;
+        if (Month + thoigianbaohanh > 12) {
+            newyear = year + 1;
+            newMonth = (Month + thoigianbaohanh) - 12;
+            if (newMonth == 1 || newMonth == 3 || newMonth == 5 || newMonth == 7 || newMonth == 8 || newMonth == 10 || newMonth == 12) {
+                if (day == 31) {
+                    day = 31;
+                }
+            } else if (newMonth == 2) {
+                if (day == 31 || day == 29 || day == 30) {
+                    day = 28;
+                }
+            } else {
+                if (day == 31) {
+                    day = 30;
+                }
+            }
+        } else {
+            newMonth = Month + thoigianbaohanh;
+        }
+        String thoigianbaohanhcuoicung = "";
+        String thoigianbaohanhcuoicung2 = thoigianbaohanhcuoicung.concat(newyear + "-" + newMonth + "-" + day);
+        Date datehethan = formatter.parse(thoigianbaohanhcuoicung2);
+        double ngayconlai = ((datehethan.getTime() - datestart22.getTime()) / 1000) / 86400;
+        if (ngayconlai <= 0) {
+            ngayconlai = 0;
+        }
+        return ngayconlai;
+    }
+
     public ArrayList getDanhSachSanPhamBaoHanh(String keyWord, String trangthai, String ngayhientai) {
 
         ArrayList dsbh = new ArrayList();
         ArrayList dsspOfficial = new ArrayList<>();
         dsbh = qlbh_DAO.getDanhSachBaoHanh_DAO();
+        ArrayList data = new ArrayList();
 
         if (keyWord == "" && trangthai.equals("ALL")) {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             for (Object object : dsbh) {
                 Vector row = (Vector) object;
                 try {
-                    Date datestart22 = formatter.parse(ngayhientai);
                     Date ngayban = (Date) row.get(5);
-                    double ngayconlai = ((datestart22.getTime() - ngayban.getTime()) / 1000)/86400;
-                    String[] tgbh = row.get(6).toString().split("");
-                 
-                 row.add((int) ngayconlai);
+                    String[] tgbh = row.get(6).toString().split(" ");
+                    double ngayconlai = CheckNgayBaoHanh(ngayban, tgbh, ngayhientai);
+                    row.add((int) ngayconlai);
 
                 } catch (ParseException ex) {
                     Logger.getLogger(QuanLiBaoHanh_BUS.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,27 +166,74 @@ public class QuanLiBaoHanh_BUS {
 
                 }
             }
+            for (Object object : dsspOfficial) {
+                Vector row = (Vector) object;
+                try {
+                    Date ngayban = (Date) row.get(5);
+                    String[] tgbh = row.get(6).toString().split(" ");
+                    double ngayconlai = CheckNgayBaoHanh(ngayban, tgbh, ngayhientai);
+                    row.add((int) ngayconlai);
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuanLiBaoHanh_BUS.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
             return dsspOfficial;
         }
         if (trangthai.equals("ALL") != true) {
-            dsbh = qlbh_DAO.getALLBaoHanhTheoTrangThai(trangthai);
+            dsbh = qlbh_DAO.getDanhSachBaoHanh_DAO();
+            ArrayList dsbhOf = new ArrayList();
+
+            for (Object object : dsbh) {
+                Vector row = (Vector) object;
+                try {
+                    Date ngayban = (Date) row.get(5);
+                    String[] tgbh = row.get(6).toString().split(" ");
+                    double ngayconlai = CheckNgayBaoHanh(ngayban, tgbh, ngayhientai);
+                    row.add((int) ngayconlai);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuanLiBaoHanh_BUS.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (trangthai.equals("Đang Bảo Hành")) {
+                for (Object object : dsbh) {
+                    Vector row = (Vector) object;
+                    int soNgayConLai = (int) row.get(7);
+                    if (soNgayConLai > 0) {
+                        dsbhOf.add(row);
+                    }
+                }
+            }
+            if (trangthai.equals("Đã Bảo Hành")) {
+                for (Object object : dsbh) {
+                    Vector row = (Vector) object;
+                    int soNgayConLai = (int) row.get(7);
+                    if (soNgayConLai == 0) {
+                        dsbhOf.add(row);
+
+                    }
+                }
+            }
             if (keyWord == "") {
-                return dsbh;
+                return dsbhOf;
             } else {
-                for (Object x : dsbh) {
+                for (Object x : dsbhOf) {
                     Vector y = (Vector) x;
                     String masp = y.get(1).toString();
                     String makh = y.get(2).toString();
                     if (masp.contains(keyWord) || makh.contains(keyWord)) {
                         {
-                            dsspOfficial.add(y);
+                            data.add(y);
+
                         }
 
                     }
                 }
+                return data;
             }
         }
-        return dsspOfficial;
+        return data;
 
     }
 

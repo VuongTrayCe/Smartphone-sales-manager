@@ -231,11 +231,13 @@ public class QuanLiSanPham_DAO {
             stm.setString(2, model.getLoaiSp());
             stm.setString(3, model.getMauSac());
             stm.setString(4, model.getNamSX());
+            System.out.println(model.getTrangThai());
             stm.setString(5, model.getTrangThai());
+            
             stm.setString(6, model.getIcon());
             stm.setString(7, model.getThongSo());
-            stm.setInt(8, model.getMasp());
-            stm.setInt(9, model.getMancc());
+            stm.setInt(9, model.getMasp());
+            stm.setInt(8, model.getMancc());
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -252,12 +254,11 @@ public class QuanLiSanPham_DAO {
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO giasanpham(Masp,Giaban,Ngayupdate,TrangThai,Gianhap)\n"
-                    + "VALUES (?,?,?,?,?)");
+                    + "VALUES (?,?,?,\"T\",?)");
             stm.setInt(1, maSp);
             stm.setDouble(2, model.getGia());
             stm.setString(3, model.getNgayTao());
-            stm.setString(4, model.getTrangThai());
-            stm.setDouble(5, model.getGianhap());
+            stm.setDouble(4, model.getGianhap());
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -9,6 +9,7 @@ import Smartphone_sales_management.DTO.Model_SanPham;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -129,6 +130,8 @@ public class QuanLiSanPham_BUS {
 //        return false;
 
         if (qlsp.suaSP(model)) {
+            JOptionPane.showMessageDialog(null, "Sua thanh cong123");
+                   
             int mactgia = qlsp.layCTgia(model);
             if (qlsp.suaGiasp(mactgia)) {
                 int masp = model.getMasp();

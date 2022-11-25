@@ -165,8 +165,8 @@ public class MainContentSanPham extends javax.swing.JPanel {
         detailSPPanelLayout.setHorizontalGroup(
             detailSPPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailSPPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         detailSPPanelLayout.setVerticalGroup(
             detailSPPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

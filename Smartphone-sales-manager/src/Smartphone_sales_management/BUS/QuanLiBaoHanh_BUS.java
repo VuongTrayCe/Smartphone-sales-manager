@@ -7,6 +7,7 @@ package Smartphone_sales_management.BUS;
 import Smartphone_sales_management.DAO.QuanLiBaoHanh_DAO;
 import Smartphone_sales_management.DTO.ModelBaoHanh;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
@@ -76,4 +77,51 @@ public class QuanLiBaoHanh_BUS {
            return true;
        } return false;
    }
+
+    public ArrayList getDanhSachSanPhamBaoHanh(String keyWord, String trangthai) {
+        
+        ArrayList dsbh = new ArrayList();
+        ArrayList dsspOfficial = new ArrayList<>();
+        dsbh = qlbh_DAO.getDanhSachBaoHanh_DAO();
+        if (keyWord == "" && trangthai.equals("ALL")) {
+            return dsbh;
+        }
+        if (keyWord != "" && trangthai.equals("ALL")) {
+            for (Object x : dsbh) {
+                Vector y = (Vector) x;
+                String mapn = Integer.toString((int) y.get(1));
+                String tenncc = y.get(3).toString();
+//                String name = (String) y.get(1);
+                if (mapn.contains(keyWord) || tenncc.contains(keyWord)) {
+                    {
+                        dsspOfficial.add(y);
+                    }
+
+                }
+            }
+            return dsspOfficial;
+        }
+        if (trangthai.equals("ALL") != true) {
+            dsbh = qlbh_DAO.getALLBaoHanhTheoTrangThai(trangthai);
+
+            if (keyWord == "") {
+                return dsbh;
+            } else {
+                for (Object x : dsbh) {
+                    Vector y = (Vector) x;
+                    String mapn = Integer.toString((int) y.get(1));
+                    String tenncc = y.get(3).toString();
+//                String name = (String) y.get(1);
+                    if (mapn.contains(keyWord) || tenncc.contains(keyWord)) {
+                        {
+                            dsspOfficial.add(y);
+                        }
+
+                    }
+                }
+            }
+        }
+        return dsspOfficial;
+
+    }
 }

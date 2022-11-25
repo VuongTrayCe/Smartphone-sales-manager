@@ -11,6 +11,8 @@ import Smartphone_sales_management.UI.Swing.PrintPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JDialog;
@@ -320,7 +322,7 @@ public class TableChiTietPhieuNhap extends javax.swing.JPanel {
 //        print.printRecord(jPanel1);
         JDialog inforDonHang = new JDialog();
 
-        PanelInHoaDon panelInPhieuNhap = new PanelInHoaDon(dataIn,dataChiTiet,inforDonHang);
+        PanelInHoaDon panelInPhieuNhap = new PanelInHoaDon(dataIn, dataChiTiet, inforDonHang);
 
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
@@ -337,12 +339,17 @@ public class TableChiTietPhieuNhap extends javax.swing.JPanel {
 
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
 
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatDateTime = now.format(format);
         Boolean flag = qlpn.UpdateTrangThai(Mapn, "Hoàn Thành");
-        qlpn.updateSLSanPham(Mapn,dataChiTiet);
+        qlpn.updateSLSanPham(Mapn, dataChiTiet);
+        qlpn.UpdateGiaSanPham(Mapn, dataChiTiet,formatDateTime);
         if (flag == true) {
             JOptionPane.showMessageDialog(null, "Đã Update thành công");
             dialog.dispose();
-            a.SetDefautlTable("","ALL");
+            a.SetDefautlTable("", "ALL");
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_btnHoanThanhActionPerformed

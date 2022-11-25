@@ -304,8 +304,6 @@ public class QuanLyPhieuNhap_DAO {
             stm.setInt(2, masp);
             stm.setInt(3, mancc);
             System.out.println(masp);
-            System.out.println(sl);
-            System.out.println(mancc);
 
             isSuccess = db.sqlUpdate(stm);
         } catch (SQLException ex) {
@@ -314,6 +312,124 @@ public class QuanLyPhieuNhap_DAO {
         } finally {
 
         }
+    }
+    // Lấy số lượng hiện tại có trong kho của sản phẩm
+
+    public int getSLHT(int masp) {
+
+        int sl = 0;
+        db.setupConnection();
+        try {
+
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.soluong from sanpham where sanpham.Masp=?");
+            stm.setInt(1, masp);
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    sl = rs.getInt("soluong");
+                    System.out.println("So Luong Hien Tai");
+
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return sl;
+    }
+
+    public int getGiaBanHienTai(int masp) {
+
+        int giabanhientai = 0;
+        db.setupConnection();
+        try {
+            String query = "select giasanpham.Giaban from giasanpham where giasanpham.Masp=? and giasanpham.TrangThai='T'";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            stm.setInt(1, masp);
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    giabanhientai = (int) rs.getDouble("Giaban");
+                    System.out.println("Gia Ban Hien Tai");
+
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return giabanhientai;
+    }
+
+    public int getGiaNhapHienTai(int masp) {
+
+        int gianhaphientai = 0;
+        db.setupConnection();
+        try {
+
+            PreparedStatement stm = db.getConnection().prepareStatement("select giasanpham.Gianhap from giasanpham where giasanpham.Masp=? and giasanpham.TrangThai='T'");
+            stm.setInt(1, masp);
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    gianhaphientai = (int) rs.getDouble("Gianhap");
+                    System.out.println("Gia Nhap Hien Tai");
+
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return gianhaphientai;
+    }
+
+    public void UpdateGiaSanPham(int masp, int gianhap, int giaBanHienTai, String ngayupdate) {
+        boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("insert into giasanpham(Masp,Gianhap,Giaban,Ngayupdate,TrangThai) values (?,?,?,?,?)");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1, masp);
+            stm.setInt(2, gianhap);
+            stm.setInt(3, giaBanHienTai);
+            stm.setString(4, ngayupdate);
+            stm.setString(5, "T");
+            System.out.println("Update gia san pham");
+
+            isSuccess = db.sqlUpdate(stm);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+    }
+
+    public void UpdateTrangThaiGiaSanPham(int masp) {
+
+        boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("update giasanpham SET TrangThai='F' where giasanpham.Masp=?");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1, masp);
+            isSuccess = db.sqlUpdate(stm);
+                        System.out.println("Update Trang thai san pham");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+
     }
 
 }

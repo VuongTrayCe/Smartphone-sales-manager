@@ -96,17 +96,40 @@ public class QuanLyPhieuNhap_BUS {
     }
 
     public Boolean UpdateTrangThai(int Mapn, String trangthai) {
-        return qlpn.UpdatePhieuNhap(Mapn,trangthai);
+        return qlpn.UpdatePhieuNhap(Mapn, trangthai);
     }
 
-    public void updateSLSanPham(int mapn,ArrayList dataChiTiet) {
+    public void updateSLSanPham(int mapn, ArrayList dataChiTiet) {
         int mancc = qlpn.getMaNCC(mapn);
         for (Object object : dataChiTiet) {
             Vector dataChiTietPhieuNhap = (Vector) object;
-            int masp= (int) dataChiTietPhieuNhap.get(1);
-            int sl =(int) dataChiTietPhieuNhap.get(4);
-                    qlpn.UpdateSLSanPham(masp,sl,mancc);
+            int masp = (int) dataChiTietPhieuNhap.get(1);
+            int soluonghientai = qlpn.getSLHT(masp);
+            int sl = (int) dataChiTietPhieuNhap.get(4);
+            qlpn.UpdateSLSanPham(masp, sl + soluonghientai, mancc);
         }
+    }
+
+    public void UpdateGiaSanPham(int Mapn, ArrayList dataChiTiet,String ngayupdate) {
+//         int mancc = qlpn.getMaNCC(mapn);
+        for (Object object : dataChiTiet) {
+            Vector dataChiTietPhieuNhap = (Vector) object;
+            int masp = (int) dataChiTietPhieuNhap.get(1);
+            int giaBanHienTai = qlpn.getGiaBanHienTai(masp);
+            int giaNhapHienTai = qlpn.getGiaNhapHienTai(masp);
+            int gianhap = (int) dataChiTietPhieuNhap.get(3);
+            qlpn.UpdateTrangThaiGiaSanPham(masp);
+            if (giaNhapHienTai > gianhap) {
+                qlpn.UpdateGiaSanPham(masp, gianhap, giaBanHienTai,ngayupdate);
+                System.out.println("1");
+            } else {
+                int NewGiaBan = (int) (gianhap + gianhap*(30*1.0/100));
+                qlpn.UpdateGiaSanPham(masp, gianhap,NewGiaBan,ngayupdate);
+                                System.out.println("2");
+
+            }
+        }
+
     }
 
 }

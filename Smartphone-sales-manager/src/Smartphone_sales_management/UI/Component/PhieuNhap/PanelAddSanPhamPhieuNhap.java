@@ -29,6 +29,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
     ArrayList<Model_PhieuNhap_ChiTiet> data;
     JDialog c;
     PanelThemPhieuNhapHang frame;
+    Boolean checkTrungSP;
 
     public PanelAddSanPhamPhieuNhap(int mancc, ArrayList datachitietphieunhap, int mapn, JDialog c, PanelThemPhieuNhapHang frame) {
         initComponents();
@@ -45,7 +46,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
         ArrayList data = new ArrayList();
 
         data = qlpn.getALLSanPham(this.mancc);
-        danhsachsanpham=data;
+        danhsachsanpham = data;
         for (Object sanpham : data) {
             Vector a = (Vector) sanpham;
             cbbSanPham.addItem((a.get(1)).toString());
@@ -57,7 +58,7 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
 
     private boolean checkInfor() {
         Boolean flag = true;
-        if (txtGiaNhap.getText().equals("")) {
+        if (txtGiaNhap.getText().equals("") && checkTrungSP == true) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập giá nhập");
 
             flag = false;
@@ -98,6 +99,12 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Số Lượng: ");
+
+        cbbSanPham.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbSanPhamItemStateChanged(evt);
+            }
+        });
 
         btnAddSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Add - Copy.png"))); // NOI18N
 
@@ -185,15 +192,50 @@ public class PanelAddSanPhamPhieuNhap extends javax.swing.JPanel {
             int masp = (int) Row.get(0);
             String tensp = cbbSanPham.getSelectedItem().toString();
             int soluong = Integer.parseInt(jSoluong.getValue().toString());
-            int gianhap = Integer.parseInt(txtGiaNhap.getText());
+             int gianhap = 0;
+            if (checkTrungSP == true) {
+               gianhap = Integer.parseInt(txtGiaNhap.getText());
+            }
+            Boolean flag = true;
             Model_PhieuNhap_ChiTiet modelRow = new Model_PhieuNhap_ChiTiet(masp, tensp, -1, gianhap, soluong);
-            data.add(modelRow);
+            for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : data) {
+                if (model_PhieuNhap_ChiTiet.getMasp() == modelRow.getMasp()) {
+                    int NewSL = model_PhieuNhap_ChiTiet.getSoluong() + modelRow.getSoluong();
+                    model_PhieuNhap_ChiTiet.setSoluong(NewSL);
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag == true) {
+                data.add(modelRow);
+            }
             frame.DisplayDetailPhieuNhap();
             c.dispose();
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void cbbSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbSanPhamItemStateChanged
+        System.out.println("asfasf");
+        int index = cbbSanPham.getSelectedIndex();
+        Vector a = (Vector) danhsachsanpham.get(index);
+        int masp = (int) a.get(0);
+        Boolean flag = true;
+        for (Model_PhieuNhap_ChiTiet object : this.data) {
+            if (masp == object.getMasp()) {
+                txtGiaNhap.setEditable(false);
+                flag = false;
+                checkTrungSP = false;
+            }
+        }
+        if (flag == true) {
+            txtGiaNhap.setEditable(true);
+            checkTrungSP = true;
+
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_cbbSanPhamItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

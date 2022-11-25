@@ -36,7 +36,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import Smartphone_sales_management.UI.Swing.GraphicsPanel;
 import Smartphone_sales_management.UI.Swing.GraphicsTextFied;
-
+import Smartphone_sales_management.UI.Component.DonHangComponent.XuatExcel123;
 /**
  *
  * @author Vuong
@@ -55,6 +55,7 @@ public class MainConTentPhieuNhap extends JPanel {
     TableGioHang b;
     JPanel panelCenter;
     TablePhieuNhap a;
+    ArrayList<Object> excel;
 
     public MainConTentPhieuNhap(MainFrame frame, JPanel panelCenter) {
         initComponents();
@@ -62,7 +63,7 @@ public class MainConTentPhieuNhap extends JPanel {
         this.panelCenter = panelCenter;
 //        TableDetailBH c = new TableDetailBH(index);
 //
-        a = new TablePhieuNhap(cbbTrangThai.getSelectedItem().toString());
+        a = new TablePhieuNhap(cbbTrangThai.getSelectedItem().toString(),MainConTentPhieuNhap.this);
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
 
         jScrollPane1.setViewportView(a);
@@ -120,7 +121,10 @@ public class MainConTentPhieuNhap extends JPanel {
         });
 
     }
-
+    public void setXuatExcel(ArrayList data)
+    {
+        this.excel = data;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -340,6 +344,10 @@ public class MainConTentPhieuNhap extends JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
              
+     XuatExcel XuatExcel = new XuatExcel(excel);
+     XuatExcel.xuatFilePhieuNhap();
+     
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

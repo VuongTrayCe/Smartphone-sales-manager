@@ -7,7 +7,6 @@ import Smartphone_sales_management.BUS.QuanLyKhachHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
-import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.awt.Color;
 import java.awt.Font;
 import java.time.format.DateTimeFormatter;

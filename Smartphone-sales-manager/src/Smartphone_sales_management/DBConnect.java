@@ -29,11 +29,10 @@ public class DBConnect {
 //    Statement stm = null;
     ResultSet rs = null;
     Connection conn = null;
-
     String server = "localhost:3306";
     String dbName = "smartphonejava";
     String userName = "root";
-    String pass = "20022002";
+    String pass = "123456789lop11b2";
 
     public DBConnect() {
         checkDriver();

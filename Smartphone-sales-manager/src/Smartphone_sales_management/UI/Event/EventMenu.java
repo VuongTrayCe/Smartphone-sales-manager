@@ -8,3 +8,7 @@ package Smartphone_sales_management.UI.Event;
  *
  * @author Vuong
  */
+public interface EventMenu {
+        public void selected(int index);
+
+}

@@ -6,7 +6,6 @@ package Smartphone_sales_management.BUS;
 import Smartphone_sales_management.DAO.QuanLiKhachHang_DAO;
 //import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
-import Smartphone_sales_management.UI.Model.Model_NhanVien;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;

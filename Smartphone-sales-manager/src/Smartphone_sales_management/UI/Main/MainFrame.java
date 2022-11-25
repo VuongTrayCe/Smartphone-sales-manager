@@ -9,6 +9,7 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanH
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
+import Smartphone_sales_management.UI.Component.BaoHanhComponent.PanelThongTinBaoHanh;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
@@ -51,7 +52,8 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
 //        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
-        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
+          PanelThongTinBaoHanh a = new PanelThongTinBaoHanh();
+//        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
 //        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);

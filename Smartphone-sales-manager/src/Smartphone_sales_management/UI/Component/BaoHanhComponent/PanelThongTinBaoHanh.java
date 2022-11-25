@@ -7,10 +7,14 @@ package Smartphone_sales_management.UI.Component.BaoHanhComponent;
 import Smartphone_sales_management.BUS.QuanLiBaoHanh_BUS;
 import java.awt.Color;
 import java.awt.Font;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JLabel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,27 +29,47 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
     DefaultTableModel model = new DefaultTableModel();
     ArrayList dataList;
     QuanLiBaoHanh_BUS qlbh = new QuanLiBaoHanh_BUS();
+   private DefaultTableCellRenderer cellRenderer;
     public PanelThongTinBaoHanh() {
         initComponents();
         model.addColumn("STT");
-        model.addColumn("Mã Khách Hàng");
-        model.addColumn("Tên Khách Hàng");
         model.addColumn("Masp");
+        model.addColumn("Mã Khách Hàng");
         model.addColumn("Tên Sản Phẩm");
+        model.addColumn("Tên Khách Hàng");
+        model.addColumn("Ngày Mua");
         model.addColumn("Thời Gian Bảo Hành");
-        model.addColumn("Thời Gian Còn Lại");
 
+        model.addColumn("Thời Gian Còn Lại");
+     
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefautlTable("","ALL");
+        SetDefautlTable("", "ALL");
         jTable1.setModel(model);
-        
-        
-        
+         jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+                  jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
+         jTable1.getColumnModel().getColumn(2).setPreferredWidth(130);
+         jTable1.getColumnModel().getColumn(3).setMinWidth(150);
+         jTable1.getColumnModel().getColumn(4).setMinWidth(150);
+         jTable1.getColumnModel().getColumn(5).setMinWidth(150);
+         jTable1.getColumnModel().getColumn(6).setMinWidth(180);
+         jTable1.getColumnModel().getColumn(7).setMinWidth(150);
+
+      cellRenderer = new DefaultTableCellRenderer();
+      cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+      jTable1.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(5).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(6).setCellRenderer(cellRenderer);
+      jTable1.getColumnModel().getColumn(7).setCellRenderer(cellRenderer);
+
         txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -66,18 +90,21 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
             }
         });
 
-        
-        
     }
 
-    public void SetDefautlTable(String keyWord,String trangthai) {
+    public void SetDefautlTable(String keyWord, String trangthai) {
 
         jTable1.removeAll();
         model.setRowCount(0);
-        dataList = qlbh.getDanhSachSanPhamBaoHanh(keyWord, trangthai);
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatDateTime = now.format(format);
+        dataList = qlbh.getDanhSachSanPhamBaoHanh(keyWord, trangthai, formatDateTime);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
+
         jScrollPane1.repaint();
 
     }
@@ -103,17 +130,26 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Thông Tin Bảo Hành");
 
+        jScrollPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jScrollPane1.setViewportView(jTable1);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setAutoscrolls(false);
+        jTable1.setFocusable(false);
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setRowHeight(30);
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Trạng Thái");
@@ -130,6 +166,11 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(68, 68, 68))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(jLabel2)
@@ -137,11 +178,8 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
                         .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(203, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(68, 68, 68))
-                    .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1)
+                        .addGap(14, 14, 14))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +195,7 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
                     .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                .addGap(43, 43, 43))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

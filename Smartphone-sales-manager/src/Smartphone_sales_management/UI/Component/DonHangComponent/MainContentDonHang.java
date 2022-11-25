@@ -40,7 +40,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         initComponents();
         this.mainFrame = mainFrame;
         donHang = new TableDonHang("", jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
-        jScrollPane1.setViewportView(donHang);
+        jscrollDH.setViewportView(donHang);
         //        detailDonHangPanel.setLayout(new GridLayout());
         donHang.addEventDonHang(new EventDonHang() {
             @Override
@@ -111,7 +111,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         txtTimkiem = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jscrollDH = new javax.swing.JScrollPane();
         btnExcel = new javax.swing.JButton();
         btnInHoaDon = new javax.swing.JButton();
         DateStart = new com.toedter.calendar.JDateChooser();
@@ -155,8 +155,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jscrollDH.setBackground(new java.awt.Color(255, 255, 255));
+        jscrollDH.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         btnExcel.setBackground(new java.awt.Color(255, 0, 51));
         btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -225,7 +225,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
                         .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jscrollDH)
                         .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -245,7 +245,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
                         .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+                .addComponent(jscrollDH, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -339,7 +339,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jscrollDH;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }

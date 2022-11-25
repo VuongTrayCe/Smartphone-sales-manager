@@ -254,4 +254,40 @@ public class QuanLiBaoHanh_DAO {
         }
         return success;
     }
+
+    public ArrayList getDanhSachBaoHanh_DAO() {
+        db.setupConnection();
+        ArrayList result = new ArrayList();
+        String query = "select chitietdonhang.Masp, donhang.Makh, sanpham.Tensp,khachhang.Tenkh,donhang.Ngayban,baohanh.Thoigianbaohanh from baohanh,chitietbaohanh,sanpham,chitietdonhang,donhang,khachhang where chitietdonhang.Madh=donhang.Madh and chitietdonhang.Masp=sanpham.Masp and donhang.Makh=khachhang.Makh and chitietdonhang.Machitietbaohanh=chitietbaohanh.Machitietbaohanh and chitietbaohanh.Mabaohanh=baohanh.Mabaohanh and donhang.Trangthai='Hoàn Thành'";
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            rs = stm.executeQuery();
+            int i = 1;
+            if (rs != null) {
+                while (rs.next()) {
+                    Vector a = new Vector();
+                    a.add((i));
+                    a.add(rs.getInt("Masp"));
+                    a.add(rs.getInt("Makh"));
+                    a.add(rs.getString("Tensp"));
+                    a.add(rs.getString("Tenkh"));
+                    a.add(rs.getDate("Ngayban"));
+                    a.add(rs.getString("Thoigianbaohanh"));
+                    result.add(a);
+                    i++;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return result;
+        } finally {
+            db.closeConnection();
+        }
+        return result;
+    }
+
+    public ArrayList getALLBaoHanhTheoTrangThai(String trangthai) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

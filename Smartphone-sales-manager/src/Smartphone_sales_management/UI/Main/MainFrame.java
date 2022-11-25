@@ -9,14 +9,15 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanH
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
 
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
+import Smartphone_sales_management.UI.Component.BaoHanhComponent.PanelThongTinBaoHanh;
 import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonHang;
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
-import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
 import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Component.PhieuNhap.MainConTentPhieuNhap;
-import Smartphone_sales_management.UI.Component.PhieuNhap.PanelThemPhieuNhapHang;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
+import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -51,7 +52,8 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
 //        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
-        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
+          MainContentBaoHanh a = new MainContentBaoHanh(MainFrame.this, jPanel1);
+//        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
 //        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);

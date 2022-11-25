@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Swing.GioHang;
 
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -21,7 +22,7 @@ public class DrawImage extends javax.swing.JPanel {
      * Creates new form DrawImage
      */
             BufferedImage image;
-    public DrawImage(Model_GioHang data) {
+    public DrawImage(Model_BanHang_ChiTietHoaDon data) {
         initComponents();
         URL resource = getClass().getResource(data.getIcon());
 

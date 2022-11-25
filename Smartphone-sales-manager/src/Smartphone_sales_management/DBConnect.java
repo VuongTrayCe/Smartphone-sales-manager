@@ -31,7 +31,7 @@ public class DBConnect {
     Connection conn = null;
 
     String server = "localhost:3306";
-    String dbName = "smartphonemanagement";
+    String dbName = "smartphonejava";
     String userName = "root";
     String pass = "20022002";
 
@@ -39,7 +39,6 @@ public class DBConnect {
         checkDriver();
         setupConnection();
     }
-
     public DBConnect(String dbName) {
         checkDriver();
         server = "localhost:3306";
@@ -105,7 +104,7 @@ public class DBConnect {
         if (checkConnection()) {
             try {
                 stm.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
+//                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
                 return true;
             } catch (SQLException e) {
 //                e.printStackTrace();

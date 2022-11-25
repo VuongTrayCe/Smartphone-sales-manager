@@ -91,16 +91,17 @@ public class QuanLiDonHang_DAO {
     public ArrayList layDanhSachChiTietDonHang(int Madh) throws SQLException {
         ArrayList result = new ArrayList();
         dbConnect.setupConnection();
-
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai,sanpham.Icon\n"
-                    + "FROM donhang\n"
-                    + "INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
-                    + "INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
-                    + "INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
-                    + "INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm \n"
-                    + "INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
-                    + "INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai,sanpham.Icon,giasanpham.Giaban,khachhang.Tenkh,donhang.Ngayban\n"
+                    + "                                        FROM donhang\n"
+                    + "                                        INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
+                    + "                                       INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
+                    + "                                        INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
+                    + "                                        INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm \n"
+                    + "                                      INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
+                    + "                                      INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n"
+                    + "                                      INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp\n"
+                    + "                                      INNER JOIN khachhang ON khachhang.Makh = donhang.Makh");
             stm.setInt(1, Madh);
             rs = stm.executeQuery();
             if (rs != null) {
@@ -116,6 +117,9 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getDouble(8));
                     a.add(rs.getString(9));
                     a.add(rs.getString(10));
+                    a.add(rs.getDouble(11));
+                    a.add(rs.getString(12));
+                    a.add(rs.getDate(13));
                     result.add(a);
                 }
             }

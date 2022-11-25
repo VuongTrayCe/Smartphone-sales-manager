@@ -26,6 +26,20 @@ public class Model_GioHang {
     private int khuyenmai;
     private String baohanh;
 
+    
+    private int madh;
+    private int mactkm;
+    private String icon;
+    private int machitietbaohanh;
+    private int magiasp;
+    private int soluong;
+    private int giaban;
+    private int giasaukm;
+    private String tensp;
+    private int phantramkhuyenmai;
+    private String thoigianbaohanh;
+    
+    
     public void setMasp(int masp) {
         this.masp = masp;
     }

@@ -6,12 +6,15 @@ package Smartphone_sales_management.UI.Component.DonHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
+import Smartphone_sales_management.DTO.Model_DonHang;
 import Smartphone_sales_management.UI.Event.DonHang.EventDonHang;
+import Smartphone_sales_management.UI.Event.DonHang.EventDonHang2;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Dialog;
 import java.awt.GridLayout;
 import java.awt.Window;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +35,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     MainFrame mainFrame;
     TableDetailDH detailDH;
     TableDonHang donHang;
+    int Madonhang = -1;
     public MainContentDonHang(MainFrame mainFrame) throws ParseException {
         initComponents();
         this.mainFrame = mainFrame;
@@ -57,6 +61,13 @@ public class MainContentDonHang extends javax.swing.JPanel {
 //                detailDH.validate();
                 return Madh;
             }
+        }, new EventDonHang2() {
+            @Override
+            public int maDH(int Madh) {
+                Madonhang= Madh;
+              return Madh;
+            }
+            
         });
 
         txtTimkiem.getDocument().addDocumentListener(new DocumentListener() {
@@ -102,7 +113,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         btnExcel = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnInHoaDon = new javax.swing.JButton();
         DateStart = new com.toedter.calendar.JDateChooser();
         DateEnd = new com.toedter.calendar.JDateChooser();
         BtnLocTheoNgay = new javax.swing.JLabel();
@@ -158,14 +169,14 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 51));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Very-Basic-Print-icon.png"))); // NOI18N
-        jButton3.setText("In hóa đơn");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnInHoaDon.setBackground(new java.awt.Color(255, 0, 51));
+        btnInHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnInHoaDon.setForeground(new java.awt.Color(255, 255, 255));
+        btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Very-Basic-Print-icon.png"))); // NOI18N
+        btnInHoaDon.setText("In hóa đơn");
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnInHoaDonActionPerformed(evt);
             }
         });
 
@@ -209,7 +220,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))
@@ -225,7 +236,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -288,9 +299,17 @@ public class MainContentDonHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnExcelActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
+           JFrame frame = new JFrame();
+           ArrayList dsctdh = new ArrayList();
+           QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+           dsctdh = qldh_BUS.layctdh(Madonhang);
+           PanelInHoaDon pn = new PanelInHoaDon(dsctdh,frame);
+           frame.setSize(1000,750);
+           frame.setLocationRelativeTo(null);
+           frame.add(pn);
+           frame.setVisible(true);
+    }//GEN-LAST:event_btnInHoaDonActionPerformed
     private boolean checkDate() {
         if (DateStart.getDate() != null && DateEnd.getDate() != null) {
             return true;
@@ -316,7 +335,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser DateEnd;
     private com.toedter.calendar.JDateChooser DateStart;
     private javax.swing.JButton btnExcel;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnInHoaDon;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

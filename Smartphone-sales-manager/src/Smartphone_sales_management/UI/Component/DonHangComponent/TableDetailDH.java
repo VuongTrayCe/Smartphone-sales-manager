@@ -230,7 +230,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                                     .addComponent(lbGia)
                                     .addComponent(lbSoLuong)
                                     .addComponent(lbLoaiSP))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbcSL1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbcLoai, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -374,9 +374,9 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(confirmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(confirmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(62, 62, 62)
-                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -425,7 +425,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -457,6 +457,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?", "Hủy đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
+            qldh_BUS.tinhDiemChoKhachHangKhiHuy(Madh);
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);
@@ -470,7 +471,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xác nhận ?", "Xác nhận đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
-            qldh_BUS.tinhDiemChoKhachHang(Madh);
+            qldh_BUS.tinhDiemChoKhachHangKhiHoanThanh(Madh);
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);

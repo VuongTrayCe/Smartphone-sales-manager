@@ -20,9 +20,27 @@ public class Model_SanPham {
     private String icon;
     private String thongSo;
     private Double gia;
+    private Double gianhap;
     private String ngayTao;
     private int Makm;
     private int Mabh;
+    private int Mancc;
+
+    public int getMancc() {
+        return Mancc;
+    }
+
+    public void setMancc(int Mancc) {
+        this.Mancc = Mancc;
+    }
+
+    public Double getGianhap() {
+        return gianhap;
+    }
+
+    public void setGianhap(Double gianhap) {
+        this.gianhap = gianhap;
+    }
 
     public int getMasp() {
         return masp;

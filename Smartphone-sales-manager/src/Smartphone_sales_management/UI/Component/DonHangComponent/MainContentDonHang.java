@@ -160,6 +160,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setAutoscrolls(true);
+        jScrollPane1.setHorizontalScrollBar(null);
 
         btnExcel.setBackground(new java.awt.Color(255, 0, 51));
         btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

@@ -152,6 +152,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         });
 
         jscrollSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jscrollSP.setHorizontalScrollBar(null);
 
         jLabel1.setBackground(new java.awt.Color(255, 51, 0));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -275,7 +276,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 531, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

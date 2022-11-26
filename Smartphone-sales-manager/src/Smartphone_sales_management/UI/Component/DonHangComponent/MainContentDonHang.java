@@ -7,6 +7,7 @@ package Smartphone_sales_management.UI.Component.DonHangComponent;
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
 import Smartphone_sales_management.DTO.Model_DonHang;
+import Smartphone_sales_management.UI.Component.PhieuNhap.XuatExcel;
 import Smartphone_sales_management.UI.Event.DonHang.EventDonHang;
 import Smartphone_sales_management.UI.Event.DonHang.EventDonHang2;
 import Smartphone_sales_management.UI.Main.MainFrame;
@@ -293,12 +294,8 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
-        XuatExcel123 ex = new XuatExcel123(txtTimkiem.getText(), jComboBox2.getSelectedItem().toString(), DateStart.getDate(), DateEnd.getDate());
-        try {
-            ex.xuatFileExcelDanhSachtHoaDon();
-        } catch (ParseException ex1) {
-            Logger.getLogger(MainContentDonHang.class.getName()).log(Level.SEVERE, null, ex1);
-        }
+       XuatExcel excel = new XuatExcel(new ArrayList());
+       excel.xuatFileExcelALL(donHang.getTable());
     }//GEN-LAST:event_btnExcelActionPerformed
 
     private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed

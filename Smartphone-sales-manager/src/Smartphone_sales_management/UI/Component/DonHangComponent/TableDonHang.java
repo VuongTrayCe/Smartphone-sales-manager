@@ -110,7 +110,9 @@ public class TableDonHang extends javax.swing.JPanel {
         JscrollDH.repaint();
 
     }
-
+    public JTable getTable() {
+        return jTableDH;
+    }
 //    public void SetDefaultTableTheoNgay(String keyWord, String tenTrangThai,Date dateStart, Date dateEnd){
 //        jTable1.removeAll();
 //        model.setRowCount(0);

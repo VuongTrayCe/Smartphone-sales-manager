@@ -22,12 +22,19 @@ public class ThongKeBaoCaoBanHang_BUS {
     ThongKeBaoCaoBanHang_DAO tkbc = new ThongKeBaoCaoBanHang_DAO();
     ArrayList listdata = new ArrayList();
 
-    public ArrayList getThongKeBaoCaoBanHang(String type, String hinhthuc, Date dateStart, Date dateEnd) throws ParseException {
-
+    public ArrayList getThongKeBaoCaoBanHang(String type, String hinhthuc) {
         if (hinhthuc.equals("Hàng Hóa")) {
             listdata = tkbc.getDoanhThuBanHang_HangHoa();
-        } else if (hinhthuc.equals("Ngày Bán")) {
-            listdata = tkbc.getDoanhThuBanHang_NgayBan();
+        } else {
+            listdata = tkbc.getDoanhThuBanHang_KhachHang();
+        }
+        return listdata;
+
+    }
+
+    public ArrayList getThongKeBaoCaoBanHang(Date dateStart, Date dateEnd) throws ParseException {
+
+        listdata = tkbc.getDoanhThuBanHang_NgayBan();
             var listdata2 = new ArrayList<>();
 
             for (Object object : listdata) {
@@ -38,15 +45,10 @@ public class ThongKeBaoCaoBanHang_BUS {
 
                 }
             }
-            return listdata2;
-
-        } else {
-            listdata = tkbc.getDoanhThuBanHang_KhachHang();
-
-        }
-        return listdata;
+        return listdata2;
     }
-   // hàm so sánh ngày (kiểu date)
+    // hàm so sánh ngày (kiểu date)
+
     public Boolean compareDate(Date dateBanHang, Date dateStart, Date dateEnd) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //        SimpleDateFormat  sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -65,13 +67,15 @@ public class ThongKeBaoCaoBanHang_BUS {
         System.out.println(flag);
         return flag;
     }
-     // Lấy số đơn hàng của 1 khách hàng
+    // Lấy số đơn hàng của 1 khách hàng
+
     public ArrayList getThongKeBaoCaoBanHang_Detail_NgayBan(String NgayBan) {
         ArrayList listdata2 = new ArrayList();
         listdata2 = tkbc.getDoanhThuBanHang_NgayBan_Detail(NgayBan);
 
         return listdata2;
     }
+
     public ArrayList getThongKeBaoCaoBanHang_Detail_KhachHang(int makh) {
         ArrayList listdata2 = new ArrayList();
         listdata2 = tkbc.getDoanhThuBanHang_KhachHang_Detail(makh);
@@ -79,13 +83,12 @@ public class ThongKeBaoCaoBanHang_BUS {
     }
 
     public JDBCCategoryDataset getDataHangHoa_BieuDo() {
-        
+
         return tkbc.getHangHoa_BieuDo();
     }
 
     public JDBCCategoryDataset getDataHangHoa_BieuDo_KhachHang() {
-         return tkbc.getKhachHang_BieuDo_KhachHang();
+        return tkbc.getKhachHang_BieuDo_KhachHang();
     }
 
-  
 }

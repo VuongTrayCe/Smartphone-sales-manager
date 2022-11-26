@@ -9,7 +9,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -24,7 +26,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
        DefaultTableModel model;
         // = 1 la trang thai them nhan vien, 2 la thang trai chinh sua thong tin
         private int stateForm;
-    
+        private DefaultTableCellRenderer cellRenderer;
         
         
     public NhanVienGUI() {
@@ -35,12 +37,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLMaNV.setVisible(false);
         jtMaNV.setVisible(false);
         model = (DefaultTableModel) jTable1.getModel();
-        model.addColumn("MaNV");        
-         model.addColumn("TenNV");
-         model.addColumn("SoCCCD");
-         model.addColumn("Tuoi");
-         model.addColumn("DiaChi");        
-         model.addColumn("ChucDanh");
+        model.addColumn("Mã nhân viên");        
+         model.addColumn("Tên nhân viên");
+         model.addColumn("Số căn cước công dân");
+         model.addColumn("Tuổi");
+         model.addColumn("Địa chỉ");        
+         model.addColumn("Chức danh");
 //         model.addColumn("TrangThai");
          jTable1.setOpaque(false);
          jTable1.getTableHeader().setResizingAllowed(false);
@@ -55,6 +57,21 @@ public class NhanVienGUI extends javax.swing.JPanel {
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
         jTable1.setRowSorter(sorter);
     
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+        jTable1.getColumnModel().getColumn(1).setMinWidth(115);
+        jTable1.getColumnModel().getColumn(2).setMinWidth(155);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
+        jTable1.getColumnModel().getColumn(4).setMinWidth(145);
+        jTable1.getColumnModel().getColumn(5).setMinWidth(95);
+
+        cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(5).setCellRenderer(cellRenderer);
     }
   
     
@@ -936,16 +953,16 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
             JOptionPane.showMessageDialog(jtTuoi,"Số tuổi cần nhập lại tuổi");
             return;
         }
-       
+        if(Socccd.length()>13){
+            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 12 số ");
+            return;
+        }
          if(Pattern.matches(CMND_Pattern,Socccd)!=true)
         {
                         JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân/Căn cước công dân không đúng định dạng");
                         return;
         }
-        if(Socccd.length()>13){
-            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 12 số ");
-            return;
-        }
+       
         if(diachi.length() == 0){
             JOptionPane.showMessageDialog(jTextDiaChi,"Bạn chưa nhập địa chỉ");
             return;

@@ -14,6 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -29,6 +31,7 @@ public class TableNhaCC extends javax.swing.JPanel {
     TableNhaCC nhacc;
     EventNhaCC event;
     private MainContentNCC mainnhacc;
+    private DefaultTableCellRenderer cellRenderer;
     /**
      * Creates new form TableNhaCC
      */
@@ -39,10 +42,10 @@ public class TableNhaCC extends javax.swing.JPanel {
         initComponents();
         this.mainnhacc = mainnhacc;
         
-        model.addColumn("MaNhaCungCap");        
-        model.addColumn("TenNhaCungCap");
-        model.addColumn("SDT");
-        model.addColumn("DiaChi");
+        model.addColumn("Mã nhà cung cấp");        
+        model.addColumn("Tên nhà cung cấp");
+        model.addColumn("Số điện thoại");
+        model.addColumn("Địa chỉ");
           jTable1.setOpaque(false);
          jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
@@ -54,7 +57,18 @@ public class TableNhaCC extends javax.swing.JPanel {
         SetDefaultTable("");
         jTable1.setModel(model);
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);   
+        jTable1.setRowSorter(sorter);  
+              jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTable1.getColumnModel().getColumn(1).setMinWidth(100);
+        jTable1.getColumnModel().getColumn(2).setMinWidth(130);
+        jTable1.getColumnModel().getColumn(3).setMinWidth(70);
+
+         cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
     }
    
 

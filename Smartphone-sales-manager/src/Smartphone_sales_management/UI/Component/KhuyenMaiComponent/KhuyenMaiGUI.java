@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -37,6 +38,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     private ArrayList<String> danhsachsp;
     // = 1 la trang thai them km, 2 la thang trai chinh sua thong tin
     private int stateForm;
+    private DefaultTableCellRenderer cellRenderer;
 
     /**
      * Creates new form KhuyenMaiGUI
@@ -61,10 +63,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     private void showCTKM() {
 
         modelCTKM = (DefaultTableModel) jTable1.getModel();
-        modelCTKM.addColumn("MaChiTietKM");
-        modelCTKM.addColumn("MaSP");
-        modelCTKM.addColumn("TenSP");
-        modelCTKM.addColumn("MaKM");
+        modelCTKM.addColumn("Mã chi tiết khuyến mãi");
+        modelCTKM.addColumn("Mã sản phẩm");
+        modelCTKM.addColumn("Tên sản phẩm");
+        modelCTKM.addColumn("Mã khuyến mãi");
 //        modelCTKM.addColumn("TrangThai");
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
@@ -77,14 +79,26 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
         jTable1.setRowSorter(sorter);
         setDefaultTableModelCTKM();
+        
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(130);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(2).setMinWidth(140);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(80);
+
+        cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
 
     }
 
     private void showKM() {
         modelKM = (DefaultTableModel) jTable2.getModel();
-        modelKM.addColumn("MaKM");
-        modelKM.addColumn("TenKM");
-        modelKM.addColumn("PhanTramKM");
+        modelKM.addColumn("Mã khuyến mãi");
+        modelKM.addColumn("Tên khuyến mãi");
+        modelKM.addColumn("Phần trăm khuyến mãi");
 //        modelKM.addColumn("TrangThai");
         jTable2.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable2.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
@@ -97,6 +111,15 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable2.getModel());
         jTable2.setRowSorter(sorter);
         setDefaultTableModelKM();
+          jTable2.getColumnModel().getColumn(0).setPreferredWidth(110);
+        jTable2.getColumnModel().getColumn(1).setMinWidth(130);
+        jTable2.getColumnModel().getColumn(2).setPreferredWidth(150);
+
+        cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable2.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+        jTable2.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+        jTable2.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
     }
 
     public void setDefaultTableModelCTKM() {
@@ -758,6 +781,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         String makm = jTextMakm.getText();
         String tenkm = jTextTenKm.getText();
         String ptkm = jTextPtkm.getText();
+         Pattern p = Pattern.compile("[a-z]");
+                if (p.matcher(jTextPtkm.getText()).find()){
+            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phần trăm KM ");
+            return;
+        }
         if (tenkm.length() <= 0) {
             JOptionPane.showMessageDialog(jTextMakm, "Bạn vui lòng nhập dữ liệu tên khuyến mãi");
             return;
@@ -784,7 +812,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         
         Pattern p = Pattern.compile("[a-z]");
                 if (p.matcher(jTextPtkm.getText()).find()){
-            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phan tram km ");
+            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phần trăm KM ");
             return;
         }
         if (tenkm.length() <= 0) {

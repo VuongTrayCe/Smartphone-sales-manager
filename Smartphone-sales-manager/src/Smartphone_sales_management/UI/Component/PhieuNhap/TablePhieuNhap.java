@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,6 +54,10 @@ public class TablePhieuNhap extends javax.swing.JPanel {
         SetDefautlTable("", trangthai);
         jTable1.setModel(model);
 
+    }
+    public JTable getTable()
+    {
+        return jTable1;
     }
 
     public void addEventPhieuNhap(EventPhieuNhap event) {

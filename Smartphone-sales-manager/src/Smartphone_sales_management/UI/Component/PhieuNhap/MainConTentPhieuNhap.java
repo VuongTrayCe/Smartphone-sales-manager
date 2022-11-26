@@ -345,7 +345,7 @@ public class MainConTentPhieuNhap extends JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
              
      XuatExcel XuatExcel = new XuatExcel(excel);
-     XuatExcel.xuatFilePhieuNhap();
+     XuatExcel.xuatFileExcelALL(a.getTable());
      
 
 // TODO add your handling code here:

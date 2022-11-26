@@ -17,6 +17,7 @@ import Smartphone_sales_management.UI.Component.PhieuNhap.MainConTentPhieuNhap;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
+import Smartphone_sales_management.UI.Swing.ChinhSach.ChinhSach;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,16 +46,15 @@ public class MainFrame extends javax.swing.JFrame {
     public static int selectedIndex = -1;
     public static int manv =1;
     public static String tennv = "Vuong";
-
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
 //        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
-          MainContentBaoHanh a = new MainContentBaoHanh(MainFrame.this, jPanel1);
+//          MainContentBaoHanh a = new MainContentBaoHanh(MainFrame.this, jPanel1);
 //        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
-//        ThongKeMainPanel a = new ThongKeMainPanel();
+        ThongKeMainPanel a = new ThongKeMainPanel();
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
@@ -162,7 +162,8 @@ public class MainFrame extends javax.swing.JFrame {
                     a.validate();
                 }
                 if (index == 7) {
-                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+//                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+                    ChinhSach a = new ChinhSach(MainFrame.this,jPanel1);
 //                    ThongKeMainPanel a = new ThongKeMainPanel();
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());

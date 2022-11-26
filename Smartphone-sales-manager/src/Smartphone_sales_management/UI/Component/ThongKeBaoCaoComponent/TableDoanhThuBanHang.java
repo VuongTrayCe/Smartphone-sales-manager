@@ -80,7 +80,13 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int i = jTable1.getSelectedRow();
-                event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
+                if (hinhthuc.equals("Khách Hàng")) {
+                    event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
+
+                } else {
+                    event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
+
+                }
             }
         ;
     }

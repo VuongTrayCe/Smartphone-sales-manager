@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Smartphone_sales_management.DBConnect;
+import Smartphone_sales_management.DTO.Model_SanPham;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
@@ -28,7 +29,8 @@ public class QuanLyTaiKhoan_DAO {
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk , taikhoan.Manv, taikhoan.Tendangnhap, taikhoan.Matkhau\n"
-                    + "FROM taikhoan");
+                    + "FROM taikhoan\n"
+                    + "WHERE taikhoan.TrangThai='T'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
@@ -84,7 +86,7 @@ public class QuanLyTaiKhoan_DAO {
         db.setupConnection();
 
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select Matk from taikhoan");
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT Matk from taikhoan");
             rs = db.sqlQry(stm);
             if (rs != null) {
                 while (rs.next()) {
@@ -98,6 +100,81 @@ public class QuanLyTaiKhoan_DAO {
             db.closeConnection();
         }
         return result;
+    }
+     public boolean themTaiKhoan(Model_TaiKhoan Taikhoan) throws SQLException{
+         boolean success = true;
+         db.setupConnection();
+         try{
+              String sql = ("INSERT INTO taikhoan(Matk,Manv,Tendangnhap,Matkhau,TrangThai)\n"
+                    + "VALUES(?,?,?,?,\"T\")");
+              PreparedStatement stm;
+              stm = db.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+              stm.setInt(1, Taikhoan.getMaTaiKhoan());
+              stm.setInt(2, Taikhoan.getMaNhanVien());
+              stm.setString(3, Taikhoan.getTaiKhoan());
+              stm.setString(4, Taikhoan.getMatKhau());
+              stm.executeUpdate();
+         }catch (SQLException e) {
+            e.printStackTrace();
+            return success = false;
+        } finally {
+            db.closeConnection();
+        }
+         return success;
+     }
+     
+     public ArrayList layDanhSachNV() {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT nhanvien.Manv,nhanvien.Tennv \n"
+                    + "FROM nhanvien");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Vector a = new Vector();
+                    a.add(rs.getString("Tennv"));
+                    System.out.println(rs.getString("Tennv"));
+                    a.add(rs.getInt("Manv"));
+                    result.add(a);
+                }
+                return result;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+        return null;
+    }
+     
+     public void themNV(int Matk, Model_TaiKhoan model) {
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO Taikhoan(Matk,Manv,TrangThai)\n"
+                    + "VALUES (?,?,\"T\")");
+            stm.setInt(1, Matk);
+            stm.setInt(2, model.getMaNhanVien());
+       //     stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+    }
+    public void xoaTK(int Matk) {
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE taikhoan\n"
+                    + "SET taikhoan.TrangThai = \"F\" WHERE taikhoan.Matk = ?;");
+            stm.setInt(1, Matk);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
     }
 
     public ArrayList getThongTinTaiKhoan() {

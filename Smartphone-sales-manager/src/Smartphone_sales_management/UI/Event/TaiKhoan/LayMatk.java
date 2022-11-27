@@ -6,12 +6,8 @@ package Smartphone_sales_management.UI.Event.TaiKhoan;
 
 /**
  *
- * @author Windows10
+ * @author Dell
  */
-public interface EventTaiKhoan {
-     public int SelectedInxex(int index);
-
-   
-
-   
+public interface LayMatk {
+        public int LayMatk (int index);
 }

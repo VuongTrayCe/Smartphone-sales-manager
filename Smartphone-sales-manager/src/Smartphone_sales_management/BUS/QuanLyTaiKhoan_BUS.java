@@ -5,6 +5,7 @@
 package Smartphone_sales_management.BUS;
 
 import Smartphone_sales_management.DAO.QuanLyTaiKhoan_DAO;
+import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -52,6 +53,29 @@ public class QuanLyTaiKhoan_BUS {
         }
 
         return dscttk;
+    }
+
+    public boolean themTK(Model_TaiKhoan Taikhoan) throws SQLException {
+        if (qltk.themTaiKhoan(Taikhoan)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean xoaTK(int Matk) {
+        try {
+            qltk.xoaTK(Matk);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public ArrayList layDanhSachNV() {
+        ArrayList dsnv = new ArrayList();
+        dsnv = qltk.layDanhSachNV();
+        return dsnv;
     }
 
     public Boolean KiemTraDangNhap(String username, String pwd) {

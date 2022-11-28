@@ -176,6 +176,31 @@ public class QuanLyTaiKhoan_DAO {
             db.closeConnection();
         }
     }
+    public boolean suaTK(Model_TaiKhoan model) {
+        db.setupConnection();
+        boolean success = true;
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE taikhoan "
+                    + "SET taikhoan.Tendangnhap = ? , taikhoan.Matkhau = ?  "
+                    + "WHERE taikhoan.Matk = ?");
+            
+            stm.setString(1, model.getTaiKhoan());
+            System.out.println(model.getMatKhau()+"123");
+            stm.setString(2, model.getMatKhau());
+            
+            System.out.println(model.getTaiKhoan());
+            stm.setInt(3, model.getMaTaiKhoan());
+            
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Sua tài khoản thất bại");
+            success = false;
+        } finally {
+            db.closeConnection();
+        }
+        return success;
+    }
 
     public ArrayList getThongTinTaiKhoan() {
         ArrayList dstk = new ArrayList();

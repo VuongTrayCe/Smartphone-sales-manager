@@ -71,6 +71,12 @@ public class QuanLyTaiKhoan_BUS {
         }
         return true;
     }
+    public boolean Formquyen(Model_TaiKhoan model) {
+        if (qltk.suaTK(model) ) {
+            return true;
+        }
+        return false;
+    }
 
     public ArrayList layDanhSachNV() {
         ArrayList dsnv = new ArrayList();

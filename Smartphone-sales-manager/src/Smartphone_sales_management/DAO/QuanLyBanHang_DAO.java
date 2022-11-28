@@ -242,4 +242,65 @@ public class QuanLyBanHang_DAO {
         
     }
 
+    public void updateDiemKhachHang(int makh,int i) {
+        
+        boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("UPDATE khachhang SET Diemso=? WHERE khachhang.Makh=?");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1,i);
+            stm.setInt(2,makh);
+            isSuccess = db.sqlUpdate(stm);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+    }
+
+    public void updateSoLuongSanPham(int masp, int soluong) {
+        
+         boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("UPDATE sanpham SET soluong=? WHERE sanpham.Masp=?");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1,soluong);
+            stm.setInt(2,masp);
+            isSuccess = db.sqlUpdate(stm);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+    }
+
+    public int getSoLuongSanPhamHienTai(int masp) {
+        
+        int sl = 0;
+        db.setupConnection();
+        try {
+
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.soluong from sanpham where sanpham.Masp=?");
+            stm.setInt(1, masp);
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    sl = rs.getInt("soluong");
+                    System.out.println("So Luong Hien Tai");
+
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return sl;
+    }
+
 }

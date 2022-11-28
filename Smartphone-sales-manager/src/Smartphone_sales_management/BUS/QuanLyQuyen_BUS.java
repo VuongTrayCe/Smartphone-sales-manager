@@ -39,4 +39,21 @@ public class QuanLyQuyen_BUS {
             return dstkOfficial;
         }
     }
+    public boolean themQ(Model_Quyen Quyen) throws SQLException {
+        if (qlq.themQuyen(Quyen)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public ArrayList layDanhSachMatk() {
+        ArrayList dstk = new ArrayList();
+        dstk = qlq.layDanhSachMaTk();
+        return dstk;
+    }
+    public ArrayList layDanhSachMaQuyen() {
+        ArrayList dsq = new ArrayList();
+        dsq = qlq.layDanhSachMaQuyen();
+        return dsq;
+    }
 }

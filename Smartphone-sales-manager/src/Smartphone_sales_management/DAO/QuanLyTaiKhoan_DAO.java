@@ -134,7 +134,6 @@ public class QuanLyTaiKhoan_DAO {
                 while (rs.next()) {
                     Vector a = new Vector();
                     a.add(rs.getString("Tennv"));
-                    System.out.println(rs.getString("Tennv"));
                     a.add(rs.getInt("Manv"));
                     result.add(a);
                 }

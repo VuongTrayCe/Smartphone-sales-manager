@@ -13,11 +13,11 @@ public class Model_Quyen {
     private int Matk;
     private String TenQuyen;
      
-    public int getMaQuyem() {
+    public int getMaQuyen() {
         return MaQuyen;
     }
 
-    public void setMaNV(int Maquyen) {
+    public void setMaQ(int Maquyen) {
         this.MaQuyen = Maquyen;
     }
     public int getMatk() {

@@ -205,12 +205,10 @@ public class Tableaddtaikhoan extends javax.swing.JPanel {
     }    
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if (checkData()) {
-//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = new Date();
+
             boolean check = true;
             
             Model_TaiKhoan model = new Model_TaiKhoan();
-//            model.setMaTaiKhoan(Integer.parseInt(txtMatk.getText()));
             model.setMaNhanVien(Integer.parseInt(txtManv.getText()));
             
             model.setTaiKhoan(txtTendangnhap.getText());

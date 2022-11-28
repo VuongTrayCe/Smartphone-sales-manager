@@ -372,7 +372,7 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = new JFrame("Bản phân quyền tài khoản");
         FromQuyen quyen = new FromQuyen();
-        frame.setSize(500, 350);
+        frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
         frame.add(quyen);
         frame.setVisible(true);

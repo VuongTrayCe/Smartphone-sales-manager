@@ -56,7 +56,7 @@ public class QuanLiSanPham_DAO {
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT sanpham.Masp, sanpham.Tensp,sanpham.Loaisp, giasanpham.Giaban,sanpham.soluong,sanpham.TrangThai\n"
                     + "                    FROM sanpham\n"
-                    + "                    INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND sanpham.TrangThai = ?\n"
+                    + "                    INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND giasanpham.TrangThai =\"T\" AND sanpham.TrangThai = ?\n"
                     + "                    ORDER BY sanpham.Masp ASC");
             stm.setString(1, tenTrangThai);
             rs = stm.executeQuery();

@@ -44,14 +44,11 @@ public class QuanLyBanHang_BUS {
                     {
                         dsspOfficial.add(y);
                     }
-
                 }
             }
             return dsspOfficial;
         }
     }
-
-    // Hàm lấy chi tiết sản phẩm được chọn
     public ArrayList getDanhSachChiTiet1SanPham(int selectedIndex) {
         ArrayList dsctsp = new ArrayList();
 //        ArrayList MaSPList = new ArrayList<>();
@@ -93,11 +90,13 @@ public class QuanLyBanHang_BUS {
         qlbh.insertKhachHang(model_khachhang);
     }
 
-    public int InsertDonHang(Model_BanHang_HoaDon hoadon) {
+    public int InsertDonHang(Model_BanHang_HoaDon hoadon,int diem) {
+        qlbh.updateDiemKhachHang(hoadon.getMakh(),diem-hoadon.getDiemapdung());
        return qlbh.AddHoaDon(hoadon);
     }
-
     public void AddChiTietDonHang(Model_BanHang_ChiTietHoaDon object) {
+        int soluongsanphamhientai = qlbh.getSoLuongSanPhamHienTai(object.getMasp());
+        qlbh.updateSoLuongSanPham(object.getMasp(),soluongsanphamhientai-object.getSoluong());
         qlbh.AddChiTietHoaDon(object);
     }
 

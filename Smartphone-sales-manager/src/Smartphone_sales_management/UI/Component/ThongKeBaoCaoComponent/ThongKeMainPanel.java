@@ -10,6 +10,7 @@ import Smartphone_sales_management.UI.Component.BanHangComponent.AddKhachHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableBanHang;
 import Smartphone_sales_management.UI.Component.BanHangComponent.TableGioHang;
 import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
+import Smartphone_sales_management.UI.Component.PhieuNhap.XuatExcel;
 import Smartphone_sales_management.UI.Event.BanHang.AddGioHang;
 import Smartphone_sales_management.UI.Event.ThongKe.AddXemChiTiet;
 import Smartphone_sales_management.UI.Model.Model_GioHang;
@@ -22,6 +23,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import org.jfree.chart.ChartFactory;
@@ -48,8 +50,9 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     private int flag;
     public String matimkiemchitiet_PhieuNhap;
     TableChiPhiNhapHang b;
-
     ThongKeBaoCaoBanHang_BUS tkbc = new ThongKeBaoCaoBanHang_BUS();
+    TableLoiNhuanBanHang c;
+    JTable tableExcel = new JTable();
 
     public ThongKeMainPanel() {
         initComponents();
@@ -60,9 +63,11 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         DateEnd.setVisible(false);
         flag = 0;
         b = new TableChiPhiNhapHang("Chi Phí Nhập Hàng", "Hàng Hóa");
+        c = new TableLoiNhuanBanHang("Lợi Nhuận Bán Hàng", "Hàng Hóa");
         lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
         a = new TableDoanhThuBanHang((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem());
         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+        tableExcel = a.getTable();
         jScrollPane1.setViewportView(a);
         a.addXemChiTiet(new AddXemChiTiet() {
             @Override
@@ -71,7 +76,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 return maXemChiTiet;
             }
         });
-        
+
         b.addXemChiTiet(new AddXemChiTiet() {
             @Override
             public String Ngayban(String maXemChiTiet) {
@@ -79,7 +84,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 return maXemChiTiet;
             }
         });
-        
+
         DoanhThuBanHang_BieuDo_HangHoa bieudohangHoa = new DoanhThuBanHang_BieuDo_HangHoa();
         btExcel.setBorder(new RoundedBorderer(new Color(0, 0, 0), 2, 30));
 
@@ -115,7 +120,6 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         btnXem = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
         jScrollPane2.setViewportView(jTextPane1);
@@ -131,6 +135,11 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         btExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Logos-Excel-icon.png"))); // NOI18N
         btExcel.setText("Xuất Excel");
         btExcel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcelActionPerformed(evt);
+            }
+        });
 
         cbbType.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cbbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doanh Thu Bán Hàng", "Chi Phí Nhập Hàng", "Lợi Nhuận Bán Hàng" }));
@@ -244,7 +253,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbbHinhThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btExcel)
@@ -276,19 +285,6 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 102, 153));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 228, Short.MAX_VALUE)
-        );
-
         jPanel3.setBackground(new java.awt.Color(255, 153, 51));
         jPanel3.setMinimumSize(new java.awt.Dimension(500, 0));
 
@@ -300,7 +296,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -310,15 +306,12 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)))))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,16 +320,14 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1097, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,20 +360,13 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
             cbbHinhThuc.addItem("Ngày Bán");
 
         }
-//            TableBanHang_TheoHangHoa a = new TableBanHang_TheoHangHoa((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), null, null);
-//  a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-//        jScrollPane1.setViewportView(a);
-//        }
+
     }//GEN-LAST:event_cbbTypeItemStateChanged
 
     private void cbbHinhThucItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbHinhThucItemStateChanged
-//        if (cbbType.getSelectedIndex() == 0 && cbbHinhThuc.) {
-//                TableBanHang_TheoHangHoa a = new TableBanHang_TheoHangHoa((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), null, null);
-//         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-//        jScrollPane1.setViewportView(a);
+
         if (cbbType.getSelectedIndex() == 0) {
             if (cbbHinhThuc.getSelectedIndex() == 2) {
-//            jScrollPane1.removeAll();
                 DateStart.setVisible(true);
                 DateEnd.setVisible(true);
                 lbDateStart.setVisible(true);
@@ -420,23 +404,65 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 lbDateEnd.setVisible(false);
             }
         }
+        if (cbbType.getSelectedIndex() == 2) {
+            if (cbbHinhThuc.getSelectedIndex() == 1) {
+//            jScrollPane1.removeAll();
+                DateStart.setVisible(true);
+                DateEnd.setVisible(true);
+                lbDateStart.setVisible(true);
+                lbDateEnd.setVisible(true);
 
-//            }
+            }
+            if (cbbHinhThuc.getSelectedIndex() == 0) {
+                DateStart.setVisible(false);
+                DateEnd.setVisible(false);
+                lbDateStart.setVisible(false);
+                lbDateEnd.setVisible(false);
+            }
+
+        }
+
     }//GEN-LAST:event_cbbHinhThucItemStateChanged
 
     public void setChart(Object ob, int index) {
         jPanel3.removeAll();
         jPanel3.setLayout(new GridLayout());
+        if (cbbType.getSelectedIndex() == 0) {
+            if (index == 0) {
+                DoanhThuBanHang_BieuDo_HangHoa bieuDo_HangHoa = (DoanhThuBanHang_BieuDo_HangHoa) ob;
+                jPanel3.add(bieuDo_HangHoa);
+                bieuDo_HangHoa.validate();
+            }
+            if (index == 1) {
+                DoanhThuBanHang_BieuDo_KhachHang bieuDo_KhachHang = (DoanhThuBanHang_BieuDo_KhachHang) ob;
+                jPanel3.add(bieuDo_KhachHang);
+                bieuDo_KhachHang.validate();
 
-        if (index == 0) {
-            DoanhThuBanHang_BieuDo_HangHoa bieuDo_HangHoa = (DoanhThuBanHang_BieuDo_HangHoa) ob;
-            jPanel3.add(bieuDo_HangHoa);
-            a.validate();
+            }
         }
-        if (index == 1) {
-            DoanhThuBanHang_BieuDo_KhachHang bieuDo_KhachHang = (DoanhThuBanHang_BieuDo_KhachHang) ob;
-            jPanel3.add(bieuDo_KhachHang);
-            a.validate();
+        if (cbbType.getSelectedIndex() == 1) {
+            if (index == 0) {
+                ChiPhiNhapHang_BieuDo_HangHoa bieuDo_HangHoa_PhieuNhap = (ChiPhiNhapHang_BieuDo_HangHoa) ob;
+                jPanel3.add(bieuDo_HangHoa_PhieuNhap);
+                bieuDo_HangHoa_PhieuNhap.validate();
+            }
+            if (index == 1) {
+                DoanhThuBanHang_BieuDo_KhachHang bieuDo_KhachHang = (DoanhThuBanHang_BieuDo_KhachHang) ob;
+                jPanel3.add(bieuDo_KhachHang);
+                bieuDo_KhachHang.validate();
+            }
+        }
+        if (cbbType.getSelectedIndex() == 2) {
+            if (index == 0) {
+                LoiNhuanBanHang_BieuDo_HangHoa bieuDo_HangHoa_LoiNhuan = (LoiNhuanBanHang_BieuDo_HangHoa) ob;
+                jPanel3.add(bieuDo_HangHoa_LoiNhuan);
+                bieuDo_HangHoa_LoiNhuan.validate();
+            }
+            if (index == 1) {
+                LoiNhuanBanHang_BieuDo_NgayBan bieuDo_KhachHang = (LoiNhuanBanHang_BieuDo_NgayBan) ob;
+                jPanel3.add(bieuDo_KhachHang);
+                bieuDo_KhachHang.validate();
+            }
         }
 
         jPanel3.repaint();
@@ -449,31 +475,34 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
 
                 a.init((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem());
                 a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+                tableExcel = a.getTable();
                 jScrollPane1.setViewportView(a);
                 flag = 0;
                 DoanhThuBanHang_BieuDo_HangHoa bieudohangHoa = new DoanhThuBanHang_BieuDo_HangHoa();
                 // Tao biểu đồ
                 setChart(bieudohangHoa, 0);
                 lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
-
             }
             if (cbbHinhThuc.getSelectedIndex() == 1) {
                 a.init((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem());
                 a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
                 jScrollPane1.setViewportView(a);
+                tableExcel = a.getTable();
+
                 flag = 1;
                 lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
                 DoanhThuBanHang_BieuDo_KhachHang bieudo_khachHang = new DoanhThuBanHang_BieuDo_KhachHang();
                 setChart(bieudo_khachHang, 1);
-
             }
             if (cbbHinhThuc.getSelectedIndex() == 2) {
-                System.out.println("da vao");
                 if (CheckChooiseDate() == true) {
+
                     a.init((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), DateStart.getDate(), DateEnd.getDate());
                     a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
                     jScrollPane1.setViewportView(a);
                     flag = 2;
+                    tableExcel = a.getTable();
+
                     lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
                 }
             }
@@ -485,9 +514,10 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 b.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
                 jScrollPane1.setViewportView(b);
                 flag = 0;
-                DoanhThuBanHang_BieuDo_HangHoa bieudohangHoa = new DoanhThuBanHang_BieuDo_HangHoa();
-                // Tao biểu đồ
-//                setChart(bieudohangHoa, 0);
+                tableExcel = b.getTable();
+
+                ChiPhiNhapHang_BieuDo_HangHoa bieudohangHoa = new ChiPhiNhapHang_BieuDo_HangHoa();
+                setChart(bieudohangHoa, 0);
                 lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
 
             }
@@ -497,42 +527,48 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 b.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
                 jScrollPane1.setViewportView(b);
                 flag = 1;
+                tableExcel = b.getTable();
+
                 lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
                 DoanhThuBanHang_BieuDo_KhachHang bieudo_khachHang = new DoanhThuBanHang_BieuDo_KhachHang();
-//                setChart(bieudo_khachHang, 1);
-
-//                setChart_KhachHang();
             }
             if (cbbHinhThuc.getSelectedIndex() == 2) {
                 if (CheckChooiseDate() == true) {
-                    System.out.println("à");
                     b.init((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), DateStart.getDate(), DateEnd.getDate());
                     b.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
                     jScrollPane1.setViewportView(b);
+                    tableExcel = b.getTable();
                     flag = 2;
                     lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
 
                 }
             }
-//            a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-//            jScrollPane1.setViewportView(a);
         }
-//                if (cbbHinhThuc.getSelectedIndex() == 2) {
-//                    CheckChooiseDate();
-//                    TableBanHang_TheoHangHoa b = new TableBanHang_TheoHangHoa((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), DateStart.getDate(), DateEnd.getDate());
-//                    b.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-//                    jScrollPane1.setViewportView(b);
-//                }
-//            }
-//        if (cbbType.getSelectedIndex()==1) {
-//                TableBanHang_TheoHangHoa a = new TableBanHang_TheoHangHoa((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), null, null);
-//         a.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-//        jScrollPane1.setViewportView(a);
-//         }
-
-// TODO add your handling code here:
+        if (cbbType.getSelectedIndex() == 2) {
+            if (cbbHinhThuc.getSelectedIndex() == 0) {
+                c.init((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem());
+                c.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+                jScrollPane1.setViewportView(c);
+                flag = 0;
+                tableExcel = c.getTable();
+                LoiNhuanBanHang_BieuDo_HangHoa bieudohangHoa = new LoiNhuanBanHang_BieuDo_HangHoa();
+                setChart(bieudohangHoa, 0);
+                lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
+            }
+            if (cbbHinhThuc.getSelectedIndex() == 1) {
+                if (CheckChooiseDate() == true) {
+                    c.init((String) cbbType.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem(), DateStart.getDate(), DateEnd.getDate());
+                    c.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
+                    jScrollPane1.setViewportView(c);
+                    flag = 1;
+                    LoiNhuanBanHang_BieuDo_NgayBan bieudoNgayBan = new LoiNhuanBanHang_BieuDo_NgayBan(DateStart.getDate(), DateEnd.getDate());
+                    setChart(bieudoNgayBan,1);
+                    tableExcel = c.getTable();
+                    lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
+                }
+            }
+        }
     }//GEN-LAST:event_btnXemActionPerformed
-
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
 
@@ -567,7 +603,15 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         if (cbbType.getSelectedIndex() == 1) {
             if (cbbHinhThuc.getSelectedIndex() == 2 && flag == 2) {
                 if (CheckChooiseDate() == true) {
-
+                    JDialog inforDonHang = new JDialog();
+                    ChiPhiPhieuNhap_Detail_NgayBan detail_NgayNhap = new ChiPhiPhieuNhap_Detail_NgayBan(matimkiemchitiet_PhieuNhap, inforDonHang);
+                    inforDonHang.setSize(926, 488);
+                    inforDonHang.setLayout(new GridLayout());
+                    inforDonHang.setTitle("Chi Tiết Ngày Nhập");
+                    inforDonHang.add(detail_NgayNhap);
+                    detail_NgayNhap.validate();
+                    inforDonHang.setLocationRelativeTo(null);
+                    inforDonHang.setVisible(true);
                 }
             }
             if (cbbHinhThuc.getSelectedIndex() == 1 && flag == 1) {
@@ -585,6 +629,13 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnDetailActionPerformed
+
+    private void btExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcelActionPerformed
+        XuatExcel excel = new XuatExcel(new ArrayList());
+        excel.xuatFileExcelALL(tableExcel);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btExcelActionPerformed
 
     public boolean CheckChooiseDate() {
         Boolean flag = true;
@@ -610,7 +661,6 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbbType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
 
 /**
  *
@@ -106,11 +107,11 @@ public class ThongKeBaoCaoNhapHang_DAO {
     }
 
     public ArrayList getChiPhiPhieuNhap_Detail_NhaCungCap(int parseInt) {
-        
-         ArrayList dssp = new ArrayList();
+
+        ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            String query="select phieunhap.Maphieunhap, phieunhap.NgayNhap,phieunhap.SoLuong,phieunhap.TongTien from phieunhap where phieunhap.Mancc=? and phieunhap.Trangthai=\"Hoàn Thành\"";
+            String query = "select phieunhap.Maphieunhap, phieunhap.NgayNhap,phieunhap.SoLuong,phieunhap.TongTien from phieunhap where phieunhap.Mancc=? and phieunhap.Trangthai=\"Hoàn Thành\"";
             PreparedStatement stm = db.getConnection().prepareStatement(query);
             stm.setInt(1, parseInt);
             rs = stm.executeQuery();
@@ -121,7 +122,7 @@ public class ThongKeBaoCaoNhapHang_DAO {
                 a.add(rs.getInt("Maphieunhap"));
                 a.add(rs.getString("NgayNhap"));
                 a.add(rs.getInt("SoLuong"));
-                a.add((int)rs.getDouble("TongTien"));
+                a.add((int) rs.getDouble("TongTien"));
                 a.add("VND");
                 dssp.add(a);
                 i++;
@@ -133,6 +134,58 @@ public class ThongKeBaoCaoNhapHang_DAO {
         } finally {
             db.closeConnection();
         }
+
+    }
+
+    public ArrayList getChiPhiPhieuNhap_Detail_NgayNhap(String NgayNhap) {
+        ArrayList dssp = new ArrayList();
+        db.setupConnection();
+        try {
+            String query = "select phieunhap.Mancc,nhacungcap.Tenncc,phieunhap.SoLuong,phieunhap.TongTien,nhanvien.Tennv from phieunhap,nhacungcap,nhanvien where phieunhap.NgayNhap=? and phieunhap.Mancc=nhacungcap.Mancc and phieunhap.Manv=nhanvien.Manv and phieunhap.Trangthai=\"Hoàn Thành\"";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            stm.setString(1, NgayNhap);
+            rs = stm.executeQuery();
+            int i = 1;
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(i);
+                a.add(rs.getInt("Mancc"));
+                a.add(rs.getString("Tenncc"));
+                a.add(rs.getInt("SoLuong"));
+                a.add((int) rs.getDouble("TongTien"));
+                a.add(rs.getString("Tennv"));
+                dssp.add(a);
+            }
+
+            return dssp;
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+
+    }
+    
+    
+        public JDBCCategoryDataset getHangHoa_BieuDo() {
+        ArrayList dssp = new ArrayList();
+        JDBCCategoryDataset dataset;
+        db.setupConnection();
+//        DBConnect db = new DBConnect();
+//        ResultSet rs = null;
+//        db.setupConnection();
+
+        try {
+            dataset = new JDBCCategoryDataset(db.getConnection());
+            String query="select a.Tensp,a.SoLuong from (select sanpham.Tensp,sum(chitietphieunhap.Soluong) as SoLuong from chitietphieunhap, sanpham,phieunhap where sanpham.Masp=chitietphieunhap.Masp and phieunhap.Maphieunhap=chitietphieunhap.Maphieunhap and phieunhap.Trangthai=\"Hoàn Thành\" group by(chitietphieunhap.Masp)) as a order by a.SoLuong desc limit 10;";
+            dataset.executeQuery(query);
+
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+        return dataset;
 
     }
 }

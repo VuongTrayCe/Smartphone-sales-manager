@@ -54,7 +54,7 @@ public class DoanhThuBanHang_BieuDo_KhachHang extends javax.swing.JPanel {
     }
   private JFreeChart createChartSanPham(CategoryDataset dataset) {
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Thống Kê Top 5 Khách Hàng",
+                "Top 5 Khách Hàng mua nhiều nhất",
                 "Tên Khách Hàng",
                 "Số Lượng Mua",
                 dataset,

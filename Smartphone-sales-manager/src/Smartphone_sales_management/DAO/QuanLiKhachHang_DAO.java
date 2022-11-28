@@ -37,7 +37,7 @@ public class QuanLiKhachHang_DAO {
                 a.setMakh(rs.getInt("Makh"));
                 a.setTenkh(rs.getString("Tenkh"));
                 a.setCmnd(rs.getString("Cmnd"));
-                a.setSDT(rs.getInt("SDT"));
+                a.setSDT(rs.getString("SDT"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setEmail(rs.getString("Email"));
                 a.setNgaytao(rs.getString("Ngaytao"));
@@ -72,7 +72,7 @@ public class QuanLiKhachHang_DAO {
             
              preparedStatement.setString(1, KhachHang.getTenkh());
             preparedStatement.setString(2, KhachHang.getCmnd());
-            preparedStatement.setInt(3, KhachHang.getSDT());
+            preparedStatement.setString(3, KhachHang.getSDT());
             preparedStatement.setString(4, KhachHang.getDiaChi());
             preparedStatement.setString(5, KhachHang.getEmail());
             preparedStatement.setString(6, KhachHang.getNgaytao());
@@ -161,7 +161,7 @@ public class QuanLiKhachHang_DAO {
             
             preparedStatement.setString(1, khachhang.getTenkh());
             preparedStatement.setString(2, khachhang.getCmnd());
-            preparedStatement.setInt(3, khachhang.getSDT());
+            preparedStatement.setString(3, khachhang.getSDT());
             preparedStatement.setString(4, khachhang.getDiaChi());
             preparedStatement.setString(5, khachhang.getEmail());
             preparedStatement.setString(6, khachhang.getNgaytao());
@@ -206,7 +206,7 @@ public class QuanLiKhachHang_DAO {
                         preparedStatement.setInt(1, KhachHang.getMakh());
 			preparedStatement.setString(2, KhachHang.getTenkh());
                         preparedStatement.setString(3, KhachHang.getCmnd());
-                        preparedStatement.setInt(4, KhachHang.getSDT());
+                        preparedStatement.setString(4, KhachHang.getSDT());
                         preparedStatement.setString(5, KhachHang.getDiaChi());
                         preparedStatement.setString(6, KhachHang.getEmail());
                         preparedStatement.setString(7, KhachHang.getNgaytao());

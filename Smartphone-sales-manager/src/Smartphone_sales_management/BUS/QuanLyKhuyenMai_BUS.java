@@ -204,6 +204,36 @@ public class QuanLyKhuyenMai_BUS {
         return kmds;
     }
    
+                  
+                  
+    public ArrayList<Model_KhuyenMai> timKiemKM(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhuyenMai> kmds = new ArrayList<>();
+        for (Model_KhuyenMai km : dskm) {
+            String Makm = Integer.toString(km.getMakm());
+            String tenkm = km.getTenkm();
+            String ptkm = Float.toString(km.getPhantramkm());
+            if (Makm.contains(tuKhoa) || tenkm.contains(tuKhoa) || ptkm.contains(tuKhoa)) {
+                kmds.add(km);
+            }
+        }
+        return kmds;
+    }
+    
+      public ArrayList<Model_ChiTietKM> timKiemCTKM(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_ChiTietKM> ctkmds = new ArrayList<>();
+        for (Model_ChiTietKM ctkm : dsctkm) {
+            String mactkm = Integer.toString(ctkm.getMachitietkhuyenmai());
+            String masp = Integer.toString(ctkm.getMaSP());
+            String tensp = ctkm.getTenSP();
+             String makm = Integer.toString(ctkm.getMaKM());
+            if (mactkm.contains(tuKhoa) || masp.contains(tuKhoa) || tensp.contains(tuKhoa) || makm.contains(tuKhoa)) {
+                ctkmds.add(ctkm);
+            }
+        }
+        return ctkmds;
+    }
 }
 
 

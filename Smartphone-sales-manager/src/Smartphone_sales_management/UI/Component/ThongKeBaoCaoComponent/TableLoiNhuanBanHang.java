@@ -4,12 +4,14 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
+import Smartphone_sales_management.BUS.LoiNhuanBanHang_BUS;
 import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,25 +23,32 @@ public class TableLoiNhuanBanHang extends javax.swing.JPanel {
     /**
      * Creates new form TableBanHang_TheoKhachHang
      */
-   ThongKeBaoCaoBanHang_BUS tkbc= new ThongKeBaoCaoBanHang_BUS();
+    LoiNhuanBanHang_BUS lnbh = new LoiNhuanBanHang_BUS();
 
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model;
     private String type;
     private String hinhthuc;
     private Date datetart;
     private Date dateEnd;
 
+    public TableLoiNhuanBanHang(String type, String hinhthuc) {
+        initComponents();
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        jTable1.setOpaque(false);
+        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
+        });
+        jTable1.getTableHeader().setForeground(Color.WHITE);
+        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+    }
+
     public TableLoiNhuanBanHang(String type, String hinhthuc, Date dateStart, Date dateEnd) {
         initComponents();
         this.type = type;
         this.hinhthuc = hinhthuc;
-        this.dateEnd=dateEnd;
-        this.datetart=dateStart;
-        this.model.addColumn("STT");
-        model.addColumn("Mã Hàng");
-        model.addColumn("Tên Hàng");
-        model.addColumn("Số Lượng");
-        model.addColumn("Tiền Hàng");
+        this.dateEnd = dateEnd;
+        this.datetart = dateStart;
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
@@ -47,42 +56,47 @@ public class TableLoiNhuanBanHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefautlTable();
-        jTable1.setModel(model);
+    }
+
+    public void init(String type, String hinhthuc, Date dateStart, Date dateEnd) {
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        this.dateEnd = dateEnd;
+        this.datetart = dateStart;
+        SetDefautlTable();
+
+    }
+
+    public void init(String type, String hinhthuc) {
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        SetDefautlTable();
+
     }
 
     public void SetDefautlTable() {
 
-      jTable1.removeAll();
+        jTable1.removeAll();
+        model = new DefaultTableModel();
         model.setRowCount(0);
         if (hinhthuc.equals("Hàng Hóa")) {
             this.model.addColumn("STT");
             model.addColumn("Mã Hàng");
             model.addColumn("Tên Hàng");
-            model.addColumn("Số Lượng");
-//            model.addColumn("Số Lượng còn");
-
-        } 
-         if (hinhthuc.equals("Ngày Bán")) {
-            this.model.addColumn("STT");
+            model.addColumn("Tổng Số Bán Ra");
+            model.addColumn("Thành Tiền");
+            model.addColumn("Tiền Sau KM");
+            model.addColumn("Tiền Vốn");
+            model.addColumn("Tiền Lãi");
+        }
+        if (hinhthuc.equals("Ngày Bán")) {
+            model.addColumn("STT");
             model.addColumn("Ngày Bán");
-            model.addColumn("Số Đơn Hàng");
-            model.addColumn("Số Lượng");
-            model.addColumn("Tổng Hàng");
-             System.out.println(dateEnd.toString());
-             System.out.println(datetart.toString());
-             System.out.println(datetart.compareTo(dateEnd));
-
-//            model.addColumn("Số Lượng còn");
-
-        } 
-        if(hinhthuc.equals("Khách Hàng")) {
-            this.model.addColumn("STT");
-            model.addColumn("Mã Khách Hàng");
-            model.addColumn("Tên Khách Hàng");
-            model.addColumn("Số Đơn");
-            model.addColumn("Số Lượng");
-            model.addColumn("Tồng tiền");
-
+            model.addColumn("Số Lượng Đơn Bán Ra");
+            model.addColumn("Số Lượng Bán Ra");
+            model.addColumn("Tổng Tiền");
+            model.addColumn("Tiền Vốn");
+            model.addColumn("Tiền Lãi");
         }
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
@@ -90,16 +104,18 @@ public class TableLoiNhuanBanHang extends javax.swing.JPanel {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-//        jTable1.s  (jTable1.getWidth(), new double[]{0.5, 1, 1, 1, 2, 1, 2, 2, 2});
-        if(datetart==null || dateEnd==null)
-        {
-                    ArrayList dataList = new ArrayList<>();
-//        dataList =tkbc.getThongKeBaoCaoBanHang(type,hinhthuc);
-//            System.out.println(hinhthuc);
+
+        ArrayList dataList = new ArrayList<>();
+        if (hinhthuc.equals("Hàng Hóa")) {
+            dataList = lnbh.getLoiNhuanBanHang_HangHoa();
+        }
+        if (hinhthuc.equals("Ngày Bán")) {
+            dataList = lnbh.getLoiNhuanBanHang_NgayBan(datetart, dateEnd);
+        }
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
-        }
+        jTable1.setModel(model);
         jScrollPane1.repaint();
     }
 
@@ -145,4 +161,8 @@ public class TableLoiNhuanBanHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    JTable getTable() {
+        return jTable1;
+    }
 }

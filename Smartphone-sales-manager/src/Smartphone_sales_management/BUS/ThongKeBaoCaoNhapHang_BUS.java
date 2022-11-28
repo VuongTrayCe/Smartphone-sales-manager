@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
 
 /**
  *
@@ -75,6 +76,16 @@ public class ThongKeBaoCaoNhapHang_BUS {
         ArrayList data = new ArrayList<>();
                data = tkbc.getChiPhiPhieuNhap_Detail_NhaCungCap(parseInt);
         return  data;
+    }
+
+    public ArrayList getThongKeBaoCaoNhapHang_Detail_NgayNhap(String NgayNhap) {
+          ArrayList data = new ArrayList<>();
+               data = tkbc.getChiPhiPhieuNhap_Detail_NgayNhap(NgayNhap);
+        return  data;
+    }
+
+    public JDBCCategoryDataset getDataHangHoa_BieuDo() {
+        return tkbc.getHangHoa_BieuDo();
     }
 
 

@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoNhapHang_BUS;
 import Smartphone_sales_management.DBConnect;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,20 +22,18 @@ import org.jfree.data.jdbc.JDBCCategoryDataset;
  *
  * @author Vuong
  */
-public class DoanhThuBanHang_BieuDo_HangHoa extends javax.swing.JPanel {
+public class ChiPhiNhapHang_BieuDo_HangHoa extends javax.swing.JPanel {
 
     /**
-     * Creates new form DoanhThuBanHang_BieuDo_HangHoa
+     * Creates new form ChiPhiNhapHang_BieuDo_HangHoa
      */
-        ThongKeBaoCaoBanHang_BUS tkbc= new ThongKeBaoCaoBanHang_BUS();
-
-    public DoanhThuBanHang_BieuDo_HangHoa() {
+    ThongKeBaoCaoNhapHang_BUS tkbc = new ThongKeBaoCaoNhapHang_BUS();
+    public ChiPhiNhapHang_BieuDo_HangHoa() {
         initComponents();
-        setChart();
+                setChart();
     }
-  void setChart() {
+ void setChart() {
         JDBCCategoryDataset dataset;
-
         DBConnect db = new DBConnect();
         ResultSet rs = null;
         db.setupConnection();
@@ -54,24 +52,12 @@ public class DoanhThuBanHang_BieuDo_HangHoa extends javax.swing.JPanel {
         jPanel1.add(chartPanel);
         chartPanel.validate();
 
-    }
-   private CategoryDataset createDataset() {
-
-        var dataset = new DefaultCategoryDataset();
-        dataset.setValue(46, "Gold medals", "USA");
-        dataset.setValue(38, "Gold medals", "China");
-        dataset.setValue(29, "Gold medals", "UK");
-        dataset.setValue(22, "Gold medals", "Russia");
-        dataset.setValue(13, "Gold medals", "South Korea");
-        dataset.setValue(11, "Gold medals", "Germany");
-        return dataset;
-    }
-   
+    } 
     private JFreeChart createChartSanPham(CategoryDataset dataset) {
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Top 10 mặt hàng bán chạy",
+                "Top 10 mặt hàng nhập về",
                 "Sản Phẩm",
-                "Số Lượng Bán Ra",
+                "Số Lượng nhập về",
                 dataset,
                 PlotOrientation.VERTICAL,
                 false, true, false);
@@ -92,7 +78,7 @@ public class DoanhThuBanHang_BieuDo_HangHoa extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
+            .addGap(0, 834, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

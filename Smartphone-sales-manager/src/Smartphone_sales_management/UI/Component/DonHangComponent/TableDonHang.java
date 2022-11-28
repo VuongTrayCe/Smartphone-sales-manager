@@ -113,7 +113,7 @@ public class TableDonHang extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(431, 308));
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.setRowHeight(35);
         jTable1.setSelectionBackground(new java.awt.Color(255, 0, 51));

@@ -17,21 +17,20 @@ import static Smartphone_sales_management.UI.Main.MainFrame.selectedIndex;
  * @author Vuong
  */
 public class MenuItem extends javax.swing.JPanel {
-    
-        private final Model_Menu data;
-    public MenuItem(Model_Menu data,int index) {
-                initComponents();
-        this.data=data;
-        this.setBackground(new Color(33, 29, 79));
-        if(data.getType() == Model_Menu.MenuType.MENU)
-            {
-                lbIcon.setIcon(data.toIcon());
-                lbName.setText(data.getName());
-                if(index!=-1)
-                {   
-                    this.setBackground(Color.WHITE);
-                }
-          
+
+    private final Model_Menu data;
+
+    public MenuItem(Model_Menu data, int index) {
+        initComponents();
+        this.data = data;
+        this.setBackground(new Color(0, 0, 0));
+        if (data.getType() == Model_Menu.MenuType.MENU) {
+            lbIcon.setIcon(data.toIcon());
+            lbName.setText(data.getName());
+            if (index != -1) {
+                this.setBackground(new Color(255, 0, 0));
+            }
+
 //                 if(selectedIndex == 2)
 //                {   
 //                this.setBackground(Color.WHITE);
@@ -40,31 +39,26 @@ public class MenuItem extends javax.swing.JPanel {
 //                {   
 //                this.setBackground(Color.WHITE);
 //                }              
-               
 //                
+        } else {
 
-                
-            }else{
-
-                    lbName.setText("");
-                    }
+            lbName.setText("");
+        }
 
     }
-    public void setSelected(boolean selected)
-    {
-        if(data.getType() == Model_Menu.MenuType.MENU)
-            {
-                if(selected)
-                {
-                    lbIcon.setIcon(data.toIconSelected());
-                    lbIcon.setForeground(new Color(60,60,60));
-                }
-                else
-                {
-                    lbIcon.setIcon(data.toIcon());
-                    lbName.setForeground(new Color(0,0,0));
-                }
+
+    public void setSelected(boolean selected) {
+        if (data.getType() == Model_Menu.MenuType.MENU) {
+            if (selected) {
+//                lbIcon.setIcon(data.toIconSelected());
+//                lbIcon.setForeground(new Color(60, 60, 60));
+//                this.setBackground(new Color(255, 0, 0));
+
+            } else {
+                lbIcon.setIcon(data.toIcon());
+                lbName.setForeground(new Color(255, 0, 0));
             }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -82,8 +76,9 @@ public class MenuItem extends javax.swing.JPanel {
             }
         });
 
+        lbName.setBackground(new java.awt.Color(153, 0, 255));
         lbName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lbName.setForeground(new java.awt.Color(102, 102, 102));
+        lbName.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

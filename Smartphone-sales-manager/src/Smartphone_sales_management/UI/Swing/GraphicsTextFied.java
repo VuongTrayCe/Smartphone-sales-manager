@@ -22,7 +22,7 @@ public class GraphicsTextFied extends JTextField {
 
     private Shape shape;
     private Color backgroundColor = Color.WHITE;
-    private Color animationColor = new Color(3, 175, 255);
+    private Color animationColor = new Color(0, 0, 0);
 
     public GraphicsTextFied(int size) {
         super.setBackground(new Color(255, 255, 255, 0)); //  Remove background

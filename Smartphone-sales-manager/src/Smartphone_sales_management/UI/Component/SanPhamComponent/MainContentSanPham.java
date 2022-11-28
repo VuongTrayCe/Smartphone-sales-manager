@@ -147,6 +147,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
         });
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setHorizontalScrollBar(null);
 
         jLabel1.setBackground(new java.awt.Color(255, 51, 0));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -295,18 +296,18 @@ public class MainContentSanPham extends javax.swing.JPanel {
         txtTimKiem.setText("");
         sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox2ActionPerformed
-    public void ResetMau() {
-        btnFormThemSP.setBackground(Color.CYAN);
-        btnDelete.setBackground(Color.CYAN);
-        btnFormUpdate.setBackground(Color.CYAN);
-    }
+//    public void ResetMau() {
+//        btnFormThemSP.setBackground(Color.CYAN);
+//        btnDelete.setBackground(Color.CYAN);
+//        btnFormUpdate.setBackground(Color.CYAN);
+//    }
     private void btnFormThemSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormThemSPMouseClicked
-        ResetMau();
-        if (btnFormThemSP.getBackground() != Color.CYAN) {
-            btnFormThemSP.setBackground(Color.CYAN);
-        } else {
-            btnFormThemSP.setBackground(Color.red);
-        }
+//        ResetMau();
+//        if (btnFormThemSP.getBackground() != Color.CYAN) {
+//            btnFormThemSP.setBackground(Color.CYAN);
+//        } else {
+//            btnFormThemSP.setBackground(Color.red);
+//        }
         JFrame frame = new JFrame("Them thong tin");
         FormThemSanPham themSanPham = new FormThemSanPham(frame, sanPham, jComboBox2.getSelectedItem().toString());
         frame.setSize(900, 700);
@@ -322,12 +323,12 @@ public class MainContentSanPham extends javax.swing.JPanel {
         return false;
     }
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        ResetMau();
-        if (btnDelete.getBackground() != Color.CYAN) {
-            btnDelete.setBackground(Color.CYAN);
-        } else {
-            btnDelete.setBackground(Color.red);
-        }
+//        ResetMau();
+//        if (btnDelete.getBackground() != Color.CYAN) {
+//            btnDelete.setBackground(Color.CYAN);
+//        } else {
+//            btnDelete.setBackground(Color.red);
+//        }
         int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "Xóa sản phẩm ", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             if (checkMasp(maSp)) {
@@ -357,12 +358,12 @@ public class MainContentSanPham extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa ?", "Sửa sản phẩm ", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             if (checkDataCTSP()) {
-                ResetMau();
-                if (btnFormUpdate.getBackground() != Color.CYAN) {
-                    btnFormUpdate.setBackground(Color.CYAN);
-                } else {
-                    btnFormUpdate.setBackground(Color.red);
-                }
+//                ResetMau();
+//                if (btnFormUpdate.getBackground() != Color.CYAN) {
+//                    btnFormUpdate.setBackground(Color.CYAN);
+//                } else {
+//                    btnFormUpdate.setBackground(Color.red);
+//                }
                 JFrame frame = new JFrame("Them thong tin");
                 FormSuaSanPham suaSanPham = new FormSuaSanPham(frame, sanPham, dataChitietSP, jComboBox2.getSelectedItem().toString());
                 frame.setSize(900, 700);
@@ -382,7 +383,7 @@ public class MainContentSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnFormThemSPMousePressed
 
     private void mainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMouseClicked
-        ResetMau();
+//        ResetMau();
     }//GEN-LAST:event_mainPanelMouseClicked
 
 

@@ -24,6 +24,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.text.TabableView;
 
 /**
@@ -55,14 +56,13 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         TableTaiKhoan.getTableHeader().setForeground(Color.WHITE);
         TableTaiKhoan.getTableHeader().setBackground(new Color(14, 14, 14));
         TableTaiKhoan.setModel(model);
-        addEventTaiKhoan(new EventTaiKhoan(){
+        addEventTaiKhoan(new EventTaiKhoan() {
             @Override
-             public int SelectedInxex(int index){
-                 ArrayList data = new ArrayList();
-                 Matk= index;
-                 dataChitietTK = data;
-                 return -1;
-             };
+            public int SelectedInxex(int index) {
+                Matk = index;
+                return -1;
+            }
+        ;
         });
         setDefautlTaiKhoan();
 
@@ -95,17 +95,15 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent e) {
 //                event.selectedIndex(jTable1.getSelectedRow());
                 event.SelectedInxex((int) TableTaiKhoan.getValueAt(TableTaiKhoan.getSelectedRow(), 0));
-                
+
             }
 
-            
         }
         );
 
     }
 
     public void setDefautlTaiKhoan() {
-
         TableTaiKhoan.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList<>();
@@ -113,8 +111,9 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
-
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -328,6 +327,7 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
                 QuanLyTaiKhoan_BUS qltk_BUS = new QuanLyTaiKhoan_BUS();
                 if (qltk_BUS.xoaTK(Matk)) {
                     JOptionPane.showMessageDialog(null, "Xóa thành công");
+                     setDefautlTaiKhoan();
                     Matk = -1;
 //                    System.out.println(txtTimKiem.getText());
 //                    sanPham.SetDefaultTable(txtTimKiem.getText(), jComboBox2.getSelectedItem().toString());
@@ -340,24 +340,28 @@ public class MainConTentTaiKhoan extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnDeleteMouseClicked
-    private boolean checkDataCTTK() {
-        if (dataChitietTK != null) {
+
+
+    private boolean checkMatk() {
+        if(Matk != -1){
             return true;
-        }
-        return false;
+        } return false;
     }
     private void btnFormUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormUpdateMouseClicked
         int a = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa ?", "Sửa sản phẩm ", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
-            if (checkDataCTTK()) {
+            if (checkMatk()) {
 //                ResetMau();
 //                if (btnFormUpdate.getBackground() != Color.CYAN) {
 //                    btnFormUpdate.setBackground(Color.CYAN);
 //                } else {
 //                    btnFormUpdate.setBackground(Color.red);
 //                }
+                ArrayList data = new ArrayList();
+                data = qltk.layDanhSachChiTietTai(Matk);
                 JFrame frame = new JFrame("Them thong tin");
-                Tableupdatetaikhoan suaTaiKhoan = new Tableupdatetaikhoan();
+                Tableupdatetaikhoan suaTaiKhoan = new Tableupdatetaikhoan(data,frame,TableTaiKhoan,this.frame);
+                
                 frame.setSize(567, 383);
                 frame.setLocationRelativeTo(null);
                 frame.add(suaTaiKhoan);

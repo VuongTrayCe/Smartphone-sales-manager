@@ -101,29 +101,30 @@ public class QuanLyTaiKhoan_DAO {
         }
         return result;
     }
-     public boolean themTaiKhoan(Model_TaiKhoan Taikhoan) throws SQLException{
-         boolean success = true;
-         db.setupConnection();
-         try{
-              String sql = ("INSERT INTO taikhoan(Matk,Manv,Tendangnhap,Matkhau,TrangThai)\n"
+
+    public boolean themTaiKhoan(Model_TaiKhoan Taikhoan) throws SQLException {
+        boolean success = true;
+        db.setupConnection();
+        try {
+            String sql = ("INSERT INTO taikhoan(Matk,Manv,Tendangnhap,Matkhau,TrangThai)\n"
                     + "VALUES(?,?,?,?,\"T\")");
-              PreparedStatement stm;
-              stm = db.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-              stm.setInt(1, Taikhoan.getMaTaiKhoan());
-              stm.setInt(2, Taikhoan.getMaNhanVien());
-              stm.setString(3, Taikhoan.getTaiKhoan());
-              stm.setString(4, Taikhoan.getMatKhau());
-              stm.executeUpdate();
-         }catch (SQLException e) {
+            PreparedStatement stm;
+            stm = db.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            stm.setInt(1, Taikhoan.getMaTaiKhoan());
+            stm.setInt(2, Taikhoan.getMaNhanVien());
+            stm.setString(3, Taikhoan.getTaiKhoan());
+            stm.setString(4, Taikhoan.getMatKhau());
+            stm.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
             return success = false;
         } finally {
             db.closeConnection();
         }
-         return success;
-     }
-     
-     public ArrayList layDanhSachNV() {
+        return success;
+    }
+
+    public ArrayList layDanhSachNV() {
         ArrayList result = new ArrayList();
         db.setupConnection();
         try {
@@ -146,21 +147,22 @@ public class QuanLyTaiKhoan_DAO {
         }
         return null;
     }
-     
-     public void themNV(int Matk, Model_TaiKhoan model) {
+
+    public void themNV(int Matk, Model_TaiKhoan model) {
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO Taikhoan(Matk,Manv,TrangThai)\n"
                     + "VALUES (?,?,\"T\")");
             stm.setInt(1, Matk);
             stm.setInt(2, model.getMaNhanVien());
-       //     stm.executeUpdate();
+            //     stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             db.closeConnection();
         }
     }
+
     public void xoaTK(int Matk) {
         db.setupConnection();
         try {
@@ -175,6 +177,7 @@ public class QuanLyTaiKhoan_DAO {
             db.closeConnection();
         }
     }
+
     public boolean suaTK(Model_TaiKhoan model) {
         db.setupConnection();
         boolean success = true;
@@ -182,19 +185,14 @@ public class QuanLyTaiKhoan_DAO {
             PreparedStatement stm = db.getConnection().prepareStatement("UPDATE taikhoan "
                     + "SET taikhoan.Tendangnhap = ? , taikhoan.Matkhau = ?  "
                     + "WHERE taikhoan.Matk = ?");
-            
+
             stm.setString(1, model.getTaiKhoan());
-            System.out.println(model.getMatKhau()+"123");
             stm.setString(2, model.getMatKhau());
-            
-            System.out.println(model.getTaiKhoan());
             stm.setInt(3, model.getMaTaiKhoan());
-            
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Sua tài khoản thất bại");
-            success = false;
+             return success = false;
         } finally {
             db.closeConnection();
         }
@@ -226,19 +224,19 @@ public class QuanLyTaiKhoan_DAO {
 
     }
 
-    public ArrayList getALLAccount(){
+    public ArrayList getALLAccount() {
         ArrayList dstk = new ArrayList();
         db.setupConnection();
         try {
-            
+
             PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
                 a.add(rs.getString("Tendangnhap"));
-                    
+
                 a.add(rs.getString("Matkhau"));
- 
+
                 dstk.add(a);
             }
             return dstk;
@@ -247,7 +245,32 @@ public class QuanLyTaiKhoan_DAO {
         } finally {
             db.closeConnection();
         }
-return dstk;
+        return dstk;
     }
 
+    public ArrayList layDanhSachChiTietTK(int Matk) {
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk,nhanvien.Tennv,taikhoan.Tendangnhap,taikhoan.Matkhau \n"
+                    + "FROM taikhoan,nhanvien\n"
+                    + "WHERE taikhoan.Manv = nhanvien.Manv AND taikhoan.Matk = ? ");
+            stm.setInt(1,Matk);
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getInt(1));
+                    result.add(rs.getString(2));
+                    result.add(rs.getString(3));
+                    result.add(rs.getString(4));
+                }
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
 }

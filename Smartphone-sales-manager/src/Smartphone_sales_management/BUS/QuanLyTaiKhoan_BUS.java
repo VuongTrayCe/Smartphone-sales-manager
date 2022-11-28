@@ -42,18 +42,18 @@ public class QuanLyTaiKhoan_BUS {
         }
     }
 
-    public ArrayList getDanhSachChiTiet1TaiKhoan(int selectedIndex) {
-        ArrayList dscttk = new ArrayList();
-        ArrayList MaTKList = new ArrayList<>();
-        MaTKList = qltk.getMa();
-        try {
-            dscttk = qltk.getDanhSachChiTiet1TaiKhoan_DAO((int) MaTKList.get(selectedIndex));
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLyTaiKhoan_BUS.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return dscttk;
-    }
+//    public ArrayList getDanhSachChiTiet1TaiKhoan(int selectedIndex) {
+//        ArrayList dscttk = new ArrayList();
+//        ArrayList MaTKList = new ArrayList<>();
+//        MaTKList = qltk.getMa();
+//        try {
+//            dscttk = qltk.getDanhSachChiTiet1TaiKhoan_DAO((int) MaTKList.get(selectedIndex));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_BUS.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return dscttk;
+//    }
 
     public boolean themTK(Model_TaiKhoan Taikhoan) throws SQLException {
         if (qltk.themTaiKhoan(Taikhoan)) {
@@ -71,7 +71,7 @@ public class QuanLyTaiKhoan_BUS {
         }
         return true;
     }
-    public boolean Formquyen(Model_TaiKhoan model) {
+    public boolean SuaTaiKhoan(Model_TaiKhoan model) {
         if (qltk.suaTK(model) ) {
             return true;
         }
@@ -104,6 +104,10 @@ public class QuanLyTaiKhoan_BUS {
         }
 
         return check;
-
+    }
+    public ArrayList layDanhSachChiTietTai(int Matk) {
+        ArrayList data = new ArrayList();
+        data = qltk.layDanhSachChiTietTK(Matk);
+        return data;
     }
 }

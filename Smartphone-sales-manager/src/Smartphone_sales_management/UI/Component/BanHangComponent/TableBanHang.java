@@ -37,9 +37,9 @@ public class TableBanHang extends javax.swing.JPanel {
         
         initComponents();
         model.addColumn("STT");        
-        model.addColumn("TenSanPham");
-        model.addColumn("LoaiSp");
-        model.addColumn("MauSac");
+        model.addColumn("Tên Sản Phẩm");
+        model.addColumn("Loại Sản Phẩm");
+        model.addColumn("Màu Sắc");
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
@@ -56,8 +56,8 @@ public class TableBanHang extends javax.swing.JPanel {
         jTable1.addMouseListener(new  MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-                
-                event.SelectedInxex(jTable1.getSelectedRow());
+                int index = jTable1.getSelectedRow();
+                event.SelectedInxex((int) jTable1.getValueAt(index,0));
             };
         });
     }
@@ -88,19 +88,12 @@ public class TableBanHang extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setFocusable(false);
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setRowHeight(25);
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setRowHeight(35);
         jTable1.setSelectionBackground(new java.awt.Color(255, 0, 51));
-        jTable1.setShowGrid(false);
+        jTable1.setShowGrid(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

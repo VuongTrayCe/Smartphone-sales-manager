@@ -14,7 +14,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JApplet;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -42,22 +44,36 @@ public class TableSanPham extends javax.swing.JPanel {
         model.addColumn("GiaSP");
         model.addColumn("SoLuong");
         model.addColumn("TrangThai");
-        jTable1.setOpaque(false);
-        jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
-        jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
-        jTable1.getTableHeader().setForeground(Color.WHITE);
-        jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+        jTableSP.setOpaque(false);
+        jTableSP.getTableHeader().getColumnModel().setColumnMargin(1);
+        jTableSP.getTableHeader().setFont(new Font("Arial", Font.BOLD, 17));
+        jTableSP.getTableHeader().setForeground(Color.WHITE);
+        jTableSP.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefaultTable(keyWord, tenTrangThai);
-        jTable1.setModel(model);
+        jTableSP.setModel(model);
+        jTableSP.getColumnModel().getColumn(0).setMinWidth(100);
+        jTableSP.getColumnModel().getColumn(1).setMinWidth(150);
+        jTableSP.getColumnModel().getColumn(2).setMinWidth(150);
+        jTableSP.getColumnModel().getColumn(3).setMinWidth(150);
+        jTableSP.getColumnModel().getColumn(4).setMinWidth(70);
+        jTableSP.getColumnModel().getColumn(5).setMinWidth(150);
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTableSP.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+        jTableSP.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+        jTableSP.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+        jTableSP.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
+        jTableSP.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+        jTableSP.getColumnModel().getColumn(5).setCellRenderer(cellRenderer);
     }
 
     public void addEventSanPham(EventSanPham event) {
-        jTable1.addMouseListener(new MouseAdapter() {
+        jTableSP.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 //                event.selectedIndex(jTable1.getSelectedRow());
-                   event.selectedIndex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                   System.out.println((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                event.selectedIndex((int) jTableSP.getValueAt(jTableSP.getSelectedRow(), 0));
+                System.out.println((int) jTableSP.getValueAt(jTableSP.getSelectedRow(), 0));
             }
         ;
     }
@@ -80,7 +96,7 @@ public class TableSanPham extends javax.swing.JPanel {
 //    }
 
     public void SetDefaultTable(String keyWord, String tenTrangThai) {
-        jTable1.removeAll();
+        jTableSP.removeAll();
         model.setRowCount(0);
         ArrayList dataList = new ArrayList();
         dataList = qlsp_BUS.layDanhSachSanPham(keyWord, tenTrangThai);
@@ -100,42 +116,44 @@ public class TableSanPham extends javax.swing.JPanel {
     private void initComponents() {
 
         panelTable = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableSP = new javax.swing.JTable();
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jTable1.setFocusable(false);
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setRowHeight(25);
-        jTable1.setSelectionBackground(new java.awt.Color(255, 0, 0));
-        panelTable.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTableSP.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jTableSP.setAutoResizeMode(0);
+        jTableSP.setFocusable(false);
+        jTableSP.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableSP.setRowHeight(35);
+        jTableSP.setSelectionBackground(new java.awt.Color(255, 0, 0));
+        jTableSP.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTableSP.setShowGrid(true);
+        panelTable.setViewportView(jTableSP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                     .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableSP;
     private javax.swing.JScrollPane panelTable;
     // End of variables declaration//GEN-END:variables
 }

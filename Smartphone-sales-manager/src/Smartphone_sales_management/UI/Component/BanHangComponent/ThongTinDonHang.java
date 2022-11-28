@@ -6,8 +6,10 @@ package Smartphone_sales_management.UI.Component.BanHangComponent;
 
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
-import Smartphone_sales_management.UI.Model.Model_GioHang;
+import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
+import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -27,6 +29,8 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import static Smartphone_sales_management.UI.Main.MainFrame.manv;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,33 +42,36 @@ public class ThongTinDonHang extends javax.swing.JPanel {
      * Creates new form ThongTinDonHang
      */
     DefaultTableModel model = new DefaultTableModel();
-    
-    private ArrayList<Model_GioHang> data;
+
+    private ArrayList<Model_BanHang_ChiTietHoaDon> data;
     private ArrayList<Object> danhsachkhachhang;
     private ArrayList<Object> danhsachsanpham;
+    private int diemdadung;
+    private int diemthuong;
     JDialog inforDonHangDialog;
     QuanLyBanHang_BUS qlbh_bus = new QuanLyBanHang_BUS();
-    JPanel a;
+    MainFrame a;
     LocalDateTime now;
     int SL = 0;
     int TT = 0;
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     int giasaukm = 0;
     int diem;
-    
-    public ThongTinDonHang(ArrayList<Model_GioHang> data, JPanel a, JDialog inforDonHang) {
+    MainConTentBanHang panelbanhang;
+
+    public ThongTinDonHang(ArrayList<Model_BanHang_ChiTietHoaDon> data,MainFrame a, JDialog inforDonHang,MainConTentBanHang panelbanhang) {
         initComponents();
         this.data = data;
         this.a = a;
         this.inforDonHangDialog = inforDonHang;
-        
-        Model_GioHang tets = data.get(0);
-        System.out.println(tets.getMakhuyenmai());
+        this.panelbanhang=panelbanhang;
+
+        Model_BanHang_ChiTietHoaDon tets = data.get(0);
         danhsachkhachhang = qlbh_bus.getALLKhachHang();
-        btnComplete.setBackground(new Color(255, 255, 255));
+//        btnComplete.setBackground(new Color(255, 255, 255));
         btnComplete.setBorder(null);
         btnBack.setBorder(null);
-        btnBack.setBackground(new Color(255, 255, 255));
+//        btnBack.setBackground(new Color(255, 255, 255));
 
         // Lấy danh sách khách hàng
 //    final DefaultComboBoxModel model = new DefaultComboBoxModel(danhsachsanpham); 
@@ -73,7 +80,6 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         LoadInforData();
         model.addColumn("STT");
         model.addColumn("Tên sản phẩm");
-        model.addColumn("Loại");
         model.addColumn("Giá tiền");
         model.addColumn("Số lượng");
         model.addColumn("Khuyến mãi");
@@ -84,11 +90,14 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        
+
         SetDefautlTable();
         jTable1.setModel(model);
         jScrollPane1.setMaximumSize(new Dimension(1000, 50));
 //                jTable1.setSize(jTable1.getWidth(),jTable1.getRowHeight()*model.getRowCount());
+        btnBack.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
+        btnComplete.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
+
 
     }
 
@@ -96,56 +105,57 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     public void LoadInforData() {
         for (Object khachhang : danhsachkhachhang) {
             Vector a = (Vector) khachhang;
-            cbbKhachHang.addItem((a.get(0)).toString());
+            cbbKhachHang.addItem((a.get(1)).toString());
         }
         Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
-        cbDiem.setText(b.get(1).toString());
-        diem = (int) b.get(1);
+        cbDiem.setText(b.get(2).toString());
+        diem = (int) b.get(2);
         // Load thông tin dữ liệu
         // set giá sau khi áp dụng khuyến mãi
         giasaukm = 0;
-        for (Model_GioHang model_GioHang : data) {
-            giasaukm += (model_GioHang.getKhuyenmai() * 1.0 / 100) * model_GioHang.getTongTien();
-            SL += model_GioHang.getSoluong();
-            TT += model_GioHang.getTongTien();
+        int tongtien =0;
+        for (Model_BanHang_ChiTietHoaDon model_ChiTietHoaDon : data) {
+            giasaukm += model_ChiTietHoaDon.getGiasaukm()*model_ChiTietHoaDon.getSoluong();
+            SL += model_ChiTietHoaDon.getSoluong();
+            tongtien+=model_ChiTietHoaDon.getGiaban()*model_ChiTietHoaDon.getSoluong();
+            TT += model_ChiTietHoaDon.getTongTien();
 //           cbbSanPham.addItem(model_GioHang.getName());
         }
         this.now = LocalDateTime.now();
         String formatDateTime = now.format(format);
         lbNgayBan.setText(formatDateTime);
         lbSoLuong.setText(String.valueOf(SL));
-        lbnTongTien.setText(String.valueOf(TT) + " VND");
+        lbnTongTien.setText(String.valueOf(tongtien) + " VND");
         lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm) + " VND");
         lbThanhToan.setText("Thanh toán trực tiếp");
 //        if(cbDiem.isSelected())
 //        {
 //                    giasaukm +=Integer.parseInt(cbDiem.getText());
-        lbTongTienThanhToan.setText(String.valueOf(giasaukm));
+        lbTongTienThanhToan.setText(String.valueOf(TT)+" VND");
     }
-    
+
     public void SetDefautlTable() {
-        
+
         jTable1.removeAll();
         model.setRowCount(0);
         int i = 1;
-        for (Model_GioHang model_GioHang : data) {
+        for (Model_BanHang_ChiTietHoaDon model_BanHang_ChiTietHoaDons : data) {
             Vector a = new Vector();
             a.add(i);
-            a.add(model_GioHang.getName());
-            a.add(model_GioHang.getLoai());
-            a.add(model_GioHang.getGiatien());
-            a.add(model_GioHang.getSoluong());
-            a.add(model_GioHang.getKhuyenmai() + " %");
-            a.add(model_GioHang.getBaohanh());
+            a.add(model_BanHang_ChiTietHoaDons.getTensp());
+            a.add(model_BanHang_ChiTietHoaDons.getGiaban());
+            a.add(model_BanHang_ChiTietHoaDons.getSoluong());
+            a.add(model_BanHang_ChiTietHoaDons.getPhantramkhuyenmai() + " %");
+            a.add(model_BanHang_ChiTietHoaDons.getThoigianbaohanh());
             model.addRow(a);
             i += 1;
-            
+
         }
         jScrollPane1.setLayout(new ScrollPaneLayout());
-        
+
         jScrollPane1.repaint();
     }
-    
+
     ThongTinDonHang() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -203,8 +213,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         lbTongTienThanhToan.setForeground(new java.awt.Color(0, 0, 153));
         lbTongTienThanhToan.setText("jLabel11");
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/go-back-2-894878.png"))); // NOI18N
         btnBack.setText("Quay Lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -216,8 +227,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh Sách Sản phẩm: ");
 
+        btnComplete.setBackground(new java.awt.Color(0, 0, 0));
         btnComplete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnComplete.setForeground(new java.awt.Color(255, 0, 0));
+        btnComplete.setForeground(new java.awt.Color(255, 255, 255));
         btnComplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/GoBack4.png"))); // NOI18N
         btnComplete.setText("Hoàn Thành");
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
@@ -347,17 +359,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnComplete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBack))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbTongTienThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
@@ -370,7 +374,16 @@ public class ThongTinDonHang extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                                        .addComponent(lbnTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                        .addComponent(lbnTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnComplete)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cbDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -464,21 +477,37 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        
+
         this.inforDonHangDialog.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         Model_BanHang_HoaDon hoadon = new Model_BanHang_HoaDon();
-        int Makh = qlbh_bus.getMakh(cbbKhachHang.getSelectedItem().toString());
-        hoadon.setMakh(WIDTH);
-        hoadon.setManv(0);
-        hoadon.setTime(now);
-        hoadon.setSl(Integer.parseInt(lbSoLuong.getText()));
+        int indexmakh = cbbKhachHang.getSelectedIndex();
+        Vector vectorKhachHang = (Vector) danhsachkhachhang.get(indexmakh);
+        int Makh =Integer.parseInt(vectorKhachHang.get(0).toString());
+        for (Model_BanHang_ChiTietHoaDon model_BanHang_ChiTietHoaDon : data) {
+            diemthuong+=model_BanHang_ChiTietHoaDon.getSoluong()*100000;         
+        }
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatDateTime = now.format(format);
+        hoadon.setMakh(Makh);
+        TT=TT-diemdadung;
+        hoadon.setDiemapdung(diemdadung);
+        hoadon.setManv(manv);
+        hoadon.setNgayban(formatDateTime);
+        hoadon.setSoluong(Integer.parseInt(lbSoLuong.getText()));
         hoadon.setTongtien(TT);
-        
-        qlbh_bus.InsertDonHang(hoadon, data);
+        hoadon.setDiemthuong(diemthuong);
+        int madh = qlbh_bus.InsertDonHang(hoadon,diem);
+        for (Model_BanHang_ChiTietHoaDon object :data) {
+            object.setMadh(madh);
+            qlbh_bus.AddChiTietDonHang(object);      
+        }
+        JOptionPane.showMessageDialog(null,"Đã tạo đơn hàng thành công");
+        inforDonHangDialog.dispose();
+        panelbanhang.SetDefaultInit();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompleteActionPerformed
 
@@ -501,34 +530,37 @@ public class ThongTinDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiemActionPerformed
-        
+
         int gia = giasaukm;
         gia -= diem;
-        
+
         if (cbDiem.isSelected()) {
             if (gia > 0) {
 //                gia -= Integer.parseInt(cbDiem.getText());
-                lbTongTienThanhToan.setText(String.valueOf(gia));
+                lbTongTienThanhToan.setText(String.valueOf(gia)+" VND");
                 cbDiem.setText(cbDiem.getText() + "/" + cbDiem.getText());
+                diemdadung=diem;
             } else {
                 int x = Math.abs(gia);
-                cbDiem.setText(String.valueOf(diem-x) + "/" + String.valueOf(diem));
+                cbDiem.setText(String.valueOf(diem - x) + "/" + String.valueOf(diem));
                 lbTongTienThanhToan.setText("0 VND");
+                this.diemdadung=diem-x;
             }
         } else {
-            
+
             lbTongTienThanhToan.setText(String.valueOf(giasaukm) + " VND");
             cbDiem.setText(String.valueOf(diem));
+            this.diemdadung=0;
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDiemActionPerformed
 
     private void cbbKhachHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbKhachHangItemStateChanged
-        
+
         Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
-        cbDiem.setText(b.get(1).toString());
-        diem=(int) b.get(1);
+        cbDiem.setText(b.get(2).toString());
+        diem = (int) b.get(2);
         cbDiem.setSelected(false);
 
     }//GEN-LAST:event_cbbKhachHangItemStateChanged

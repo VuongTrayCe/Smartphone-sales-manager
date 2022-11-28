@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,49 +28,68 @@ public class TablePhieuNhap extends javax.swing.JPanel {
     QuanLyPhieuNhap_BUS qlpn = new QuanLyPhieuNhap_BUS();
     DefaultTableModel model = new DefaultTableModel();
     EventPhieuNhap event;
+    String trangthai;
+    ArrayList dataList;
+    MainConTentPhieuNhap mainframe;
 
-    public TablePhieuNhap() {
+    public TablePhieuNhap(String trangthai,MainConTentPhieuNhap mainframe) {
         initComponents();
+        this.mainframe=mainframe;
         model.addColumn("STT");
-        model.addColumn("Maphieunhap");
-        model.addColumn("NgayNhap");
-        model.addColumn("Nhacungcap");
-        model.addColumn("SoLuong");
-        model.addColumn("TongTien");
+        model.addColumn("Mã Phiếu Nhập");
+        model.addColumn("Ngày Nhập");
+        model.addColumn("Nhà Cung Cấp");
+        model.addColumn("Số Lượng");
+        model.addColumn("Tổng Tiền");
+        model.addColumn("Đơn Vị");
+        model.addColumn("Trạng Thái");
+
+        this.trangthai = trangthai;
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
         });
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
-        SetDefautlTable("");
+        SetDefautlTable("", trangthai);
         jTable1.setModel(model);
+
     }
- public void addEventPhieuNhap(EventPhieuNhap event)
+    public JTable getTable()
     {
-        this.event = event;
-        jTable1.addMouseListener(new  MouseAdapter() {
-            @Override
-            public void mouseClicked (MouseEvent e) {
-                int index = jTable1.getSelectedRow();
-                int mapn = (int)jTable1.getValueAt(index,1);
-                String ngaynhap = (String) jTable1.getValueAt(index,2);
-                String tenncc = (String) jTable1.getValueAt(index,3);
-                event.infor(mapn, ngaynhap,tenncc);
-            };
-        });
+        return jTable1;
     }
 
-    public void SetDefautlTable(String keyWord) {
+    public void addEventPhieuNhap(EventPhieuNhap event) {
+        this.event = event;
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int index = jTable1.getSelectedRow();
+                int mapn = (int) jTable1.getValueAt(index, 1);
+                String ngaynhap = (String) jTable1.getValueAt(index, 2);
+                String tenncc = (String) jTable1.getValueAt(index, 3);
+                String trangthai = (String) jTable1.getValueAt(index, 7);
+                event.infor(mapn, ngaynhap, tenncc, trangthai);
+            }
+        ;
+    }
+
+    );
+    }
+
+    public void SetDefautlTable(String keyWord, String trangthai) {
 
         jTable1.removeAll();
         model.setRowCount(0);
-        ArrayList dataList = new ArrayList<>();
-        dataList = qlpn.getDanhSachPhieuNhap(keyWord);
+        dataList = new ArrayList<>();
+        dataList = qlpn.getDanhSachPhieuNhap(keyWord, trangthai);
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
         jScrollPane1.repaint();
+                        mainframe.setXuatExcel(dataList);
+
     }
 
     /**
@@ -96,6 +116,7 @@ public class TablePhieuNhap extends javax.swing.JPanel {
 
             }
         ));
+        jTable1.setFocusable(false);
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.setRowHeight(40);
         jTable1.setSelectionBackground(new java.awt.Color(204, 0, 0));

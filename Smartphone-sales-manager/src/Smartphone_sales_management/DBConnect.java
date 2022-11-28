@@ -29,7 +29,6 @@ public class DBConnect {
 //    Statement stm = null;
     ResultSet rs = null;
     Connection conn = null;
-
     String server = "localhost:3306";
     String dbName = "smartphonejava";
     String userName = "root";
@@ -39,7 +38,6 @@ public class DBConnect {
         checkDriver();
         setupConnection();
     }
-
     public DBConnect(String dbName) {
         checkDriver();
         server = "localhost:3306";
@@ -78,6 +76,7 @@ public class DBConnect {
             conn = DriverManager.getConnection(url, userName, pass);
             return conn.isValid(1000);
 //            JOptionPane.showMessageDialog(null, "Ket noi database " + dbName + " thanh cong");
+
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Khong the ket noi toi " + dbName);
@@ -104,7 +103,7 @@ public class DBConnect {
         if (checkConnection()) {
             try {
                 stm.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
+//                JOptionPane.showMessageDialog(null, "Thuc thi Update thanh cong !!");
                 return true;
             } catch (SQLException e) {
 //                e.printStackTrace();
@@ -164,5 +163,4 @@ public class DBConnect {
             JOptionPane.showMessageDialog(null, "-- ERROR! Không thể đóng kết nối tới " + dbName);
         }
     }
-    
 }

@@ -72,7 +72,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcSL1.setText(dataDetail.get(3).toString());
         lbcKhuyenMai.setText(dataDetail.get(4).toString() + "%");
         lbcBHKT.setText(dataDetail.get(5).toString());
-        lbcGia1.setText(dataDetail.get(6).toString());
+        lbcGia1.setText(dataDetail.get(10).toString());
+        lbtongchitietgia.setText(dataDetail.get(14).toString());
         lbcgiasaukm.setText(dataDetail.get(7).toString());
         trangthailb1.setText(dataDetail.get(8).toString());
         txtslct.setText(String.valueOf(slctdh));
@@ -112,6 +113,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcGia1 = new javax.swing.JLabel();
         lbGia1 = new javax.swing.JLabel();
         lbcgiasaukm = new javax.swing.JLabel();
+        lbGia2 = new javax.swing.JLabel();
+        lbtongchitietgia = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         imglb = new javax.swing.JLabel();
         lbKhuyenMai = new javax.swing.JLabel();
@@ -187,14 +190,20 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcgiasaukm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbcgiasaukm.setText("jLabel15");
 
+        lbGia2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbGia2.setText("Tổng chi tiết giá :");
+
+        lbtongchitietgia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lbtongchitietgia.setText("jLabel15");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lbTenSanPham)
@@ -209,18 +218,24 @@ public class TableDetailDH extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(madhlb)))
                         .addGap(23, 23, 23))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbGia1)
-                            .addComponent(lbGia)
-                            .addComponent(lbSoLuong)
-                            .addComponent(lbLoaiSP))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbcSL1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbcLoai, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbcGia1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbcgiasaukm, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lbGia2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbtongchitietgia))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbGia1)
+                                    .addComponent(lbGia)
+                                    .addComponent(lbSoLuong)
+                                    .addComponent(lbLoaiSP))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbcSL1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbcLoai, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbcGia1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbcgiasaukm, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(28, 28, 28))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -254,7 +269,11 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbGia1)
                     .addComponent(lbcgiasaukm))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbGia2)
+                    .addComponent(lbtongchitietgia))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -355,9 +374,9 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(confirmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addComponent(confirmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(62, 62, 62)
-                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -406,7 +425,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -415,7 +434,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -438,6 +457,9 @@ public class TableDetailDH extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn hủy ?", "Hủy đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
+            qldh_BUS.tinhDiemChoKhachHangKhiHuy(Madh);
+            System.out.println(data + "123");
+            qldh_BUS.UpdateSLSP(data);
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);
@@ -451,7 +473,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         int a = JOptionPane.showConfirmDialog(null, "Bạn có muốn xác nhận ?", "Xác nhận đơn hàng", JOptionPane.YES_NO_OPTION);
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
-            qldh_BUS.tinhDiemChoKhachHang(Madh);
+            qldh_BUS.tinhDiemChoKhachHangKhiHoanThanh(Madh);
+
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);
@@ -476,6 +499,7 @@ public class TableDetailDH extends javax.swing.JPanel {
     private javax.swing.JLabel lbBHKT;
     private javax.swing.JLabel lbGia;
     private javax.swing.JLabel lbGia1;
+    private javax.swing.JLabel lbGia2;
     private javax.swing.JLabel lbKhuyenMai;
     private javax.swing.JLabel lbLoaiSP;
     private javax.swing.JLabel lbSoLuong;
@@ -489,6 +513,7 @@ public class TableDetailDH extends javax.swing.JPanel {
     private javax.swing.JLabel lbcLoai;
     private javax.swing.JLabel lbcSL1;
     private javax.swing.JLabel lbcgiasaukm;
+    private javax.swing.JLabel lbtongchitietgia;
     private javax.swing.JLabel madhlb;
     private javax.swing.JLabel trangthailb1;
     private javax.swing.JLabel txtslct;

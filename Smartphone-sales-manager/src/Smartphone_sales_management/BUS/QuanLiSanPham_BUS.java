@@ -9,6 +9,7 @@ import Smartphone_sales_management.DTO.Model_SanPham;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -68,7 +69,7 @@ public class QuanLiSanPham_BUS {
 //        } catch (Exception e) {
 //            return null;
 //        }
-////        System.out.println(dsctsp);
+////        System.out.println(dsctsp);     
 //        return dsctsp;
 //    }
     public ArrayList layctsp_BUS(int Masp) {
@@ -95,6 +96,12 @@ public class QuanLiSanPham_BUS {
         return true;
     }
 
+    public ArrayList layDSNCC() {
+        ArrayList result = new ArrayList();
+        result = qlsp.layDSNCC();
+        return result;
+    }
+
     public boolean xoaSP(int maSp) {
         try {
             qlsp.xoaSP(maSp);
@@ -117,8 +124,29 @@ public class QuanLiSanPham_BUS {
     }
 
     public boolean suaSP(Model_SanPham model) {
-        if (qlsp.suaSP(model) && qlsp.suaGiasp(model) && qlsp.suaBH(model) && qlsp.suaKM(model)) {
-            return true;
+//        if (qlsp.suaSP(model) && qlsp.suaGiasp(model) && qlsp.suaBH(model) && qlsp.suaKM(model)) {
+//            return true;
+//        }
+//        return false;
+
+        if (qlsp.suaSP(model)) {
+            JOptionPane.showMessageDialog(null, "Sua thanh cong123");
+                   
+            int mactgia = qlsp.layCTgia(model);
+            if (qlsp.suaGiasp(mactgia)) {
+                int masp = model.getMasp();
+                qlsp.themGiaSP(masp, model);
+                if (qlsp.suaBH(model) && qlsp.suaKM(model)) {
+                    return true;
+                } else {
+                    System.out.println("sua bao hanh or km loi");
+                }
+            } else {
+                System.out.println("sua gia loi");
+            }
+
+        } else {
+            System.out.println("Sua san pham loi~");
         }
         return false;
     }
@@ -136,12 +164,11 @@ public class QuanLiSanPham_BUS {
         dsbh = qlsp.layDanhSachBH();
         return dsbh;
     }
-    
-    public ArrayList<String> getAllSP(){
+
+    public ArrayList<String> getAllSP() {
         ArrayList danhsachsanpham = new ArrayList();
-         danhsachsanpham = qlsp.getALLSanPham();
+        danhsachsanpham = qlsp.getALLSanPham();
         return danhsachsanpham;
     }
 
-    
 }

@@ -5,13 +5,16 @@
 package Smartphone_sales_management.DAO;
 
 import Smartphone_sales_management.DBConnect;
+import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import Smartphone_sales_management.DTO.Model_BanHang_ChiTietSanPham;
+import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
 import Smartphone_sales_management.DTO.Model_KhachHang;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +32,7 @@ public class QuanLyBanHang_DAO {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from sanpham");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from sanpham where sanpham.Trangthai='T'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
@@ -55,8 +58,9 @@ public class QuanLyBanHang_DAO {
         ArrayList result = new ArrayList();
         db.setupConnection();
         try {
+//                                                            System.out.println("âfasf");
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm,baohanh.Thoigianbaohanh,khuyenmai.Makm,baohanh.Mabaohanh "
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm,baohanh.Thoigianbaohanh,khuyenmai.Makm,baohanh.Mabaohanh,chitietkhuyenmai.Machitietkhuyenmai,chitietbaohanh.Machitietbaohanh,giasanpham.Magiasp "
                     + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai,baohanh,chitietbaohanh "
                     + "where sanpham.Masp=? and baohanh.Mabaohanh=chitietbaohanh.Mabaohanh and sanpham.Masp=chitietbaohanh.Masp and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
             stm.setInt(1, selectedIndex);
@@ -74,13 +78,17 @@ public class QuanLyBanHang_DAO {
                     model.setIcon(rs.getString(7));
                     model.setChitiet(rs.getString(8));
                     model.setPtkm(rs.getInt(9));
+
                     model.setBaohanh(rs.getString(10));
                     model.setMakm(rs.getInt(11));
                     model.setMabh(rs.getInt(12));
                     model.setMasp(selectedIndex);
+                    model.setMachitietkhuyenmai(rs.getInt(13));
+                    model.setMachitietbaohanh(rs.getInt(14));
+                    model.setMagiasanpham(rs.getInt(15));
+
                     result.add(model);
 
-//                    System.out.println(model.getTenncc());
 //                    model.setMakm(rs.getInt(11));
 //                    model.setMabh(rs.getInt(12));
 //
@@ -123,11 +131,12 @@ public class QuanLyBanHang_DAO {
         ArrayList result = new ArrayList<>();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select Tenkh,Diemso  from khachhang where khachhang.TrangThai='T' ");
+            PreparedStatement stm = db.getConnection().prepareStatement("select khachhang.Makh,Tenkh,Diemso  from khachhang where khachhang.TrangThai='T' ");
             rs = db.sqlQry(stm);
             if (rs != null) {
                 while (rs.next()) {
                     Vector a = new Vector();
+                    a.add(rs.getString("Makh"));
                     a.add(rs.getString("Tenkh"));
                     a.add(rs.getInt("Diemso"));
                     result.add(a);
@@ -171,6 +180,127 @@ public class QuanLyBanHang_DAO {
         } finally {
             db.closeConnection();
         }
+    }
+
+    public int AddHoaDon(Model_BanHang_HoaDon hoadon) {
+        
+        boolean isSuccess = false;
+        int id = 0;
+        db.setupConnection();
+        String sqlString = ("insert into donhang(Makh,Manv,Ngayban,SoLuong,Tongtien,Diemapdung,Diemthuong,Trangthai) values (?,?,?,?,?,?,?,?)");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
+            stm.setInt(1, hoadon.getMakh());
+            stm.setInt(2, hoadon.getManv());
+            stm.setString(3, hoadon.getNgayban());
+            stm.setInt(4, hoadon.getSoluong());
+            stm.setInt(5, hoadon.getTongtien());
+            stm.setInt(6, hoadon.getDiemapdung());
+            stm.setInt(7, hoadon.getDiemthuong());
+            stm.setString(8,"Đặt Hàng");
+
+            isSuccess = db.sqlUpdate(stm);
+            if (isSuccess == true) {
+                rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    id = rs.getInt(1);
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+        return id;
+        
+    }
+
+    public void AddChiTietHoaDon(Model_BanHang_ChiTietHoaDon model) {
+        
+        boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("insert into chitietdonhang (Masp,Madh,Machitietkhuyenmai,Machitietbaohanh,Magiasp,Soluong,giaban,giasaukm) values(?,?,?,?,?,?,?,?);");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1, model.getMasp());
+            stm.setInt(2, model.getMadh());
+            stm.setInt(3, model.getMactkm());
+            stm.setInt(4, model.getMachitietbaohanh());
+            stm.setInt(5, model.getMagiasp());
+            stm.setInt(6, model.getSoluong());
+            stm.setInt(7, model.getGiaban());
+            stm.setInt(8, model.getGiasaukm());
+            isSuccess = db.sqlUpdate(stm);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+        
+    }
+
+    public void updateDiemKhachHang(int makh,int i) {
+        
+        boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("UPDATE khachhang SET Diemso=? WHERE khachhang.Makh=?");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1,i);
+            stm.setInt(2,makh);
+            isSuccess = db.sqlUpdate(stm);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+    }
+
+    public void updateSoLuongSanPham(int masp, int soluong) {
+        
+         boolean isSuccess = false;
+        db.setupConnection();
+        String sqlString = ("UPDATE sanpham SET soluong=? WHERE sanpham.Masp=?");
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement(sqlString);
+            stm.setInt(1,soluong);
+            stm.setInt(2,masp);
+            isSuccess = db.sqlUpdate(stm);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Thêm dữ liệu thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+
+        }
+    }
+
+    public int getSoLuongSanPhamHienTai(int masp) {
+        
+        int sl = 0;
+        db.setupConnection();
+        try {
+
+            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.soluong from sanpham where sanpham.Masp=?");
+            stm.setInt(1, masp);
+            rs = db.sqlQry(stm);
+            if (rs != null) {
+                while (rs.next()) {
+                    sl = rs.getInt("soluong");
+                    System.out.println("So Luong Hien Tai");
+
+                }
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(QuanLyTaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Lỗi");
+        } finally {
+            db.closeConnection();
+        }
+        return sl;
     }
 
 }

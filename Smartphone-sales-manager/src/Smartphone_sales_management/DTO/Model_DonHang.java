@@ -11,5 +11,21 @@ package Smartphone_sales_management.DTO;
 public class Model_DonHang {
     private int Madh;
     private int Makh;
+
+    public int getMadh() {
+        return Madh;
+    }
+
+    public void setMadh(int Madh) {
+        this.Madh = Madh;
+    }
+
+    public int getMakh() {
+        return Makh;
+    }
+
+    public void setMakh(int Makh) {
+        this.Makh = Makh;
+    }
     
 }

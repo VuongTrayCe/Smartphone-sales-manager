@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Smartphone_sales_management.BUS;
-
 import Smartphone_sales_management.DAO.QuanLiKhachHang_DAO;
 //import Smartphone_sales_management.UI.Model.Model_ChiTietKM;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
 import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.SQLException;
 
 /**
  *
@@ -30,19 +33,12 @@ public boolean AddKhachHang(Model_KhachHang KhachHang){
     return isSuccess;
     }
 
-public boolean deleteKhachHang(int Makh){
+public boolean deteleKhachHang(Model_KhachHang KhachHang){
     boolean isSuccess = false;
-    
-    for(Model_KhachHang kh:dskh){
-        if(kh.getMakh()== Makh){
-            dskh.remove(kh);
-            qlkh.deleteKhachHang(Makh);
-            isSuccess = true;
-            break;
-            
-        }
-    }
+    qlkh.deleteKhachHang(KhachHang);
+              
     return isSuccess;
+    
 }
 public boolean updateKhachHang(Model_KhachHang KhachHang){
     boolean isSuccess = false;
@@ -58,12 +54,63 @@ public boolean addkh(Model_KhachHang KhachHang) {
         
         return isSuccess;
     }
+public boolean ExistsKhachHang(String Cmnd) {
+		boolean isExists = false;	
 
-    public boolean ExistsKhachHang(int parseInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		for(Model_KhachHang KhachHang : dskh) {
+			if (KhachHang.getCmnd()== Cmnd) {
+				isExists = true;
+				break;
+			}
+		}
+
+		return isExists;
+	}
+       
+        
+         public ArrayList<Model_KhachHang> timKiemTheoMaKh(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String MaKh = Integer.toString(kh.getMakh());
+            if (MaKh.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
+    }
+           public ArrayList<Model_KhachHang> timKiemTheoTenkh(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String TenKh = kh.getTenkh().toLowerCase();
+            if (TenKh.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
     }
 
-    public int getSoTTMakh() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+               public ArrayList<Model_KhachHang> timKiemTheoCmnd(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String  Cmnd = kh.getCmnd().toLowerCase();
+            if (Cmnd.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
     }
+               public ArrayList<Model_KhachHang> timKiemTheoSĐT(String tuKhoa) {
+        tuKhoa = tuKhoa.toLowerCase();
+        ArrayList<Model_KhachHang> khds = new ArrayList<>();
+        for (Model_KhachHang kh : dskh) {
+            String SĐT = kh.getSDT();
+            if (SĐT.contains(tuKhoa)) {
+                khds.add(kh);
+            }
+        }
+        return khds;
+}
 }

@@ -12,7 +12,7 @@ public class Model_KhachHang {
     private int Makh;
     private String Tenkh;
     private  String Cmnd;
-    private int SDT;
+    private String SDT;
     private String DiaChi;
     private String Email;
     private String Ngaytao;
@@ -23,7 +23,7 @@ public class Model_KhachHang {
         
 }
 
-    public Model_KhachHang(int Makh, String Tenkh, String Cmnd, int SDT, String DiaChi, String Email, String Ngaytao, int Diemso, String TrangThai) {
+    public Model_KhachHang(int Makh, String Tenkh, String Cmnd,String SDT, String DiaChi, String Email, String Ngaytao, int Diemso, String TrangThai) {
         this.Makh = Makh;
         this.Tenkh = Tenkh;
         this.Cmnd = Cmnd;
@@ -59,11 +59,11 @@ public class Model_KhachHang {
         this.Cmnd = Cmnd;
     }
 
-    public int getSDT() {
+    public String getSDT() {
         return SDT;
     }
 
-    public void setSDT(int SDT) {
+    public void setSDT(String SDT) {
         this.SDT = SDT;
     }
 
@@ -108,11 +108,13 @@ public class Model_KhachHang {
     }
     
     public String[] toArrayString() {
-		return new String[] {Integer.toString(Makh),Tenkh,Cmnd,Integer.toString(SDT),DiaChi,Email,Ngaytao,Integer.toString(Diemso),TrangThai};
-}
+		return new String[] {Integer.toString(Makh),Tenkh,Cmnd,SDT,DiaChi,Email,Ngaytao,Integer.toString(Diemso),TrangThai};
+    }
 
-    public void setSĐT(int parseInt) {
+    public Object getSĐT() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
     
 }

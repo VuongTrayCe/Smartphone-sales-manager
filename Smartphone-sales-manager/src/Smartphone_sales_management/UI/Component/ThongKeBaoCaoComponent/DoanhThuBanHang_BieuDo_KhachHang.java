@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent;
 
-import Smartphone_sales_management.BUS.ThongKeBaoCao_BUS;
+import Smartphone_sales_management.BUS.ThongKeBaoCaoBanHang_BUS;
 import Smartphone_sales_management.DBConnect;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,7 +26,7 @@ public class DoanhThuBanHang_BieuDo_KhachHang extends javax.swing.JPanel {
     /**
      * Creates new form DoanhThuBanHang_BieuDo_KhachHang
      */
-    ThongKeBaoCao_BUS tkbc= new ThongKeBaoCao_BUS();
+    ThongKeBaoCaoBanHang_BUS tkbc= new ThongKeBaoCaoBanHang_BUS();
     public DoanhThuBanHang_BieuDo_KhachHang() {
         initComponents();
         setChart_KhachHang();
@@ -54,7 +54,7 @@ public class DoanhThuBanHang_BieuDo_KhachHang extends javax.swing.JPanel {
     }
   private JFreeChart createChartSanPham(CategoryDataset dataset) {
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Thống Kê Top 5 Khách Hàng",
+                "Top 5 Khách Hàng mua nhiều nhất",
                 "Tên Khách Hàng",
                 "Số Lượng Mua",
                 dataset,

@@ -5,6 +5,7 @@
 package Smartphone_sales_management.UI.Component.KhachHanggComponent;
 import Smartphone_sales_management.BUS.QuanLyKhachHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
+import Smartphone_sales_management.DTO.Model_NhanVien;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
 import java.awt.Color;
@@ -474,14 +475,21 @@ public class KhachHangg extends javax.swing.JPanel {
         
       txtMakh.setText(Integer.toString(KhachHang.getMakh()));
       txtTenkh.setText(KhachHang.getTenkh());
-      txtCmnd.setText(KhachHang.getCmnd());
+      if(KhachHang.getCmnd() == null) {
+          txtCmnd.setText("");
+      }
+      else {
+          txtCmnd.setText(KhachHang.getCmnd());
+      }
+//      txtCmnd.setText(KhachHang.getCmnd());
       txtSodt.setText(Integer.toString(KhachHang.getSDT()));
       txtDiachi.setText(KhachHang.getDiaChi());
-      txtEmail.setText(KhachHang.getEmail());
-      txtNgaytao.setText(KhachHang.getNgaytao());
+//      txtEmail.setText(KhachHang.getEmail());
+//      txtNgaytao.setText(KhachHang.getNgaytao());
       txtDiemso.setText(Integer.toString(KhachHang.getDiemso()));
-      txtTenkh.repaint();
+    
     }
+
       
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
@@ -847,20 +855,20 @@ if (txtTimkiem.getText().equals("")) {
 	TableModel model =jTable1.getModel();
 
         String Makh = model.getValueAt(index,0).toString();
-         String Ten = model.getValueAt(index, 1).toString();
-         String Cmnd = model.getValueAt(index, 2).toString();
-        String SĐT = model.getValueAt(index, 3).toString();
+        String Tenkh = model.getValueAt(index, 1).toString();
+        String Cmnd = model.getValueAt(index, 2).toString();
+        String SDT = model.getValueAt(index, 3).toString();
         String Diachi = model.getValueAt(index, 4).toString();
-        String Email = model.getValueAt(index, 5).toString();
-         String Ngaytao = model.getValueAt(index, 6).toString();
-          String Diemso = model.getValueAt(index, 7).toString();
+//        String Email = model.getValueAt(index, 5).toString();
+//        String Ngaytao = model.getValueAt(index, 6).toString();
+        String Diemso = model.getValueAt(index, 7).toString();
         KhachHang.setMakh(Integer.parseInt(Makh));
-        KhachHang.setTenkh(Ten);
+        KhachHang.setTenkh(Tenkh);
         KhachHang.setCmnd(Cmnd);
-        KhachHang.setSDT(Integer.parseInt(SĐT));
+        KhachHang.setSDT(Integer.parseInt(SDT));
         KhachHang.setDiaChi(Diachi);
-        KhachHang.setEmail(Email);   
-        KhachHang.setNgaytao(Ngaytao);
+//        KhachHang.setEmail(Email);
+//        KhachHang.setNgaytao(Ngaytao);
         KhachHang.setDiemso(Integer.parseInt(Diemso));
         dulieu(KhachHang);
     }//GEN-LAST:event_jTable1MouseClicked

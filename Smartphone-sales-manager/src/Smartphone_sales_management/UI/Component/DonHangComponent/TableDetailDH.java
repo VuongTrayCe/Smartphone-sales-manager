@@ -458,6 +458,8 @@ public class TableDetailDH extends javax.swing.JPanel {
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
             qldh_BUS.tinhDiemChoKhachHangKhiHuy(Madh);
+            System.out.println(data + "123");
+            qldh_BUS.UpdateSLSP(data);
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);
@@ -472,6 +474,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
             qldh_BUS.tinhDiemChoKhachHangKhiHoanThanh(Madh);
+
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);

@@ -417,14 +417,18 @@ public class FormThemSanPham extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel10.setText("Giá bán");
 
+        txtGia.setEditable(false);
         txtGia.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtGia.setText("0");
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel17.setText("Giá Nhập");
 
+        txtGianhap.setEditable(false);
         txtGianhap.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtGianhap.setText("0");
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel18.setText("Nhà cung cấp");
@@ -483,10 +487,9 @@ public class FormThemSanPham extends javax.swing.JPanel {
                                     .addComponent(jLabel10))))
                         .addGap(83, 83, 83)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtGianhap, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtmancc, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGianhap, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtmancc, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbbncc, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMausac)
                             .addComponent(txtNamsx)

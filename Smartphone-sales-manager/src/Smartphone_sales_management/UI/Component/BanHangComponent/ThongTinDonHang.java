@@ -109,9 +109,11 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         // Load thông tin dữ liệu
         // set giá sau khi áp dụng khuyến mãi
         giasaukm = 0;
+        int tongtien =0;
         for (Model_BanHang_ChiTietHoaDon model_ChiTietHoaDon : data) {
-            giasaukm += model_ChiTietHoaDon.getGiasaukm();
+            giasaukm += model_ChiTietHoaDon.getGiasaukm()*model_ChiTietHoaDon.getSoluong();
             SL += model_ChiTietHoaDon.getSoluong();
+            tongtien+=model_ChiTietHoaDon.getGiaban()*model_ChiTietHoaDon.getSoluong();
             TT += model_ChiTietHoaDon.getTongTien();
 //           cbbSanPham.addItem(model_GioHang.getName());
         }
@@ -119,13 +121,13 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         String formatDateTime = now.format(format);
         lbNgayBan.setText(formatDateTime);
         lbSoLuong.setText(String.valueOf(SL));
-        lbnTongTien.setText(String.valueOf(TT) + " VND");
+        lbnTongTien.setText(String.valueOf(tongtien) + " VND");
         lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm) + " VND");
         lbThanhToan.setText("Thanh toán trực tiếp");
 //        if(cbDiem.isSelected())
 //        {
 //                    giasaukm +=Integer.parseInt(cbDiem.getText());
-        lbTongTienThanhToan.setText(String.valueOf(giasaukm));
+        lbTongTienThanhToan.setText(String.valueOf(TT));
     }
 
     public void SetDefautlTable() {

@@ -32,7 +32,7 @@ public class QuanLyBanHang_DAO {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select * from sanpham");
+            PreparedStatement stm = db.getConnection().prepareStatement("select * from sanpham where sanpham.Trangthai='T'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();

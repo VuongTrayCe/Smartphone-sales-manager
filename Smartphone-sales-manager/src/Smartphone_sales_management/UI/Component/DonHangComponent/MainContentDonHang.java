@@ -7,9 +7,12 @@ package Smartphone_sales_management.UI.Component.DonHangComponent;
 import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyDonHang_BUS;
 import Smartphone_sales_management.DTO.Model_DonHang;
+import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
 import Smartphone_sales_management.UI.Event.DonHang.EventDonHang;
 import Smartphone_sales_management.UI.Event.DonHang.EventDonHang2;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import Smartphone_sales_management.UI.Swing.GraphicsTextFied;
+import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.GridLayout;
 import java.awt.Window;
@@ -36,6 +39,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     TableDetailDH detailDH;
     TableDonHang donHang;
     int Madonhang = -1;
+
     public MainContentDonHang(MainFrame mainFrame) throws ParseException {
         initComponents();
         this.mainFrame = mainFrame;
@@ -64,11 +68,14 @@ public class MainContentDonHang extends javax.swing.JPanel {
         }, new EventDonHang2() {
             @Override
             public int maDH(int Madh) {
-                Madonhang= Madh;
-              return Madh;
+                Madonhang = Madh;
+                return Madh;
             }
-            
+
         });
+
+        btnInHoaDon.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
+        btnExcel.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
 
         txtTimkiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -108,8 +115,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        txtTimkiem = new javax.swing.JTextField();
+        txtTimkiem = new GraphicsTextFied(30);
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         btnExcel = new javax.swing.JButton();
@@ -117,17 +123,13 @@ public class MainContentDonHang extends javax.swing.JPanel {
         DateStart = new com.toedter.calendar.JDateChooser();
         DateEnd = new com.toedter.calendar.JDateChooser();
         BtnLocTheoNgay = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 255, 102));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search-icon (1).png"))); // NOI18N
-        jLabel8.setText("Tìm kiếm");
-
-        txtTimkiem.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtTimkiem.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         txtTimkiem.setForeground(new java.awt.Color(153, 153, 153));
         txtTimkiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,9 +142,9 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
-        jComboBox2.setBackground(new java.awt.Color(204, 204, 255));
+        jComboBox2.setBackground(new java.awt.Color(0, 0, 0));
         jComboBox2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(255, 51, 51));
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Hoàn Thành", "Đặt Hàng", "Đã Hủy" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -161,7 +163,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         jScrollPane1.setAutoscrolls(true);
 
         btnExcel.setBackground(new java.awt.Color(255, 0, 51));
-        btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcel.setForeground(new java.awt.Color(255, 255, 255));
         btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Logos-Excel-icon.png"))); // NOI18N
         btnExcel.setText("Xuất Excel");
@@ -172,7 +174,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
         });
 
         btnInHoaDon.setBackground(new java.awt.Color(255, 0, 51));
-        btnInHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnInHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnInHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Very-Basic-Print-icon.png"))); // NOI18N
         btnInHoaDon.setText("In hóa đơn");
@@ -186,8 +188,9 @@ public class MainContentDonHang extends javax.swing.JPanel {
 
         DateEnd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Đến ngày"));
 
-        BtnLocTheoNgay.setBackground(new java.awt.Color(255, 0, 51));
+        BtnLocTheoNgay.setBackground(new java.awt.Color(0, 0, 0));
         BtnLocTheoNgay.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        BtnLocTheoNgay.setForeground(new java.awt.Color(255, 255, 255));
         BtnLocTheoNgay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BtnLocTheoNgay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search-icon (1).png"))); // NOI18N
         BtnLocTheoNgay.setText("Xem");
@@ -198,56 +201,60 @@ public class MainContentDonHang extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("|| Thông Tin Đơn Đặt Hàng");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInHoaDon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTimkiem))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(6, 6, 6)
-                        .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(138, 138, 138)))
+                        .addGap(0, 448, Short.MAX_VALUE)))
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcel)
+                    .addComponent(btnInHoaDon)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnLocTheoNgay, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -302,15 +309,15 @@ public class MainContentDonHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExcelActionPerformed
 
     private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
-           JFrame frame = new JFrame();
-           ArrayList dsctdh = new ArrayList();
-           QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
-           dsctdh = qldh_BUS.layctdh(Madonhang);
-           PanelInHoaDon pn = new PanelInHoaDon(dsctdh,frame);
-           frame.setSize(1000,750);
-           frame.setLocationRelativeTo(null);
-           frame.add(pn);
-           frame.setVisible(true);
+        JFrame frame = new JFrame();
+        ArrayList dsctdh = new ArrayList();
+        QuanLyDonHang_BUS qldh_BUS = new QuanLyDonHang_BUS();
+        dsctdh = qldh_BUS.layctdh(Madonhang);
+        PanelInHoaDon pn = new PanelInHoaDon(dsctdh, frame);
+        frame.setSize(1000, 750);
+        frame.setLocationRelativeTo(null);
+        frame.add(pn);
+        frame.setVisible(true);
     }//GEN-LAST:event_btnInHoaDonActionPerformed
     private boolean checkDate() {
         if (DateStart.getDate() != null && DateEnd.getDate() != null) {
@@ -339,7 +346,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
     private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnInHoaDon;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtTimkiem;

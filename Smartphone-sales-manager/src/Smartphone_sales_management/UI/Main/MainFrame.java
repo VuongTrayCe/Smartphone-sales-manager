@@ -43,7 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form TestFrame
      */
-    public static int selectedIndex = -1;
+    public static int selectedIndex = 0;
     public static int manv =1;
     public static String tennv = "Vuong";
     public MainFrame() {
@@ -54,8 +54,8 @@ public class MainFrame extends javax.swing.JFrame {
 //        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
 //          MainContentBaoHanh a = new MainContentBaoHanh(MainFrame.this, jPanel1);
 //        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
-        ThongKeMainPanel a = new ThongKeMainPanel();
-//        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+//        ThongKeMainPanel a = new ThongKeMainPanel();
+        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
@@ -228,7 +228,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel2.setBackground(new java.awt.Color(33, 29, 79));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("jLabel1");

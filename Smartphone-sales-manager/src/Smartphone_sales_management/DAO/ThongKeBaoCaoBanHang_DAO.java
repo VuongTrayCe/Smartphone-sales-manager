@@ -186,8 +186,7 @@ public class ThongKeBaoCaoBanHang_DAO {
 
         try {
             dataset = new JDBCCategoryDataset(db.getConnection());
-            dataset.executeQuery("select sanpham.Tensp,sum(chitietdonhang.Soluong)as SoLuong from chitietdonhang, sanpham,donhang where sanpham.Masp=chitietdonhang.Masp and donhang.Madh=chitietdonhang.Madh and donhang.Trangthai=\"Hoàn Thành\" group by(chitietdonhang.Masp)");
-
+            dataset.executeQuery("select a.Tensp,a.SoLuong from (select sanpham.Tensp,sum(chitietdonhang.Soluong)as SoLuong from chitietdonhang, sanpham,donhang where sanpham.Masp=chitietdonhang.Masp and donhang.Madh=chitietdonhang.Madh and donhang.Trangthai=\"Hoàn Thành\" group by(chitietdonhang.Masp)) as a order by a.SoLuong desc limit 10;");
         } catch (SQLException ex) {
             return null;
         } finally {

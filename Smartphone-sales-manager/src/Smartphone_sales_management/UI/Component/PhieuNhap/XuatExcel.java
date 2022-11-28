@@ -130,15 +130,6 @@ public class XuatExcel {
                 row.createCell(i, CellType.STRING).setCellValue(colName);
             }
 
-//
-//            Row row = sheet.createRow(rownum);
-//            row.createCell(0, CellType.NUMERIC).setCellValue("STT");
-//            row.createCell(1, CellType.STRING).setCellValue("Mã Phiếu Nhập");
-//            row.createCell(2, CellType.STRING).setCellValue("Ngày Nhập");
-//            row.createCell(3, CellType.STRING).setCellValue("Nhà Cung Cấp");
-//            row.createCell(4, CellType.STRING).setCellValue("Số Lượng");
-//            row.createCell(5, CellType.STRING).setCellValue("Tổng Tiền");
-//            row.createCell(6, CellType.STRING).setCellValue("Trạng Thái");
             for (int i = 0; i < table2.getModel().getRowCount(); i++) {
                 rownum++;
                 row = sheet.createRow(i + 1);
@@ -146,14 +137,6 @@ public class XuatExcel {
                     row.createCell(j, CellType.STRING).setCellValue(table2.getModel().getValueAt(i, j).toString());
 
                 }
-//                Vector phieuNhapRow = (Vector) arrDataPhieuNhap.get(i);
-//                row.createCell(0, CellType.NUMERIC).setCellValue(rownum);
-//                row.createCell(1, CellType.STRING).setCellValue(phieuNhapRow.get(1).toString());
-//                row.createCell(2, CellType.STRING).setCellValue((String) phieuNhapRow.get(2));
-//                row.createCell(3, CellType.STRING).setCellValue((String) phieuNhapRow.get(3));
-//                row.createCell(4, CellType.STRING).setCellValue(phieuNhapRow.get(4).toString());
-//                row.createCell(5, CellType.STRING).setCellValue(phieuNhapRow.get(5).toString());
-//                row.createCell(6, CellType.STRING).setCellValue((String) phieuNhapRow.get(6));
             }
             for (int i = 0; i < rownum; i++) {
                 sheet.autoSizeColumn(i);

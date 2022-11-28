@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,7 +44,6 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
         this.hinhthuc = hinhthuc;
         SetDefautlTable();
 //        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setModel(model);
     }
 
     public TableDoanhThuBanHang(String type, String hinhthuc, Date dateStart, Date dateEnd) {
@@ -54,7 +54,6 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
         this.datetart = dateStart;
         SetDefautlTable();
 //        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setModel(model);
     }
 
     public void init(String type, String hinhthuc, Date dateStart, Date dateEnd) {
@@ -94,8 +93,8 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
     );
     }
     public void SetDefautlTable() {
-        jTable1.removeAll();
         model = new DefaultTableModel();
+        jTable1.removeAll();
         if (hinhthuc.equals("Hàng Hóa")) {
             this.model.addColumn("STT");
             model.addColumn("Mã Hàng");
@@ -203,5 +202,10 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
 
     private ArrayList getThongKeBaoCaoBanHang(String type, String hinhthuc) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    JTable getTable() {
+                return jTable1;
+
     }
 }

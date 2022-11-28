@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -57,7 +58,6 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
         this.datetart = dateStart;
 //        SetDefautlTable();
 //        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setModel(model);
     }
 
     public void init(String type, String hinhthuc, Date dateStart, Date dateEnd) {
@@ -142,7 +142,7 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
             dataList = tkbc.getThongKeBaoCaoNhapHang_NgayBan(datetart, dateEnd);
 
         }
-            System.out.println(dataList.size()+"sdfaf");
+        System.out.println(dataList.size() + "sdfaf");
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
@@ -195,4 +195,9 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    JTable getTable() {
+        return jTable1;
+
+    }
 }

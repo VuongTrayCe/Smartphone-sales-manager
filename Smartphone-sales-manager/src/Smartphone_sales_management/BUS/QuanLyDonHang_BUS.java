@@ -168,4 +168,19 @@ public class QuanLyDonHang_BUS {
     public void updateXacNhanDonHang(int Madh) {
         qldh.updateXacNhanDonHang(Madh);
     }
+    
+    public void UpdateSLSP(ArrayList data){
+        for (Object x : data) {
+            Vector dataCTDH = (Vector) x;
+            int Mactdh = (int)dataCTDH.get(13);
+            ArrayList datachitiet = qldh.chitietSPvaSL(Mactdh);
+            int Masp = (int)datachitiet.get(0);
+            int SLchitiet = (int)datachitiet.get(1);
+            int SLHT = qldh.SLofSP(Masp);
+            int SLTong = SLHT +SLchitiet;
+            if(qldh.updateSLSP(Masp, SLTong)){
+                System.out.println("Thanh cong update sl");
+            }
+        }
+    }
 }

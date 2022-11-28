@@ -25,7 +25,7 @@ public ArrayList getDanhSachSanPham(String keyWord) {
                 Model_NhaCungCap y = (Model_NhaCungCap) x;
                 String mancc = Integer.toString((int) y.getMacc());
                 String name = (String) y.getTenncc();
-                String sdt = Integer.toString((int) y.getSDT());
+                String sdt = y.getSDT();
                 String diachi = (String) y.getDiaChi();
                 if (mancc.contains(keyWord) || name.contains(keyWord)  || sdt.contains(keyWord)  || diachi.contains(keyWord)) {
                     {

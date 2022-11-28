@@ -32,7 +32,7 @@ public class QuanLyNhaCungCap_DAO {
                 Model_NhaCungCap a = new Model_NhaCungCap();
                 a.setMacc(rs.getInt("Mancc"));
                 a.setTenncc(rs.getString("Tenncc"));
-                a.setSDT(rs.getInt("SDT"));
+                a.setSDT(rs.getString("SDT"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 a.setDiaChi(rs.getString("DiaChi"));
                 dsncc.add(a);
@@ -53,7 +53,7 @@ public class QuanLyNhaCungCap_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 //                        preparedStatement.setInt(1, NhanVien.getMaNV());
 			preparedStatement.setString(1, NhaCungCap.getTenncc());
-                        preparedStatement.setInt(2, NhaCungCap.getSDT());
+                        preparedStatement.setString(2, NhaCungCap.getSDT());
                         preparedStatement.setString(3, NhaCungCap.getDiaChi());
                         preparedStatement.setString(4, NhaCungCap.getTrangThai());
                         
@@ -125,10 +125,9 @@ public class QuanLyNhaCungCap_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
 			preparedStatement.setString(1, NhaCungCap.getTenncc());
-			preparedStatement.setInt(2, NhaCungCap.getSDT());
+			preparedStatement.setString(2, NhaCungCap.getSDT());
                         preparedStatement.setString(3, NhaCungCap.getDiaChi());
                         preparedStatement.setInt(4,NhaCungCap.getMacc());
-
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {
                      JOptionPane.showMessageDialog(null, "Update dữ liệu thành công", "Thông báo",

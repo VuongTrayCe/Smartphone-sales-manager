@@ -65,7 +65,7 @@ public class MainContentNCC extends javax.swing.JPanel {
 //        stateForm =2;
       jtMa.setText(Integer.toString(NhaCC.getMacc()));
       jtTen.setText(NhaCC.getTenncc());
-      jtsdt.setText(Integer.toString(NhaCC.getSDT()));
+      jtsdt.setText(NhaCC.getSDT());
       jTextDiaChi.setText(NhaCC.getDiaChi());
     
  }
@@ -330,7 +330,7 @@ public class MainContentNCC extends javax.swing.JPanel {
         Model_NhaCungCap Nhacc = new Model_NhaCungCap();
         Nhacc.setMacc(Integer.parseInt(mancc));
         Nhacc.setTenncc(ten);
-        Nhacc.setSDT(Integer.parseInt(sdt));
+        Nhacc.setSDT(sdt);
         Nhacc.setDiaChi(diachi);
               int a = JOptionPane.showConfirmDialog(null, "Bạn muốn chỉnh sửa thông tin không ?","Chỉnh sửa thông tin Nhà cung cấp", JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION) {

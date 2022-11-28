@@ -135,7 +135,7 @@ public class TableNhaCC extends javax.swing.JPanel {
         String diachi = model.getValueAt(index, 3).toString();
         NhaCC.setMacc(Integer.parseInt(Mancc));
         NhaCC.setTenncc(Tenncc);
-        NhaCC.setSDT(Integer.parseInt(sdt));
+        NhaCC.setSDT(sdt);
         NhaCC.setDiaChi(diachi); 
         mainnhacc.truyendulieu(NhaCC);
     }//GEN-LAST:event_jTable1MouseClicked

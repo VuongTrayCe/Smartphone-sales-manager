@@ -8,6 +8,7 @@ import Smartphone_sales_management.BUS.QuanLyBanHang_BUS;
 import Smartphone_sales_management.DAO.QuanLyBanHang_DAO;
 import Smartphone_sales_management.DTO.Model_BanHang_ChiTietHoaDon;
 import Smartphone_sales_management.DTO.Model_BanHang_HoaDon;
+import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Color;
 import java.awt.Dialog;
@@ -67,10 +68,10 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 
         Model_BanHang_ChiTietHoaDon tets = data.get(0);
         danhsachkhachhang = qlbh_bus.getALLKhachHang();
-        btnComplete.setBackground(new Color(255, 255, 255));
+//        btnComplete.setBackground(new Color(255, 255, 255));
         btnComplete.setBorder(null);
         btnBack.setBorder(null);
-        btnBack.setBackground(new Color(255, 255, 255));
+//        btnBack.setBackground(new Color(255, 255, 255));
 
         // Lấy danh sách khách hàng
 //    final DefaultComboBoxModel model = new DefaultComboBoxModel(danhsachsanpham); 
@@ -94,6 +95,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jTable1.setModel(model);
         jScrollPane1.setMaximumSize(new Dimension(1000, 50));
 //                jTable1.setSize(jTable1.getWidth(),jTable1.getRowHeight()*model.getRowCount());
+        btnBack.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
+        btnComplete.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
+
 
     }
 
@@ -109,9 +113,11 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         // Load thông tin dữ liệu
         // set giá sau khi áp dụng khuyến mãi
         giasaukm = 0;
+        int tongtien =0;
         for (Model_BanHang_ChiTietHoaDon model_ChiTietHoaDon : data) {
-            giasaukm += model_ChiTietHoaDon.getGiasaukm();
+            giasaukm += model_ChiTietHoaDon.getGiasaukm()*model_ChiTietHoaDon.getSoluong();
             SL += model_ChiTietHoaDon.getSoluong();
+            tongtien+=model_ChiTietHoaDon.getGiaban()*model_ChiTietHoaDon.getSoluong();
             TT += model_ChiTietHoaDon.getTongTien();
 //           cbbSanPham.addItem(model_GioHang.getName());
         }
@@ -119,13 +125,13 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         String formatDateTime = now.format(format);
         lbNgayBan.setText(formatDateTime);
         lbSoLuong.setText(String.valueOf(SL));
-        lbnTongTien.setText(String.valueOf(TT) + " VND");
+        lbnTongTien.setText(String.valueOf(tongtien) + " VND");
         lbnGiaSauKhuyenMai.setText(String.valueOf(giasaukm) + " VND");
         lbThanhToan.setText("Thanh toán trực tiếp");
 //        if(cbDiem.isSelected())
 //        {
 //                    giasaukm +=Integer.parseInt(cbDiem.getText());
-        lbTongTienThanhToan.setText(String.valueOf(giasaukm));
+        lbTongTienThanhToan.setText(String.valueOf(TT)+" VND");
     }
 
     public void SetDefautlTable() {
@@ -207,8 +213,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         lbTongTienThanhToan.setForeground(new java.awt.Color(0, 0, 153));
         lbTongTienThanhToan.setText("jLabel11");
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/go-back-2-894878.png"))); // NOI18N
         btnBack.setText("Quay Lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -220,8 +227,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh Sách Sản phẩm: ");
 
+        btnComplete.setBackground(new java.awt.Color(0, 0, 0));
         btnComplete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnComplete.setForeground(new java.awt.Color(255, 0, 0));
+        btnComplete.setForeground(new java.awt.Color(255, 255, 255));
         btnComplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/GoBack4.png"))); // NOI18N
         btnComplete.setText("Hoàn Thành");
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
@@ -351,17 +359,9 @@ public class ThongTinDonHang extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnComplete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBack))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbTongTienThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
@@ -374,7 +374,16 @@ public class ThongTinDonHang extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                                        .addComponent(lbnTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                        .addComponent(lbnTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnComplete)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cbDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -481,7 +490,6 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         for (Model_BanHang_ChiTietHoaDon model_BanHang_ChiTietHoaDon : data) {
             diemthuong+=model_BanHang_ChiTietHoaDon.getSoluong()*100000;         
         }
-        System.out.println(Makh);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formatDateTime = now.format(format);
         hoadon.setMakh(Makh);
@@ -492,8 +500,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         hoadon.setSoluong(Integer.parseInt(lbSoLuong.getText()));
         hoadon.setTongtien(TT);
         hoadon.setDiemthuong(diemthuong);
-
-        int madh = qlbh_bus.InsertDonHang(hoadon);
+        int madh = qlbh_bus.InsertDonHang(hoadon,diem);
         for (Model_BanHang_ChiTietHoaDon object :data) {
             object.setMadh(madh);
             qlbh_bus.AddChiTietDonHang(object);      
@@ -530,7 +537,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         if (cbDiem.isSelected()) {
             if (gia > 0) {
 //                gia -= Integer.parseInt(cbDiem.getText());
-                lbTongTienThanhToan.setText(String.valueOf(gia));
+                lbTongTienThanhToan.setText(String.valueOf(gia)+" VND");
                 cbDiem.setText(cbDiem.getText() + "/" + cbDiem.getText());
                 diemdadung=diem;
             } else {

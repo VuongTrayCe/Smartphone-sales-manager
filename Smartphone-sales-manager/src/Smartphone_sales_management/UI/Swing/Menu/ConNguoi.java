@@ -19,6 +19,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
+import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
+import Smartphone_sales_management.UI.Component.NhaCungCap.MainContentNCC;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.GridLayout;
@@ -34,17 +36,16 @@ public class ConNguoi extends javax.swing.JPanel {
     /**
      * Creates new form TestPanel2
      */
-
     MainFrame frame;
     JPanel panel;
-    public ConNguoi(MainFrame frame,JPanel panel) {
-        
+    public ConNguoi(MainFrame frame, JPanel panel) {
+
         initComponents();
-        this.frame=frame;
-        this.panel=panel;
-       
+        this.frame = frame;
+        this.panel = panel;
+
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,13 +56,13 @@ public class ConNguoi extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelNhanVien = new ReactPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        panelKhachHang = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelNhaCungCap = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -70,10 +71,15 @@ public class ConNguoi extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 102));
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelNhanVien.setBackground(new java.awt.Color(255, 255, 102));
+        panelNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel3MouseClicked(evt);
+                panelNhanVienMouseClicked(evt);
+            }
+        });
+        panelNhanVien.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                panelNhanVienPropertyChange(evt);
             }
         });
 
@@ -87,23 +93,23 @@ public class ConNguoi extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_NhanVien.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelNhanVienLayout = new javax.swing.GroupLayout(panelNhanVien);
+        panelNhanVien.setLayout(panelNhanVienLayout);
+        panelNhanVienLayout.setHorizontalGroup(
+            panelNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNhanVienLayout.createSequentialGroup()
+                .addGroup(panelNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelNhanVienLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(panelNhanVienLayout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(jLabel2)))
                 .addGap(82, 82, 82))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        panelNhanVienLayout.setVerticalGroup(
+            panelNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNhanVienLayout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,32 +117,45 @@ public class ConNguoi extends javax.swing.JPanel {
                 .addGap(227, 227, 227))
         );
 
-        jPanel1.add(jPanel3);
+        jPanel1.add(panelNhanVien);
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
+        panelKhachHang.setBackground(new java.awt.Color(0, 102, 102));
+        panelKhachHang.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panelKhachHangMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelKhachHangMouseMoved(evt);
+            }
+        });
+        panelKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelKhachHangMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Quản Lý Khách Hàng");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_KhachHang.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelKhachHangLayout = new javax.swing.GroupLayout(panelKhachHang);
+        panelKhachHang.setLayout(panelKhachHangLayout);
+        panelKhachHangLayout.setHorizontalGroup(
+            panelKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelKhachHangLayout.createSequentialGroup()
+                .addGroup(panelKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelKhachHangLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel5))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(panelKhachHangLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel3)))
                 .addGap(92, 92, 92))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        panelKhachHangLayout.setVerticalGroup(
+            panelKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelKhachHangLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,31 +163,36 @@ public class ConNguoi extends javax.swing.JPanel {
                 .addGap(236, 236, 236))
         );
 
-        jPanel1.add(jPanel4);
+        jPanel1.add(panelKhachHang);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        panelNhaCungCap.setBackground(new java.awt.Color(204, 204, 255));
+        panelNhaCungCap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelNhaCungCapMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Quản Lý Nhà Cung Cấp");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_NhaCungCap.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelNhaCungCapLayout = new javax.swing.GroupLayout(panelNhaCungCap);
+        panelNhaCungCap.setLayout(panelNhaCungCapLayout);
+        panelNhaCungCapLayout.setHorizontalGroup(
+            panelNhaCungCapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNhaCungCapLayout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(49, 49, 49))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(panelNhaCungCapLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelNhaCungCapLayout.setVerticalGroup(
+            panelNhaCungCapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNhaCungCapLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,7 +200,7 @@ public class ConNguoi extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2);
+        jPanel1.add(panelNhaCungCap);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -191,33 +215,80 @@ public class ConNguoi extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-                    NhanVienGUI a = new NhanVienGUI();
-                            jPanel1.removeAll();
-                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
-                    jPanel1.setLayout(new GridLayout());
-                    jPanel1.add(a);
-                    a.validate();
+        NhanVienGUI a = new NhanVienGUI();
+        jPanel1.removeAll();
+        a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        jPanel1.setLayout(new GridLayout());
+        jPanel1.add(a);
+        a.validate();
 //                    pack();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+    private void panelNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNhanVienMouseClicked
 
-           NhanVienGUI a = new NhanVienGUI();
+        NhanVienGUI a = new NhanVienGUI();
 //KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
 //              MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
-                                      panel.removeAll();
+        panel.removeAll();
 
-                    a.setBounds(0, 0,panel.getWidth(),panel.getHeight());
-                    panel.setLayout(new GridLayout());
-                    panel.add(a);
-                    a.validate();
+        a.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+        panel.setLayout(new GridLayout());
+        panel.add(a);
+        a.validate();
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel3MouseClicked
+    }//GEN-LAST:event_panelNhanVienMouseClicked
+
+    private void panelKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKhachHangMouseClicked
+        KhachHangg a = new KhachHangg();
+        panel.removeAll();
+
+        a.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+        panel.setLayout(new GridLayout());
+        panel.add(a);
+        a.validate();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panelKhachHangMouseClicked
+
+    private void panelNhaCungCapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNhaCungCapMouseClicked
+        MainContentNCC a = new MainContentNCC(frame);
+        panel.removeAll();
+
+        a.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+        panel.setLayout(new GridLayout());
+        panel.add(a);
+        a.validate();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_panelNhaCungCapMouseClicked
+
+    private void panelKhachHangMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKhachHangMouseMoved
+           
+//      JPanel parent = (JPanel)evt.getSource();
+//      parent.setBackground(Color.red);
+//    parent.revalidate();
+    }//GEN-LAST:event_panelKhachHangMouseMoved
+
+    private void panelKhachHangMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKhachHangMouseDragged
+        
+        
+//   JPanel parent = (JPanel)evt.getSource();
+//      parent.setBackground(Color.GRAY);
+//    parent.validate();
+// TODO add your handling code here:
+    }//GEN-LAST:event_panelKhachHangMouseDragged
+
+    private void panelNhanVienPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelNhanVienPropertyChange
+      
+
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_panelNhanVienPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -228,9 +299,9 @@ public class ConNguoi extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel panelKhachHang;
+    private javax.swing.JPanel panelNhaCungCap;
+    private javax.swing.JPanel panelNhanVien;
     // End of variables declaration//GEN-END:variables
 
 }

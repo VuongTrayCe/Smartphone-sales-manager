@@ -13,9 +13,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -34,6 +36,9 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
     private String type;
     private String hinhthuc;
 
+    private Date datetart;
+    private Date dateEnd;
+
     public TableChiPhiNhapHang(String type, String hinhthuc) {
         initComponents();
         this.type = type;
@@ -42,6 +47,32 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
         TableColumnModel columnModel = jTable1.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(5);
         columnModel.getColumn(1).setPreferredWidth(5);
+
+    }
+
+    public TableChiPhiNhapHang(String type, String hinhthuc, Date dateStart, Date dateEnd) {
+        initComponents();
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        this.dateEnd = dateEnd;
+        this.datetart = dateStart;
+//        SetDefautlTable();
+//        jTable1.setColumnSelectionAllowed(true);
+    }
+
+    public void init(String type, String hinhthuc, Date dateStart, Date dateEnd) {
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        this.dateEnd = dateEnd;
+        this.datetart = dateStart;
+        SetDefautlTable();
+
+    }
+
+    public void init(String type, String hinhthuc) {
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        SetDefautlTable();
 
     }
 
@@ -71,21 +102,8 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
             model.addColumn("Số Lượng");
             model.addColumn("Tổng Tiền");
             model.addColumn("Đơn Vị Tiền");
-
 //            model.addColumn("Số Lượng còn");
         }
-//        if (hinhthuc.equals("Ngày Bán")) {
-//            this.model.addColumn("STT");
-//            model.addColumn("Ngày Bán");
-//            model.addColumn("Số Đơn Hàng");
-//            model.addColumn("Số Lượng");
-//            model.addColumn("Tổng Hàng");
-////             System.out.println(dateEnd.toString());
-////             System.out.println(datetart.toString());
-////             System.out.println(datetart.compareTo(dateEnd));
-//
-////            model.addColumn("Số Lượng còn");
-//        }
         if (hinhthuc.equals("Nhà Cung Cấp")) {
             this.model.addColumn("STT");
             model.addColumn("Mã Nhà Cung Cấp");
@@ -93,6 +111,18 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
             model.addColumn("Số phiếu");
             model.addColumn("Số Lượng");
             model.addColumn("Tồng tiền");
+            model.addColumn("Đơn Vị Tiền");
+
+        }
+        if (hinhthuc.equals("Ngày Nhập")) {
+            model.addColumn("STT");
+            model.addColumn("Ngày Bán");
+            model.addColumn("Số Phiếu Nhập");
+            model.addColumn("Số Lượng");
+            model.addColumn("Tổng Tiền");
+            model.addColumn("Đơn Vị Tiền");
+
+//            model.addColumn("Số Lượng còn");
         }
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
@@ -104,8 +134,15 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
 
 //  Lấy dữ liệu theo hình thức và type sau đó add dữ liệu vào bảng
         ArrayList dataList = new ArrayList<>();
-        dataList = tkbc.getThongKeBaoCaoNhapHang(type, hinhthuc);
-//            System.out.println(hinhthuc);
+        if (hinhthuc.equals("Hàng Hóa")) {
+            dataList = tkbc.getThongKeBaoCaoNhapHang(type, hinhthuc);
+        } else if (hinhthuc.equals("Nhà Cung Cấp")) {
+            dataList = tkbc.getThongKeBaoCaoNhapHang(type, hinhthuc);
+        } else {
+            dataList = tkbc.getThongKeBaoCaoNhapHang_NgayBan(datetart, dateEnd);
+
+        }
+        System.out.println(dataList.size() + "sdfaf");
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
@@ -158,4 +195,9 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    JTable getTable() {
+        return jTable1;
+
+    }
 }

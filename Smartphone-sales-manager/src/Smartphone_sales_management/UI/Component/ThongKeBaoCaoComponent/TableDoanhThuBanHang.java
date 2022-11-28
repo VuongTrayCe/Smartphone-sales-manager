@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,6 +37,15 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
     private Date datetart;
     private Date dateEnd;
     AddXemChiTiet event;
+
+    public TableDoanhThuBanHang(String type, String hinhthuc) {
+        initComponents();
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        SetDefautlTable();
+//        jTable1.setColumnSelectionAllowed(true);
+    }
+
     public TableDoanhThuBanHang(String type, String hinhthuc, Date dateStart, Date dateEnd) {
         initComponents();
         this.type = type;
@@ -44,41 +54,66 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
         this.datetart = dateStart;
         SetDefautlTable();
 //        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setModel(model);
     }
-    public void init(String type, String hinhthuc, Date dateStart, Date dateEnd)
-    {
+
+    public void init(String type, String hinhthuc, Date dateStart, Date dateEnd) {
         this.type = type;
         this.hinhthuc = hinhthuc;
         this.dateEnd = dateEnd;
         this.datetart = dateStart;
-                SetDefautlTable();
+        SetDefautlTable();
 
     }
-    public void addXemChiTiet(AddXemChiTiet event)
-    {
+
+    public void init(String type, String hinhthuc) {
+        this.type = type;
+        this.hinhthuc = hinhthuc;
+        SetDefautlTable();
+
+    }
+
+    public void addXemChiTiet(AddXemChiTiet event) {
         this.event = event;
-        
-        jTable1.addMouseListener(new  MouseAdapter() {
+
+        jTable1.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 int i = jTable1.getSelectedRow();
-                event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
-            };
-        });
+                if (hinhthuc.equals("Khách Hàng")) {
+                    event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
+
+                } else {
+                    event.Ngayban(String.valueOf(jTable1.getValueAt(i, 1)));
+
+                }
+            }
+        ;
+    }
+
+    );
     }
     public void SetDefautlTable() {
+        model = new DefaultTableModel();
         jTable1.removeAll();
-        model=new DefaultTableModel();
         if (hinhthuc.equals("Hàng Hóa")) {
             this.model.addColumn("STT");
             model.addColumn("Mã Hàng");
             model.addColumn("Tên Hàng");
             model.addColumn("Số Lượng");
-//            model.addColumn("Số Lượng còn");
+            model.addColumn("Tổng Tiền");
+        }
 
-        } 
-         if (hinhthuc.equals("Ngày Bán")) {
+        if (hinhthuc.equals("Khách Hàng")) {
+            this.model.addColumn("STT");
+            model.addColumn("Mã Khách Hàng");
+            model.addColumn("Tên Khách Hàng");
+            model.addColumn("Số Đơn");
+            model.addColumn("Số Lượng");
+            model.addColumn("Tồng tiền");
+
+        }
+
+        if (hinhthuc.equals("Ngày Bán")) {
             this.model.addColumn("STT");
             model.addColumn("Ngày Bán");
             model.addColumn("Số Đơn Hàng");
@@ -89,17 +124,8 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
 //             System.out.println(datetart.compareTo(dateEnd));
 
 //            model.addColumn("Số Lượng còn");
-
-        } 
-        if(hinhthuc.equals("Khách Hàng")) {
-            this.model.addColumn("STT");
-            model.addColumn("Mã Khách Hàng");
-            model.addColumn("Tên Khách Hàng");
-            model.addColumn("Số Đơn");
-            model.addColumn("Số Lượng");
-            model.addColumn("Tồng tiền");
-
         }
+
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 17) {
@@ -111,7 +137,12 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
 //  Lấy dữ liệu theo hình thức và type sau đó add dữ liệu vào bảng
         ArrayList dataList = new ArrayList<>();
         try {
-            dataList =tkbc.getThongKeBaoCaoBanHang(type,hinhthuc,datetart,dateEnd);
+            if (hinhthuc.equals("Hàng Hóa") || hinhthuc.equals("Khách Hàng")) {
+                dataList = tkbc.getThongKeBaoCaoBanHang(type, hinhthuc);
+            } else {
+                dataList = tkbc.getThongKeBaoCaoBanHang(datetart, dateEnd);
+
+            }
         } catch (ParseException ex) {
             Logger.getLogger(TableDoanhThuBanHang.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,7 +150,7 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
         for (int i = 0; i < dataList.size(); i++) {
             model.addRow((Vector<?>) dataList.get(i));
         }
-                jTable1.setModel(model);
+        jTable1.setModel(model);
         jScrollPane1.repaint();
     }
 
@@ -171,5 +202,10 @@ public class TableDoanhThuBanHang extends javax.swing.JPanel {
 
     private ArrayList getThongKeBaoCaoBanHang(String type, String hinhthuc) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    JTable getTable() {
+                return jTable1;
+
     }
 }

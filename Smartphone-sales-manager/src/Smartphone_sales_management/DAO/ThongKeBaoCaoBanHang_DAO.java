@@ -31,8 +31,9 @@ public class ThongKeBaoCaoBanHang_DAO {
     public ArrayList getDoanhThuBanHang_HangHoa() {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
+        String query = "select sanpham.Tensp , chitietdonhang.Masp, sum(chitietdonhang.Soluong) as Tongso,sum(chitietdonhang.Soluong*chitietdonhang.giaban)as TongTien from sanpham,chitietdonhang,donhang where sanpham.Masp=chitietdonhang.Masp and  chitietdonhang.Madh=donhang.Madh and donhang.Trangthai='Hoàn Thành' group by(Masp)";
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp , chitietdonhang.Masp, sum(chitietdonhang.Soluong) as Tongso from sanpham,chitietdonhang,donhang where sanpham.Masp=chitietdonhang.Masp and  chitietdonhang.Madh=donhang.Madh and donhang.Trangthai='Hoàn Thành' group by(Masp)");
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
             rs = stm.executeQuery();
             int i = 1;
             while (rs.next()) {
@@ -41,6 +42,8 @@ public class ThongKeBaoCaoBanHang_DAO {
                 a.add(rs.getInt("Masp"));
                 a.add(rs.getString("Tensp"));
                 a.add(rs.getString("Tongso"));
+                a.add(rs.getString("TongTien"));
+
                 dssp.add(a);
                 i++;
             }
@@ -58,7 +61,8 @@ public class ThongKeBaoCaoBanHang_DAO {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select khachhang.Makh,khachhang.Tenkh , count(donhang.Madh) as Sodon,sum(donhang.SoLuong) as Soluong from khachhang, donhang where donhang.Trangthai=\"Hoàn Thành\" and khachhang.Makh=donhang.Makh group by(donhang.Makh)");
+            String query = "select khachhang.Makh,khachhang.Tenkh , count(donhang.Madh) as Sodon,sum(donhang.SoLuong) as Soluong,sum(donhang.Tongtien) as TongTien from khachhang, donhang where donhang.Trangthai=\"Hoàn Thành\" and khachhang.Makh=donhang.Makh group by(donhang.Makh)";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
             rs = stm.executeQuery();
             int i = 1;
             while (rs.next()) {
@@ -66,8 +70,11 @@ public class ThongKeBaoCaoBanHang_DAO {
                 a.add(i);
                 a.add(rs.getInt("Makh"));
                 a.add(rs.getString("Tenkh"));
-                a.add(rs.getString("Sodon"));
-                a.add(rs.getString("Soluong"));
+                a.add(rs.getInt("Sodon"));
+                System.out.println("âsfasfasf");
+                a.add(rs.getInt("Soluong"));
+                a.add(rs.getInt("TongTien"));
+
                 dssp.add(a);
                 i++;
             }
@@ -114,7 +121,7 @@ public class ThongKeBaoCaoBanHang_DAO {
         db.setupConnection();
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select khachhang.Tenkh,donhang.Diemapdung,donhang.Diemthuong, donhang.Tongtien from donhang,khachhang where khachhang.Makh=donhang.Makh and donhang.Ngayban=? and donhang.Trangthai=\"Hoàn Thành\";");
+            PreparedStatement stm = db.getConnection().prepareStatement("select khachhang.Tenkh,donhang.SoLuong,donhang.Diemapdung,donhang.Diemthuong, donhang.Tongtien from donhang,khachhang where khachhang.Makh=donhang.Makh and donhang.Ngayban=? and donhang.Trangthai=\"Hoàn Thành\";");
             stm.setString(1, NgayBan);
             rs = stm.executeQuery();
             int i = 1;
@@ -123,8 +130,9 @@ public class ThongKeBaoCaoBanHang_DAO {
                 a.add(i);
                 a.add(rs.getString("Tenkh"));
                 a.add(rs.getInt("SoLuong"));
-                a.add(rs.getInt("Soluongdiem"));
-                a.add(rs.getInt("Tongtien"));
+                a.add(rs.getInt("Diemapdung"));
+                a.add(rs.getInt("Diemthuong"));
+                a.add((int)rs.getDouble("Tongtien"));
                 dssp.add(a);
                 i++;
             }
@@ -142,7 +150,7 @@ public class ThongKeBaoCaoBanHang_DAO {
         db.setupConnection();
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select donhang.Madh,donhang.Ngayban,donhang.Diemapdung,donhang.Diemthuong,donhang.Tongtien from donhang where donhang.Makh=?");
+            PreparedStatement stm = db.getConnection().prepareStatement("select donhang.Madh,donhang.Ngayban,donhang.Diemapdung,donhang.Diemthuong,donhang.Tongtien from donhang where donhang.Makh=? and donhang.Trangthai=\"Hoàn Thành\"");
             stm.setInt(1, makh);
             rs = stm.executeQuery();
             int i = 1;
@@ -178,8 +186,7 @@ public class ThongKeBaoCaoBanHang_DAO {
 
         try {
             dataset = new JDBCCategoryDataset(db.getConnection());
-            dataset.executeQuery("select sanpham.Tensp,sum(chitietdonhang.Soluong)as SoLuong from chitietdonhang, sanpham,donhang where sanpham.Masp=chitietdonhang.Masp and donhang.Madh=chitietdonhang.Madh and donhang.Trangthai=\"Hoàn Thành\" group by(chitietdonhang.Masp)");
-
+            dataset.executeQuery("select a.Tensp,a.SoLuong from (select sanpham.Tensp,sum(chitietdonhang.Soluong)as SoLuong from chitietdonhang, sanpham,donhang where sanpham.Masp=chitietdonhang.Masp and donhang.Madh=chitietdonhang.Madh and donhang.Trangthai=\"Hoàn Thành\" group by(chitietdonhang.Masp)) as a order by a.SoLuong desc limit 10;");
         } catch (SQLException ex) {
             return null;
         } finally {
@@ -208,7 +215,5 @@ public class ThongKeBaoCaoBanHang_DAO {
         return dataset;
 
     }
-
-   
 
 }

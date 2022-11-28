@@ -9,5 +9,5 @@ package Smartphone_sales_management.UI.Event.ThongKe;
  * @author Vuong
  */
 public interface AddXemChiTiet {
-        public String Ngayban(String ngayban);
+        public String Ngayban(String maXemChiTiet);
 }

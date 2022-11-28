@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellType;
@@ -76,7 +78,7 @@ public class XuatExcel {
                 row.createCell(1, CellType.STRING).setCellValue(phieuNhapRow.get(1).toString());
                 row.createCell(2, CellType.STRING).setCellValue((String) phieuNhapRow.get(2));
                 row.createCell(3, CellType.STRING).setCellValue((String) phieuNhapRow.get(3));
-                row.createCell(4, CellType.STRING).setCellValue( phieuNhapRow.get(4).toString());
+                row.createCell(4, CellType.STRING).setCellValue(phieuNhapRow.get(4).toString());
                 row.createCell(5, CellType.STRING).setCellValue(phieuNhapRow.get(5).toString());
                 row.createCell(6, CellType.STRING).setCellValue((String) phieuNhapRow.get(6));
             }
@@ -107,6 +109,61 @@ public class XuatExcel {
 
     }
 
+    public void xuatFileExcelALL(JTable table) {
+        JTable table2 = new JTable();
+        table2 = table;
+
+        fd.setTitle("Xuất Thông Tin Phiếu Nhập Hàng");
+        String url = getFile();
+        if (url == null) {
+            return;
+        }
+
+        FileOutputStream outFile = null;
+        try {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("Thông Tin Phiếu Nhập");
+            int rownum = 0;
+            Row row = sheet.createRow(rownum);
+            for (int i = 0; i < table2.getModel().getColumnCount(); i++) {
+                String colName = table2.getModel().getColumnName(i);
+                row.createCell(i, CellType.STRING).setCellValue(colName);
+            }
+
+            for (int i = 0; i < table2.getModel().getRowCount(); i++) {
+                rownum++;
+                row = sheet.createRow(i + 1);
+                for (int j = 0; j < table2.getModel().getColumnCount(); j++) {
+                    row.createCell(j, CellType.STRING).setCellValue(table2.getModel().getValueAt(i, j).toString());
+
+                }
+            }
+            for (int i = 0; i < rownum; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            File file = new File(url);
+            file.getParentFile().mkdirs();
+            outFile = new FileOutputStream(file);
+            workbook.write(outFile);
+
+            JOptionPane.showMessageDialog(null, "Xuất File Excel Thành Công: " + file.getAbsolutePath());
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(XuatExcel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(XuatExcel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (outFile != null) {
+                    outFile.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(XuatExcel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
 //    public void xuatFileThongKePhieuNhap(int selectedIndex,String text,Date dateStart,Date dateEnd) {
 //        fd.setTitle("Xuất dữ liệu nhân viên ra excel");
 //        String url = getFile();

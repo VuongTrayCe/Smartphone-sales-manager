@@ -61,7 +61,7 @@ public class QuanLyDonHang_BUS {
                     for (Object x : dsdh) {
                         Vector y = (Vector) x;
                         System.out.println(y.get(3).toString());
-                        var  datee= y.get(3);
+                        var datee = y.get(3);
                         if (compareDate((Date) datee, start, end)) {
                             dsdsOffical2.add(y);
                         }
@@ -119,14 +119,14 @@ public class QuanLyDonHang_BUS {
         System.out.println(diemKH);
         qldh.updateDiemKH(Makh, diemKH);
     }
-    
+
     public void tinhDiemChoKhachHangKhiHuy(int Madh) {
         int Makh = qldh.layMakhTheoMadh(Madh);
         int Diemso = qldh.layDiemTheoMakh(Makh);
         ArrayList diem = qldh.layDADvaDT(Madh);
-       int diemAD = (int) diem.get(0);
-       int diemKH = Diemso + diemAD;
-       qldh.updateDiemKH(Makh, diemKH);
+        int diemAD = (int) diem.get(0);
+        int diemKH = Diemso + diemAD;
+        qldh.updateDiemKH(Makh, diemKH);
     }
 
     public int laySoLuongctdh(int Madh) {
@@ -164,8 +164,11 @@ public class QuanLyDonHang_BUS {
     public void updateHuyDonHang(int Madh) {
         qldh.updateHuyDonHang(Madh);
     }
-
     public void updateXacNhanDonHang(int Madh) {
         qldh.updateXacNhanDonHang(Madh);
+    }
+
+    public void UpdateSLSP(ArrayList data) {
+
     }
 }

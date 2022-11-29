@@ -49,6 +49,34 @@ public class QuanLyTaiKhoan_DAO {
         }
     }
 
+    public ArrayList getDanhsachTaiKhoan2() {
+        ArrayList ds = new ArrayList<>();
+        db.setupConnection();
+        try {
+            String query = "SELECT taikhoan.Matk , taikhoan.Manv,nhanvien.Tennv,taikhoan.Tendangnhap, taikhoan.Matkhau\n" +
+"FROM taikhoan,nhanvien\n" +
+"WHERE taikhoan.TrangThai=\"T\" and nhanvien.Manv=taikhoan.Manv;";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Vector a = new Vector();
+                a.add(rs.getInt("Matk"));
+                a.add(rs.getInt("Manv"));
+                a.add(rs.getString("Tennv"));
+                a.add(rs.getString("Tendangnhap"));
+                a.add(rs.getString("Matkhau"));
+                ds.add(a);
+            }
+            System.out.println(rs);
+            return ds;
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+    }
+    
+    
     public ArrayList getDanhSachChiTiet1TaiKhoan_DAO(int selectedIndex) throws SQLException {
 
         ArrayList result = new ArrayList();
@@ -310,5 +338,21 @@ public class QuanLyTaiKhoan_DAO {
             db.closeConnection();
         }
         return tennv;
+    }
+
+    public void XoaTaiKhoanCu(int maNhanVien) {
+        
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("UPDATE taikhoan,nhanvien\n"
+                    + "SET taikhoan.TrangThai = \"F\" WHERE taikhoan.Manv = nhanvien.Manv and nhanvien.Manv=?");
+            stm.setInt(1, maNhanVien);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
     }
 }

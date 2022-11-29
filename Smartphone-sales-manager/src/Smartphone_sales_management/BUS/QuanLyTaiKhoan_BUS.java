@@ -41,6 +41,24 @@ public class QuanLyTaiKhoan_BUS {
             return dstkOfficial;
         }
     }
+      public ArrayList layDanhSachTaiKhoan2(String keyWord) {
+        ArrayList dstk = new ArrayList();
+        ArrayList dstkOfficial = new ArrayList();
+        dstk = qltk.getDanhsachTaiKhoan2();
+//        System.out.println(dstk);
+        if (keyWord == "") {
+            return dstk;
+        } else {
+            for (Object x : dstk) {
+                Vector y = (Vector) x;
+                String matk = Integer.toString((int) y.get(0));
+                if (matk.contains(keyWord)) {
+                    dstkOfficial.add(y);
+                }
+            }
+            return dstkOfficial;
+        }
+    }
 
 //    public ArrayList getDanhSachChiTiet1TaiKhoan(int selectedIndex) {
 //        ArrayList dscttk = new ArrayList();
@@ -55,6 +73,7 @@ public class QuanLyTaiKhoan_BUS {
 //        return dscttk;
 //    }
     public boolean themTK(Model_TaiKhoan Taikhoan) throws SQLException {
+        qltk.XoaTaiKhoanCu(Taikhoan.getMaNhanVien());
         if (qltk.themTaiKhoan(Taikhoan)) {
             return true;
         } else {

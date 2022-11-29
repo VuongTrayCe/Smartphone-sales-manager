@@ -19,6 +19,7 @@ import Smartphone_sales_management.UI.Component.TaiKhoanComponent.MainConTentTai
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
+import Smartphone_sales_management.UI.Component.TaiKhoan2.MainConTentTaiKhoan2;
 import Smartphone_sales_management.UI.Component.TaiKhoanComponent.LoginFrom;
 import Smartphone_sales_management.UI.Swing.ChinhSach.ChinhSach;
 
@@ -69,7 +70,8 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
         if (BanHang == 1) {
-            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+            MainConTentTaiKhoan2 a = new MainConTentTaiKhoan2(MainFrame.this);
+//            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
             a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
             jPanel1.setLayout(new GridLayout());
             jPanel1.add(a);

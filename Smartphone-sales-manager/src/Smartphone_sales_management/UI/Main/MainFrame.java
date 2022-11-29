@@ -4,6 +4,7 @@
  */
 package Smartphone_sales_management.UI.Main;
 
+import Smartphone_sales_management.BUS.QuanLyTaiKhoan_BUS;
 import Smartphone_sales_management.DAO.ThongKeBaoCaoBanHang_DAO;
 import Smartphone_sales_management.UI.Component.BanHangComponent.MainConTentBanHang;
 import Smartphone_sales_management.UI.Component.ThongKeBaoCaoComponent.ThongKeMainPanel;
@@ -18,6 +19,7 @@ import Smartphone_sales_management.UI.Component.TaiKhoanComponent.MainConTentTai
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
+import Smartphone_sales_management.UI.Component.TaiKhoanComponent.LoginFrom;
 import Smartphone_sales_management.UI.Swing.ChinhSach.ChinhSach;
 
 import java.awt.Color;
@@ -31,6 +33,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -45,38 +48,98 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form TestFrame
      */
     public static int selectedIndex = 0;
-    public static int manv =1;
+    public static int manv = 0;
     public static String tennv = "Vuong";
-    public MainFrame() {
+    public static int BanHang=1;
+    public static int ThongKe=1;
+    public static int SanPham=1;
+    public static int PhieuNhap=1;
+    public static int ConNguoi=1;
+    public static int DonHang=1;
+    public static int ChinhSach=1;
+    public static int TaiKhoan=1;
+    QuanLyTaiKhoan_BUS qltk = new QuanLyTaiKhoan_BUS();
+
+    public MainFrame(int manv,String tennv) {
+        CheckQuyen(manv);
         initComponents();
+        lbTenDangNhap.setText(tennv);
+        this.manv = manv;
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
+        if (BanHang == 1) {
+            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+        } else if (SanPham == 1) {
+            MainContentSanPham a = new MainContentSanPham(MainFrame.this);
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+
+        } else if (DonHang == 1) {
+            try {
+                MainContentDonHang a = new MainContentDonHang(MainFrame.this);
+                a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                jPanel1.setLayout(new GridLayout());
+                jPanel1.add(a);
+                a.validate();
+            } catch (ParseException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (PhieuNhap == 1) {
+            MainConTentPhieuNhap a = new MainConTentPhieuNhap(this, jPanel1);
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+
+        } else if (ConNguoi == 1) {
+            ConNguoi a = new ConNguoi(this, jPanel1);
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+        } else if (ThongKe == 1) {
+            ThongKeMainPanel a = new ThongKeMainPanel();
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+        } else if (TaiKhoan == 1) {
+            MainConTentTaiKhoan a = new MainConTentTaiKhoan(this);
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+        } else {
+            ChinhSach a = new ChinhSach(this, jPanel1);
+            a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+            jPanel1.setLayout(new GridLayout());
+            jPanel1.add(a);
+            a.validate();
+        }
+
 //        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
 //          MainContentBaoHanh a = new MainContentBaoHanh(MainFrame.this, jPanel1);
-//        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
 //        ThongKeMainPanel a = new ThongKeMainPanel()
-        CheckQuyen();
-        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-//        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
-//        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-        
 //   TestPanel2  a = new TestPanel2();
-        a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
-        jPanel1.setLayout(new GridLayout());
-        jPanel1.add(a);
-        a.validate();
         menu2.addEventMenu(new EventMenu() {
             @Override
-            public void selected(int index) {
-                if (index == 0) {
+            public void selected(int index, String tenquyen) {
+                if (tenquyen.equals("Bán Hàng")) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
 //KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
-                    MainConTentTaiKhoan a = new MainConTentTaiKhoan(MainFrame.this);
+//                    MainConTentTaiKhoan a = new MainConTentTaiKhoan(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
-//                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -84,9 +147,8 @@ public class MainFrame extends javax.swing.JFrame {
                     jPanel1.add(a);
                     a.validate();
 //                    pack();
-
                 }
-                if (index == 1) {
+                if (tenquyen.equals("Sản Phẩm")) {
 
                     MainContentSanPham a = new MainContentSanPham(MainFrame.this);
                     jPanel1.removeAll();
@@ -102,8 +164,7 @@ public class MainFrame extends javax.swing.JFrame {
 //                    jPanel1.repaint();
                 }
 
-                if (index == 2) {
-
+                if (tenquyen.equals("Đơn Hàng")) {
                     MainContentDonHang a = null;
                     try {
                         a = new MainContentDonHang(MainFrame.this);
@@ -119,9 +180,8 @@ public class MainFrame extends javax.swing.JFrame {
 //                    pack();
 //                    jPanel1.removeAll();
 //                    jPanel1.repaint();
-
                 }
-                if (index == 3) {
+                if (tenquyen.equals("Phiếu Nhập")) {
 
                     MainConTentPhieuNhap a = new MainConTentPhieuNhap(MainFrame.this, jPanel1);
 
@@ -135,7 +195,7 @@ public class MainFrame extends javax.swing.JFrame {
 //                    jPanel1.repaint();
 
                 }
-                if (index == 4) {
+                if (tenquyen.equals("Con Người")) {
                     ConNguoi a = new ConNguoi(MainFrame.this, jPanel1);
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -155,7 +215,7 @@ public class MainFrame extends javax.swing.JFrame {
 //                    jPanel1.add(a);
 //                    a.validate();
                 }
-                if (index == 5) {
+                if (tenquyen.equals("Thống Kê")) {
                     ThongKeMainPanel a = new ThongKeMainPanel();
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -163,9 +223,9 @@ public class MainFrame extends javax.swing.JFrame {
                     jPanel1.add(a);
                     a.validate();
                 }
-                if (index == 7) {
+                if (tenquyen.equals("Chính Sách")) {
 //                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
-                    ChinhSach a = new ChinhSach(MainFrame.this,jPanel1);
+                    ChinhSach a = new ChinhSach(MainFrame.this, jPanel1);
 //                    ThongKeMainPanel a = new ThongKeMainPanel();
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
@@ -186,8 +246,48 @@ public class MainFrame extends javax.swing.JFrame {
 //       System.out.println("Vuong da vao");
 //   pack();
     }
-    public void CheckQuyen()
-    {
+
+    public void CheckQuyen(int manv1) {
+        ArrayList arrQuyen = new ArrayList();
+        arrQuyen = qltk.getALLQuyenTK(manv1);
+        for (Object object : arrQuyen) {
+            String tenquyen = (String) object;
+            if (tenquyen.equals("Quản Lý")) {
+                BanHang = 1;
+                SanPham = 1;
+                DonHang = 1;
+                PhieuNhap = 1;
+                ConNguoi = 1;
+                ThongKe = 1;
+                TaiKhoan = 1;
+                ChinhSach = 1;
+
+            }
+            if (tenquyen.equals("Bán Hàng")) {
+                BanHang = 1;
+            }
+            if (tenquyen.equals("Đơn Hàng")) {
+                DonHang = 1;
+            }
+            if (tenquyen.equals("Sản Phẩm")) {
+                SanPham = 1;
+            }
+            if (tenquyen.equals("Phiếu Nhập")) {
+                PhieuNhap = 1;
+            }
+            if (tenquyen.equals("Chính Sách")) {
+                ChinhSach = 1;
+            }
+            if (tenquyen.equals("Con Người")) {
+                ConNguoi = 1;
+            }
+            if (tenquyen.equals("Thống kê")) {
+                ThongKe = 1;
+            }
+            if (tenquyen.equals("Tài Khoản")) {
+                TaiKhoan = 1;
+            }
+        }
     }
 
     @Override
@@ -215,8 +315,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        lbTenDangNhap = new javax.swing.JLabel();
+        cbbTrangThai = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -238,13 +338,23 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("jLabel1");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/NhanVien.png"))); // NOI18N
-        jLabel2.setText("Name");
+        lbTenDangNhap.setForeground(new java.awt.Color(255, 255, 255));
+        lbTenDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_Admin_DangNhap.png"))); // NOI18N
+        lbTenDangNhap.setText("Name");
 
-        jComboBox1.setBackground(new java.awt.Color(0, 51, 204));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Online", "Đăng Xuất" }));
+        cbbTrangThai.setBackground(new java.awt.Color(0, 51, 204));
+        cbbTrangThai.setForeground(new java.awt.Color(255, 255, 255));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Online", "Đăng Xuất" }));
+        cbbTrangThai.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbTrangThaiItemStateChanged(evt);
+            }
+        });
+        cbbTrangThai.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cbbTrangThaiPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -253,10 +363,10 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 568, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 576, Short.MAX_VALUE)
+                .addComponent(lbTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
         );
         jPanel2Layout.setVerticalGroup(
@@ -266,8 +376,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -312,6 +422,22 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbbTrangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTrangThaiItemStateChanged
+     
+     int indexSta =cbbTrangThai.getSelectedIndex();
+     if(indexSta==1)
+     {
+         this.dispose();
+         LoginFrom a  = new LoginFrom();
+     }
+// TODO add your handling code here:
+    }//GEN-LAST:event_cbbTrangThaiItemStateChanged
+
+    private void cbbTrangThaiPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbbTrangThaiPropertyChange
+       
+// TODO add your handling code here:
+    }//GEN-LAST:event_cbbTrangThaiPropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -348,11 +474,11 @@ public class MainFrame extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbTenDangNhap;
     private Smartphone_sales_management.UI.form.Menu menu2;
     private Smartphone_sales_management.UI.Swing.PanelBorder panelBorder1;
     // End of variables declaration//GEN-END:variables

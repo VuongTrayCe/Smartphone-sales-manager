@@ -63,6 +63,7 @@ public class LoginFrom extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -211,9 +212,12 @@ public class LoginFrom extends javax.swing.JFrame {
         }
         if (flag == true) {
             System.out.println(pass);
-            Boolean l = qltk.KiemTraDangNhap(username, pwd);
-            if (l == true) {
+            int l = qltk.KiemTraDangNhap(username, pwd);
+            System.out.println(l);
+            if (l!=0) {
                 JOptionPane.showMessageDialog(this, "đăng nhập thành công");
+                String tennv = qltk.getTenNv(l);
+                MainFrame a = new MainFrame(l,tennv);
 
             } else {
                 JOptionPane.showMessageDialog(this, "đăng nhập fail");

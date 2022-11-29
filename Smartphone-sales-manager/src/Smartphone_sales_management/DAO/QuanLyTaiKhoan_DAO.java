@@ -192,7 +192,7 @@ public class QuanLyTaiKhoan_DAO {
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-             return success = false;
+            return success = false;
         } finally {
             db.closeConnection();
         }
@@ -203,14 +203,13 @@ public class QuanLyTaiKhoan_DAO {
         ArrayList dstk = new ArrayList();
         db.setupConnection();
         try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan");
+            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan where taikhoan.TrangThai='T'");
             rs = stm.executeQuery();
             int i = 1;
             while (rs.next()) {
                 Vector a = new Vector();
                 a.add(i);
                 a.add(rs.getString("Tendangnhap"));
-
                 a.add(rs.getString("Matkhau"));
                 dstk.add(a);
                 i++;
@@ -229,14 +228,13 @@ public class QuanLyTaiKhoan_DAO {
         db.setupConnection();
         try {
 
-            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan");
+            PreparedStatement stm = db.getConnection().prepareStatement("select taikhoan.Manv,taikhoan.Tendangnhap, taikhoan.Matkhau from taikhoan where taikhoan.TrangThai='T'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 Vector a = new Vector();
+                a.add(rs.getInt("Manv"));
                 a.add(rs.getString("Tendangnhap"));
-
                 a.add(rs.getString("Matkhau"));
-
                 dstk.add(a);
             }
             return dstk;
@@ -255,7 +253,7 @@ public class QuanLyTaiKhoan_DAO {
             PreparedStatement stm = db.getConnection().prepareStatement("SELECT taikhoan.Matk,nhanvien.Tennv,taikhoan.Tendangnhap,taikhoan.Matkhau \n"
                     + "FROM taikhoan,nhanvien\n"
                     + "WHERE taikhoan.Manv = nhanvien.Manv AND taikhoan.Matk = ? ");
-            stm.setInt(1,Matk);
+            stm.setInt(1, Matk);
             rs = stm.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -272,5 +270,45 @@ public class QuanLyTaiKhoan_DAO {
         } finally {
             db.closeConnection();
         }
+    }
+
+    public ArrayList getALLQuyenTk(int manv) {
+        ArrayList dstk = new ArrayList();
+        db.setupConnection();
+        try {
+            String query = "select quyen.Tenquyen from quyen,taikhoan,quyen_tk,nhanvien where taikhoan.Matk = quyen_tk.Matk and quyen_tk.Maquyen=quyen.Maquyen and taikhoan.Manv=nhanvien.Manv and nhanvien.Manv=?";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            stm.setInt(1, manv);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                dstk.add(rs.getString("Tenquyen"));
+            }
+            return dstk;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            db.closeConnection();
+        }
+        return dstk;
+    }
+
+    public String getTennv(int l) {
+         String tennv="";
+        db.setupConnection();
+        try {
+            String query = "select nhanvien.Tennv from nhanvien where nhanvien.Manv=?";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            stm.setInt(1,l);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                tennv = rs.getString("Tennv");
+            }
+            return tennv;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            db.closeConnection();
+        }
+        return tennv;
     }
 }

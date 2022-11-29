@@ -160,5 +160,4 @@ public class QuanLyNhanVien_DAO {
 
 		return isSuccess;
 	}
-    
 }

@@ -10,6 +10,7 @@ import Smartphone_sales_management.DTO.Model_NhaCungCap;
 import Smartphone_sales_management.UI.Component.NhaCungCap.AddNhaCungCap;
 import Smartphone_sales_management.UI.Event.NhaCungCap.EventNhaCC;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,22 +26,23 @@ public class MainContentNCC extends javax.swing.JPanel {
  TableNhaCC nhacc;
  AddNhaCungCap addNcc;
  EventNhaCC event;
+  // = 1 la trang thai them nhan vien, 2 la thang trai chinh sua thong tin
+        private int stateForm;
     /**
      * Creates new form MainContentNCC
      */
   
 
     public MainContentNCC(MainFrame frame) {
-        initComponents();
+        initComponents();        
         jtMa.setEditable(false);
         this.frame = frame;
         addNcc = new AddNhaCungCap(frame, nhacc); 
       nhacc = new TableNhaCC(event,this);
-        
         nhacc.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-
-        jScrollPane1.setViewportView(nhacc);
         
+        jScrollPane1.setViewportView(nhacc);
+               
                jTextTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -62,10 +64,10 @@ public class MainContentNCC extends javax.swing.JPanel {
         });
     }
   public void truyendulieu(Model_NhaCungCap NhaCC){
-//        stateForm =2;
+      stateForm = 2;
       jtMa.setText(Integer.toString(NhaCC.getMacc()));
       jtTen.setText(NhaCC.getTenncc());
-      jtsdt.setText(Integer.toString(NhaCC.getSDT()));
+      jtsdt.setText(NhaCC.getSDT());
       jTextDiaChi.setText(NhaCC.getDiaChi());
     
  }
@@ -95,6 +97,8 @@ public class MainContentNCC extends javax.swing.JPanel {
         jTextDiaChi = new javax.swing.JTextField();
         jtMa = new javax.swing.JTextField();
         jLMa = new javax.swing.JLabel();
+
+        jTextTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
@@ -153,6 +157,7 @@ public class MainContentNCC extends javax.swing.JPanel {
         jb4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jb4.setText("Địa chỉ");
 
+        jTextDiaChi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextDiaChiActionPerformed(evt);
@@ -168,23 +173,23 @@ public class MainContentNCC extends javax.swing.JPanel {
 
         jLMa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLMa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLMa.setText("MaNV");
+        jLMa.setText("Mã nhà cung cấp");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb1)
-                    .addComponent(jLMa, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb3)
                     .addComponent(jtMa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                     .addComponent(jtsdt, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jtTen, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextDiaChi, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jTextDiaChi, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLMa))
                 .addGap(26, 26, 26))
         );
         jPanel3Layout.setVerticalGroup(
@@ -194,19 +199,19 @@ public class MainContentNCC extends javax.swing.JPanel {
                 .addComponent(jLMa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
+                .addGap(35, 35, 35)
                 .addComponent(jb1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtTen, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addGap(43, 43, 43)
                 .addComponent(jb3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtsdt, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
+                .addComponent(jtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jb4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addGap(61, 61, 61))
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -217,10 +222,10 @@ public class MainContentNCC extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addGap(34, 301, Short.MAX_VALUE))
+                        .addGap(301, 301, 301))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                         .addGap(97, 97, 97))
@@ -271,10 +276,20 @@ public class MainContentNCC extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelXoaMouseClicked
- String mancc = jtMa.getText();
+         if(stateForm != 2) {
+			JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể xóa dữ liêu");
+			return;
+		}   
+        if(jtMa.getText().equals("")){
+            JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể xóa dữ liêu");
+			return;
+        }
+        String mancc = jtMa.getText();
+        
         QuanLyNhaCungCap_BUS qlncc = new QuanLyNhaCungCap_BUS();
         
         Model_NhaCungCap Nhacc = new Model_NhaCungCap();
+        
         Nhacc.setMacc(Integer.parseInt(mancc));
         Nhacc.setTrangThai("F");
             int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa không ?","Xóa NhaCungCap", JOptionPane.YES_NO_OPTION);
@@ -299,7 +314,15 @@ public class MainContentNCC extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelThemMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-     String mancc = jtMa.getText();
+      if(stateForm != 2) {
+			JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể xóa dữ liêu");
+			return;
+		} 
+      if(jtMa.getText().equals("")){
+            JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể chỉnh sửa dữ liêu");
+			return;
+        }
+        String mancc = jtMa.getText();
           String ten = jtTen.getText();
         String sdt = jtsdt.getText();
         String diachi = jTextDiaChi.getText();
@@ -330,7 +353,7 @@ public class MainContentNCC extends javax.swing.JPanel {
         Model_NhaCungCap Nhacc = new Model_NhaCungCap();
         Nhacc.setMacc(Integer.parseInt(mancc));
         Nhacc.setTenncc(ten);
-        Nhacc.setSDT(Integer.parseInt(sdt));
+        Nhacc.setSDT(sdt);
         Nhacc.setDiaChi(diachi);
               int a = JOptionPane.showConfirmDialog(null, "Bạn muốn chỉnh sửa thông tin không ?","Chỉnh sửa thông tin Nhà cung cấp", JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION) {

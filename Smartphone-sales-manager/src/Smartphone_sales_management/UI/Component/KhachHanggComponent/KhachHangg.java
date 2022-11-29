@@ -76,13 +76,13 @@ public class KhachHangg extends javax.swing.JPanel {
         jTable1.setRowSorter(sorter);
         
         jTable1.setModel(model);
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(120);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(130);
-        jTable1.getColumnModel().getColumn(3).setMinWidth(120);
-        jTable1.getColumnModel().getColumn(4).setMinWidth(100);
-        jTable1.getColumnModel().getColumn(5).setMinWidth(150);
-        jTable1.getColumnModel().getColumn(6).setMinWidth(100);
+        jTable1.getColumnModel().getColumn(3).setMinWidth(80);
+        jTable1.getColumnModel().getColumn(4).setMinWidth(80);
+        jTable1.getColumnModel().getColumn(5).setMinWidth(180);
+        jTable1.getColumnModel().getColumn(6).setMinWidth(80);
         jTable1.getColumnModel().getColumn(7).setMinWidth(80);
         
 

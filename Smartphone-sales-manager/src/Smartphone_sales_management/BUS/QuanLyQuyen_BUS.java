@@ -46,6 +46,13 @@ public class QuanLyQuyen_BUS {
             return false;
         }
     }
+    public boolean xoaQ(int Maquyentk){
+        if(qlq.xoaquyen(Maquyentk)){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public ArrayList layDanhSachMatk() {
         ArrayList dstk = new ArrayList();
         dstk = qlq.layDanhSachMaTk();

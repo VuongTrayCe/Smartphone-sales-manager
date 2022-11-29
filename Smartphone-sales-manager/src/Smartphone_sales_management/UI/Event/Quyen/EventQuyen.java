@@ -8,7 +8,7 @@ package Smartphone_sales_management.UI.Event.Quyen;
  *
  * @author Dell
  */
-public interface EvenQuyen {
+public interface EventQuyen {
      public int selectedIndex(int index);
     
 }

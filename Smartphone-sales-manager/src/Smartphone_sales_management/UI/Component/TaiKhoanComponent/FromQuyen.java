@@ -6,7 +6,6 @@ package Smartphone_sales_management.UI.Component.TaiKhoanComponent;
 import Smartphone_sales_management.BUS.QuanLyQuyen_BUS;
 import Smartphone_sales_management.DAO.QuanLyQuyen_DAO;
 import Smartphone_sales_management.UI.Component.TaiKhoanComponent.MainConTentTaiKhoan;
-import Smartphone_sales_management.UI.Event.Quyen.EvenQuyen;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,6 +20,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.text.TabableView;
+import Smartphone_sales_management.UI.Event.Quyen.EventQuyen;
+import Smartphone_sales_management.UI.Event.TaiKhoan.EventTaiKhoan;
 /**
  *
  * @author Dell
@@ -29,11 +30,11 @@ public class FromQuyen extends javax.swing.JPanel {
     QuanLyQuyen_BUS qlq = new QuanLyQuyen_BUS();
     QuanLyQuyen_DAO a = new QuanLyQuyen_DAO();
     JFrame frame;
-    EvenQuyen event;
+    EventQuyen event;
     DefaultTableModel model = new DefaultTableModel();
     ArrayList dataChitietTK = null;
     ArrayList data = new ArrayList();
-    int Matk = -1;
+    int Maquyentk = -1;
     FromaddQuyen fromaddquyen; 
     /**
      * Creates new form FromQuyen
@@ -51,15 +52,15 @@ public class FromQuyen extends javax.swing.JPanel {
         TabbleThongTin.getTableHeader().setForeground(Color.WHITE);
         TabbleThongTin.getTableHeader().setBackground(new Color(14, 14,14));
         TabbleThongTin.setModel(model);
-//        addEventQuyen(new EventQuyen(){
-//            @Override
-//             public int SelectedInxex(int index){
-//                 ArrayList data = new ArrayList();
-//                 Matk= index;
-//                 dataChitietTK = data;
-//                 return -1;
-//                };
-//        });
+        addEventQuyen(new EventQuyen() {
+            @Override
+            public int selectedIndex(int index) {
+                Maquyentk = index;
+                return -1;
+            }
+        
+        ;
+        });
         setDefautlQuyen();
         timkiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -82,20 +83,19 @@ public class FromQuyen extends javax.swing.JPanel {
         });
     }
     
-//    public void addEventTaiKhoan(EvenQuyen event) {
-//        TabbleThongTin.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-////                event.selectedIndex(jTable1.getSelectedRow());
-//                event.SelectedInxex((int) TabbleThongTin.getValueAt(TabbleThongTin.getSelectedRow(), 0));
-//                
-//            }
-//
-//            
-//        }
-//        );
-//
-//    }
+ public void addEventQuyen(EventQuyen event) {
+        TabbleThongTin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event.selectedIndex((int) TabbleThongTin.getValueAt(TabbleThongTin.getSelectedRow(), 0));
+                System.out.println(Maquyentk);
+
+            }
+
+        }
+        );
+
+    }
     public void setDefautlQuyen() {
 
         TabbleThongTin.removeAll();
@@ -136,9 +136,10 @@ public class FromQuyen extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jTextField1.setText("DANH SÁCH QUYỀN");
 
+        TabbleThongTin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TabbleThongTin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -158,7 +159,7 @@ public class FromQuyen extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 246, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,11 +192,7 @@ public class FromQuyen extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -207,25 +204,25 @@ public class FromQuyen extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(btnDelete)
                 .addGap(31, 31, 31))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete))))
+                    .addComponent(btnThem)
+                    .addComponent(jLabel4)
+                    .addComponent(timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -254,27 +251,32 @@ public class FromQuyen extends javax.swing.JPanel {
     private void timkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timkiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_timkiemActionPerformed
-
+    public boolean CheckMaquyentk(int Maquyentk){
+        if(Maquyentk != -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        fromaddquyen = new FromaddQuyen();
-        fromaddquyen.setBounds(0, 0, jPanel2.getWidth(), jPanel2.getHeight());
-//
-//        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "Xóa tài khoản ", JOptionPane.YES_NO_OPTION);
-//        if (a == JOptionPane.YES_OPTION) {
-//
-//            if (checkMatk(Matk)) {
-//                QuanLyTaiKhoan_BUS qltk_BUS = new QuanLyTaiKhoan_BUS();
-//                if (qltk_BUS.xoaTK(Matk)) {
-//                    JOptionPane.showMessageDialog(null, "Xóa thành công");
-//                    Matk = -1;
-//                   
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Xóa thất bại!");
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Chưa chọn tài khoản muốn xóa");
-//            }
-//        }
+        
+
+        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "Xóa quyen tài khoản ", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+
+            if (CheckMaquyentk(Maquyentk)) {
+                QuanLyQuyen_BUS qlq_BUS = new QuanLyQuyen_BUS();
+                if (qlq_BUS.xoaQ(Maquyentk)) {
+                    JOptionPane.showMessageDialog(null, "Xóa thành công");
+                    Maquyentk = -1;
+                   
+                } else {
+                    JOptionPane.showMessageDialog(null, "Xóa thất bại!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Chưa chọn tài khoản muốn xóa");
+            }
+        }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed

@@ -103,9 +103,7 @@ public class QuanLyQuyen_DAO {
               PreparedStatement stm;
               stm = db.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
               stm.setInt(1, Quyen.getMatk());
-              System.out.println( Quyen.getMatk()+"123");
               stm.setInt(2, Quyen.getMaQuyen());
-              System.out.println( Quyen.getMaQuyen()+"456");
               stm.executeUpdate();
          }catch (SQLException e) {
             e.printStackTrace();
@@ -115,4 +113,22 @@ public class QuanLyQuyen_DAO {
         }
          return success;
      }
+    public boolean xoaquyen(int Maquyentk){
+        boolean success = true;
+        db.setupConnection();
+        try{
+
+            PreparedStatement stm;
+            stm = db.getConnection().prepareStatement("DELETE FROM quyen_tk WHERE Maquyentk='?'; ");
+            stm.setInt(1, Maquyentk);
+            System.out.println(Maquyentk);
+            stm.execute();
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return success = false;
+        } finally {
+            db.closeConnection();
+        }
+         return success;
+    }
 }

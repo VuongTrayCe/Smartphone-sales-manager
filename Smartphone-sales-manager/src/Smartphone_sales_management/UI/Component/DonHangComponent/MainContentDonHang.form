@@ -170,9 +170,6 @@
             </Property>
             <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
-            <Property name="horizontalScrollBar" type="javax.swing.JScrollBar" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="null"/>
-            </Property>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>

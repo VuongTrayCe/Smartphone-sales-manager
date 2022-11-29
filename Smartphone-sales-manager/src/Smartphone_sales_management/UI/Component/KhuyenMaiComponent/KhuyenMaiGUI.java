@@ -52,8 +52,6 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         danhsachsp = qlsp.getAllSP();
         loadDataDSKM();
         loadDataDSSP();
-        jLabelXoaKM.setEnabled(false);
-        jLabelChinhSuaKM.setEnabled(false);
         jLabelMaKM.setVisible(false);
         jTextMakm.setVisible(false);
         jTextMaCTKM.setVisible(false);
@@ -148,7 +146,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         stateForm = 2;
         jTextMakm.setText(Integer.toString(KhuyenMai.getMakm()));
         jTextTenKm.setText(KhuyenMai.getTenkm());
-        jTextPtkm.setText(Float.toString(KhuyenMai.getPhantramkm()));
+        jTextPtkm.setText(Integer.toString(KhuyenMai.getPhantramkm()));
 
     }
     public void truyendualieuCTKM(Model_ChiTietKM ChiTietKM){
@@ -160,15 +158,19 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }
 
     public void loadDataDSKM() {
+         jComboBoxMaKM.addItem("");
         for (String khuyenmai : danhsachkm) {
             jComboBoxMaKM.addItem(khuyenmai);
         }
+       
     }
 
     public void loadDataDSSP() {
+         jComboBoxMaSP.addItem("");
         for (String sanpham : danhsachsp) {
             jComboBoxMaSP.addItem(sanpham);
         }
+       
     }
 
     public void showdataKM(ArrayList<Model_KhuyenMai> KM) {
@@ -177,7 +179,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             modelKM.addRow(new String[]{
                 Integer.toString(KM.get(i).getMakm()),
                 KM.get(i).getTenkm(),
-                Float.toString(KM.get(i).getPhantramkm()),
+                Integer.toString(KM.get(i).getPhantramkm()),
                 KM.get(i).getTrangthai(),});
         }
     }
@@ -241,7 +243,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1030, 509));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(1045, 530));
 
         jPanelChiTietKM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -263,6 +265,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         });
         jScrollChiTietKM.setViewportView(jTable1);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabelMaCTKM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -316,11 +319,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabelCTMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxMaSP, 0, 131, Short.MAX_VALUE)
+                        .addComponent(jComboBoxMaSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(25, 25, 25)
                         .addComponent(jLableCTMaKM)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxMaKM, 0, 132, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxMaKM, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
@@ -345,13 +348,13 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanelChiTietKM.setLayout(jPanelChiTietKMLayout);
         jPanelChiTietKMLayout.setHorizontalGroup(
             jPanelChiTietKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelChiTietKMLayout.setVerticalGroup(
             jPanelChiTietKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelChiTietKMLayout.createSequentialGroup()
-                .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollChiTietKM, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -375,6 +378,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         });
         jScrollKM.setViewportView(jTable2);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setPreferredSize(new java.awt.Dimension(530, 154));
 
@@ -460,7 +464,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                         .addComponent(jLabelChinhSuaKM)
                         .addGap(27, 27, 27)
                         .addComponent(jLabelThemKM)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelXoaKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextPtkm))
@@ -477,7 +481,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                     .addComponent(jTextTenKm, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextPtkm, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelChinhSuaKM)
                     .addComponent(jLabelLamMoiKM)
@@ -490,17 +494,18 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanelKM.setLayout(jPanelKMLayout);
         jPanelKMLayout.setHorizontalGroup(
             jPanelKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollKM, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-            .addComponent(jScrollKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelKMLayout.setVerticalGroup(
             jPanelKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelKMLayout.createSequentialGroup()
-                .addComponent(jScrollKM, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addComponent(jScrollKM, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "ÁP DỤNG KHUYẾN MÃI", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
 
         jLTimKiemCTKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
@@ -519,27 +524,34 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jTextTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
+                .addComponent(jTextTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLTimKiemCTKM, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(310, 310, 310))
+                .addGap(237, 237, 237))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLTimKiemCTKM)
+                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(0, 24, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextTimKiem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLTimKiemCTKM, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jTextTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Danh sách khuyến mãi");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Danh sách chi tiết khuyến mãi");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -554,7 +566,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                         .addComponent(jPanelChiTietKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(3, 3, 3))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -607,9 +619,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextPtkmActionPerformed
 
     private void jLabelLamMoiKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLamMoiKMMouseClicked
-        jLabelXoaKM.setEnabled(false);
-        jLabelChinhSuaKM.setEnabled(false);
-        jLabelThemKM.setEnabled(true);
+       stateForm = 1;
         jTextMakm.setText("");
         jTextPtkm.setText("");
         jTextTenKm.setText("");
@@ -623,9 +633,9 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         String makm = jTextMakm.getText();
         String tenkm = jTextTenKm.getText();
         String ptkm = jTextPtkm.getText();
-         Pattern p = Pattern.compile("[a-z]");
-                if (p.matcher(jTextPtkm.getText()).find()){
-            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phần trăm KM ");
+         String PTKM_Pattern = "\\d+";
+              if(Pattern.matches(PTKM_Pattern,ptkm)!=true){
+            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phần trăm khuyến mãi");
             return;
         }
         if (tenkm.length() <= 0) {
@@ -636,7 +646,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         Model_KhuyenMai KhuyenMai = new Model_KhuyenMai();
         KhuyenMai.setMakm(Integer.parseInt(makm));
         KhuyenMai.setTenkm(tenkm);
-        KhuyenMai.setPhantramkm(Float.parseFloat(ptkm));
+        KhuyenMai.setPhantramkm(Integer.parseInt(ptkm));
         KhuyenMai.setTrangthai("T");
          int a = JOptionPane.showConfirmDialog(null, "Bạn muốn chỉnh sửa không ?","Chỉnh sửa thông tin Khuyến Mãi", JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION) {
@@ -648,13 +658,17 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelChinhSuaKMMouseClicked
 
     private void jLabelThemKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelThemKMMouseClicked
+        if(stateForm != 1) {
+			JOptionPane.showMessageDialog(jLabelThemKM, "Vui lòng nhấn nút làm mới để có thể thêm dữ liệu");
+			return;
+		}
 
         String tenkm = jTextTenKm.getText();
         String phantramkm = jTextPtkm.getText();
         
-        Pattern p = Pattern.compile("[a-z]");
-                if (p.matcher(jTextPtkm.getText()).find()){
-            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phần trăm KM ");
+        String PTKM_Pattern = "\\d+";
+              if(Pattern.matches(PTKM_Pattern,phantramkm)!=true){
+            JOptionPane.showMessageDialog(jTextPtkm,"Bạn  nhập sai định dạng phần trăm khuyến mãi");
             return;
         }
         if (tenkm.length() <= 0) {
@@ -671,7 +685,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         Model_KhuyenMai KhuyenMai = new Model_KhuyenMai();
         KhuyenMai.setTenkm(tenkm);
        
-        KhuyenMai.setPhantramkm(Float.parseFloat(phantramkm));
+        KhuyenMai.setPhantramkm(Integer.parseInt(phantramkm));
         KhuyenMai.setTrangthai("T");
           int a = JOptionPane.showConfirmDialog(null, "Bạn muốn thêm không ?","Thêm Khuyến Mãi", JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION) {
@@ -684,7 +698,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
     private void jLabelXoaKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelXoaKMMouseClicked
         if (stateForm != 2) {
-            JOptionPane.showMessageDialog(jLabelXoaKM, "Vui lòng chọn 1 dòng dữ liệu trên bảng khuyến mãi để có thể tiến hành chỉnh sửa thông tin dữ liêu");
+            JOptionPane.showMessageDialog(jLabelXoaKM, "Vui lòng chọn 1 dòng dữ liệu trên bảng khuyến mãi để có thể xóa dữ liêu");
             return;
         }
         String makm = jTextMakm.getText();
@@ -703,9 +717,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelXoaKMMouseClicked
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        jLabelXoaKM.setEnabled(true);
-        jLabelChinhSuaKM.setEnabled(true);
-        jLabelThemKM.setEnabled(false);
+      
         int index = jTable2.getSelectedRow();
         Model_KhuyenMai KhuyenMai = new Model_KhuyenMai();
         TableModel modelKM = jTable2.getModel();
@@ -714,7 +726,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         String ptkm = modelKM.getValueAt(index, 2).toString();
         KhuyenMai.setMakm(Integer.parseInt(makm));
         KhuyenMai.setTenkm(tenkm);
-        KhuyenMai.setPhantramkm(Float.parseFloat(ptkm));
+        KhuyenMai.setPhantramkm(Integer.parseInt(ptkm));
         truyendulieuKM(KhuyenMai);
       
     }//GEN-LAST:event_jTable2MouseClicked
@@ -742,7 +754,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jLTimKiemCTKMMouseClicked
 
     private void jLabelThemCTKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelThemCTKMMouseClicked
-         
+         if (jComboBoxMaKM.getSelectedItem().equals("") || jComboBoxMaSP.getSelectedItem().equals("")) {
+            JOptionPane.showMessageDialog(jComboBoxMaKM, "Vui lòng nhập đầy đủ giá trị ");
+            return;
+        }
         String masp = (String) jComboBoxMaSP.getSelectedItem();
         String makm = (String) jComboBoxMaKM.getSelectedItem();
          if(qlkm.ExistsCTKM(Integer.parseInt(masp),Integer.parseInt(makm))){
@@ -760,9 +775,6 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         ctkm.setMaKM(Integer.parseInt(makm));
         ctkm.setTrangThai("T");
       
-//        if(qlkm.exitmakm(Inte, ctkm)){
-//        
-//        }
          int a = JOptionPane.showConfirmDialog(null, "Bạn muốn thêm không ?","Thêm chi tiết  Khuyến Mãi", JOptionPane.YES_NO_OPTION);
         if(a==JOptionPane.YES_OPTION) {
         qlkm.insertChiTietKM(ctkm);
@@ -770,13 +782,17 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         System.out.println(jComboBoxMaSP.getSelectedItem());
         System.out.println(jComboBoxMaKM.getSelectedItem());
         }
+         jComboBoxMaSP.setSelectedItem("");
+         jComboBoxMaKM.setSelectedItem("");
     }//GEN-LAST:event_jLabelThemCTKMMouseClicked
 
     private void jLabelXoaCTKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelXoaCTKMMouseClicked
-          if (stateForm != 2) {
-            JOptionPane.showMessageDialog(jLabelXoaKM, "Vui lòng chọn 1 dòng dữ liệu trên bảng  để có thể tiến hành chỉnh sửa dữ liêu");
+ 
+        if (jComboBoxMaKM.getSelectedItem().equals("")) {
+            JOptionPane.showMessageDialog(jComboBoxMaKM, "Vui lòng chọn dữ liệu trên bảng cần xóa");
             return;
         }
+        
         String machitietkm = jTextMaCTKM.getText();
         QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();
         Model_ChiTietKM ChiTietKM = new Model_ChiTietKM();
@@ -787,6 +803,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         qlkm.deleteChiTietKM(ChiTietKM);
             setDefaultTableModelCTKM();
             }
+        jComboBoxMaSP.setSelectedItem("");
+        jComboBoxMaKM.setSelectedItem("");
         
     }//GEN-LAST:event_jLabelXoaCTKMMouseClicked
 

@@ -49,7 +49,7 @@ public class TableNhaCC extends javax.swing.JPanel {
           jTable1.setOpaque(false);
          jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14) {
         });
         jTable1.setRowHeight(25);
         jTable1.getTableHeader().setForeground(Color.WHITE);
@@ -84,6 +84,20 @@ public class TableNhaCC extends javax.swing.JPanel {
         }
         jScrollPane1.repaint();
     }
+  
+// public void addEventSanPham(EventNhaCC event) {
+//        jTable1.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+////                event.selectedIndex(jTable1.getSelectedRow());
+//                   event.SelectedInxex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+//                   System.out.println((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+//            }
+//        ;
+//    }
+//
+//    );
+//    }
   
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,6 +151,7 @@ public class TableNhaCC extends javax.swing.JPanel {
         NhaCC.setTenncc(Tenncc);
         NhaCC.setSDT(sdt);
         NhaCC.setDiaChi(diachi); 
+
         mainnhacc.truyendulieu(NhaCC);
     }//GEN-LAST:event_jTable1MouseClicked
 

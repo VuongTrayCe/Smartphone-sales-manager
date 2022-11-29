@@ -39,7 +39,7 @@ public class QuanLiDonHang_DAO {
                 a.add(rs.getString("Tennv"));
                 a.add(rs.getDate("NgayBan"));
                 a.add(rs.getInt("SoLuong"));
-                a.add(rs.getDouble("TongTien"));
+                a.add((int)rs.getDouble("TongTien"));
                 a.add(rs.getInt("Diemapdung"));
                 a.add(rs.getInt("Diemthuong"));
                 a.add(rs.getString("Trangthai"));
@@ -72,7 +72,7 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getString("Tennv"));
                     a.add(rs.getDate("NgayBan"));
                     a.add(rs.getInt("SoLuong"));
-                    a.add(rs.getDouble("TongTien"));
+                    a.add((int)rs.getDouble("TongTien"));
                     a.add(rs.getInt("Diemapdung"));
                     a.add(rs.getInt("Diemthuong"));
                     a.add(rs.getString("Trangthai"));
@@ -113,11 +113,11 @@ public class QuanLiDonHang_DAO {
                     a.add(rs.getInt(4));
                     a.add(rs.getInt(5));
                     a.add(rs.getString(6));
-                    a.add(rs.getDouble(7));
-                    a.add(rs.getDouble(8));
+                    a.add((int)rs.getDouble(7));
+                    a.add((int)rs.getDouble(8));
                     a.add(rs.getString(9));
                     a.add(rs.getString(10));
-                    a.add(rs.getDouble(11));
+                    a.add((int)rs.getDouble(11));
                     a.add(rs.getString(12));
                     a.add(rs.getDate(13));
                     result.add(a);

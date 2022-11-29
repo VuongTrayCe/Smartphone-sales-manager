@@ -36,7 +36,7 @@ public class QuanLiSanPham_DAO {
                 a.add(rs.getInt("MaSP"));
                 a.add(rs.getString("TenSp"));
                 a.add(rs.getString("LoaiSp"));
-                a.add(rs.getDouble("GiaBan"));
+                a.add((int)rs.getDouble("GiaBan"));
                 a.add(rs.getInt("SoLuong"));
                 a.add(rs.getString("TrangThai"));
                 dssp.add(a);
@@ -65,7 +65,7 @@ public class QuanLiSanPham_DAO {
                 a.add(rs.getInt("MaSP"));
                 a.add(rs.getString("TenSp"));
                 a.add(rs.getString("LoaiSp"));
-                a.add(rs.getDouble("GiaBan"));
+                a.add((int)rs.getDouble("GiaBan"));
                 a.add(rs.getInt("SoLuong"));
                 a.add(rs.getString("TrangThai"));
                 dssp.add(a);
@@ -97,12 +97,12 @@ public class QuanLiSanPham_DAO {
                 while (rs.next()) {
                     result.add(rs.getInt(1));
                     result.add(rs.getString(2));
-                    result.add(rs.getDouble(3));
+                    result.add((int)rs.getDouble(3));
                     result.add(rs.getInt(4));
                     result.add(rs.getString(5));
                     result.add(rs.getString(6));
                     result.add(rs.getString(7));
-                    result.add(rs.getDouble(8));
+                    result.add((int)rs.getDouble(8));
                     result.add(rs.getString(9));
                     result.add(rs.getString(10));
                     result.add(rs.getString(11));
@@ -112,7 +112,7 @@ public class QuanLiSanPham_DAO {
                     result.add(rs.getString(15));
                     result.add(rs.getInt(16));
                     result.add(rs.getString(17));
-                    result.add(rs.getDouble(18));
+                    result.add((int)rs.getDouble(18));
                 }
             }
             return result;
@@ -396,6 +396,7 @@ public class QuanLiSanPham_DAO {
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO chitietbaohanh(Mabaohanh,Masp,TrangThai)\n"
                     + "VALUES (?,?,\"T\")");
+            // Dang lam gi v
             stm.setInt(1, model.getMabh());
             stm.setInt(2, Masp);
             stm.executeUpdate();

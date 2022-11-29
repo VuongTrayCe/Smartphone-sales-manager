@@ -15,9 +15,14 @@ import Smartphone_sales_management.UI.Swing.*;
 public class Main {
 
     public static void main(String[] args) {
+//<<<<<<< HEAD
+//        TestFrame a = new TestFrame();
 
+//=======
 //       TestFrame a = new TestFrame();
         MainFrame a = new MainFrame();
 
+//>>>>>>> main
+//    }
     }
 }

@@ -31,8 +31,6 @@ public class NhanVienGUI extends javax.swing.JPanel {
     public NhanVienGUI() {
       
         initComponents();
-//        jLabelXoa.setEnabled(false);
-//        jLabelChinhSua.setEnabled(false);
         jLMaNV.setVisible(false);
         jtMaNV.setVisible(false);
         model = (DefaultTableModel) jTable1.getModel();
@@ -163,6 +161,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -171,6 +170,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
             }
         ));
+        jTable1.setRowHeight(35);
+        jTable1.setSelectionBackground(new java.awt.Color(255, 0, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -181,6 +182,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        jtTen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jtTen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtTenActionPerformed(evt);
@@ -195,6 +197,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jbTuoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbTuoi.setText("Tuổi");
 
+        jtTuoi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jtTuoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtTuoiActionPerformed(evt);
@@ -205,10 +208,13 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jbSocccd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbSocccd.setText("Số CCCD");
 
+        jtcccd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jbChucDanh.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jbChucDanh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbChucDanh.setText("Chức danh");
 
+        jtChucdanh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jtChucdanh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtChucdanhActionPerformed(evt);
@@ -219,12 +225,14 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabelDiaChi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDiaChi.setText("Điạ Chỉ");
 
+        jTextDiaChi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextDiaChiActionPerformed(evt);
             }
         });
 
+        jtMaNV.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtMaNVActionPerformed(evt);
@@ -353,6 +361,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
         jLabel10.setText("Nhập từ khóa");
 
+        txtTuKhoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         rdbMaNV.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(rdbMaNV);
         rdbMaNV.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -397,8 +407,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setText("đến");
 
+        txtTuoiBD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setText("Tìm kiếm tuổi từ:");
+
+        txtTuoiKT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         btnTimKiem.setFont(new java.awt.Font("Baloo 2", 1, 16)); // NOI18N
         btnTimKiem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -437,6 +451,10 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
         rdbMaNC.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(rdbMaNC);
+
+        txtMaBD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txtMaKT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setText("đến");
@@ -499,9 +517,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel14))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(7, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rdbThongThuong)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -516,7 +534,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
-                .addComponent(btnResetSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE))
+                .addComponent(btnResetSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,7 +600,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 365, Short.MAX_VALUE))
                 .addGap(3, 3, 3))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(406, 406, 406)
@@ -773,9 +791,6 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
              stateForm = 1;
          jLMaNV.setVisible(false);
         jtMaNV.setVisible(false);
-//          jLabelXoa.setEnabled(false);
-//        jLabelChinhSua.setEnabled(false);
-//        jLabelThem.setEnabled(true);
         jtTen.setText("");
         jtTuoi.setText("");
         jtcccd.setText("");

@@ -96,6 +96,8 @@ public class MainContentNCC extends javax.swing.JPanel {
         jtMa = new javax.swing.JTextField();
         jLMa = new javax.swing.JLabel();
 
+        jTextTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
 
@@ -153,6 +155,7 @@ public class MainContentNCC extends javax.swing.JPanel {
         jb4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jb4.setText("Địa chỉ");
 
+        jTextDiaChi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextDiaChiActionPerformed(evt);

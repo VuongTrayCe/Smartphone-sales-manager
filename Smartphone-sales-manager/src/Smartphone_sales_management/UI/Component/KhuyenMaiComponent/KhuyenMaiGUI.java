@@ -74,8 +74,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
 
         jTable1.setModel(modelCTKM);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);
+       
         setDefaultTableModelCTKM();
         
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(130);
@@ -106,8 +105,6 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jTable2.getTableHeader().setBackground(new Color(14, 14, 14));
 
         jTable2.setModel(modelKM);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable2.getModel());
-        jTable2.setRowSorter(sorter);
         setDefaultTableModelKM();
           jTable2.getColumnModel().getColumn(0).setPreferredWidth(110);
         jTable2.getColumnModel().getColumn(1).setMinWidth(130);
@@ -220,6 +217,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jComboBoxMaKM = new javax.swing.JComboBox<>();
         jLabelThemCTKM = new javax.swing.JLabel();
         jLabelXoaCTKM = new javax.swing.JLabel();
+        jLabelLamMoCTiKM = new javax.swing.JLabel();
         jPanelKM = new javax.swing.JPanel();
         jScrollKM = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -250,6 +248,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         jScrollChiTietKM.setPreferredSize(new java.awt.Dimension(402, 402));
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -258,6 +257,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
             }
         ));
+        jTable1.setRowHeight(35);
+        jTable1.setSelectionBackground(new java.awt.Color(255, 0, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -283,6 +284,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             }
         });
 
+        jComboBoxMaSP.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jComboBoxMaKM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jLabelThemCTKM.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabelThemCTKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/plus.png"))); // NOI18N
         jLabelThemCTKM.setText("Thêm");
@@ -301,6 +306,15 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             }
         });
 
+        jLabelLamMoCTiKM.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLabelLamMoCTiKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/reset.png"))); // NOI18N
+        jLabelLamMoCTiKM.setText("Làm mới");
+        jLabelLamMoCTiKM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelLamMoCTiKMMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -309,6 +323,9 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelLamMoCTiKM)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelThemCTKM)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelXoaCTKM))
@@ -319,11 +336,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabelCTMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxMaSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxMaSP, 0, 133, Short.MAX_VALUE)
                         .addGap(25, 25, 25)
                         .addComponent(jLableCTMaKM)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxMaKM, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxMaKM, 0, 133, Short.MAX_VALUE)))
                 .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
@@ -340,7 +357,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelThemCTKM)
-                    .addComponent(jLabelXoaCTKM))
+                    .addComponent(jLabelXoaCTKM)
+                    .addComponent(jLabelLamMoCTiKM))
                 .addGap(15, 15, 15))
         );
 
@@ -363,6 +381,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         jScrollKM.setPreferredSize(new java.awt.Dimension(402, 402));
 
+        jTable2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -371,6 +390,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
             }
         ));
+        jTable2.setRowHeight(35);
+        jTable2.setSelectionBackground(new java.awt.Color(255, 0, 51));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
@@ -388,6 +409,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("PhanTramKM");
 
+        jTextPtkm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextPtkm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextPtkmActionPerformed(evt);
@@ -397,6 +419,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("TenKM");
 
+        jTextTenKm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextTenKm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextTenKmActionPerformed(evt);
@@ -507,6 +530,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "ÁP DỤNG KHUYẾN MÃI", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
+
+        jTextTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLTimKiemCTKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
         jLTimKiemCTKM.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -754,7 +779,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jLTimKiemCTKMMouseClicked
 
     private void jLabelThemCTKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelThemCTKMMouseClicked
-         if (jComboBoxMaKM.getSelectedItem().equals("") || jComboBoxMaSP.getSelectedItem().equals("")) {
+         if (stateForm !=1 ) {
+            JOptionPane.showMessageDialog(jComboBoxMaKM, "Vui lòng nhấn làm mới để có thể thêm dữ liêu");
+            return;
+        } 
+        if (jComboBoxMaKM.getSelectedItem().equals("") || jComboBoxMaSP.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(jComboBoxMaKM, "Vui lòng nhập đầy đủ giá trị ");
             return;
         }
@@ -787,8 +816,11 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelThemCTKMMouseClicked
 
     private void jLabelXoaCTKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelXoaCTKMMouseClicked
- 
-        if (jComboBoxMaKM.getSelectedItem().equals("")) {
+     if (stateForm != 2) {
+            JOptionPane.showMessageDialog(jComboBoxMaKM, "Vui lòng chọn 1 dòng dữ liệu trên bảng  để có thể xóa dữ liêu");
+            return;
+        }
+        if (jComboBoxMaKM.getSelectedItem().equals("") || jComboBoxMaSP.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(jComboBoxMaKM, "Vui lòng chọn dữ liệu trên bảng cần xóa");
             return;
         }
@@ -805,7 +837,8 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             }
         jComboBoxMaSP.setSelectedItem("");
         jComboBoxMaKM.setSelectedItem("");
-        
+        jComboBoxMaKM.setEnabled(false);
+        jComboBoxMaSP.setEnabled(false);
     }//GEN-LAST:event_jLabelXoaCTKMMouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -823,6 +856,12 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jLabelLamMoCTiKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLamMoCTiKMMouseClicked
+         stateForm = 1;
+         jComboBoxMaKM.setEnabled(true);
+        jComboBoxMaSP.setEnabled(true);
+    }//GEN-LAST:event_jLabelLamMoCTiKMMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -837,6 +876,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCTMaSP;
     private javax.swing.JLabel jLabelChinhSuaKM;
+    private javax.swing.JLabel jLabelLamMoCTiKM;
     private javax.swing.JLabel jLabelLamMoiKM;
     private javax.swing.JLabel jLabelMaCTKM;
     private javax.swing.JLabel jLabelMaKM;

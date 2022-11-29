@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 /**
  *
@@ -23,20 +24,22 @@ public class QuanLyNhaCungCap_DAO {
 
     public ArrayList<Model_NhaCungCap> getDanhSachNhaCC_DAO() {
 
-        ArrayList<Model_NhaCungCap> dsncc = new ArrayList<Model_NhaCungCap>();
+        ArrayList dsncc = new ArrayList();
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("select * from nhacungcap where TrangThai='T'");
             rs = stm.executeQuery();
+            int i=1;
             while (rs.next()) {
-                Model_NhaCungCap a = new Model_NhaCungCap();
-                a.setMacc(rs.getInt("Mancc"));
-                a.setTenncc(rs.getString("Tenncc"));
-                a.setSDT(rs.getString("SDT"));
-                a.setDiaChi(rs.getString("DiaChi"));
-                a.setDiaChi(rs.getString("DiaChi"));
+                Vector a = new Vector();
+                a.add((i));
+                a.add(rs.getInt("Mancc"));
+                a.add(rs.getString("Tenncc"));
+                a.add(rs.getString("SDT"));
+                a.add(rs.getString("DiaChi"));
+                a.add(rs.getString("DiaChi"));
                 dsncc.add(a);
-
+                 i++;
             }
             return dsncc;
         } catch (SQLException ex) {

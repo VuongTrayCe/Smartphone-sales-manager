@@ -54,12 +54,13 @@ public class MainFrame extends javax.swing.JFrame {
 //        PanelThemPhieuNhapHang a = new PanelThemPhieuNhapHang(this, jPanel1);
 //          MainContentBaoHanh a = new MainContentBaoHanh(MainFrame.this, jPanel1);
 //        MainConTentPhieuNhap a = new  MainConTentPhieuNhap(this,jPanel1);
-//        ThongKeMainPanel a = new ThongKeMainPanel();
+//        ThongKeMainPanel a = new ThongKeMainPanel()
+        CheckQuyen();
         MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
 //        MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //        MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //        MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-
+        
 //   TestPanel2  a = new TestPanel2();
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         jPanel1.setLayout(new GridLayout());
@@ -183,6 +184,9 @@ public class MainFrame extends javax.swing.JFrame {
 //   jPanel1.add(a);
 //       System.out.println("Vuong da vao");
 //   pack();
+    }
+    public void CheckQuyen()
+    {
     }
 
     @Override

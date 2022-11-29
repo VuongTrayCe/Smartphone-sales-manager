@@ -106,7 +106,7 @@ public boolean ExistsKhachHang(String Cmnd) {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<Model_KhachHang> khds = new ArrayList<>();
         for (Model_KhachHang kh : dskh) {
-            String SĐT = Integer.toString(kh.getSDT());
+            String SĐT = kh.getSDT();
             if (SĐT.contains(tuKhoa)) {
                 khds.add(kh);
             }

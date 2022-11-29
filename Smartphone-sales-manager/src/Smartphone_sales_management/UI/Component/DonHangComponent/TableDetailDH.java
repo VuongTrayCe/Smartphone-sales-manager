@@ -73,7 +73,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcKhuyenMai.setText(dataDetail.get(4).toString() + "%");
         lbcBHKT.setText(dataDetail.get(5).toString());
         lbcGia1.setText(dataDetail.get(10).toString());
-        lbtongchitietgia.setText(dataDetail.get(6).toString());
+        lbtongchitietgia.setText(dataDetail.get(14).toString());
         lbcgiasaukm.setText(dataDetail.get(7).toString());
         trangthailb1.setText(dataDetail.get(8).toString());
         txtslct.setText(String.valueOf(slctdh));
@@ -230,7 +230,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                                     .addComponent(lbGia)
                                     .addComponent(lbSoLuong)
                                     .addComponent(lbLoaiSP))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbcSL1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbcLoai, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -367,11 +367,6 @@ public class TableDetailDH extends javax.swing.JPanel {
                 deleteBtnMouseClicked(evt);
             }
         });
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -379,9 +374,9 @@ public class TableDetailDH extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(confirmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .addComponent(confirmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addGap(62, 62, 62)
-                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -430,7 +425,7 @@ public class TableDetailDH extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -463,6 +458,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateHuyDonHang(Integer.parseInt(madhlb.getText()));
             qldh_BUS.tinhDiemChoKhachHangKhiHuy(Madh);
+            System.out.println(data + "123");
             qldh_BUS.UpdateSLSP(data);
             DisplayInfor();
             try {
@@ -478,6 +474,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         if (a == JOptionPane.YES_OPTION) {
             qldh_BUS.updateXacNhanDonHang(Integer.parseInt(madhlb.getText()));
             qldh_BUS.tinhDiemChoKhachHangKhiHoanThanh(Madh);
+
             DisplayInfor();
             try {
                 donhang.SetDefaultTable("", tenTrangThai, start, end);
@@ -486,12 +483,6 @@ public class TableDetailDH extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_confirmBtnMouseClicked
-
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-       
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -112,7 +112,7 @@ public class QuanLiSanPham_DAO {
                     result.add(rs.getString(15));
                     result.add(rs.getInt(16));
                     result.add(rs.getString(17));
-                    result.add(rs.getDouble(18));
+                    result.add((int)rs.getDouble(18));
                 }
             }
             return result;

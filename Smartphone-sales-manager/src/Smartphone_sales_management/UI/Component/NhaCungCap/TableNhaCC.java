@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -52,14 +51,11 @@ public class TableNhaCC extends javax.swing.JPanel {
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14) {
         });
-        jTable1.setRowHeight(25);
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
 
         SetDefaultTable("");
         jTable1.setModel(model);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);  
               jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTable1.getColumnModel().getColumn(1).setMinWidth(100);
         jTable1.getColumnModel().getColumn(2).setMinWidth(130);
@@ -75,7 +71,7 @@ public class TableNhaCC extends javax.swing.JPanel {
     }
    
 
-        
+ 
   public void SetDefaultTable(String keyWord) {
         jTable1.removeAll();
         model.setRowCount(0);
@@ -88,20 +84,6 @@ public class TableNhaCC extends javax.swing.JPanel {
         jScrollPane1.repaint();
     }
   
-// public void addEventSanPham(EventNhaCC event) {
-//        jTable1.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-////                event.selectedIndex(jTable1.getSelectedRow());
-//                   event.SelectedInxex((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-//                   System.out.println((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-//            }
-//        ;
-//    }
-//
-//    );
-//    }
-  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,6 +95,8 @@ public class TableNhaCC extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

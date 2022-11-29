@@ -10,6 +10,7 @@ import Smartphone_sales_management.DTO.Model_NhaCungCap;
 import Smartphone_sales_management.UI.Component.NhaCungCap.AddNhaCungCap;
 import Smartphone_sales_management.UI.Event.NhaCungCap.EventNhaCC;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,22 +26,23 @@ public class MainContentNCC extends javax.swing.JPanel {
  TableNhaCC nhacc;
  AddNhaCungCap addNcc;
  EventNhaCC event;
+  // = 1 la trang thai them nhan vien, 2 la thang trai chinh sua thong tin
+        private int stateForm;
     /**
      * Creates new form MainContentNCC
      */
   
 
     public MainContentNCC(MainFrame frame) {
-        initComponents();
+        initComponents();        
         jtMa.setEditable(false);
         this.frame = frame;
         addNcc = new AddNhaCungCap(frame, nhacc); 
       nhacc = new TableNhaCC(event,this);
-        
         nhacc.setBounds(0, 0, jScrollPane1.getWidth(), jScrollPane1.getHeight());
-
-        jScrollPane1.setViewportView(nhacc);
         
+        jScrollPane1.setViewportView(nhacc);
+               
                jTextTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -62,7 +64,7 @@ public class MainContentNCC extends javax.swing.JPanel {
         });
     }
   public void truyendulieu(Model_NhaCungCap NhaCC){
-//        stateForm =2;
+      stateForm = 2;
       jtMa.setText(Integer.toString(NhaCC.getMacc()));
       jtTen.setText(NhaCC.getTenncc());
       jtsdt.setText(NhaCC.getSDT());
@@ -274,10 +276,20 @@ public class MainContentNCC extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelXoaMouseClicked
- String mancc = jtMa.getText();
+         if(stateForm != 2) {
+			JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể xóa dữ liêu");
+			return;
+		}   
+        if(jtMa.getText().equals("")){
+            JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể xóa dữ liêu");
+			return;
+        }
+        String mancc = jtMa.getText();
+        
         QuanLyNhaCungCap_BUS qlncc = new QuanLyNhaCungCap_BUS();
         
         Model_NhaCungCap Nhacc = new Model_NhaCungCap();
+        
         Nhacc.setMacc(Integer.parseInt(mancc));
         Nhacc.setTrangThai("F");
             int a = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa không ?","Xóa NhaCungCap", JOptionPane.YES_NO_OPTION);
@@ -302,7 +314,15 @@ public class MainContentNCC extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelThemMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-     String mancc = jtMa.getText();
+      if(stateForm != 2) {
+			JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể xóa dữ liêu");
+			return;
+		} 
+      if(jtMa.getText().equals("")){
+            JOptionPane.showMessageDialog(jtMa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhà cung cấp để có thể chỉnh sửa dữ liêu");
+			return;
+        }
+        String mancc = jtMa.getText();
           String ten = jtTen.getText();
         String sdt = jtsdt.getText();
         String diachi = jTextDiaChi.getText();

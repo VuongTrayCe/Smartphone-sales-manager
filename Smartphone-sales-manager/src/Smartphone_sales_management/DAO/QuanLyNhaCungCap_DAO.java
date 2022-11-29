@@ -154,31 +154,4 @@ public class QuanLyNhaCungCap_DAO {
 
 		return isSuccess;
 	}
-       
-        public ArrayList LayChiTietNhaCC(int Mancc) {
-        ArrayList result = new ArrayList();
-        db.setupConnection();
-        try {
-            PreparedStatement stm = db.getConnection().prepareStatement("select nhacungcap.Mancc,nhacungcap.Tenncc,nhacungcap.SDT,nhacungcap.DiaChi"
-                    + "from nhacungcap");
-            stm.setInt(1, Mancc);
-            rs = stm.executeQuery();
-            if (rs != null) {
-                while (rs.next()) {
-                    result.add(rs.getInt(1));
-                    result.add(rs.getString(2));
-                    result.add(rs.getString(3));
-                    result.add(rs.getString(4));
-                }
-            }
-            return result;
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            db.closeConnection();
-        }
-         return null;
-        
-    }
 }

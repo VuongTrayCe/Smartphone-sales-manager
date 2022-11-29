@@ -46,7 +46,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
         });
-        jTable1.setRowHeight(25);
+//        jTable1.setRowHeight(25);
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         SetDefaultTable();
@@ -66,9 +66,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
         jTable1.getColumnModel().getColumn(5).setCellRenderer(cellRenderer);
-    }
-  
-    
+        
+
+  }   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -846,8 +846,12 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
             JOptionPane.showMessageDialog(jtTuoi,"Ngoài độ tuổi lao động");
             return;
         }
-        if(Socccd.length()>13){
-            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 12 số ");
+         if(Socccd.length()< 8){
+            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được ít hơn 8 số ");
+            return;
+        }
+    if(Socccd.length()>10){
+            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 10 số ");
             return;
         }
          if(Pattern.matches(CMND_Pattern,Socccd)!=true)
@@ -906,6 +910,10 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
 			JOptionPane.showMessageDialog(jLabelChinhSua, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhân viên để có thể tiến hành chỉnh sửa thông tin dữ liêu");
 			return;
 		}
+          if(jtTen.getText().equals("")){
+            JOptionPane.showMessageDialog(jtMaNV, "Vui lòng chọn 1 dòng dữ liệu trên bảng để có thể chỉnh sửa dữ liêu");
+			return;
+        }
         String manv = jtMaNV.getText();
           String ten = jtTen.getText();
         String tuoi = jtTuoi.getText();
@@ -945,16 +953,19 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
             JOptionPane.showMessageDialog(jtTuoi,"Ngoài độ tuổi lao động ");
             return;
         }
-        if(Socccd.length()>13){
-            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 12 số ");
+          if(Socccd.length()< 8){
+            JOptionPane.showMessageDialog(jtcccd,"Số cccd không ít hơn 8 số ");
             return;
         }
-         if(Pattern.matches(CMND_Pattern,Socccd)!=true)
+        if(Socccd.length()>10){
+            JOptionPane.showMessageDialog(jtcccd,"Số cccd không được vượt quá 10 số ");
+            return;
+        }
+        if(Pattern.matches(CMND_Pattern,Socccd)!=true)
         {
                         JOptionPane.showMessageDialog(null, "Số chứng minh nhân dân/Căn cước công dân không đúng định dạng");
                         return;
         }
-       
         if(diachi.length() == 0){
             JOptionPane.showMessageDialog(jTextDiaChi,"Bạn chưa nhập địa chỉ");
             return;
@@ -1001,6 +1012,10 @@ if(rdbThongThuong.isSelected() == false  && rdbNangCao.isSelected() == false){
 			JOptionPane.showMessageDialog(jLabelXoa, "Vui lòng chọn 1 dòng dữ liệu bên bảng nhân viên để xóa");
 			return;
 		}
+         if(jtTen.getText().equals("")){
+            JOptionPane.showMessageDialog(jtMaNV, "Vui lòng chọn 1 dòng dữ liệu trên bảng để có thể xóa dữ liêu");
+			return;
+        }
         String manv = jtMaNV.getText();
         QuanLyNhanVien_BUS qlnv = new QuanLyNhanVien_BUS();
         

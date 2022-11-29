@@ -69,7 +69,6 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
         });
-        jTable1.setRowHeight(25);
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
 
@@ -100,7 +99,6 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jTable2.getTableHeader().getColumnModel().setColumnMargin(1);
         jTable2.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
         });
-        jTable2.setRowHeight(25);
         jTable2.getTableHeader().setForeground(Color.WHITE);
         jTable2.getTableHeader().setBackground(new Color(14, 14, 14));
 
@@ -246,6 +244,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         jPanelChiTietKM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        jScrollChiTietKM.setBackground(new java.awt.Color(255, 255, 255));
         jScrollChiTietKM.setPreferredSize(new java.awt.Dimension(402, 402));
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -379,6 +378,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
 
         jPanelKM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        jScrollKM.setBackground(new java.awt.Color(255, 255, 255));
         jScrollKM.setPreferredSize(new java.awt.Dimension(402, 402));
 
         jTable2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -655,6 +655,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(jLabelChinhSuaKM, "Vui lòng chọn 1 dòng dữ liệu trên bảng khuyến mãi để có thể tiến hành chỉnh sửa thông tin dữ liêu");
             return;
         }
+         if(jTextMakm.getText().equals("")){
+            JOptionPane.showMessageDialog(jTextMakm, "Vui lòng chọn 1 dòng dữ liệu trên bảng để có thể chỉnh sửa dữ liêu");
+			return;
+        }
         String makm = jTextMakm.getText();
         String tenkm = jTextTenKm.getText();
         String ptkm = jTextPtkm.getText();
@@ -725,6 +729,10 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         if (stateForm != 2) {
             JOptionPane.showMessageDialog(jLabelXoaKM, "Vui lòng chọn 1 dòng dữ liệu trên bảng khuyến mãi để có thể xóa dữ liêu");
             return;
+        }
+         if(jTextMakm.getText().equals("")){
+            JOptionPane.showMessageDialog(jTextMakm, "Vui lòng chọn 1 dòng dữ liệu trên bảng để có thể xóa dữ liêu");
+			return;
         }
         String makm = jTextMakm.getText();
         QuanLyKhuyenMai_BUS qlkm = new QuanLyKhuyenMai_BUS();

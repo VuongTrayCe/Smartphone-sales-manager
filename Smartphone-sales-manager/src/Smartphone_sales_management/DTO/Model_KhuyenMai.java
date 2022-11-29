@@ -11,14 +11,14 @@ package Smartphone_sales_management.DTO;
 public class Model_KhuyenMai {
     private int Makm;
     private String Tenkm;
-    private float phantramkm;
+    private int phantramkm;
     private String Trangthai;
 
 
     public Model_KhuyenMai() {
     }
 
-    public Model_KhuyenMai(int Makm, String Tenkm, float phantramkm, String Trangthai) {
+    public Model_KhuyenMai(int Makm, String Tenkm, int phantramkm, String Trangthai) {
 
         this.Makm = Makm;
         this.Tenkm = Tenkm;
@@ -42,11 +42,11 @@ public class Model_KhuyenMai {
         this.Tenkm = Tenkm;
     }
 
-    public float getPhantramkm() {
+    public int getPhantramkm() {
         return phantramkm;
     }
 
-    public void setPhantramkm(float phantramkm) {
+    public void setPhantramkm(int phantramkm) {
         this.phantramkm = phantramkm;
     }
 
@@ -58,7 +58,7 @@ public class Model_KhuyenMai {
         this.Trangthai = Trangthai;
     }
     public String[] toArrayString(){
-        return new String[] {Integer.toString(Makm),Tenkm,Float.toString(phantramkm),Trangthai};
+        return new String[] {Integer.toString(Makm),Tenkm,Integer.toString(phantramkm),Trangthai};
     }
      
 }

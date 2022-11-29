@@ -33,7 +33,7 @@ public class QuanLyKhuyenMai_DAO {
                 Model_KhuyenMai a = new Model_KhuyenMai();
                 a.setMakm(rs.getInt("Makm"));
                 a.setTenkm(rs.getString("Tenkm"));              
-                a.setPhantramkm(rs.getFloat("Ptkm"));
+                a.setPhantramkm(rs.getInt("Ptkm"));
 //                a.setTrangthai(rs.getString("Trangthai"));
                 dskm.add(a);
 
@@ -104,7 +104,7 @@ public class QuanLyKhuyenMai_DAO {
 		try {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 			preparedStatement.setString(1, KhuyenMai.getTenkm());
-                        preparedStatement.setFloat(2, KhuyenMai.getPhantramkm());
+                        preparedStatement.setInt(2, KhuyenMai.getPhantramkm());
                         preparedStatement.setString(3, KhuyenMai.getTrangthai());
                         
                         
@@ -174,7 +174,7 @@ public class QuanLyKhuyenMai_DAO {
             try {
                preparedStatement = db.getConnection().prepareStatement(sqlString);
                preparedStatement.setString(1,KhuyenMai.getTenkm());
-               preparedStatement.setFloat(2,KhuyenMai.getPhantramkm());
+               preparedStatement.setInt(2,KhuyenMai.getPhantramkm());
                preparedStatement.setString(3,KhuyenMai.getTrangthai());
                preparedStatement.setInt(4, KhuyenMai.getMakm());
                 

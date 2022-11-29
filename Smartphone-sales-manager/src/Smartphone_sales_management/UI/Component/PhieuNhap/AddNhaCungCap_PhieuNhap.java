@@ -170,7 +170,7 @@ public class AddNhaCungCap_PhieuNhap extends javax.swing.JPanel {
                     QuanLyNhaCungCap_BUS qlncc = new QuanLyNhaCungCap_BUS();
         Model_NhaCungCap NhaCC = new Model_NhaCungCap();
         NhaCC.setTenncc(tenncc);
-        NhaCC.setSDT(Integer.parseInt(sdt));
+        NhaCC.setSDT(sdt);
         NhaCC.setDiaChi(diachi);
         NhaCC.setTrangThai("T");
         qlncc.AddNhaCC(NhaCC);

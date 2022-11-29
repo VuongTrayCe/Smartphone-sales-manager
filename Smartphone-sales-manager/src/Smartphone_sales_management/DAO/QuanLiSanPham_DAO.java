@@ -396,6 +396,7 @@ public class QuanLiSanPham_DAO {
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("INSERT INTO chitietbaohanh(Mabaohanh,Masp,TrangThai)\n"
                     + "VALUES (?,?,\"T\")");
+            // Dang lam gi v
             stm.setInt(1, model.getMabh());
             stm.setInt(2, Masp);
             stm.executeUpdate();

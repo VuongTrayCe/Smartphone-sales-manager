@@ -14,6 +14,7 @@ import Smartphone_sales_management.UI.Component.DonHangComponent.MainContentDonH
 import Smartphone_sales_management.UI.Component.SanPhamComponent.MainContentSanPham;
 import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Component.PhieuNhap.MainConTentPhieuNhap;
+import Smartphone_sales_management.UI.Component.TaiKhoanComponent.MainConTentTaiKhoan;
 import Smartphone_sales_management.UI.Event.EventMenu;
 import Smartphone_sales_management.UI.Swing.Menu.ConNguoi;
 import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
@@ -72,7 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
                 if (index == 0) {
 //                       NhanVienGUI a = new NhanVienGUI(MainFrame.this);
 //KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
-                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+                    MainConTentTaiKhoan a = new MainConTentTaiKhoan(MainFrame.this);
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
 //                    MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);

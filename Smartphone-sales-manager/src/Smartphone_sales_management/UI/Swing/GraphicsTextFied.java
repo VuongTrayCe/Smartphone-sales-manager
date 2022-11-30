@@ -27,7 +27,7 @@ public class GraphicsTextFied extends JTextField {
     public GraphicsTextFied(int size) {
         super.setBackground(new Color(255, 255, 255, 0)); //  Remove background
         setOpaque(false);
-        setBorder(new EmptyBorder(10, 10, 10, 50)); //  Set Right border 50
+        setBorder(new EmptyBorder(0, 10, 0, 50)); //  Set Right border 50
         setFont(new java.awt.Font("sansserif", 0, 14));
         setSelectionColor(new Color(80, 199, 255));
 //        super(size);

@@ -39,7 +39,7 @@ public class QuanLiSanPham_BUS {
                 return dsspOffical;
             }
         } else {
-            if (keyWord == "") {
+            if (keyWord.equals("")) {
                 return dsspTrangThai;
             } else {
                 for (Object x1 : dsspTrangThai) {

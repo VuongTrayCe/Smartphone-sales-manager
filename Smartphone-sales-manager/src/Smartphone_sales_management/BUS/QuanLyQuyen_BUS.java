@@ -39,6 +39,23 @@ public class QuanLyQuyen_BUS {
             return dstkOfficial;
         }
     }
+      public ArrayList layDanhSachQuyen2(String keyWord) {
+        ArrayList dsq = new ArrayList();
+        ArrayList dstkOfficial = new ArrayList();
+        dsq = qlq.getDanhsachQuyen2();
+        if (keyWord == "") {
+            return dsq;
+        } else {
+            for (Object x : dsq) {
+                Vector y = (Vector) x;
+                String Matk = Integer.toString((int) y.get(0));
+                if (Matk.contains(keyWord)) {
+                    dstkOfficial.add(y);
+                }
+            }
+            return dstkOfficial;
+        }
+    }
     public boolean themQ(Model_Quyen Quyen) throws SQLException {
         if (qlq.themQuyen(Quyen)) {
             return true;
@@ -51,9 +68,63 @@ public class QuanLyQuyen_BUS {
         dstk = qlq.layDanhSachMaTk();
         return dstk;
     }
+     public ArrayList layDanhSachMatk2() {
+        ArrayList dstk = new ArrayList();
+        dstk = qlq.layDanhSachMaTk2();
+        return dstk;
+    }
     public ArrayList layDanhSachMaQuyen() {
         ArrayList dsq = new ArrayList();
         dsq = qlq.layDanhSachMaQuyen();
         return dsq;
+    }
+
+    public ArrayList layDanhSachQuyenTheoTaiKhoan(int matk) {
+     
+          ArrayList dsq = new ArrayList();
+        dsq = qlq.layDanhSachQuyenTheoTaiKhoan(matk);
+        return dsq;
+    }
+
+    public ArrayList layDanhSachQuyenChuaCo(int matk) {
+              
+          ArrayList dsq = new ArrayList();
+        dsq = qlq.layDanhSachQuyenChuaCo(matk);
+        return dsq;
+    }
+
+    public void AddQuyenTaiKhoan(ArrayList arrquyenmoi, int matk) {
+        for (Object object : arrquyenmoi) {
+            Vector dataRow = (Vector) object;
+            qlq.AdddQuyenTaiKhoan(Integer.parseInt(dataRow.get(0).toString()),matk);
+        }
+    }
+
+    public void DeleteQuyenTaiKhoan(int maquyentk) {
+        qlq.DeleteQuyenTaiKhoan(maquyentk);
+    }
+
+    public ArrayList getDanhSachQuyenHeThong() {
+        return qlq.getDanhSachQuyenHeThong();
+    }
+
+    public Boolean checkTenQuyen(String tenQuyen) {
+        ArrayList data = qlq.getTenQuyen();
+        for (Object object : data) {
+            String name= (String) object;
+            if(name.equals(tenQuyen))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void AddQuyen(String tenQuyen) {
+        qlq.AddTenQuyen(tenQuyen);
+    }
+
+    public void DeleteQuyen(int maquyen) {
+        qlq.DeleteQuyen(maquyen);
     }
 }

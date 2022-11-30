@@ -41,6 +41,24 @@ public class QuanLyTaiKhoan_BUS {
             return dstkOfficial;
         }
     }
+      public ArrayList layDanhSachTaiKhoan2(String keyWord) {
+        ArrayList dstk = new ArrayList();
+        ArrayList dstkOfficial = new ArrayList();
+        dstk = qltk.getDanhsachTaiKhoan2();
+//        System.out.println(dstk);
+        if (keyWord == "") {
+            return dstk;
+        } else {
+            for (Object x : dstk) {
+                Vector y = (Vector) x;
+                String matk = Integer.toString((int) y.get(0));
+                if (matk.contains(keyWord)) {
+                    dstkOfficial.add(y);
+                }
+            }
+            return dstkOfficial;
+        }
+    }
 
 //    public ArrayList getDanhSachChiTiet1TaiKhoan(int selectedIndex) {
 //        ArrayList dscttk = new ArrayList();
@@ -54,14 +72,15 @@ public class QuanLyTaiKhoan_BUS {
 //
 //        return dscttk;
 //    }
-
     public boolean themTK(Model_TaiKhoan Taikhoan) throws SQLException {
+        qltk.XoaTaiKhoanCu(Taikhoan.getMaNhanVien());
         if (qltk.themTaiKhoan(Taikhoan)) {
             return true;
         } else {
             return false;
         }
     }
+
     public boolean xoaTK(int Matk) {
         try {
             qltk.xoaTK(Matk);
@@ -71,8 +90,9 @@ public class QuanLyTaiKhoan_BUS {
         }
         return true;
     }
+
     public boolean SuaTaiKhoan(Model_TaiKhoan model) {
-        if (qltk.suaTK(model) ) {
+        if (qltk.suaTK(model)) {
             return true;
         }
         return false;
@@ -84,8 +104,8 @@ public class QuanLyTaiKhoan_BUS {
         return dsnv;
     }
 
-    public Boolean KiemTraDangNhap(String username, String pwd) {
-        Boolean check = false;
+    public int KiemTraDangNhap(String username, String pwd) {
+        int check = 0;
         Boolean checkUsername = false;
         Boolean checkPwd = false;
 
@@ -93,21 +113,38 @@ public class QuanLyTaiKhoan_BUS {
         data = qltk.getALLAccount();
         for (Object object : data) {
             Vector dataRow = (Vector) object;
-            String username2 = dataRow.get(0).toString();
-            String pass = dataRow.get(1).toString();
+            String username2 = dataRow.get(1).toString();
+            String pass = dataRow.get(2).toString();
             if (username.equals(username2) && pwd.equals(pass)) {
                 checkUsername = true;
+                return (int) dataRow.get(0);
             }
         }
-        if (checkUsername == true) {
-            check = true;
-        }
-
         return check;
     }
     public ArrayList layDanhSachChiTietTai(int Matk) {
         ArrayList data = new ArrayList();
         data = qltk.layDanhSachChiTietTK(Matk);
         return data;
+    }
+    public ArrayList getALLQuyenTK(int manv) {
+        return qltk.getALLQuyenTk(manv);
+    }
+
+    public String getTenNv(int l) {
+        return qltk.getTennv(l);
+    }
+
+    public boolean CheckTenDangNhap(String Tendangnhap) {
+        ArrayList dataTenDangNhap = qltk.getTenDangNhap();
+        for (Object object : dataTenDangNhap) {
+            String UserName = (String) object;
+            if(UserName.equals(Tendangnhap))
+            {
+                return false;
+            }
+            
+        }
+        return true;
     }
 }

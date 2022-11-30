@@ -69,8 +69,8 @@ public class MainConTentPhieuNhap extends JPanel {
         jScrollPane1.setViewportView(a);
 //                 jButton1.setBorderPainted(false);
 
-        jButton1.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
-        jButton2.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
+        jButton1.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
+        jButton2.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
 
 //         jButton2.setBorderPainted(false);
 ////        jPanel2.setLayout(new GridLayout());

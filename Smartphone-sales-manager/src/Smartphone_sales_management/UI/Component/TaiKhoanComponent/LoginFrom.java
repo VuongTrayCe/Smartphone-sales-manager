@@ -12,9 +12,11 @@ import Smartphone_sales_management.UI.Model.Model_TaiKhoan;
 import Smartphone_sales_management.DBConnect;
 import Smartphone_sales_management.BUS.QuanLyTaiKhoan_BUS;
 import Smartphone_sales_management.DAO.QuanLyTaiKhoan_DAO;
+import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import Smartphone_sales_management.UI.Main.MainFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.border.TitledBorder;
 
@@ -34,6 +36,7 @@ public class LoginFrom extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
+        jButton1.setBorder(new RoundedBorderer(new Color(0,0,0),2,10));
     }
 
     /**
@@ -55,7 +58,6 @@ public class LoginFrom extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -63,6 +65,7 @@ public class LoginFrom extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -131,6 +134,9 @@ public class LoginFrom extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 200, 10));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Log In");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,9 +145,6 @@ public class LoginFrom extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 90, 40));
-
-        jLabel5.setText("forget Password");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 100, 20));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
@@ -210,11 +213,11 @@ public class LoginFrom extends javax.swing.JFrame {
             flag = false;
         }
         if (flag == true) {
-            System.out.println(pass);
-            Boolean l = qltk.KiemTraDangNhap(username, pwd);
-            if (l == true) {
+            int l = qltk.KiemTraDangNhap(username, pwd);
+            if (l!=0) {
                 JOptionPane.showMessageDialog(this, "đăng nhập thành công");
-
+                String tennv = qltk.getTenNv(l);
+                MainFrame a = new MainFrame(l,tennv,LoginFrom.this);
             } else {
                 JOptionPane.showMessageDialog(this, "đăng nhập fail");
 
@@ -273,7 +276,6 @@ public class LoginFrom extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

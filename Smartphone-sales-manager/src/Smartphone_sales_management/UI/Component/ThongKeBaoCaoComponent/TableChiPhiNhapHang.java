@@ -116,7 +116,7 @@ public class TableChiPhiNhapHang extends javax.swing.JPanel {
         }
         if (hinhthuc.equals("Ngày Nhập")) {
             model.addColumn("STT");
-            model.addColumn("Ngày Bán");
+            model.addColumn("Ngày Nhập");
             model.addColumn("Số Phiếu Nhập");
             model.addColumn("Số Lượng");
             model.addColumn("Tổng Tiền");

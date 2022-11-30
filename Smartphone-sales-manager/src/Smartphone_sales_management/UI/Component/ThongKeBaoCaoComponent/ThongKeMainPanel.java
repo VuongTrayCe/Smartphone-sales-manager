@@ -285,7 +285,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 102, 153));
 
-        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setMinimumSize(new java.awt.Dimension(500, 0));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -366,17 +366,22 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     private void cbbHinhThucItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbHinhThucItemStateChanged
 
         if (cbbType.getSelectedIndex() == 0) {
+            if (cbbHinhThuc.getSelectedIndex() == 0) {
+                btnDetail.setVisible(false);
+            }
             if (cbbHinhThuc.getSelectedIndex() == 2) {
                 DateStart.setVisible(true);
                 DateEnd.setVisible(true);
                 lbDateStart.setVisible(true);
                 lbDateEnd.setVisible(true);
+                btnDetail.setVisible(true);
 
             } else if (cbbHinhThuc.getSelectedIndex() == 1) {
                 DateStart.setVisible(false);
                 DateEnd.setVisible(false);
                 lbDateStart.setVisible(false);
                 lbDateEnd.setVisible(false);
+                btnDetail.setVisible(true);
             } else {
                 DateStart.setVisible(false);
                 DateEnd.setVisible(false);
@@ -391,20 +396,26 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 DateEnd.setVisible(true);
                 lbDateStart.setVisible(true);
                 lbDateEnd.setVisible(true);
+                btnDetail.setVisible(true);
 
             } else if (cbbHinhThuc.getSelectedIndex() == 1) {
                 DateStart.setVisible(false);
                 DateEnd.setVisible(false);
                 lbDateStart.setVisible(false);
                 lbDateEnd.setVisible(false);
+                btnDetail.setVisible(true);
+
             } else {
                 DateStart.setVisible(false);
                 DateEnd.setVisible(false);
                 lbDateStart.setVisible(false);
                 lbDateEnd.setVisible(false);
+                btnDetail.setVisible(false);
+
             }
         }
         if (cbbType.getSelectedIndex() == 2) {
+            btnDetail.setVisible(false);
             if (cbbHinhThuc.getSelectedIndex() == 1) {
 //            jScrollPane1.removeAll();
                 DateStart.setVisible(true);
@@ -447,9 +458,9 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 bieuDo_HangHoa_PhieuNhap.validate();
             }
             if (index == 1) {
-                DoanhThuBanHang_BieuDo_KhachHang bieuDo_KhachHang = (DoanhThuBanHang_BieuDo_KhachHang) ob;
-                jPanel3.add(bieuDo_KhachHang);
-                bieuDo_KhachHang.validate();
+               ChiPhiNhapHang_BieuDo_NhaCungCap bieuDo_NhaCungcap = (ChiPhiNhapHang_BieuDo_NhaCungCap) ob;
+                jPanel3.add(bieuDo_NhaCungcap);
+                bieuDo_NhaCungcap.validate();
             }
         }
         if (cbbType.getSelectedIndex() == 2) {
@@ -502,7 +513,8 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                     jScrollPane1.setViewportView(a);
                     flag = 2;
                     tableExcel = a.getTable();
-
+                    jPanel3.removeAll();
+                    jPanel3.repaint();
                     lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
                 }
             }
@@ -528,9 +540,9 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                 jScrollPane1.setViewportView(b);
                 flag = 1;
                 tableExcel = b.getTable();
-
+                ChiPhiNhapHang_BieuDo_NhaCungCap bieudohangHoa = new ChiPhiNhapHang_BieuDo_NhaCungCap();
+                setChart(bieudohangHoa, 1);
                 lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
-                DoanhThuBanHang_BieuDo_KhachHang bieudo_khachHang = new DoanhThuBanHang_BieuDo_KhachHang();
             }
             if (cbbHinhThuc.getSelectedIndex() == 2) {
                 if (CheckChooiseDate() == true) {
@@ -562,7 +574,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
                     jScrollPane1.setViewportView(c);
                     flag = 1;
                     LoiNhuanBanHang_BieuDo_NgayBan bieudoNgayBan = new LoiNhuanBanHang_BieuDo_NgayBan(DateStart.getDate(), DateEnd.getDate());
-                    setChart(bieudoNgayBan,1);
+                    setChart(bieudoNgayBan, 1);
                     tableExcel = c.getTable();
                     lbTitle.setText(cbbType.getSelectedItem() + "-" + cbbHinhThuc.getSelectedItem());
                 }

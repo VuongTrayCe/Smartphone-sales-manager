@@ -1,6 +1,7 @@
 package Smartphone_sales_management.UI.Main;
 
 import Smartphone_sales_management.DAO.QuanLyNhanVien_DAO;
+import Smartphone_sales_management.UI.Component.TaiKhoanComponent.LoginFrom;
 import Smartphone_sales_management.UI.form.Login;
 import Smartphone_sales_management.UI.Swing.*;
 
@@ -20,7 +21,8 @@ public class Main {
 
 //=======
 //       TestFrame a = new TestFrame();
-        MainFrame a = new MainFrame();
+        LoginFrom a = new LoginFrom();
+//MainFrame a =new MainFrame(12,"Vuong",new LoginFrom());
 
 //>>>>>>> main
 //    }

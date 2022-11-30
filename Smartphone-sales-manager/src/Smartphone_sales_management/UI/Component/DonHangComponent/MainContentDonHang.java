@@ -74,7 +74,7 @@ public class MainContentDonHang extends javax.swing.JPanel {
 
         });
 
-        btnInHoaDon.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
+        btnInHoaDon.setBorder(new RoundedBorderer(new Color(0,0,0), 2, 30));
         btnExcel.setBorder(new RoundedBorderer(new Color(0, 51, 51), 2, 30));
 
         txtTimkiem.getDocument().addDocumentListener(new DocumentListener() {

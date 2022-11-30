@@ -165,9 +165,11 @@ public class MainConTentTaiKhoan2 extends javax.swing.JPanel {
 
             }
         ));
+        TableTaiKhoan.setGridColor(new java.awt.Color(255, 255, 255));
         TableTaiKhoan.setRowHeight(35);
         TableTaiKhoan.setSelectionBackground(new java.awt.Color(204, 0, 0));
         TableTaiKhoan.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        TableTaiKhoan.setShowGrid(true);
         jScrollPane2.setViewportView(TableTaiKhoan);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/search.png"))); // NOI18N
@@ -321,7 +323,7 @@ public class MainConTentTaiKhoan2 extends javax.swing.JPanel {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = new JFrame("Bản phân quyền tài khoản");
-        FromQuyen2 quyen = new FromQuyen2();
+        FormQuanLyQuyenTK quyen = new FormQuanLyQuyenTK();
         frame.setSize(950, 600);
         frame.setLocationRelativeTo(null);
         frame.add(quyen);

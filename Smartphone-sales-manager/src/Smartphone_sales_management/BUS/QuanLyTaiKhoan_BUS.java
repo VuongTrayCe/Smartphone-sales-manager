@@ -134,4 +134,17 @@ public class QuanLyTaiKhoan_BUS {
     public String getTenNv(int l) {
         return qltk.getTennv(l);
     }
+
+    public boolean CheckTenDangNhap(String Tendangnhap) {
+        ArrayList dataTenDangNhap = qltk.getTenDangNhap();
+        for (Object object : dataTenDangNhap) {
+            String UserName = (String) object;
+            if(UserName.equals(Tendangnhap))
+            {
+                return false;
+            }
+            
+        }
+        return true;
+    }
 }

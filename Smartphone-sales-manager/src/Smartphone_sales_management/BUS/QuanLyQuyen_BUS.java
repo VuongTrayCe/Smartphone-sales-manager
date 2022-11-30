@@ -103,4 +103,28 @@ public class QuanLyQuyen_BUS {
     public void DeleteQuyenTaiKhoan(int maquyentk) {
         qlq.DeleteQuyenTaiKhoan(maquyentk);
     }
+
+    public ArrayList getDanhSachQuyenHeThong() {
+        return qlq.getDanhSachQuyenHeThong();
+    }
+
+    public Boolean checkTenQuyen(String tenQuyen) {
+        ArrayList data = qlq.getTenQuyen();
+        for (Object object : data) {
+            String name= (String) object;
+            if(name.equals(tenQuyen))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void AddQuyen(String tenQuyen) {
+        qlq.AddTenQuyen(tenQuyen);
+    }
+
+    public void DeleteQuyen(int maquyen) {
+        qlq.DeleteQuyen(maquyen);
+    }
 }

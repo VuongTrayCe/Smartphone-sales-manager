@@ -15,7 +15,7 @@ import javax.swing.JDialog;
  *
  * @author Vuong
  */
-public class AddQuyenMoi extends javax.swing.JPanel {
+public class FormQuanLyQuyenTK_AddQuyen_Add extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
@@ -24,16 +24,16 @@ public class AddQuyenMoi extends javax.swing.JPanel {
     QuanLyQuyen_BUS qltk = new QuanLyQuyen_BUS();
     ArrayList arrQuyen;
 
-    public AddQuyenMoi() {
+    public FormQuanLyQuyenTK_AddQuyen_Add() {
         initComponents();
     }
     int matk;
     JDialog dialog;
     JComboBox cbbquyenht;
     ArrayList arrquyenmoi;
-    FromaddQuyen2 frame;
+    FormQuanLyQuyenTK_ThemQuyen frame;
 
-    public AddQuyenMoi(int matk, JDialog inforDonHang, JComboBox cbbquyenht) {
+    public FormQuanLyQuyenTK_AddQuyen_Add(int matk, JDialog inforDonHang, JComboBox cbbquyenht) {
         initComponents();
         this.matk = matk;
         this.cbbquyenht = cbbquyenht;
@@ -46,7 +46,7 @@ public class AddQuyenMoi extends javax.swing.JPanel {
 
     }
 
-    AddQuyenMoi(int matk, JDialog inforDonHang, ArrayList arrquyenmoi, FromaddQuyen2 aThis) {
+    FormQuanLyQuyenTK_AddQuyen_Add(int matk, JDialog inforDonHang, ArrayList arrquyenmoi, FormQuanLyQuyenTK_ThemQuyen aThis) {
 
         initComponents();
         this.matk = matk;

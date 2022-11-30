@@ -259,4 +259,82 @@ public class QuanLyQuyen_DAO {
         
     }
 
+    public ArrayList getDanhSachQuyenHeThong() {
+        
+        ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT quyen.Maquyen,quyen.Tenquyen \n"
+                    + "FROM quyen");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    Vector a = new Vector();
+                    a.add(rs.getString("Maquyen"));
+                    a.add(rs.getString("Tenquyen"));
+                    result.add(a);
+                }
+                return result;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+        return null;
+    }
+
+    public ArrayList getTenQuyen() {
+         ArrayList result = new ArrayList();
+        db.setupConnection();
+        try {
+            PreparedStatement stm = db.getConnection().prepareStatement("SELECT quyen.Tenquyen \n"
+                    + "FROM quyen");
+            rs = stm.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result.add(rs.getString("Tenquyen"));
+                }
+                return result;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+        return null;
+    }
+
+    public void AddTenQuyen(String tenQuyen) {
+         boolean success = true;
+        db.setupConnection();
+        try {
+            String query = "insert into quyen(Tenquyen)values(?)";
+            PreparedStatement stm;
+            stm = db.getConnection().prepareStatement(query);
+            stm.setString(1, tenQuyen);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+    }
+
+    public void DeleteQuyen(int maquyen) {
+        
+        db.setupConnection();
+        boolean success = true;
+        try {
+            String query = "DELETE FROM quyen WHERE (`Maquyen` = ?);";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            stm.setInt(1, maquyen);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.closeConnection();
+        }
+    }
+
 }

@@ -221,6 +221,11 @@ public class TableAddTaiKhoan2 extends javax.swing.JPanel {
             flag = false;
             JOptionPane.showMessageDialog(null, "Mời nhập Mật Khẩu ! ");
         }
+        else if(qltk_BUS.CheckTenDangNhap(Tendangnhap)==false)
+        {
+            flag = false;
+            JOptionPane.showMessageDialog(null, "Tên Đăng Nhập Đã Tồn Tại! ");
+        }
         if (flag == false) {
             return false;
         }

@@ -174,7 +174,6 @@ public class QuanLyPhieuNhap_DAO {
             stm.setString(4, modelPhieuNhap.getNgaynhap());
             stm.setDouble(5, modelPhieuNhap.getTongtien());
             stm.setString(6, "Đang Xử Lý");
-
             isSuccess = db.sqlUpdate(stm);
             if (isSuccess == true) {
                 rs = stm.getGeneratedKeys();

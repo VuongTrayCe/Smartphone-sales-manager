@@ -32,17 +32,17 @@ import javax.swing.WindowConstants;
  *
  * @author Dell
  */
-public class FromaddQuyen2 extends javax.swing.JPanel {
+public class FormQuanLyQuyenTK_ThemQuyen extends javax.swing.JPanel {
 
     QuanLyQuyen_BUS qlq_BUS = new QuanLyQuyen_BUS();
-    FromQuyen2 frame;
+    FormQuanLyQuyenTK frame;
     JDialog dialog;
     ArrayList dstk;
     ArrayList dsq;
     ArrayList arrquyenmoi = new ArrayList();
     int matk;
 
-    public FromaddQuyen2(FromQuyen2 frame, JDialog dialog) {
+    public FormQuanLyQuyenTK_ThemQuyen(FormQuanLyQuyenTK frame, JDialog dialog) {
         initComponents();
         this.frame = frame;
         this.dialog = dialog;
@@ -302,7 +302,7 @@ public class FromaddQuyen2 extends javax.swing.JPanel {
 
         Window win = SwingUtilities.getWindowAncestor(this);
         JDialog inforDonHang = new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
-        AddQuyenMoi a = new AddQuyenMoi(matk, inforDonHang, arrquyenmoi, FromaddQuyen2.this);
+        FormQuanLyQuyenTK_AddQuyen_Add a = new FormQuanLyQuyenTK_AddQuyen_Add(matk, inforDonHang, arrquyenmoi, FormQuanLyQuyenTK_ThemQuyen.this);
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
 //        AddKhachHang themkhachhang = new AddKhachHang(inforDonHang, this);

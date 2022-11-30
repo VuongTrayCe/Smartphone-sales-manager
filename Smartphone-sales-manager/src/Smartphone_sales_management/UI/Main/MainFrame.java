@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,27 +52,29 @@ public class MainFrame extends javax.swing.JFrame {
     public static int selectedIndex = 0;
     public static int manv = 0;
     public static String tennv = "Vuong";
-    public static int BanHang=1;
-    public static int ThongKe=1;
-    public static int SanPham=1;
-    public static int PhieuNhap=1;
-    public static int ConNguoi=1;
-    public static int DonHang=1;
-    public static int ChinhSach=1;
-    public static int TaiKhoan=1;
+    public static int BanHang = 0;
+    public static int ThongKe = 0;
+    public static int SanPham = 0;
+    public static int PhieuNhap = 0;
+    public static int ConNguoi = 0;
+    public static int DonHang = 0;
+    public static int ChinhSach = 0;
+    public static int TaiKhoan = 0;
     QuanLyTaiKhoan_BUS qltk = new QuanLyTaiKhoan_BUS();
+    LoginFrom form;
 
-    public MainFrame(int manv,String tennv) {
+    public MainFrame(int manv, String tennv, LoginFrom form) {
         CheckQuyen(manv);
+        this.form = form;
+        form.setVisible(false);
+        this.manv = manv;
         initComponents();
         lbTenDangNhap.setText(tennv);
-        this.manv = manv;
         this.setLocationRelativeTo(null);
         setVisible(true);
         jPanel1.setMinimumSize(new Dimension(100, 100));
         if (BanHang == 1) {
-            MainConTentTaiKhoan2 a = new MainConTentTaiKhoan2(MainFrame.this);
-//            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
+            MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
             a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
             jPanel1.setLayout(new GridLayout());
             jPanel1.add(a);
@@ -142,7 +145,6 @@ public class MainFrame extends javax.swing.JFrame {
 //                    MainContentDonHang a = new MainContentDonHang(MainFrame.this);
 //                    MainContentSanPham a = new MainContentSanPham(MainFrame.this);
                     MainConTentBanHang a = new MainConTentBanHang(MainFrame.this);
-
                     jPanel1.removeAll();
                     a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
                     jPanel1.setLayout(new GridLayout());
@@ -225,6 +227,16 @@ public class MainFrame extends javax.swing.JFrame {
                     jPanel1.add(a);
                     a.validate();
                 }
+                 if (tenquyen.equals("Tài Khoản")) {
+//                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
+                    MainConTentTaiKhoan2 a = new MainConTentTaiKhoan2(MainFrame.this);
+//                    ThongKeMainPanel a = new ThongKeMainPanel();
+                    jPanel1.removeAll();
+                    a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+                    jPanel1.setLayout(new GridLayout());
+                    jPanel1.add(a);
+                    a.validate();
+                }
                 if (tenquyen.equals("Chính Sách")) {
 //                    KhuyenMaiGUI a = new KhuyenMaiGUI(MainFrame.this);
                     ChinhSach a = new ChinhSach(MainFrame.this, jPanel1);
@@ -251,6 +263,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void CheckQuyen(int manv1) {
         ArrayList arrQuyen = new ArrayList();
+        BanHang = 0;
+        SanPham = 0;
+        DonHang = 0;
+        PhieuNhap = 0;
+        ConNguoi = 0;
+        ThongKe = 0;
+        TaiKhoan =0;
+        ChinhSach = 0;
+        selectedIndex=0;
         arrQuyen = qltk.getALLQuyenTK(manv1);
         for (Object object : arrQuyen) {
             String tenquyen = (String) object;
@@ -263,10 +284,13 @@ public class MainFrame extends javax.swing.JFrame {
                 ThongKe = 1;
                 TaiKhoan = 1;
                 ChinhSach = 1;
+                System.out.println("quan ly");
 
             }
             if (tenquyen.equals("Bán Hàng")) {
                 BanHang = 1;
+                System.out.println("Ban hang");
+
             }
             if (tenquyen.equals("Đơn Hàng")) {
                 DonHang = 1;
@@ -283,7 +307,7 @@ public class MainFrame extends javax.swing.JFrame {
             if (tenquyen.equals("Con Người")) {
                 ConNguoi = 1;
             }
-            if (tenquyen.equals("Thống kê")) {
+            if (tenquyen.equals("Thống Kê")) {
                 ThongKe = 1;
             }
             if (tenquyen.equals("Tài Khoản")) {
@@ -337,8 +361,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("PhoneNumber: 036143418471             ||      Address: 611/30 QL1A Bình Hưng Hòa Bình Tân HCM");
 
         lbTenDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         lbTenDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/Icon_Admin_DangNhap.png"))); // NOI18N
@@ -364,8 +389,8 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 576, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(lbTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -425,18 +450,17 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbTrangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTrangThaiItemStateChanged
-     
-     int indexSta =cbbTrangThai.getSelectedIndex();
-     if(indexSta==1)
-     {
-         this.dispose();
-         LoginFrom a  = new LoginFrom();
-     }
+
+        int indexSta = cbbTrangThai.getSelectedIndex();
+        if (indexSta == 1) {
+            this.dispose();
+            this.form.setVisible(true);
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_cbbTrangThaiItemStateChanged
 
     private void cbbTrangThaiPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbbTrangThaiPropertyChange
-       
+
 // TODO add your handling code here:
     }//GEN-LAST:event_cbbTrangThaiPropertyChange
 

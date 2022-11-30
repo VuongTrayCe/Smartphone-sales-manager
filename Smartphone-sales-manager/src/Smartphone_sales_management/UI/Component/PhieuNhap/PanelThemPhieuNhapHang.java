@@ -498,21 +498,19 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
 
         if (dataChiTietPhieuNhap.size() != 0) {
-
             int indexmncc = cbbNhaCungCap.getSelectedIndex();
             Vector ncc = (Vector) danhsachNhaCungCap.get(indexmncc);
             int mancc = (int) ncc.get(0);
             int soluong = Integer.parseInt(btnTongSoLuong.getText());
             double tongtien = Double.valueOf(btnTongTien.getText());
-
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String formatDateTime = now.format(format);
             modelPhieuNhap = new Model_PhieuNhap(manv, mancc, soluong, formatDateTime, tongtien);
             Mapn = qlpn.AddPhieuNhapHang(modelPhieuNhap);
+            System.out.println(Mapn);
             for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : dataChiTietPhieuNhap) {
                 model_PhieuNhap_ChiTiet.setMapn(Mapn);
                 qlpn.AddChiTietPhieuNhap(model_PhieuNhap_ChiTiet);
-
             }
             dataChiTietPhieuNhap.clear();
             DisplayDetailPhieuNhap();

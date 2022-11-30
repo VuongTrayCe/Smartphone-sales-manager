@@ -355,4 +355,24 @@ public class QuanLyTaiKhoan_DAO {
             db.closeConnection();
         }
     }
+
+    public ArrayList getTenDangNhap() {
+        
+         ArrayList data = new ArrayList();
+        db.setupConnection();
+        try {
+            String query = "select taikhoan.Tendangnhap from taikhoan where taikhoan.TrangThai='T'";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                data.add(rs.getString("Tendangnhap"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            db.closeConnection();
+        }
+        return data;
+        
+    }
 }

@@ -82,7 +82,7 @@ public class ThongKeBaoCaoNhapHang_DAO {
         ArrayList dssp = new ArrayList();
         db.setupConnection();
         try {
-            String query = "select phieunhap.NgayNhap,count(phieunhap.Maphieunhap)as TongPhieu, sum(phieunhap.SoLuong) as TongSoLuong, sum(TongTien) as TongTien from phieunhap group by(phieunhap.NgayNhap)";
+            String query = "select phieunhap.NgayNhap,count(phieunhap.Maphieunhap)as TongPhieu, sum(phieunhap.SoLuong) as TongSoLuong, sum(TongTien) as TongTien from phieunhap where phieunhap.Trangthai='Hoàn Thành' group by(phieunhap.NgayNhap)";
             PreparedStatement stm = db.getConnection().prepareStatement(query);
             rs = stm.executeQuery();
             int i = 1;
@@ -187,5 +187,28 @@ public class ThongKeBaoCaoNhapHang_DAO {
         }
         return dataset;
 
+    }
+
+    public JDBCCategoryDataset getNhaCungCap_BieuDo() {
+         ArrayList dssp = new ArrayList();
+        JDBCCategoryDataset dataset;
+        db.setupConnection();
+//        DBConnect db = new DBConnect();
+//        ResultSet rs = null;
+//        db.setupConnection();
+
+        try {
+            dataset = new JDBCCategoryDataset(db.getConnection());
+            String query=" select a.Tenncc,a.SoLuong from(select phieunhap.Mancc,nhacungcap.Tenncc,count(phieunhap.Maphieunhap) as SoPhieu, sum(phieunhap.SoLuong) as SoLuong, sum(phieunhap.TongTien) as TongTien from phieunhap,nhacungcap where phieunhap.Mancc=nhacungcap.Mancc and phieunhap.Trangthai=\"Hoàn Thành\" group by(phieunhap.Mancc))as a order by a.SoLuong desc limit 10";
+            dataset.executeQuery(query);
+
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            db.closeConnection();
+        }
+        return dataset;
+        
+        
     }
 }

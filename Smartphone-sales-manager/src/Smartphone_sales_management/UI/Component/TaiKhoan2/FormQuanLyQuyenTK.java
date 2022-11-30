@@ -36,7 +36,7 @@ import javax.swing.text.TabableView;
  *
  * @author Dell
  */
-public class FromQuyen2 extends javax.swing.JPanel {
+public class FormQuanLyQuyenTK extends javax.swing.JPanel {
 
     QuanLyQuyen_BUS qlq = new QuanLyQuyen_BUS();
     QuanLyQuyen_DAO a = new QuanLyQuyen_DAO();
@@ -46,12 +46,12 @@ public class FromQuyen2 extends javax.swing.JPanel {
     ArrayList dataChitietTK = null;
     ArrayList data = new ArrayList();
     int Matk = -1;
-    FromaddQuyen2 fromaddquyen;
+    FormQuanLyQuyenTK_ThemQuyen fromaddquyen;
 
     /**
      * Creates new form FromQuyen
      */
-    public FromQuyen2() {
+    public FormQuanLyQuyenTK() {
         initComponents();
         this.frame = frame;
         model.addColumn("STT");
@@ -132,6 +132,7 @@ public class FromQuyen2 extends javax.swing.JPanel {
         btnThem = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -146,7 +147,7 @@ public class FromQuyen2 extends javax.swing.JPanel {
         });
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTextField1.setText("DANH SÁCH QUYỀN");
+        jTextField1.setText("DANH SÁCH PHÂN QUYỀN");
 
         TabbleThongTin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,35 +188,51 @@ public class FromQuyen2 extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Quản Lý Quyền");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 400, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addGap(16, 16, 16))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(timkiem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(88, 88, 88))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(timkiem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(61, 61, 61)
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,7 +268,7 @@ public class FromQuyen2 extends javax.swing.JPanel {
 
         Window win = SwingUtilities.getWindowAncestor(this);
         JDialog inforDonHang = new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
-        FromaddQuyen2 a = new FromaddQuyen2(FromQuyen2.this, inforDonHang);
+        FormQuanLyQuyenTK_ThemQuyen a = new FormQuanLyQuyenTK_ThemQuyen(FormQuanLyQuyenTK.this, inforDonHang);
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
 //        AddKhachHang themkhachhang = new AddKhachHang(inforDonHang, this);
@@ -287,11 +304,33 @@ public class FromQuyen2 extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     
+        
+        Window win = SwingUtilities.getWindowAncestor(this);
+        JDialog inforDonHang = new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
+        FormQuanLyQuyen a =new FormQuanLyQuyen();
+        inforDonHang.setSize(680, 400);
+        inforDonHang.setLayout(new GridLayout());
+        inforDonHang.setTitle("Quản Lý Quyền");
+        inforDonHang.add(a);
+        a.validate();
+        inforDonHang.setLocationRelativeTo(null);
+//        inforDonHang.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        inforDonHang.setVisible(true);
+
+        
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabbleThongTin;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

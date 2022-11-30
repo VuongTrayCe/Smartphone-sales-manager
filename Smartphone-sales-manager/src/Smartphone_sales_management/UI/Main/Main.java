@@ -21,8 +21,8 @@ public class Main {
 
 //=======
 //       TestFrame a = new TestFrame();
-//        LoginFrom a = new LoginFrom();
-MainFrame a =new MainFrame(0,"Vuong");
+        LoginFrom a = new LoginFrom();
+//MainFrame a =new MainFrame(12,"Vuong",new LoginFrom());
 
 //>>>>>>> main
 //    }

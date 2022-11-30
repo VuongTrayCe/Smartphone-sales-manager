@@ -322,7 +322,7 @@ public class MainConTentTaiKhoan2 extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = new JFrame("Bản phân quyền tài khoản");
         FromQuyen2 quyen = new FromQuyen2();
-        frame.setSize(800, 600);
+        frame.setSize(950, 600);
         frame.setLocationRelativeTo(null);
         frame.add(quyen);
         frame.setVisible(true);
@@ -336,8 +336,8 @@ public class MainConTentTaiKhoan2 extends javax.swing.JPanel {
                 ArrayList data = new ArrayList();
                 data = qltk.layDanhSachChiTietTai(Matk);
                 JFrame frame = new JFrame("Them thong tin");
-                TableUpdateTaiKhoan2 suaTaiKhoan = new TableUpdateTaiKhoan2(data, frame, TableTaiKhoan, this.frame);
-                frame.setSize(567, 383);
+                TableUpdateTaiKhoan2 suaTaiKhoan = new TableUpdateTaiKhoan2(data,frame,MainConTentTaiKhoan2.this, TableTaiKhoan, this.frame);
+                frame.setSize(450, 483);
                 frame.setLocationRelativeTo(null);
                 frame.add(suaTaiKhoan);
                 frame.setVisible(true);

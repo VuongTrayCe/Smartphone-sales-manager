@@ -32,17 +32,19 @@ import javax.swing.JTable;
  */
 public class TableUpdateTaiKhoan2 extends javax.swing.JPanel {
 
-    JFrame frame,framecontent;
+    JFrame frame, framecontent;
     QuanLyTaiKhoan_BUS qltk_BUS = new QuanLyTaiKhoan_BUS();
     ArrayList dataCTTK;
 
     ArrayList data;
+    MainConTentTaiKhoan2 frametaikhoan;
 
-    public TableUpdateTaiKhoan2(ArrayList data, JFrame frame, JTable tableTK,JFrame framecontent) {
+    public TableUpdateTaiKhoan2(ArrayList data, JFrame frame, MainConTentTaiKhoan2 frametaikhoan, JTable tableTK, JFrame framecontent) {
         initComponents();
         this.frame = frame;
-        this.framecontent=framecontent;
+        this.framecontent = framecontent;
         this.data = data;
+        this.frametaikhoan = frametaikhoan;
         ArrayList dsnv = new ArrayList();
         dsnv = qltk_BUS.layDanhSachNV();
         Vector dsnv0 = (Vector) dsnv.get(0);
@@ -130,7 +132,7 @@ public class TableUpdateTaiKhoan2 extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnSua)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,9 +164,7 @@ public class TableUpdateTaiKhoan2 extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,8 +211,7 @@ public class TableUpdateTaiKhoan2 extends javax.swing.JPanel {
             }
             if (check == true) {
                 JOptionPane.showMessageDialog(null, "Sửa sản phẩm thành công !");
-                MainConTentTaiKhoan content = new MainConTentTaiKhoan((MainFrame) this.framecontent);
-                content.setDefautlTaiKhoan();
+                frametaikhoan.setDefautlTaiKhoan();
                 frame.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại !");

@@ -80,9 +80,11 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
         jTable1.setModel(model);
-        btnThem.setBorder(new RoundedBorderer(new Color(0, 102, 102), 2, 30));
-        btnXoa.setBorder(new RoundedBorderer(new Color(0, 102, 102), 2, 30));
-        btnHoanThanh.setBorder(new RoundedBorderer(new Color(0, 102, 102), 2, 30));
+        btnThem.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
+        btnXoa.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
+        btnHoanThanh.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
+        btnGoBack.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
+
         setComboboxNhaCungCap();
         DisplayDetailPhieuNhap();
 
@@ -169,7 +171,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cbbNhaCungCap = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGoBack = new javax.swing.JButton();
         jPanel5 = new GraphicsPanel(20,new Color(255, 255, 255));
         jLabel2 = new javax.swing.JLabel();
 
@@ -199,20 +201,20 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setText("Tổng Số Lượng: ");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setText("Tổng TIền: ");
 
         btnTongSoLuong.setText("10");
 
         btnTongTien.setText("10000");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setText("Danh Sách Sản Phẩm Nhập");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setText("Ngày Nhập: ");
 
         btnNgayNhap.setText("jLabel8");
@@ -220,6 +222,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btnThem.setBackground(new java.awt.Color(51, 153, 0));
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +231,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         });
 
         btnXoa.setBackground(new java.awt.Color(204, 0, 0));
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +269,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnHoanThanh, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -273,6 +277,8 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Tên Nhà Cung Cấp:");
 
+        cbbNhaCungCap.setBackground(new java.awt.Color(0, 0, 0));
+        cbbNhaCungCap.setForeground(new java.awt.Color(255, 255, 255));
         cbbNhaCungCap.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbNhaCungCapItemStateChanged(evt);
@@ -308,13 +314,13 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/go-back-2-894878.png"))); // NOI18N
-        jButton1.setText("Quay Lại");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGoBack.setBackground(new java.awt.Color(204, 0, 0));
+        btnGoBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGoBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone_sales_management/UI/Icon/go-back-2-894878.png"))); // NOI18N
+        btnGoBack.setText("Quay Lại");
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGoBackActionPerformed(evt);
             }
         });
 
@@ -334,7 +340,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnNgayNhap))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -353,7 +359,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
         jPanel3Layout.setVerticalGroup(
@@ -380,7 +386,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(btnTongTien))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGoBack, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -415,7 +421,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(27, 27, 27))
+                        .addGap(30, 30, 30))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -442,7 +448,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
 
         MainConTentPhieuNhap a = new MainConTentPhieuNhap(frame, panel);
         panel.removeAll();
@@ -451,7 +457,7 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
         panel.add(a);
         a.validate();
 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGoBackActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
@@ -492,21 +498,19 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
 
         if (dataChiTietPhieuNhap.size() != 0) {
-
             int indexmncc = cbbNhaCungCap.getSelectedIndex();
             Vector ncc = (Vector) danhsachNhaCungCap.get(indexmncc);
             int mancc = (int) ncc.get(0);
             int soluong = Integer.parseInt(btnTongSoLuong.getText());
             double tongtien = Double.valueOf(btnTongTien.getText());
-
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String formatDateTime = now.format(format);
             modelPhieuNhap = new Model_PhieuNhap(manv, mancc, soluong, formatDateTime, tongtien);
             Mapn = qlpn.AddPhieuNhapHang(modelPhieuNhap);
+            System.out.println(Mapn);
             for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : dataChiTietPhieuNhap) {
                 model_PhieuNhap_ChiTiet.setMapn(Mapn);
                 qlpn.AddChiTietPhieuNhap(model_PhieuNhap_ChiTiet);
-
             }
             dataChiTietPhieuNhap.clear();
             DisplayDetailPhieuNhap();
@@ -526,19 +530,19 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
-        ArrayList<Model_PhieuNhap_ChiTiet> arr = new ArrayList<>() ;
-           for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : dataChiTietPhieuNhap) {
-               if(model_PhieuNhap_ChiTiet.getMasp()!=masp)
-               {
-                   arr.add(model_PhieuNhap_ChiTiet);
-               }
+        ArrayList<Model_PhieuNhap_ChiTiet> arr = new ArrayList<>();
+        for (Model_PhieuNhap_ChiTiet model_PhieuNhap_ChiTiet : dataChiTietPhieuNhap) {
+            if (model_PhieuNhap_ChiTiet.getMasp() != masp) {
+                arr.add(model_PhieuNhap_ChiTiet);
+            }
         }
-        dataChiTietPhieuNhap=arr;
+        dataChiTietPhieuNhap = arr;
         DisplayDetailPhieuNhap();
     }//GEN-LAST:event_btnXoaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGoBack;
     private javax.swing.JButton btnHoanThanh;
     private javax.swing.JLabel btnNgayNhap;
     private javax.swing.JButton btnThem;
@@ -546,7 +550,6 @@ public class PanelThemPhieuNhapHang extends javax.swing.JPanel {
     private javax.swing.JLabel btnTongTien;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbbNhaCungCap;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

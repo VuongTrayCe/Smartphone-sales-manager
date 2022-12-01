@@ -41,10 +41,10 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
     MainFrame mainframe;
     JPanel panelcenter;
 
-    public MainContentBaoHanh(MainFrame mainFrame,JPanel panel) {
+    public MainContentBaoHanh(MainFrame mainFrame, JPanel panel) {
         initComponents();
-        this.mainframe=mainFrame;
-        this.panelcenter=panel;
+        this.mainframe = mainFrame;
+        this.panelcenter = panel;
         setColumnModelBH();
         setColumnModelCTBH();
         setDefaultTableBaoHanh();
@@ -55,6 +55,8 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         cbbsp.setModel(modelcbbSP);
         btnThemCT.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
         btnDeleteCTSP.setBorder(new RoundedBorderer(new Color(255, 255, 255), 2, 30));
+        jButton1.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
+
     }
 
     public void setColumnModelBH() {
@@ -196,7 +198,9 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
         jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", " " }));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Thông Tin Bảo Hành");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +218,7 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -687,7 +691,7 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
                 if (checkCoMaChiTiet()) {
                     if (qlbh_BUS.xoaCTBH(mactbh)) {
                         JOptionPane.showMessageDialog(null, "Xóa thành công!");
-                        mactbh =-1;
+                        mactbh = -1;
                         setDefaultTableCTBH();
                     } else {
                         JOptionPane.showMessageDialog(null, "Xóa thất bại!");
@@ -705,12 +709,12 @@ public class MainContentBaoHanh extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemCTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          PanelThongTinBaoHanh a = new PanelThongTinBaoHanh(mainframe, panelcenter);
+        PanelThongTinBaoHanh a = new PanelThongTinBaoHanh(mainframe, panelcenter);
         jPanel1.removeAll();
         a.setBounds(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         jPanel1.setLayout(new GridLayout());
-        jPanel1.add(a); 
-                a.validate();
+        jPanel1.add(a);
+        a.validate();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

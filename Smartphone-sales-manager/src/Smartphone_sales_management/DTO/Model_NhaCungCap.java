@@ -11,7 +11,7 @@ package Smartphone_sales_management.DTO;
 public class Model_NhaCungCap {
     private int Macc;
     private String Tenncc;
-    private int SDT;
+    private String SDT;
     private String DiaChi;
     private String TrangThai;
 
@@ -34,11 +34,11 @@ public class Model_NhaCungCap {
         this.Tenncc = Tenncc;
     }
 
-    public int getSDT() {
+    public String getSDT() {
         return SDT;
     }
 
-    public void setSDT(int SDT) {
+    public void setSDT(String SDT) {
         this.SDT = SDT;
     }
 
@@ -58,7 +58,7 @@ public class Model_NhaCungCap {
         this.TrangThai = TrangThai;
     }
     public  String[] toArrayString(){
-        return new String[] {Integer.toString(Macc),Tenncc,Integer.toString(SDT),DiaChi,TrangThai};
+        return new String[] {Integer.toString(Macc),Tenncc,SDT,DiaChi,TrangThai};
         
       }
 }

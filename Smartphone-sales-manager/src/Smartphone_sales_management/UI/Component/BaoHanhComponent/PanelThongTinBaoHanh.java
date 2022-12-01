@@ -5,7 +5,9 @@
 package Smartphone_sales_management.UI.Component.BaoHanhComponent;
 
 import Smartphone_sales_management.BUS.QuanLiBaoHanh_BUS;
+import Smartphone_sales_management.UI.Component.PhieuNhap.RoundedBorderer;
 import Smartphone_sales_management.UI.Main.MainFrame;
+import Smartphone_sales_management.UI.Swing.GraphicsTextFied;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -49,6 +51,7 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
         model.addColumn("Thời Gian Bảo Hành");
 
         model.addColumn("Thời Gian Còn Lại");
+        jButton1.setBorder(new RoundedBorderer(new Color(255,255,255), 2, 30));
 
         jTable1.setOpaque(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
@@ -130,10 +133,12 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtTimKiem = new javax.swing.JTextField();
+        txtTimKiem = new GraphicsTextFied(10);
         jLabel2 = new javax.swing.JLabel();
         cbbTrangThai = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Thông Tin Bảo Hành");
@@ -157,6 +162,7 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
         jTable1.setFocusable(false);
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.setRowHeight(30);
+        jTable1.setSelectionBackground(new java.awt.Color(204, 0, 0));
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
@@ -169,7 +175,9 @@ public class PanelThongTinBaoHanh extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("||<- Quay Lại");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -88,6 +88,12 @@ public class ThongKeBaoCaoNhapHang_BUS {
         return tkbc.getHangHoa_BieuDo();
     }
 
+    public JDBCCategoryDataset getDataNhaCungCap_BieuDo() {
+                return tkbc.getNhaCungCap_BieuDo();
+
+        
+    }
+
 
     
     

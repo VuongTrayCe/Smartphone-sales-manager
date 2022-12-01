@@ -92,16 +92,16 @@ public class QuanLiDonHang_DAO {
         ArrayList result = new ArrayList();
         dbConnect.setupConnection();
         try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai,sanpham.Icon,giasanpham.Giaban,khachhang.Tenkh,donhang.Ngayban,chitietdonhang.mactdh,(chitietdonhang.giasaukm * chitietdonhang.Soluong)AS \"Tong chi tiet gia\"\n"
-                    + "                                                                               FROM donhang\n"
-                    + "                                                                               INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
-                    + "                                                                              INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
-                    + "                                                                                INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
-                    + "                                                                               INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm  AND chitietkhuyenmai.TrangThai = \"T\"\n"
-                    + "                                                                              INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
-                    + "                                                                             INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh AND chitietbaohanh.TrangThai =\"T\"\n"
-                    + "                                                                              INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp AND giasanpham.TrangThai = \"T\"\n"
-                    + "                                                                           INNER JOIN khachhang ON khachhang.Makh = donhang.Makh");
+            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT donhang.Madh, sanpham.Tensp, sanpham.Loaisp,chitietdonhang.Soluong, khuyenmai.Ptkm,baohanh.Thoigianbaohanh, chitietdonhang.giaban, chitietdonhang.giasaukm,donhang.Trangthai,sanpham.Icon,giasanpham.Giaban,khachhang.Tenkh,donhang.Ngayban\n"
+                    + "                                        FROM donhang\n"
+                    + "                                        INNER JOIN chitietdonhang ON chitietdonhang.Madh = donhang.Madh AND donhang.Madh = ?\n"
+                    + "                                       INNER JOIN sanpham ON sanpham.Masp = chitietdonhang.Masp\n"
+                    + "                                        INNER JOIN chitietkhuyenmai ON chitietkhuyenmai.Masp = sanpham.Masp\n"
+                    + "                                        INNER JOIN khuyenmai ON khuyenmai.Makm = chitietkhuyenmai.Makm \n"
+                    + "                                      INNER JOIN chitietbaohanh ON chitietbaohanh.Masp = sanpham.Masp\n"
+                    + "                                      INNER JOIN baohanh ON baohanh.Mabaohanh = chitietbaohanh.Mabaohanh\n"
+                    + "                                      INNER JOIN giasanpham ON giasanpham.Masp = sanpham.Masp\n"
+                    + "                                      INNER JOIN khachhang ON khachhang.Makh = donhang.Makh");
             stm.setInt(1, Madh);
             rs = stm.executeQuery();
             if (rs != null) {
@@ -120,9 +120,6 @@ public class QuanLiDonHang_DAO {
                     a.add((int)rs.getDouble(11));
                     a.add(rs.getString(12));
                     a.add(rs.getDate(13));
-                    a.add(rs.getInt(14));
-                    System.out.println(rs.getInt(15));
-                    a.add(rs.getInt(15));
                     result.add(a);
                 }
             }
@@ -325,69 +322,16 @@ public class QuanLiDonHang_DAO {
         }
     }
 
-    public ArrayList chitietSPvaSL(int Mactdh) {
-        ArrayList data = new ArrayList();
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT chitietdonhang.Masp, chitietdonhang.Soluong\n"
-                    + "FROM chitietdonhang\n"
-                    + "WHERE chitietdonhang.mactdh = ? ");
-            stm.setInt(1, Mactdh);
-            rs = stm.executeQuery();
-            if (rs != null) {
-                if (rs.next()) {
-                    data.add(rs.getInt("Masp"));
-                    data.add(rs.getInt("Soluong"));
-                }
-            }
-            return data;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            dbConnect.closeConnection();
-        }
-    }
-
     public int SLofSP(int Masp) {
-        int SL = 0;
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT sanpham.soluong \n"
-                    + "FROM sanpham\n"
-                    + "WHERE sanpham.Masp= ?");
-            stm.setInt(1, Masp);
-            rs = stm.executeQuery();
-            if (rs != null) {
-                if (rs.next()) {
-                    SL = (int) rs.getInt("soluong");
-                }
-            }
-            return SL;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        } finally {
-            dbConnect.closeConnection();
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public boolean updateSLSP(int Masp, int SL) {
-        boolean success = true;
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE sanpham\n"
-                    + "SET sanpham.soluong = ? WHERE sanpham.Masp = ?");
-            stm.setInt(1, SL);
-            stm.setInt(2, Masp);
-            stm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return success = false;
-        } finally {
-            dbConnect.closeConnection();
-        }
-        return success;
+    public boolean updateSLSP(int Masp, int SLTong) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList chitietSPvaSL(int Mactdh) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

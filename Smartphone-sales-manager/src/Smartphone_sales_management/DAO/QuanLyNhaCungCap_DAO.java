@@ -29,17 +29,17 @@ public class QuanLyNhaCungCap_DAO {
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("select * from nhacungcap where TrangThai='T'");
             rs = stm.executeQuery();
-            int i=1;
+//            int i=1;
             while (rs.next()) {
-                Vector a = new Vector();
-                a.add((i));
-                a.add(rs.getInt("Mancc"));
-                a.add(rs.getString("Tenncc"));
-                a.add(rs.getString("SDT"));
-                a.add(rs.getString("DiaChi"));
-                a.add(rs.getString("DiaChi"));
+               Model_NhaCungCap a = new Model_NhaCungCap();
+//                a.add((i));
+                a.setMacc(rs.getInt("Mancc"));
+                a.setTenncc(rs.getString("Tenncc"));
+                a.setSDT(rs.getString("SDT"));
+                a.setDiaChi(rs.getString("DiaChi"));
+//                a.set(rs.getString("DiaChi"));
                 dsncc.add(a);
-                 i++;
+                
             }
             return dsncc;
         } catch (SQLException ex) {

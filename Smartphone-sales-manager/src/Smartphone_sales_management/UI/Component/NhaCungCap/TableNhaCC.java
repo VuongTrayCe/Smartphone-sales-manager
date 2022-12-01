@@ -41,7 +41,7 @@ public class TableNhaCC extends javax.swing.JPanel {
         
         initComponents();
         this.mainnhacc = mainnhacc;
-        model.addColumn("STT");
+//        model.addColumn("STT");
         model.addColumn("Mã nhà cung cấp");        
         model.addColumn("Tên nhà cung cấp");
         model.addColumn("Số điện thoại");
@@ -60,14 +60,14 @@ public class TableNhaCC extends javax.swing.JPanel {
         jTable1.getColumnModel().getColumn(1).setMinWidth(100);
         jTable1.getColumnModel().getColumn(2).setMinWidth(130);
         jTable1.getColumnModel().getColumn(3).setMinWidth(70);
-        jTable1.getColumnModel().getColumn(4).setMinWidth(70);
+//        jTable1.getColumnModel().getColumn(4).setMinWidth(70);
          cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setHorizontalAlignment(JLabel.CENTER);
         jTable1.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
         jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+//        jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
     }
    
 
@@ -75,15 +75,16 @@ public class TableNhaCC extends javax.swing.JPanel {
   public void SetDefaultTable(String keyWord) {
         jTable1.removeAll();
         model.setRowCount(0);
-        ArrayList dataList = new ArrayList();
+        ArrayList<Model_NhaCungCap> dataList = new ArrayList<Model_NhaCungCap>();
         dataList = qlncc.getDanhSachSanPham(keyWord);
         for (int i = 0; i < dataList.size(); i++) {
             
-           model.addRow((Vector<?>) dataList.get(i));
+           model.addRow(dataList.get(i).toArrayString());
         }
         jScrollPane1.repaint();
     }
-  
+
+            
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,10 +134,10 @@ public class TableNhaCC extends javax.swing.JPanel {
         Model_NhaCungCap NhaCC = new Model_NhaCungCap();
 	TableModel model =jTable1.getModel();
 
-        String Mancc = model.getValueAt(index, 1).toString();
-         String Tenncc = model.getValueAt(index, 2).toString();
-         String sdt = model.getValueAt(index, 3).toString();
-        String diachi = model.getValueAt(index, 4).toString();
+        String Mancc = model.getValueAt(index,0 ).toString();
+         String Tenncc = model.getValueAt(index, 1).toString();
+         String sdt = model.getValueAt(index, 2).toString();
+        String diachi = model.getValueAt(index, 3).toString();
         NhaCC.setMacc(Integer.parseInt(Mancc));
         NhaCC.setTenncc(Tenncc);
         NhaCC.setSDT(sdt);

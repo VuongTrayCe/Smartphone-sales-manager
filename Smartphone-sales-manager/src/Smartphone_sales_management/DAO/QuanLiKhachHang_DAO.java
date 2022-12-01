@@ -4,7 +4,7 @@
  */
 package Smartphone_sales_management.DAO;
 import Smartphone_sales_management.DBConnect;
-import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
+import Smartphone_sales_management.UI.Component.KhachHanggComponent2.KhachHangg2;
 import Smartphone_sales_management.UI.Model.Model_KhachHang;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

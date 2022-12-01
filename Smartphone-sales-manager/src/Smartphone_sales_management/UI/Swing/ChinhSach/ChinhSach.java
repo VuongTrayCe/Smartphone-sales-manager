@@ -21,7 +21,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
 import Smartphone_sales_management.UI.Component.BaoHanhComponent.MainContentBaoHanh;
-import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
 import Smartphone_sales_management.UI.Component.KhuyenMaiComponent.KhuyenMaiGUI;
 import Smartphone_sales_management.UI.Component.NhaCungCap.MainContentNCC;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;

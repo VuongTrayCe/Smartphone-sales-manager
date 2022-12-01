@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Smartphone_sales_management.UI.Component.KhachHanggComponent;
+package Smartphone_sales_management.UI.Component.KhachHanggComponent2;
 import Smartphone_sales_management.BUS.QuanLyKhachHang_BUS;
 import Smartphone_sales_management.BUS.QuanLyNhanVien_BUS;
 import Smartphone_sales_management.DTO.Model_NhanVien;
@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Hiep
  */
-public class KhachHangg extends javax.swing.JPanel {
+public class KhachHangg2 extends javax.swing.JPanel {
 
     private QuanLyKhachHang_BUS qlkh = new QuanLyKhachHang_BUS();
        DefaultTableModel model;
@@ -46,7 +46,7 @@ public class KhachHangg extends javax.swing.JPanel {
     /**
      * Creates new form KhachHangg
      */
-    public KhachHangg() {
+    public KhachHangg2() {
         initComponents();
         txtXoa.setEnabled(false);
         txtSua.setEnabled(false);

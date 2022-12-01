@@ -19,7 +19,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import static Smartphone_sales_management.UI.Component.BanHangComponent.TableDetailBH.selectedIndex;
-import Smartphone_sales_management.UI.Component.KhachHanggComponent.KhachHangg;
+import Smartphone_sales_management.UI.Component.KhachHanggComponent2.KhachHangg2;
+import Smartphone_sales_management.UI.Component.KhachHanggComponent2.KhachHangg2;
 import Smartphone_sales_management.UI.Component.NhaCungCap.MainContentNCC;
 import Smartphone_sales_management.UI.Component.NhanVienComponent.NhanVienGUI;
 import Smartphone_sales_management.UI.Main.MainFrame;
@@ -244,7 +245,7 @@ public class ConNguoi extends javax.swing.JPanel {
     }//GEN-LAST:event_panelNhanVienMouseClicked
 
     private void panelKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKhachHangMouseClicked
-        KhachHangg a = new KhachHangg();
+        KhachHangg2  a =new KhachHangg2();
         panel.removeAll();
 
         a.setBounds(0, 0, panel.getWidth(), panel.getHeight());

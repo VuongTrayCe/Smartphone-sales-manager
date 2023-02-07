@@ -66,10 +66,12 @@ public class TableDetailBH extends javax.swing.JPanel {
         btnThem.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Boolean flag = true;
                 if (model.getSl() == 0) {
                     JOptionPane.showMessageDialog(null, " Sản Phẩm đã hết");
+                    flag = false;
+
                 }
-                Boolean flag = true;
                 for (Model_BanHang_ChiTietHoaDon object : arrchitiethoadon) {
                     if (object.getMasp() == model.getMasp()) {
                         if (object.getSoluong() >= model.getSl()) {

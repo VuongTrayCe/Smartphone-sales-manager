@@ -46,22 +46,18 @@
                               <Component id="jLabel3" min="-2" pref="83" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="cbbSanPham" max="32767" attributes="0"/>
-                                  <Component id="txtGiaNhap" min="-2" pref="167" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jSoluong" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cbbSanPham" max="32767" attributes="0"/>
+                              <Component id="txtGiaNhap" min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="jSoluong" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Component id="btnAddSanPham" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                  <EmptySpace pref="83" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -71,12 +67,9 @@
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnAddSanPham" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="cbbSanPham" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="cbbSanPham" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -121,6 +114,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="jSoluong">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSoluongStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtGiaNhap">
         </Component>
@@ -136,13 +132,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnAddSanPham">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Smartphone_sales_management/UI/Icon/Add - Copy.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnAdd">
           <Properties>

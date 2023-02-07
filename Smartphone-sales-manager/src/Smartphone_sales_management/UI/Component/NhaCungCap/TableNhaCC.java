@@ -13,10 +13,12 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -29,6 +31,7 @@ public class TableNhaCC extends javax.swing.JPanel {
     TableNhaCC nhacc;
     EventNhaCC event;
     private MainContentNCC mainnhacc;
+    private DefaultTableCellRenderer cellRenderer;
     /**
      * Creates new form TableNhaCC
      */
@@ -38,27 +41,37 @@ public class TableNhaCC extends javax.swing.JPanel {
         
         initComponents();
         this.mainnhacc = mainnhacc;
-        
-        model.addColumn("MaNhaCungCap");        
-        model.addColumn("TenNhaCungCap");
-        model.addColumn("SDT");
-        model.addColumn("DiaChi");
+//        model.addColumn("STT");
+        model.addColumn("Mã nhà cung cấp");        
+        model.addColumn("Tên nhà cung cấp");
+        model.addColumn("Số điện thoại");
+        model.addColumn("Địa chỉ");
           jTable1.setOpaque(false);
          jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().getColumnModel().setColumnMargin(1);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15) {
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14) {
         });
-        jTable1.setRowHeight(25);
         jTable1.getTableHeader().setForeground(Color.WHITE);
         jTable1.getTableHeader().setBackground(new Color(14, 14, 14));
+
         SetDefaultTable("");
         jTable1.setModel(model);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);   
+              jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTable1.getColumnModel().getColumn(1).setMinWidth(100);
+        jTable1.getColumnModel().getColumn(2).setMinWidth(130);
+        jTable1.getColumnModel().getColumn(3).setMinWidth(70);
+//        jTable1.getColumnModel().getColumn(4).setMinWidth(70);
+         cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(cellRenderer);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
+//        jTable1.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
     }
    
 
-        
+ 
   public void SetDefaultTable(String keyWord) {
         jTable1.removeAll();
         model.setRowCount(0);
@@ -66,11 +79,12 @@ public class TableNhaCC extends javax.swing.JPanel {
         dataList = qlncc.getDanhSachSanPham(keyWord);
         for (int i = 0; i < dataList.size(); i++) {
             
-            model.addRow( dataList.get(i).toArrayString());
+           model.addRow(dataList.get(i).toArrayString());
         }
         jScrollPane1.repaint();
     }
-  
+
+            
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +97,9 @@ public class TableNhaCC extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -91,6 +108,8 @@ public class TableNhaCC extends javax.swing.JPanel {
 
             }
         ));
+        jTable1.setRowHeight(35);
+        jTable1.setSelectionBackground(new java.awt.Color(255, 0, 51));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -115,14 +134,15 @@ public class TableNhaCC extends javax.swing.JPanel {
         Model_NhaCungCap NhaCC = new Model_NhaCungCap();
 	TableModel model =jTable1.getModel();
 
-        String Mancc = model.getValueAt(index,0).toString();
+        String Mancc = model.getValueAt(index,0 ).toString();
          String Tenncc = model.getValueAt(index, 1).toString();
          String sdt = model.getValueAt(index, 2).toString();
         String diachi = model.getValueAt(index, 3).toString();
         NhaCC.setMacc(Integer.parseInt(Mancc));
         NhaCC.setTenncc(Tenncc);
-        NhaCC.setSDT(Integer.parseInt(sdt));
+        NhaCC.setSDT(sdt);
         NhaCC.setDiaChi(diachi); 
+
         mainnhacc.truyendulieu(NhaCC);
     }//GEN-LAST:event_jTable1MouseClicked
 

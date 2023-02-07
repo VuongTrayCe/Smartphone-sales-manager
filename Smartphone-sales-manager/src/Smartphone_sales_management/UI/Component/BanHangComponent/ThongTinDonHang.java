@@ -67,7 +67,6 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         this.panelbanhang=panelbanhang;
 
         Model_BanHang_ChiTietHoaDon tets = data.get(0);
-        danhsachkhachhang = qlbh_bus.getALLKhachHang();
 //        btnComplete.setBackground(new Color(255, 255, 255));
         btnComplete.setBorder(null);
         btnBack.setBorder(null);
@@ -100,13 +99,16 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 
 
     }
-
     // load dữ liệu liên quan lên form
     public void LoadInforData() {
+        danhsachkhachhang = qlbh_bus.getALLKhachHang();
+        cbbKhachHang.removeAllItems();
         for (Object khachhang : danhsachkhachhang) {
             Vector a = (Vector) khachhang;
             cbbKhachHang.addItem((a.get(1)).toString());
+            System.out.println("Da vao");
         }
+                cbbKhachHang.setSelectedIndex(0);
         Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
         cbDiem.setText(b.get(2).toString());
         diem = (int) b.get(2);
@@ -518,7 +520,7 @@ public class ThongTinDonHang extends javax.swing.JPanel {
         JDialog inforDonHang = new JDialog(win, Dialog.ModalityType.APPLICATION_MODAL);
 //        changePwdDialog.setUndecorated(true);
 //          ThongTinDonHang donhang = new ThongTinDonHang(data,this,inforDonHang);
-        AddKhachHang themkhachhang = new AddKhachHang(inforDonHang, this);
+        AddKhachHang themkhachhang = new AddKhachHang(inforDonHang,ThongTinDonHang.this);
         inforDonHang.setSize(626, 488);
         inforDonHang.setLayout(new GridLayout());
         inforDonHang.setTitle("Thêm khách hàng");
@@ -558,10 +560,14 @@ public class ThongTinDonHang extends javax.swing.JPanel {
 
     private void cbbKhachHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbKhachHangItemStateChanged
 
+        if(cbbKhachHang.getSelectedIndex()!=-1)
+        {
+            
         Vector b = (Vector) danhsachkhachhang.get(cbbKhachHang.getSelectedIndex());
         cbDiem.setText(b.get(2).toString());
         diem = (int) b.get(2);
         cbDiem.setSelected(false);
+        }
 
     }//GEN-LAST:event_cbbKhachHangItemStateChanged
 

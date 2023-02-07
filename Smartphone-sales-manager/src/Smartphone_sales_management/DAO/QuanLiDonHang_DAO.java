@@ -120,9 +120,6 @@ public class QuanLiDonHang_DAO {
                     a.add((int)rs.getDouble(11));
                     a.add(rs.getString(12));
                     a.add(rs.getDate(13));
-                    a.add(rs.getInt(14));
-                    System.out.println(rs.getInt(15));
-                    a.add(rs.getInt(15));
                     result.add(a);
                 }
             }
@@ -325,69 +322,16 @@ public class QuanLiDonHang_DAO {
         }
     }
 
-    public ArrayList chitietSPvaSL(int Mactdh) {
-        ArrayList data = new ArrayList();
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT chitietdonhang.Masp, chitietdonhang.Soluong\n"
-                    + "FROM chitietdonhang\n"
-                    + "WHERE chitietdonhang.mactdh = ? ");
-            stm.setInt(1, Mactdh);
-            rs = stm.executeQuery();
-            if (rs != null) {
-                if (rs.next()) {
-                    data.add(rs.getInt("Masp"));
-                    data.add(rs.getInt("Soluong"));
-                }
-            }
-            return data;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            dbConnect.closeConnection();
-        }
-    }
-
     public int SLofSP(int Masp) {
-        int SL = 0;
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("SELECT sanpham.soluong \n"
-                    + "FROM sanpham\n"
-                    + "WHERE sanpham.Masp= ?");
-            stm.setInt(1, Masp);
-            rs = stm.executeQuery();
-            if (rs != null) {
-                if (rs.next()) {
-                    SL = (int) rs.getInt("soluong");
-                }
-            }
-            return SL;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        } finally {
-            dbConnect.closeConnection();
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public boolean updateSLSP(int Masp, int SL) {
-        boolean success = true;
-        dbConnect.setupConnection();
-        try {
-            PreparedStatement stm = dbConnect.getConnection().prepareStatement("UPDATE sanpham\n"
-                    + "SET sanpham.soluong = ? WHERE sanpham.Masp = ?");
-            stm.setInt(1, SL);
-            stm.setInt(2, Masp);
-            stm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return success = false;
-        } finally {
-            dbConnect.closeConnection();
-        }
-        return success;
+    public boolean updateSLSP(int Masp, int SLTong) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ArrayList chitietSPvaSL(int Mactdh) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

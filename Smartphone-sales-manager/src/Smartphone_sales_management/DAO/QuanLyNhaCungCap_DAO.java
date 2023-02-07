@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 /**
  *
@@ -23,20 +24,22 @@ public class QuanLyNhaCungCap_DAO {
 
     public ArrayList<Model_NhaCungCap> getDanhSachNhaCC_DAO() {
 
-        ArrayList<Model_NhaCungCap> dsncc = new ArrayList<Model_NhaCungCap>();
+        ArrayList dsncc = new ArrayList();
         db.setupConnection();
         try {
             PreparedStatement stm = db.getConnection().prepareStatement("select * from nhacungcap where TrangThai='T'");
             rs = stm.executeQuery();
+//            int i=1;
             while (rs.next()) {
-                Model_NhaCungCap a = new Model_NhaCungCap();
+               Model_NhaCungCap a = new Model_NhaCungCap();
+//                a.add((i));
                 a.setMacc(rs.getInt("Mancc"));
                 a.setTenncc(rs.getString("Tenncc"));
-                a.setSDT(rs.getInt("SDT"));
+                a.setSDT(rs.getString("SDT"));
                 a.setDiaChi(rs.getString("DiaChi"));
-                a.setDiaChi(rs.getString("DiaChi"));
+//                a.set(rs.getString("DiaChi"));
                 dsncc.add(a);
-
+                
             }
             return dsncc;
         } catch (SQLException ex) {
@@ -53,7 +56,7 @@ public class QuanLyNhaCungCap_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 //                        preparedStatement.setInt(1, NhanVien.getMaNV());
 			preparedStatement.setString(1, NhaCungCap.getTenncc());
-                        preparedStatement.setInt(2, NhaCungCap.getSDT());
+                        preparedStatement.setString(2, NhaCungCap.getSDT());
                         preparedStatement.setString(3, NhaCungCap.getDiaChi());
                         preparedStatement.setString(4, NhaCungCap.getTrangThai());
                         
@@ -125,10 +128,9 @@ public class QuanLyNhaCungCap_DAO {
 			preparedStatement = db.getConnection().prepareStatement(sqlString);
 
 			preparedStatement.setString(1, NhaCungCap.getTenncc());
-			preparedStatement.setInt(2, NhaCungCap.getSDT());
+			preparedStatement.setString(2, NhaCungCap.getSDT());
                         preparedStatement.setString(3, NhaCungCap.getDiaChi());
                         preparedStatement.setInt(4,NhaCungCap.getMacc());
-
                         int n = preparedStatement.executeUpdate();
                         if (n != 0) {
                      JOptionPane.showMessageDialog(null, "Update dữ liệu thành công", "Thông báo",
@@ -152,6 +154,4 @@ public class QuanLyNhaCungCap_DAO {
 
 		return isSuccess;
 	}
-       
-       
 }

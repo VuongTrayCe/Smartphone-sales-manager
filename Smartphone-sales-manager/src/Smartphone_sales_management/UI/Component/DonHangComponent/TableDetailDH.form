@@ -47,7 +47,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel5" pref="410" max="32767" attributes="0"/>
+                      <Component id="jPanel5" pref="460" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
@@ -172,7 +172,7 @@
                                               <Component id="lbSoLuong" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbLoaiSP" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="50" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lbcSL1" alignment="1" min="-2" max="-2" attributes="0"/>
                                               <Component id="lbcLoai" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -518,9 +518,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="confirmBtn" max="32767" attributes="0"/>
+                          <Component id="confirmBtn" pref="197" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                          <Component id="deleteBtn" max="32767" attributes="0"/>
+                          <Component id="deleteBtn" pref="169" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -577,6 +577,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteBtnMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

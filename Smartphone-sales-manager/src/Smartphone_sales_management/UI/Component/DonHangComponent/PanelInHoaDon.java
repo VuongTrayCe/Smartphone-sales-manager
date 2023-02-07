@@ -28,10 +28,10 @@ public class PanelInHoaDon extends javax.swing.JPanel {
     String Madonhang;
     String dulieudonhang = "";
     int i = 1;
-    double total = 0;
+    int total = 0;
     String tongtien = "";
-    String tenkhachhang="";
-    String ngaybandonhang="";
+    String tenkhachhang = "";
+    String ngaybandonhang = "";
     JFrame frame;
     //y.get(1).toString() teen san pham
     //y.get(3).toString() so luong
@@ -39,7 +39,7 @@ public class PanelInHoaDon extends javax.swing.JPanel {
     //y.get(7).toString() gia sau km
     // y.get(6).toString() tong gia
 
-    public PanelInHoaDon(ArrayList dsct,JFrame frame) {
+    public PanelInHoaDon(ArrayList dsct, JFrame frame) {
         initComponents();
         this.frame = frame;
         this.dsct = dsct;
@@ -53,8 +53,9 @@ public class PanelInHoaDon extends javax.swing.JPanel {
             String soluong = "Số lượng: \t\t\t" + y.get(3).toString() + "\n";
             String gia = "Giá: \t\t\t" + y.get(10).toString() + "\n";
             String giaSauKM = "Giá sau khuyến mãi: \t\t" + y.get(7).toString() + "\n";
-            String tongGia = "Sub Total :\t\t\t" + y.get(6).toString() + "\n";
-            Double subtotal = Double.parseDouble(y.get(6).toString());
+            int TongGia = Integer.parseInt(y.get(7).toString()) * Integer.parseInt(y.get(3).toString());
+            String tongGia = "Sub Total :\t\t\t" + String.valueOf(TongGia) + "\n";
+            int subtotal = Integer.parseInt(String.valueOf(TongGia));
             String underline = "\t\t=====================================\n";
             String data = stt + tenSp + soluong + gia + giaSauKM + tongGia + underline;
             dulieudonhang += data;
@@ -62,16 +63,16 @@ public class PanelInHoaDon extends javax.swing.JPanel {
             String tong = String.valueOf(total);
             String tenKH = y.get(11).toString();
             Date ngayBan = (Date) y.get(12);
-            ngaybandonhang=ngayBan.toString();
+            ngaybandonhang = ngayBan.toString();
             tongtien = tong;
-            tenkhachhang=tenKH;
+            tenkhachhang = tenKH;
         };
-        textReceipt.append("\t\t\t Hóa đơn \t" + Madonhang+
-                "\n Tên Khách Hàng: \t"+tenkhachhang+
-                "\n Ngày bán: \t\t"+ngaybandonhang
+        textReceipt.append("\t\t\t Hóa đơn \t" + Madonhang
+                + "\n Tên Khách Hàng: \t" + tenkhachhang
+                + "\n Ngày bán: \t\t" + ngaybandonhang
                 + "\n\n=============================================================================================\n"
                 + dulieudonhang + "\n"
-                + "Tổng tiền\t\t\t" + tongtien
+                + "Tổng tiền\t\t\t" + tongtien + "VND"
                 + "\n\n\n\t\t==============  Cảm ơn quý khách! =============="
         );
     }
@@ -183,10 +184,10 @@ public class PanelInHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-         int a = JOptionPane.showConfirmDialog(null, "Bạn muốn thoát ?", "Thoát ", JOptionPane.YES_NO_OPTION);
-         if(a==JOptionPane.YES_OPTION){
-             frame.dispose();
-         }
+        int a = JOptionPane.showConfirmDialog(null, "Bạn muốn thoát ?", "Thoát ", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            frame.dispose();
+        }
     }//GEN-LAST:event_btnExitActionPerformed
 
 

@@ -73,7 +73,7 @@ public class TableDetailDH extends javax.swing.JPanel {
         lbcKhuyenMai.setText(dataDetail.get(4).toString() + "%");
         lbcBHKT.setText(dataDetail.get(5).toString());
         lbcGia1.setText(dataDetail.get(10).toString());
-        lbtongchitietgia.setText(dataDetail.get(14).toString());
+        lbtongchitietgia.setText(dataDetail.get(6).toString());
         lbcgiasaukm.setText(dataDetail.get(7).toString());
         trangthailb1.setText(dataDetail.get(8).toString());
         txtslct.setText(String.valueOf(slctdh));

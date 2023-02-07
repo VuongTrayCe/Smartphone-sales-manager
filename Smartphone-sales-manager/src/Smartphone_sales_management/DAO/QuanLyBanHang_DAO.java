@@ -59,15 +59,12 @@ public class QuanLyBanHang_DAO {
         db.setupConnection();
         try {
 //                                                            System.out.println("âfasf");
-
-            PreparedStatement stm = db.getConnection().prepareStatement("select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm,baohanh.Thoigianbaohanh,khuyenmai.Makm,baohanh.Mabaohanh,chitietkhuyenmai.Machitietkhuyenmai,chitietbaohanh.Machitietbaohanh,giasanpham.Magiasp "
-                    + "from sanpham,chitietphieunhap,nhacungcap, phieunhap,giasanpham,khuyenmai,chitietkhuyenmai,baohanh,chitietbaohanh "
-                    + "where sanpham.Masp=? and baohanh.Mabaohanh=chitietbaohanh.Mabaohanh and sanpham.Masp=chitietbaohanh.Masp and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T' and sanpham.Masp=chitietphieunhap.Masp and chitietphieunhap.Maphieunhap=phieunhap.Maphieunhap and phieunhap.Mancc=nhacungcap.Mancc and sanpham.Masp=giasanpham.Masp");
+            String query = "select sanpham.Tensp,sanpham.Loaisp,sanpham.soluong,sanpham.Namsx,nhacungcap.Tenncc,giasanpham.Giaban,sanpham.Icon,sanpham.ThongSo,khuyenmai.Ptkm,baohanh.Thoigianbaohanh,khuyenmai.Makm,baohanh.Mabaohanh,chitietkhuyenmai.Machitietkhuyenmai,chitietbaohanh.Machitietbaohanh,giasanpham.Magiasp from sanpham,nhacungcap,giasanpham,khuyenmai,chitietkhuyenmai,baohanh,chitietbaohanh where sanpham.Masp=? and nhacungcap.Mancc=sanpham.Mancc and baohanh.Mabaohanh=chitietbaohanh.Mabaohanh and sanpham.Masp=chitietbaohanh.Masp and khuyenmai.Makm=chitietkhuyenmai.Makm and sanpham.Masp=chitietkhuyenmai.Masp and khuyenmai.Trangthai='T' and sanpham.TrangThai='T' and giasanpham.TrangThai='T'  and sanpham.Masp=giasanpham.Masp and chitietkhuyenmai.TrangThai='T' and chitietbaohanh.TrangThai='T'";
+            PreparedStatement stm = db.getConnection().prepareStatement(query);
             stm.setInt(1, selectedIndex);
             rs = db.sqlQry(stm);
             if (rs != null) {
                 while (rs.next()) {
-//                    System.out.println("Vuo");
                     Model_BanHang_ChiTietSanPham model = new Model_BanHang_ChiTietSanPham();
                     model.setTensp(rs.getString(1));
                     model.setLoaisp(rs.getString(2));
@@ -92,7 +89,6 @@ public class QuanLyBanHang_DAO {
 //                    model.setMakm(rs.getInt(11));
 //                    model.setMabh(rs.getInt(12));
 //
-//                    System.out.println(model.getMabh());
                 }
             }
         } catch (SQLException e) {

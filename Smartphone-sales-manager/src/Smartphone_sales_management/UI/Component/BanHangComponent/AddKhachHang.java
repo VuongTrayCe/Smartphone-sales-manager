@@ -23,11 +23,11 @@ public class AddKhachHang extends javax.swing.JPanel {
      * Creates new form AddKhachHang
      */
     JDialog addkhachang;
-    JPanel thongtinhoadon;
+    ThongTinDonHang thongtinhoadon;
     QuanLyBanHang_BUS qlbh = new QuanLyBanHang_BUS();
     LocalDateTime now;
 
-    public AddKhachHang(JDialog addkhachhang, JPanel thongtinhoadon) {
+    public AddKhachHang(JDialog addkhachhang,ThongTinDonHang thongtinhoadon) {
         initComponents();
         this.addkhachang = addkhachhang;
         this.thongtinhoadon = thongtinhoadon;
@@ -241,6 +241,9 @@ public class AddKhachHang extends javax.swing.JPanel {
             model_khachhang.setDiemso(0);
             model_khachhang.setNgaytao(formatDateTime);
             qlbh.addKhachHang(model_khachhang);
+            JOptionPane.showMessageDialog(null,"Thêm Thành Công");
+            addkhachang.dispose();
+            thongtinhoadon.LoadInforData();
         } else {
 //            JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin");
         }
